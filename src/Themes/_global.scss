@@ -1,0 +1,42 @@
+// to override global elements, such as #root or body
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap');
+
+@import '_variables';
+
+* {
+	font-family: sans-serif;
+	color: $text-light;
+	line-height: 1.2;
+}
+
+p {
+	font-weight: 400;
+	font-size: 0.9rem;
+	line-height: 1.3;
+}
+
+.btn {
+	&-small {
+		padding: 2px 6px;
+		margin: 0 4px;
+		font-size: 0.8rem;
+		border-radius: 3px;
+	}
+	&-medium {
+		padding: 10px 20px;
+		margin: 10px;
+		font-size: 1.1rem;
+		border-radius: 3px;
+	}
+}
+
+// .smallBtn {
+// 	padding: 4px 8px;
+// 	margin: 4px;
+// 	border-radius: ;
+// }
+
+// .btn {
+// 	border-radius: 3px;
+// 	font-size: 1.1rem;
+// }

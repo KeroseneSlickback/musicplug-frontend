@@ -1,0 +1,39 @@
+@import '../../Themes/_global';
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	background-color: $bg-forward;
+	width: 100%;
+	border-bottom: 1px solid $highlight-muted;
+
+	.logo {
+		padding: 10px;
+		max-height: 50px;
+		margin: 0px 4px;
+	}
+
+	.navigation {
+		display: flex;
+		align-items: center;
+
+		.link {
+			text-decoration: none;
+			.reg {
+				background: $bg-bold;
+				&:hover {
+					background: $bg-bold-alt;
+				}
+			}
+
+			.login {
+				background: $bg-semi-bold;
+				&:hover {
+					background: $bg-semi-bold-alt;
+				}
+			}
+		}
+	}
+}
