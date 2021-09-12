@@ -1,0 +1,30 @@
+To do:
+
+Home features:
+
+X - New Post button
+  - New post module
+
+Modals:
+
+- New Post
+
+- Register
+
+- Login
+  - Once logged in, change top-bar buttons (context)
+
+- Logout
+
+Sorting:
+
+- New/Top on Home 
+
+- By Genre -> On Home
+  - Side-effect: Change background color of genre block to full
+
+View Post:
+
+- Pull up a single Post
+  - Display all comments
+  - Comment box

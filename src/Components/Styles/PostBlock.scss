@@ -7,11 +7,11 @@
 	background-color: $bg-forward;
 	width: 700px;
 	margin-top: 8px;
-	border: 2px solid $highlight-dark;
+	border: 1px solid $highlight-dark;
 	border-radius: 3px;
 
 	&:hover {
-		border: 2px solid $highlight-muted;
+		border: 1px solid $highlight-muted;
 	}
 
 	a {

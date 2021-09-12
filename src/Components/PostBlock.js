@@ -10,7 +10,6 @@ import headphoneSVG from '../Images/svg/headphones_black_24dp.svg';
 
 function PostBlock(props) {
 	const { title, text, comments, owner } = props.data;
-	console.log(props.data);
 	return (
 		<div className="postContainer">
 			<div className="postTop">

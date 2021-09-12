@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Styles/Home.css';
 
 import PostBlock from '../Components/PostBlock';
 import GenreDisplayBlock from '../Components/GenreDisplayBlock';
+import SortSelector from '../Components/SortSelector';
 
 const examplePosts = [
 	{
@@ -330,14 +331,41 @@ const genres = [
 ];
 
 function Home() {
+	const [sortNew, setSortNew] = useState(true);
+
+	function sortController(e, boolean) {
+		e.preventDefault();
+		setSortNew(boolean);
+		console.log(sortNew);
+	}
+
 	return (
 		<div className="homeDiv">
 			<div className="genreBlockContainer">
-				{genres.map(genre => {
-					return <GenreDisplayBlock data={genre} key={genre} />;
-				})}
+				<div>
+					{genres.map(genre => {
+						return <GenreDisplayBlock data={genre} key={genre} />;
+					})}
+				</div>
+				<div className="newPostDiv">
+					<a href="/">New Post</a>
+				</div>
 			</div>
 			<div className="postBlockContainer">
+				<div className="sortDiv">
+					<button
+						className={`newSort ${sortNew ? 'selected' : ''}`}
+						onClick={e => sortController(e, true)}
+					>
+						New Posts
+					</button>
+					<button
+						className={`topSort ${sortNew ? '' : 'selected'}`}
+						onClick={e => sortController(e, false)}
+					>
+						Top Posts
+					</button>
+				</div>
 				{examplePosts.map(postData => {
 					return <PostBlock data={postData} key={postData.id} />;
 				})}
