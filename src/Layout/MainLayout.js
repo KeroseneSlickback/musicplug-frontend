@@ -1,12 +1,17 @@
 import React from 'react';
 import MainNavBar from './MainNavBar';
+import MainSidebar from './MainSidebar';
+
+import './Styles/MainLayout.css';
 
 function MainLayout(props) {
 	return (
 		<div>
 			<MainNavBar />
-			<div></div>
-			<main>{props.children}</main>
+			<div className="centerPageDiv">
+				<MainSidebar />
+				<main>{props.children}</main>
+			</div>
 		</div>
 	);
 }

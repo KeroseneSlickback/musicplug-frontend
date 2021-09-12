@@ -57,23 +57,25 @@ p {
           align-items: center;
 }
 
-.header .navigation .link {
-  text-decoration: none;
+.header .navigation .reg,
+.header .navigation .login {
+  border: none;
+  cursor: pointer;
 }
 
-.header .navigation .link .reg {
+.header .navigation .reg {
   background: #c52772;
 }
 
-.header .navigation .link .reg:hover {
+.header .navigation .reg:hover {
   background: #cf2e7d;
 }
 
-.header .navigation .link .login {
+.header .navigation .login {
   background: #a51d62;
 }
 
-.header .navigation .link .login:hover {
+.header .navigation .login:hover {
   background: #b42269;
 }
 /*# sourceMappingURL=MainNavBar.css.map */

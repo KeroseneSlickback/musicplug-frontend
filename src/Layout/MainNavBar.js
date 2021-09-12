@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Styles/MainNavbar.css';
+
+import RegisterModal from '../Modals/RegisterModal';
+import LoginModal from '../Modals/LoginModal';
+import Backdrop from '../Modals/Backdrop';
 
 import logo from '../Images/svg/logo.svg';
 
 function MainNavBar() {
+	const [viewRegister, setViewRegister] = useState(false);
+	const [viewLogin, setViewLogin] = useState(false);
+
+	function toggleRegister() {
+		setViewRegister(prev => !prev);
+		console.log(viewRegister);
+	}
+
+	function toggleLogin() {
+		setViewLogin(prev => !prev);
+		console.log(viewLogin);
+	}
+
+	function closeModal() {
+		setViewRegister(false);
+		setViewLogin(false);
+	}
+
 	return (
 		<header className="header">
 			<div>
@@ -14,17 +36,20 @@ function MainNavBar() {
 			</div>
 			<div className="navigation">
 				<div>
-					<Link className="link" to="/register">
-						<p className="btn-medium reg">Register</p>
-					</Link>
+					<button className="btn-medium reg" onClick={() => toggleRegister()}>
+						Register
+					</button>
 				</div>
 				{/* Conditional rendering if User is not logged in (register)/logged in */}
 				<div>
-					<Link className="link loginBtn" to="/login">
-						<p className="btn-medium login">Login</p>
-					</Link>
+					<button className="btn-medium login" onClick={() => toggleLogin()}>
+						Login
+					</button>
 				</div>
 			</div>
+			{viewRegister ? <RegisterModal /> : null}
+			{viewLogin ? <LoginModal /> : null}
+			{viewRegister || viewLogin ? <Backdrop closeModal={closeModal} /> : null}
 		</header>
 	);
 }
