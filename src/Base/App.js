@@ -5,6 +5,7 @@ import './Styles/App.css';
 // Components
 import MainLayout from '../Layout/MainLayout';
 import Home from '../Pages/Home';
+import NewPost from '../Pages/NewPost';
 
 function App() {
 	return (
@@ -13,6 +14,9 @@ function App() {
 				<Switch>
 					<Route path="/" exact>
 						<Home />
+					</Route>
+					<Route path="/newpost">
+						<NewPost />
 					</Route>
 					{/* <Router path="/genre/:id" children={<Genre />} /> */}
 				</Switch>

@@ -7,14 +7,12 @@ X - New Post button
 
 Modals:
 
-- New Post
+X - Register
 
-- Register
-
-- Login
+X - Login
   - Once logged in, change top-bar buttons (context)
 
-- Logout
+X - Logout
 
 Sorting:
 

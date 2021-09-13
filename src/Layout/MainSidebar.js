@@ -24,7 +24,7 @@ function MainSidebar() {
 				})}
 			</div>
 			<div className="newPostDiv">
-				<a href="/">New Post</a>
+				<a href="/newpost">New Post</a>
 			</div>
 		</div>
 	);

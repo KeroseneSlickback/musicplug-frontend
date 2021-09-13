@@ -36,19 +36,22 @@ function MainNavBar() {
 			</div>
 			<div className="navigation">
 				<div>
-					<button className="btn-medium reg" onClick={() => toggleRegister()}>
+					<button
+						className="btn-medium regBtn"
+						onClick={() => toggleRegister()}
+					>
 						Register
 					</button>
 				</div>
 				{/* Conditional rendering if User is not logged in (register)/logged in */}
 				<div>
-					<button className="btn-medium login" onClick={() => toggleLogin()}>
+					<button className="btn-medium loginBtn" onClick={() => toggleLogin()}>
 						Login
 					</button>
 				</div>
 			</div>
-			{viewRegister ? <RegisterModal /> : null}
-			{viewLogin ? <LoginModal /> : null}
+			{viewRegister ? <RegisterModal closeModal={closeModal} /> : null}
+			{viewLogin ? <LoginModal closeModal={closeModal} /> : null}
 			{viewRegister || viewLogin ? <Backdrop closeModal={closeModal} /> : null}
 		</header>
 	);
