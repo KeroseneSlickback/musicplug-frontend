@@ -1,34 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useDebounce from '../Hooks/useDebounce';
 
 import './Styles/NewPost.css';
 
 function NewPost(props) {
-	const titleInputRef = useRef();
-	const textbodyInputRef = useRef();
-	const selectedGenreInputRef = useRef();
-	const youtubeInputRef = useRef();
-	const [artistState, setArtistState] = useState('');
-	const initialRender = useRef(true);
+	const [title, setTitle] = useState('');
+	const [text, setText] = useState('');
+	const [genre, setGenre] = useState('');
+	const [artist, setArtist] = useState('');
+	const [bio, setBio] = useState('');
+	const [image, setImage] = useState('');
+	const [recommended, setRecommended] = useState('');
 
-	// Call onchange for when artist is changed, thus fetched
-	// When state isn't changed for a period of time, then fetch
+	const debouncedValue = useDebounce(artist, 1000);
+	const initialRender = useRef(true);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		const title = titleInputRef.current.value;
-		const text = textbodyInputRef.current.value;
-		const genre = selectedGenreInputRef.current.value;
-		const artist = artistState;
-		const recommended = youtubeInputRef.current.value;
 
 		const postData = {
 			title,
 			text,
 			artist,
-			// bio,
+			bio,
 			genre,
-			// image,
+			image,
 			votes: 0,
 			recommended,
 		};
@@ -42,12 +38,9 @@ function NewPost(props) {
 		if (initialRender.current) {
 			initialRender.current = false;
 		} else {
-			const timer = setTimeout(() => {
-				console.log('Timer up!');
-			}, delay * 100);
-			return () => clearTimeout(timer);
+			console.log(debouncedValue);
 		}
-	}, [artistState]);
+	}, [debouncedValue, delay]);
 
 	return (
 		<div className="newPostInputDiv">
@@ -58,10 +51,10 @@ function NewPost(props) {
 						<label htmlFor="title">Post title:</label>
 						<input
 							name="title"
-							name="title"
 							type="text"
+							value={title}
+							onChange={e => setTitle(e.target.value)}
 							placeholder="I really really really like this..."
-							ref={titleInputRef}
 							required
 						/>
 					</div>
@@ -72,7 +65,8 @@ function NewPost(props) {
 							cols="40"
 							rows="15"
 							placeholder="This time when I was searching bandcamp, I came across this artist..."
-							ref={textbodyInputRef}
+							value={text}
+							onChange={e => setText(e.target.value)}
 							required
 						></textarea>
 					</div>
@@ -81,10 +75,11 @@ function NewPost(props) {
 						<select
 							className="genreSelect"
 							name="genre"
-							ref={selectedGenreInputRef}
+							value={genre}
+							onChange={e => setGenre(e.target.value)}
 							required
 						>
-							<option value="" selected="selected" disabled>
+							<option value="" disabled>
 								Select a genre
 							</option>
 							<option value="pop">Pop</option>
@@ -103,8 +98,32 @@ function NewPost(props) {
 							name="artist"
 							type="text"
 							placeholder="Daft Punk"
-							value={artistState}
-							onChange={e => setArtistState(e.target.value)}
+							value={artist}
+							onChange={e => setArtist(e.target.value)}
+							required
+						/>
+					</div>
+					<div className="newInputDiv">
+						<label htmlFor="bio">Artist/Band bio:</label>
+						<textarea
+							name="bio"
+							cols="20"
+							rows="15"
+							placeholder="Search to auto-generate bio or enter manually"
+							value={bio}
+							onChange={e => setBio(e.target.value)}
+							required
+						></textarea>
+					</div>
+					<div className="newInputDiv">
+						<label htmlFor="image">Artist/Band image (URL):</label>
+						<input
+							name="image"
+							type="url"
+							value={image}
+							onChange={e => setImage(e.target.value)}
+							placeholder="https://bandimage..."
+							pattern="https://.*"
 							required
 						/>
 					</div>
@@ -113,12 +132,14 @@ function NewPost(props) {
 						<input
 							name="youtube"
 							type="url"
-							ref={youtubeInputRef}
+							value={recommended}
+							onChange={e => setRecommended(e.target.value)}
 							placeholder="https://youtube.com..."
 							pattern="https://.*"
 							required
 						/>
 					</div>
+
 					<button className="btn-medium">Submit New Post</button>
 				</form>
 			</div>

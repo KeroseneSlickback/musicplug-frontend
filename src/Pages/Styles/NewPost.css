@@ -33,7 +33,7 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
 .newPostInputDiv .userInputDiv .newInputDiv label {

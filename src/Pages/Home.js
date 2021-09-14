@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Styles/Home.css';
 
 import PostBlock from '../Components/PostBlock';
-import GenreDisplayBlock from '../Components/GenreDisplayBlock';
-import SortSelector from '../Components/SortSelector';
+// import GenreDisplayBlock from '../Components/GenreDisplayBlock';
+// import SortSelector from '../Components/SortSelector';
 
 const examplePosts = [
 	{
@@ -325,7 +325,6 @@ function Home() {
 	function sortController(e, boolean) {
 		e.preventDefault();
 		setSortNew(boolean);
-		console.log(sortNew);
 	}
 
 	return (
@@ -346,7 +345,7 @@ function Home() {
 					</button>
 				</div>
 				{examplePosts.map(postData => {
-					return <PostBlock data={postData} key={postData.id} />;
+					return <PostBlock data={postData} key={postData._id} />;
 				})}
 			</div>
 		</div>

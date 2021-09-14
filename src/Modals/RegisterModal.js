@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 import './Styles/Modal.css';
 
 function Register(props) {
-	const emailInputRef = useRef();
-	const usernameInputRef = useRef();
-	const passwordInputRef = useRef();
+	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
 
 	function closeHandler() {
 		props.closeModal();
@@ -13,9 +13,6 @@ function Register(props) {
 
 	function registerHandler(e) {
 		e.preventDefault();
-		const email = emailInputRef.current.value;
-		const username = usernameInputRef.current.value;
-		const password = passwordInputRef.current.value;
 		const registerData = {
 			email,
 			username,
@@ -35,7 +32,8 @@ function Register(props) {
 							name="email"
 							type="text"
 							placeholder="Email"
-							ref={emailInputRef}
+							value={email}
+							onChange={e => setEmail(e.target.value)}
 						/>
 						<label htmlFor="email">Never shared</label>
 					</div>
@@ -44,7 +42,8 @@ function Register(props) {
 							name="username"
 							type="text"
 							placeholder="Username"
-							ref={usernameInputRef}
+							value={username}
+							onChange={e => setUsername(e.target.value)}
 						/>
 						<label htmlFor="username">A unique username</label>
 					</div>
@@ -54,7 +53,8 @@ function Register(props) {
 							name="password"
 							type="password"
 							placeholder="Password"
-							ref={passwordInputRef}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 						/>
 						<label htmlFor="password">At least 7 characters and secure</label>
 					</div>

@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 import './Styles/Modal.css';
 
 function LoginModal(props) {
-	const usernameInputRef = useRef();
-	const passwordInputRef = useRef();
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
 
 	function closeHandler() {
 		props.closeModal();
@@ -12,8 +12,6 @@ function LoginModal(props) {
 
 	function registerHandler(e) {
 		e.preventDefault();
-		const username = usernameInputRef.current.value;
-		const password = passwordInputRef.current.value;
 		const loginData = {
 			username,
 			password,
@@ -32,7 +30,8 @@ function LoginModal(props) {
 							name="username"
 							type="text"
 							placeholder="Username"
-							ref={usernameInputRef}
+							value={username}
+							onChange={e => setUsername(e.target.value)}
 						/>
 						<label htmlFor="username">Your username</label>
 					</div>
@@ -42,7 +41,8 @@ function LoginModal(props) {
 							name="password"
 							type="password"
 							placeholder="Password"
-							ref={passwordInputRef}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 						/>
 						<label htmlFor="password">Your password</label>
 					</div>

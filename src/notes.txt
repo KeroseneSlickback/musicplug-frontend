@@ -6,7 +6,10 @@ X - New Post button
   - New post module
     - Autocomplete Search outside API for Artist/Band info
       - Auto-fills Artist name, bio, photo (url), maybe recommended listening?
-    - 
+    - Cases:
+      - User searched for artist, wait time between inputs -> Fetch -> Return first three results
+        - If artist is clicked, fetch artist info and auto-fill containers with info. 
+        - If artist isn't clicked, leave containers empty
 
 Modals:
 
@@ -40,4 +43,3 @@ Styling:
 - Module styles
   - Recreate for module styles
   - Page, comment 
-  

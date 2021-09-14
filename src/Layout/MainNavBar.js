@@ -14,12 +14,10 @@ function MainNavBar() {
 
 	function toggleRegister() {
 		setViewRegister(prev => !prev);
-		console.log(viewRegister);
 	}
 
 	function toggleLogin() {
 		setViewLogin(prev => !prev);
-		console.log(viewLogin);
 	}
 
 	function closeModal() {

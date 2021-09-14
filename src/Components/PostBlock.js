@@ -19,9 +19,7 @@ function PostBlock(props) {
 						<p>{text}</p>
 					</div>
 					<div>
-						<a href="">
-							<img className="musicImg" src={artistImage} alt="artistImage" />
-						</a>
+						<img className="musicImg" src={artistImage} alt="artistImage" />
 					</div>
 				</a>
 			</div>
@@ -32,8 +30,8 @@ function PostBlock(props) {
 				<div className="buttonBox">
 					<button className="btn-small genreBox">GENRE</button>
 					<button className="btn-small youtube">
-						<a href="">
-							<img src={headphoneSVG} alt="" />
+						<a href="/">
+							<img src={headphoneSVG} alt="test" />
 							<p>Listen on Youtube</p>
 						</a>
 					</button>
@@ -41,7 +39,7 @@ function PostBlock(props) {
 						<img src={chatSVG} alt={chatSVG} />
 						<p>{comments.length} Comments</p>
 					</button>
-					<input type="image" src={fullHeartSVG} />
+					<input type="image" alt="test" src={fullHeartSVG} />
 				</div>
 			</div>
 		</div>
