@@ -4,6 +4,9 @@ Home features:
 
 X - New Post button
   - New post module
+    - Autocomplete Search outside API for Artist/Band info
+      - Auto-fills Artist name, bio, photo (url), maybe recommended listening?
+    - 
 
 Modals:
 
@@ -26,3 +29,15 @@ View Post:
 - Pull up a single Post
   - Display all comments
   - Comment box
+
+Styling:
+
+- Global styles
+  - Page containers
+  - Buttons 
+  - Form styles 
+
+- Module styles
+  - Recreate for module styles
+  - Page, comment 
+  
