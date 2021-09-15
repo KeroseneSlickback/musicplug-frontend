@@ -3,17 +3,17 @@
 .newPostInputDiv {
 	width: 700px;
 	margin-top: 8px;
-	padding: 8px;
 	border: 1px solid $highlight-dark;
 	border-radius: 3px;
 	background-color: $bg-forward;
 
 	h1 {
 		font-size: 2rem;
-		margin: 8px;
+		margin: 16px;
 	}
 
 	.userInputDiv {
+		margin: 16px;
 		.newInputDiv {
 			display: flex;
 			flex-direction: column;

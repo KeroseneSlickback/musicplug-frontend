@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useDebounce from '../Hooks/useDebounce';
+import useDebounceFetch from '../Hooks/useDebounceFetch';
 
 import './Styles/NewPost.css';
 
@@ -11,9 +11,27 @@ function NewPost(props) {
 	const [bio, setBio] = useState('');
 	const [image, setImage] = useState('');
 	const [recommended, setRecommended] = useState('');
+	const [params, setParams] = useState({
+		method: 'artist.search',
+		artist: 'cher',
+		api_key: '965e58baf164ac9a296b3190e678218e',
+		format: 'json',
+	});
+	const fetchedData = useDebounceFetch(
+		'https://ws.audioscrobbler.com/2.0',
+		params
+	);
 
-	const debouncedValue = useDebounce(artist, 1000);
-	const initialRender = useRef(true);
+	function handleArtistChange(e) {
+		const { name, value } = e.target;
+		setArtist(value);
+		setParams(prevState => ({
+			...prevState,
+			[name]: value,
+		}));
+	}
+
+	console.log(fetchedData.data.data);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -31,16 +49,6 @@ function NewPost(props) {
 		e.target.reset();
 		console.log(postData);
 	}
-
-	let delay = 10;
-
-	useEffect(() => {
-		if (initialRender.current) {
-			initialRender.current = false;
-		} else {
-			console.log(debouncedValue);
-		}
-	}, [debouncedValue, delay]);
 
 	return (
 		<div className="newPostInputDiv">
@@ -99,7 +107,7 @@ function NewPost(props) {
 							type="text"
 							placeholder="Daft Punk"
 							value={artist}
-							onChange={e => setArtist(e.target.value)}
+							onChange={handleArtistChange}
 							required
 						/>
 					</div>
