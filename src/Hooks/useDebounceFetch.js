@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-function useDebounceFetch(url, params) {
+function useDebounceFetch(searchParams) {
+	const { url, params, delay } = searchParams;
 	const [initialRender, setInitialRender] = useState(true);
 	const [data, setData] = useState('');
 	const [load, setLoad] = useState(false);
@@ -11,28 +12,30 @@ function useDebounceFetch(url, params) {
 	useEffect(() => {
 		if (initialRender) {
 			setInitialRender(false);
-			console.log('Initial render!');
+			console.log('Initial render');
 		} else {
-			const debounceFetch = setTimeout(() => {
-				try {
+			console.log('Attempting fetch');
+			const debounceFetch = setTimeout(
+				() => {
 					setLoad(true);
-					console.log('Fetching!');
 					const getData = async () => {
-						const data = await axios.get(url, {
-							params: params,
-						});
-						setData(data);
-						setLoad(false);
+						await axios({ url, params })
+							.then(response => {
+								console.log('Fetched');
+								setData(response);
+								setLoad(false);
+							})
+							.catch(e => {
+								setError(e);
+							});
 					};
 					getData();
-					console.log('Finished fetching!');
-				} catch (e) {
-					setError(e);
-				}
-			}, 1000);
+				},
+				delay ? delay * 100 : 1000
+			);
 			return () => clearTimeout(debounceFetch);
 		}
-	}, [params]);
+	}, [searchParams]);
 
 	return { data, load, error };
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import useDebounceFetch from '../Hooks/useDebounceFetch';
 
 import './Styles/NewPost.css';
@@ -8,30 +8,33 @@ function NewPost(props) {
 	const [text, setText] = useState('');
 	const [genre, setGenre] = useState('');
 	const [artist, setArtist] = useState('');
-	const [bio, setBio] = useState('');
 	const [image, setImage] = useState('');
 	const [recommended, setRecommended] = useState('');
-	const [params, setParams] = useState({
-		method: 'artist.search',
-		artist: 'cher',
-		api_key: '965e58baf164ac9a296b3190e678218e',
-		format: 'json',
+
+	const [searchParams, setSearchParams] = useState({
+		url: 'https://ws.audioscrobbler.com/2.0',
+		params: {
+			method: 'artist.search',
+			limit: 3,
+			artist: 'cher',
+			api_key: '965e58baf164ac9a296b3190e678218e',
+			format: 'json',
+		},
+		delay: 10,
 	});
-	const fetchedData = useDebounceFetch(
-		'https://ws.audioscrobbler.com/2.0',
-		params
-	);
+
+	const fetchedData = useDebounceFetch(searchParams);
+
+	console.log(fetchedData.data);
 
 	function handleArtistChange(e) {
 		const { name, value } = e.target;
 		setArtist(value);
-		setParams(prevState => ({
+		setSearchParams(prevState => ({
 			...prevState,
-			[name]: value,
+			params: { ...prevState.params, [name]: value },
 		}));
 	}
-
-	console.log(fetchedData.data.data);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -40,7 +43,7 @@ function NewPost(props) {
 			title,
 			text,
 			artist,
-			bio,
+			// bio,
 			genre,
 			image,
 			votes: 0,
@@ -111,18 +114,17 @@ function NewPost(props) {
 							required
 						/>
 					</div>
-					<div className="newInputDiv">
-						<label htmlFor="bio">Artist/Band bio:</label>
-						<textarea
-							name="bio"
-							cols="20"
-							rows="15"
-							placeholder="Search to auto-generate bio or enter manually"
-							value={bio}
-							onChange={e => setBio(e.target.value)}
-							required
-						></textarea>
-					</div>
+					{/* <div>
+						{fetchedData.data != null ? (
+							<img
+								src={
+									fetchedData.data.data.results.artistmatches.artist[1]
+										.image[0]['#text']
+								}
+								alt=""
+							/>
+						) : null}
+					</div> */}
 					<div className="newInputDiv">
 						<label htmlFor="image">Artist/Band image (URL):</label>
 						<input
