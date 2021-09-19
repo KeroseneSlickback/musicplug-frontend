@@ -3,35 +3,41 @@ import React, { useState } from 'react';
 import './Styles/Modal.css';
 
 function LoginModal(props) {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [loginData, setLoginData] = useState({
+		username: '',
+		password: '',
+	});
 
 	function closeHandler() {
 		props.closeModal();
 	}
 
-	function registerHandler(e) {
+	function handleChange(e) {
+		const { name, value } = e.target;
+		setLoginData(prevState => ({
+			...prevState,
+			[name]: value,
+		}));
+	}
+
+	function loginHandler(e) {
 		e.preventDefault();
-		const loginData = {
-			username,
-			password,
-		};
 		console.log(loginData);
 	}
 
 	return (
-		<div className="modal registerContainer">
+		<div className="modal">
 			<div className="modalContainer">
 				<h1>Welcome back!</h1>
 				<h3>Login below</h3>
-				<form onSubmit={registerHandler}>
+				<form onSubmit={loginHandler}>
 					<div className="modalInput">
 						<input
 							name="username"
 							type="text"
 							placeholder="Username"
-							value={username}
-							onChange={e => setUsername(e.target.value)}
+							value={loginData.username}
+							onChange={handleChange}
 						/>
 						<label htmlFor="username">Your username</label>
 					</div>
@@ -41,8 +47,8 @@ function LoginModal(props) {
 							name="password"
 							type="password"
 							placeholder="Password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
+							value={loginData.password}
+							onChange={handleChange}
 						/>
 						<label htmlFor="password">Your password</label>
 					</div>

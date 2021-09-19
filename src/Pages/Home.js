@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Styles/Home.css';
+import './Styles/Home.scss';
 
 import PostBlock from '../Components/PostBlock';
 // import GenreDisplayBlock from '../Components/GenreDisplayBlock';

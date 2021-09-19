@@ -1,54 +1,27 @@
 import React, { useState } from 'react';
-import useDebounceFetch from '../Hooks/useDebounceFetch';
 
-import './Styles/NewPost.css';
+import './Styles/NewPost.scss';
 
 function NewPost(props) {
-	const [title, setTitle] = useState('');
-	const [text, setText] = useState('');
-	const [genre, setGenre] = useState('');
-	const [artist, setArtist] = useState('');
-	const [image, setImage] = useState('');
-	const [recommended, setRecommended] = useState('');
-
-	const [searchParams, setSearchParams] = useState({
-		url: 'https://ws.audioscrobbler.com/2.0',
-		params: {
-			method: 'artist.search',
-			limit: 3,
-			artist: 'cher',
-			api_key: '965e58baf164ac9a296b3190e678218e',
-			format: 'json',
-		},
-		delay: 10,
+	const [postData, setPostData] = useState({
+		title: '',
+		text: '',
+		genre: '',
+		artist: '',
+		image: '',
+		recommended: '',
 	});
 
-	const fetchedData = useDebounceFetch(searchParams);
-
-	console.log(fetchedData.data);
-
-	function handleArtistChange(e) {
+	function handleChange(e) {
 		const { name, value } = e.target;
-		setArtist(value);
-		setSearchParams(prevState => ({
+		setPostData(prevState => ({
 			...prevState,
-			params: { ...prevState.params, [name]: value },
+			[name]: value,
 		}));
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		const postData = {
-			title,
-			text,
-			artist,
-			// bio,
-			genre,
-			image,
-			votes: 0,
-			recommended,
-		};
 		e.target.reset();
 		console.log(postData);
 	}
@@ -63,21 +36,21 @@ function NewPost(props) {
 						<input
 							name="title"
 							type="text"
-							value={title}
-							onChange={e => setTitle(e.target.value)}
+							value={postData.title}
+							onChange={handleChange}
 							placeholder="I really really really like this..."
 							required
 						/>
 					</div>
 					<div className="newInputDiv">
-						<label htmlFor="textbody">Explain your recommendation:</label>
+						<label htmlFor="text">Explain your recommendation:</label>
 						<textarea
-							name="textbody"
+							name="text"
 							cols="40"
 							rows="15"
 							placeholder="This time when I was searching bandcamp, I came across this artist..."
-							value={text}
-							onChange={e => setText(e.target.value)}
+							value={postData.text}
+							onChange={handleChange}
 							required
 						></textarea>
 					</div>
@@ -86,8 +59,8 @@ function NewPost(props) {
 						<select
 							className="genreSelect"
 							name="genre"
-							value={genre}
-							onChange={e => setGenre(e.target.value)}
+							value={postData.genre}
+							onChange={handleChange}
 							required
 						>
 							<option value="" disabled>
@@ -109,41 +82,30 @@ function NewPost(props) {
 							name="artist"
 							type="text"
 							placeholder="Daft Punk"
-							value={artist}
-							onChange={handleArtistChange}
+							value={postData.artist}
+							onChange={handleChange}
 							required
 						/>
 					</div>
-					{/* <div>
-						{fetchedData.data != null ? (
-							<img
-								src={
-									fetchedData.data.data.results.artistmatches.artist[1]
-										.image[0]['#text']
-								}
-								alt=""
-							/>
-						) : null}
-					</div> */}
 					<div className="newInputDiv">
 						<label htmlFor="image">Artist/Band image (URL):</label>
 						<input
 							name="image"
 							type="url"
-							value={image}
-							onChange={e => setImage(e.target.value)}
+							value={postData.image}
+							onChange={handleChange}
 							placeholder="https://bandimage..."
 							pattern="https://.*"
 							required
 						/>
 					</div>
 					<div className="newInputDiv">
-						<label htmlFor="youtube">Recommended Youtube link:</label>
+						<label htmlFor="recommended">Recommended Youtube link:</label>
 						<input
-							name="youtube"
+							name="recommended"
 							type="url"
-							value={recommended}
-							onChange={e => setRecommended(e.target.value)}
+							value={postData.recommended}
+							onChange={handleChange}
 							placeholder="https://youtube.com..."
 							pattern="https://.*"
 							required

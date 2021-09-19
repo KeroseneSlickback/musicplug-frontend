@@ -3,21 +3,26 @@ import React, { useState } from 'react';
 import './Styles/Modal.css';
 
 function Register(props) {
-	const [email, setEmail] = useState('');
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [registerData, setRegisterData] = useState({
+		email: '',
+		username: '',
+		password: '',
+	});
 
 	function closeHandler() {
 		props.closeModal();
 	}
 
+	function handleChange(e) {
+		const { name, value } = e.target;
+		setRegisterData(prevState => ({
+			...prevState,
+			[name]: value,
+		}));
+	}
+
 	function registerHandler(e) {
 		e.preventDefault();
-		const registerData = {
-			email,
-			username,
-			password,
-		};
 		console.log(registerData);
 	}
 
@@ -32,8 +37,8 @@ function Register(props) {
 							name="email"
 							type="text"
 							placeholder="Email"
-							value={email}
-							onChange={e => setEmail(e.target.value)}
+							value={registerData.email}
+							onChange={handleChange}
 						/>
 						<label htmlFor="email">Never shared</label>
 					</div>
@@ -42,8 +47,8 @@ function Register(props) {
 							name="username"
 							type="text"
 							placeholder="Username"
-							value={username}
-							onChange={e => setUsername(e.target.value)}
+							value={registerData.username}
+							onChange={handleChange}
 						/>
 						<label htmlFor="username">A unique username</label>
 					</div>
@@ -53,8 +58,8 @@ function Register(props) {
 							name="password"
 							type="password"
 							placeholder="Password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
+							value={registerData.password}
+							onChange={handleChange}
 						/>
 						<label htmlFor="password">At least 7 characters and secure</label>
 					</div>

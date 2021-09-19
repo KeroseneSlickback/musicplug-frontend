@@ -1,8 +1,6 @@
 // to override global elements, such as #root or body
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap');
 
-@import '_variables';
-
 * {
 	font-family: sans-serif;
 	color: $text-light;
