@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
-import './Styles/NewPost.scss';
+import { MediumStyledButton } from '../Components/Buttons';
+import { PageContainer } from '../Components/Containers';
+import {
+	FormContainer,
+	Form,
+	FormBlock,
+	PostLabel,
+	PostInput,
+	PostTextArea,
+	PostSelect,
+} from '../Components/Forms';
 
 function NewPost(props) {
 	const [postData, setPostData] = useState({
@@ -27,13 +37,13 @@ function NewPost(props) {
 	}
 
 	return (
-		<div className="newPostInputDiv">
-			<h1>New Post</h1>
-			<div className="userInputDiv">
-				<form onSubmit={handleSubmit}>
-					<div className="newInputDiv">
-						<label htmlFor="title">Post title:</label>
-						<input
+		<PageContainer>
+			<FormContainer>
+				<h1>New Post</h1>
+				<Form onSubmit={handleSubmit}>
+					<FormBlock>
+						<PostLabel htmlFor="">Post Title:</PostLabel>
+						<PostInput
 							name="title"
 							type="text"
 							value={postData.title}
@@ -41,22 +51,22 @@ function NewPost(props) {
 							placeholder="I really really really like this..."
 							required
 						/>
-					</div>
-					<div className="newInputDiv">
-						<label htmlFor="text">Explain your recommendation:</label>
-						<textarea
+					</FormBlock>
+					<FormBlock>
+						<PostLabel htmlFor="text">Explain your recommendation:</PostLabel>
+						<PostTextArea
 							name="text"
-							cols="40"
+							cols="50"
 							rows="15"
 							placeholder="This time when I was searching bandcamp, I came across this artist..."
 							value={postData.text}
 							onChange={handleChange}
 							required
-						></textarea>
-					</div>
-					<div className="newInputDiv">
-						<label htmlFor="genre">Genre:</label>
-						<select
+						></PostTextArea>
+					</FormBlock>
+					<FormBlock>
+						<PostLabel htmlFor="genre">Genre:</PostLabel>
+						<PostSelect
 							className="genreSelect"
 							name="genre"
 							value={postData.genre}
@@ -74,11 +84,11 @@ function NewPost(props) {
 							<option value="bluesjazz">Blues/Jazz</option>
 							<option value="classical">Classical</option>
 							<option value="funkrb">Funk/R&B</option>
-						</select>
-					</div>
-					<div className="newInputDiv">
-						<label htmlFor="artist">Artist/Band:</label>
-						<input
+						</PostSelect>
+					</FormBlock>
+					<FormBlock>
+						<PostLabel htmlFor="artist">Artist/Band:</PostLabel>
+						<PostInput
 							name="artist"
 							type="text"
 							placeholder="Daft Punk"
@@ -86,10 +96,10 @@ function NewPost(props) {
 							onChange={handleChange}
 							required
 						/>
-					</div>
-					<div className="newInputDiv">
-						<label htmlFor="image">Artist/Band image (URL):</label>
-						<input
+					</FormBlock>
+					<FormBlock>
+						<PostLabel htmlFor="image">Artist/Band image (URL):</PostLabel>
+						<PostInput
 							name="image"
 							type="url"
 							value={postData.image}
@@ -98,10 +108,10 @@ function NewPost(props) {
 							pattern="https://.*"
 							required
 						/>
-					</div>
-					<div className="newInputDiv">
-						<label htmlFor="recommended">Recommended Youtube link:</label>
-						<input
+					</FormBlock>
+					<FormBlock>
+						<PostLabel>Recommended Youtube Link:</PostLabel>
+						<PostInput
 							name="recommended"
 							type="url"
 							value={postData.recommended}
@@ -110,12 +120,11 @@ function NewPost(props) {
 							pattern="https://.*"
 							required
 						/>
-					</div>
-
-					<button className="btn-medium">Submit New Post</button>
-				</form>
-			</div>
-		</div>
+					</FormBlock>
+					<MediumStyledButton>Submit New Post</MediumStyledButton>
+				</Form>
+			</FormContainer>
+		</PageContainer>
 	);
 }
 

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import './Styles/Home.scss';
 
-import PostBlock from '../Components/PostBlock';
-// import GenreDisplayBlock from '../Components/GenreDisplayBlock';
-// import SortSelector from '../Components/SortSelector';
+import { SortDiv, SortButton } from '../Components/Buttons';
+import PostModule from '../Modules/PostModule';
 
 const examplePosts = [
 	{
@@ -328,26 +326,24 @@ function Home() {
 	}
 
 	return (
-		<div className="homeDiv">
-			<div className="postBlockContainer">
-				<div className="sortDiv">
-					<button
-						className={`newSort ${sortNew ? 'selected' : ''}`}
-						onClick={e => sortController(e, true)}
-					>
-						New Posts
-					</button>
-					<button
-						className={`topSort ${sortNew ? '' : 'selected'}`}
-						onClick={e => sortController(e, false)}
-					>
-						Top Posts
-					</button>
-				</div>
-				{examplePosts.map(postData => {
-					return <PostBlock data={postData} key={postData._id} />;
-				})}
-			</div>
+		<div>
+			<SortDiv>
+				<SortButton
+					className={`${sortNew ? 'selected' : ''}`}
+					onClick={e => sortController(e, true)}
+				>
+					New Posts
+				</SortButton>
+				<SortButton
+					className={`${sortNew ? '' : 'selected'}`}
+					onClick={e => sortController(e, false)}
+				>
+					Top Posts
+				</SortButton>
+			</SortDiv>
+			{examplePosts.map(postData => {
+				return <PostModule data={postData} key={postData._id} />;
+			})}
 		</div>
 	);
 }
