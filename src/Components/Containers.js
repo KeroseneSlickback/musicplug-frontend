@@ -13,9 +13,9 @@ export const ModalContainer = styled.div`
 `;
 
 export const PageContainer = styled.div`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-between; */
 	background-color: #272432;
 	width: 900px;
 	margin-top: 8px;
@@ -24,6 +24,9 @@ export const PageContainer = styled.div`
 `;
 
 export const PostContainer = styled(PageContainer)`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	&:hover {
 		border: 1px solid #a39abc;
 	}

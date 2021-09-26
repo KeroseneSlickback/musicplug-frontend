@@ -60,3 +60,25 @@ Newest stuff to tackle:
     - Home
       - Request, new and popular
     - By Genre 
+
+
+Register/Login system:
+
+New User setup:
+
+- User comes to site 
+  - Wants to create New Post, clicks on New Post
+  - New Post checks localstorage for JWT token
+    - If none: Redirects to Register/Login page 
+      - Register: User is directed to verify through Spotify 
+          - Backend: Ports user to Spotify, Spotify callbacks to Backend
+          - Backend: Requests body and tokens, once done redirects to Frontend with info
+          - Frontend on redirect strips info and tokens, saves them to localstorage, clears url, redirects to Register form 
+        - Frontend fetches user info from Spotify to auto-fill register form  
+        - Once registered: User is redirected to New Post
+        - Upon initial search, frontend calls Spotify API
+          - If rejected, new access_token is called by backend 
+          - Once accepted, front-end recieves info as requested
+        - New User makes New Post 
+      - Login: User is checked for spotify tokens in localstorage
+        - If no Spotify tokens in localstorage: User is ported to Spotify
