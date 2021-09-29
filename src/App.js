@@ -1,35 +1,34 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useAuth } from './Utilities/AuthContext';
 
 // Components
 import MainLayout from './Modules/Layout/MainLayout';
 import Home from './Pages/Home';
 import NewPost from './Pages/NewPost';
-import SpotifyAuth from './Pages/SpotifyAuth';
-import SpotifyTest from './Pages/SpotifyTest';
+import Register from './Pages/Register';
+import SpotifyRedirect from './Pages/SpotifyRedirect';
 
 function App() {
+	const { loggedIn } = useAuth();
 	return (
-		<div>
-			<MainLayout>
-				<Switch>
-					<Route path="/" exact>
-						<Home />
-					</Route>
-					<Route path="/newpost">
-						<NewPost />
-					</Route>
-					<Route path="/test">
-						<SpotifyTest />
-					</Route>
-					<Route path="/spotifyauth">
-						<SpotifyAuth />
-					</Route>
-
-					{/* <Router path="/genre/:id" children={<Genre />} /> */}
-				</Switch>
-			</MainLayout>
-		</div>
+		<MainLayout>
+			<Switch>
+				<Route path="/" exact>
+					<Home />
+				</Route>
+				<Route path="/newpost">
+					<NewPost />
+				</Route>
+				<Route path="/register">
+					<Register />
+				</Route>
+				<Route>
+					<SpotifyRedirect />
+				</Route>
+				{/* <Router path="/genre/:id" children={<Genre />} /> */}
+			</Switch>
+		</MainLayout>
 	);
 }
 

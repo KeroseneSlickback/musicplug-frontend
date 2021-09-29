@@ -80,6 +80,11 @@ body {
 	line-height: 1;
 }
 
+body * {
+	box-sizing: border-box;
+	text-rendering: optimizelegibility;
+}
+
 article,
 aside,
 details,

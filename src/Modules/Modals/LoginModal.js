@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import AuthContext from '../../Utilities/AuthContext';
 
 import {
 	FormContainer,
@@ -15,6 +17,7 @@ import {
 } from '../../Components/Buttons';
 
 function LoginModal(props) {
+	const authContext = useContext(AuthContext);
 	const [loginData, setLoginData] = useState({
 		username: '',
 		password: '',
@@ -34,7 +37,18 @@ function LoginModal(props) {
 
 	function loginHandler(e) {
 		e.preventDefault();
-		console.log(loginData);
+		axios
+			.post('http://localhost:8888/users/login', loginData)
+			.then(response => {
+				localStorage.setItem('user', JSON.stringify(response.data.user));
+				localStorage.setItem('jwt', response.data.token.split(' ')[1]);
+				console.log('Logged In');
+				authContext.login();
+				props.closeModal();
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 
 	return (
@@ -64,7 +78,7 @@ function LoginModal(props) {
 						/>
 						<FormLabel htmlFor="password">Your Password</FormLabel>
 					</FormBlock>
-					<MediumStyledButton>Login</MediumStyledButton>
+					<MediumStyledButton bottom>Login</MediumStyledButton>
 				</Form>
 			</FormContainer>
 			<CloseButtonDiv>

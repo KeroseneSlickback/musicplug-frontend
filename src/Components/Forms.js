@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const FormContainer = styled.div`
 	display: flex;
@@ -15,15 +15,55 @@ export const FormContainer = styled.div`
 	h3 {
 		color: #f7f7f7;
 		font-size: 1.25rem;
+		margin-bottom: 8px;
 	}
 `;
 
 export const Form = styled.form``;
 
 export const FormBlock = styled.div`
-	padding-top: 20px;
+	padding-top: 12px;
 	display: flex;
 	flex-direction: column;
+
+	${props =>
+		props.spotify &&
+		css`
+			align-items: center;
+
+			a {
+				margin: 48px 0px 36px 0px;
+				height: 100px;
+				width: 100px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transform: scale(1);
+				animation: pulse 1.25s infinite;
+				@keyframes pulse {
+				0% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0  #cf2e7d;
+				}
+
+				70% {
+					transform: scale(1);
+					box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
+					background-color:rgba(0, 0, 0, 0); 
+				}
+
+				100% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+					background-color: #b42269;
+				}
+			}
+
+			img {
+				height: 100px;
+			}
+		`}
 `;
 
 export const FormInput = styled.input`
@@ -32,7 +72,7 @@ export const FormInput = styled.input`
 	border: 2px solid #5e5577;
 	border-radius: 3px;
 	padding: 4px 6px;
-	height: 26px;
+	height: 38px;
 	font-size: 1rem;
 `;
 
@@ -48,9 +88,9 @@ export const PostInput = styled.input`
 	border: 2px solid #5e5577;
 	border-radius: 3px;
 	padding: 4px 6px;
-	height: 26px;
+	height: 38px;
 	font-size: 1rem;
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 `;
 
 export const PostTextArea = styled(PostInput).attrs({

@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { SmallButton, MediumStyledButton } from '../Components/Buttons';
 import { PageContainer } from '../Components/Containers';
-import SpotifyGetPlaylist from '../Modules/SpotifyGetPlaylist';
-import SpotifyVerifyUser from '../Modules/SpotifyVerifyUser';
 
-function getReturnedParamsFromCallback(hash) {
-	const stringAfterHashtag = hash.substring(1);
-	const paramsInUrl = stringAfterHashtag.split('&');
-	const paramsReduce = paramsInUrl.reduce((accum, current) => {
-		const [key, value] = current.split('=');
-		accum[key] = value;
-		return accum;
-	}, {});
-	return paramsReduce;
-}
+import { checkJWTExp } from '../Utilities/UserAuthHelpers';
+
+import { getReturnedParamsFromCallback } from '../Utilities/UserAuthHelpers';
 
 function SpotifyTest() {
+	const history = useHistory();
 	const [search, setSearch] = useState('');
 
 	useEffect(() => {
@@ -28,11 +21,11 @@ function SpotifyTest() {
 			localStorage.removeItem('spotify_refresh');
 			localStorage.setItem('spotify_access', access_token);
 			localStorage.setItem('spotify_refresh', refresh_token);
-			window.location = '';
+			history.go(-3);
 		} else {
 			return;
 		}
-	}, []);
+	}, [history]);
 
 	function searchHandler(e) {
 		setSearch(prev => e.target.value);
@@ -50,6 +43,17 @@ function SpotifyTest() {
 		e.target.reset();
 	}
 
+	function checkToken() {
+		// find token in localstorage
+		const checkedToken = checkJWTExp();
+		if (checkedToken) {
+			// User is still good!
+		} else {
+			// User needs to login again
+			// Also refresh Spotify token
+		}
+	}
+
 	return (
 		<PageContainer>
 			<MediumStyledButton onClick={registerHandler}>
@@ -60,6 +64,7 @@ function SpotifyTest() {
 				<input type="text" onChange={searchHandler} />
 				<SmallButton>Search</SmallButton>
 			</form>
+			<SmallButton onClick={checkToken}>Check Token</SmallButton>
 		</PageContainer>
 	);
 }

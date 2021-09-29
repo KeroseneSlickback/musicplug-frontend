@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MediumStyledButton } from '../Components/Buttons';
+import { MediumStyledButton } from '../src/Components/Buttons';
 
 const PLAYLIST_ENDPOINT = 'https://api.spotify.com/v1/me/playlists';
 

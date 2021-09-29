@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-import AuthContext, { useAuth } from '../../Utilities/AuthContext';
+import AuthContext, { useAuth } from './../Utilities/AuthContext';
 
 import {
 	FormContainer,
@@ -9,16 +9,16 @@ import {
 	FormInput,
 	Form,
 	FormLabel,
-} from '../../Components/Forms';
-import { ModalContainer } from '../../Components/Containers';
+} from './../Components/Forms';
+import { PageContainer } from '../Components/Containers';
 import {
 	MediumStyledButton,
 	CloseButton,
 	CloseButtonDiv,
-} from '../../Components/Buttons';
-import spotifySVG from '../../Utilities/Images/svg/spotify.svg';
+} from './../Components/Buttons';
+import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 
-function RegisterModal(props) {
+function Register(props) {
 	const authContext = useContext(AuthContext);
 	const { spotifyVer } = useAuth();
 	const [registerData, setRegisterData] = useState({
@@ -57,7 +57,7 @@ function RegisterModal(props) {
 	}
 
 	return (
-		<ModalContainer>
+		<PageContainer>
 			<FormContainer>
 				<h1>Welcome to MusicPlug!</h1>
 				{spotifyVer ? (
@@ -115,11 +115,8 @@ function RegisterModal(props) {
 					</FormBlock>
 				)}
 			</FormContainer>
-			<CloseButtonDiv>
-				<CloseButton onClick={closeHandler} />
-			</CloseButtonDiv>
-		</ModalContainer>
+		</PageContainer>
 	);
 }
 
-export default RegisterModal;
+export default Register;

@@ -66,19 +66,17 @@ Register/Login system:
 
 New User setup:
 
-- User comes to site 
-  - Wants to create New Post, clicks on New Post
-  - New Post checks localstorage for JWT token
-    - If none: Redirects to Register/Login page 
-      - Register: User is directed to verify through Spotify 
-          - Backend: Ports user to Spotify, Spotify callbacks to Backend
-          - Backend: Requests body and tokens, once done redirects to Frontend with info
-          - Frontend on redirect strips info and tokens, saves them to localstorage, clears url, redirects to Register form 
-        - Frontend fetches user info from Spotify to auto-fill register form  
-        - Once registered: User is redirected to New Post
-        - Upon initial search, frontend calls Spotify API
-          - If rejected, new access_token is called by backend 
-          - Once accepted, front-end recieves info as requested
-        - New User makes New Post 
-      - Login: User is checked for spotify tokens in localstorage
-        - If no Spotify tokens in localstorage: User is ported to Spotify
+- They hit "Register" button and are redirected to Register page
+  - Register has them verity through Spotify first
+  WORK ON: 
+    - Upon return, grab User from localstorage for Username and email
+      - Autofill forms
+  - After registering, redirect to Home 
+
+Small things: Add on "If you're a registed user..." and "If you'd like to register..." links
+
+- If they click New Post when not Registered or Signed in:
+  - Prompt them with a modal to either Register or Signin => Port them to Register or swap modal for Login 
+  - If signed in, yet not verified, pop a modal up to verity through Spotify before making a new post 
+
+Small change: Conditional Redirect: If no user or jwt, redirect to Register form; if user and jwt, redirect to New Post

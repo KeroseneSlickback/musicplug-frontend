@@ -1,6 +1,6 @@
 import React from 'react';
 import { GenreBlockDiv } from '../../Components/Containers';
-import { GenreTabDiv, NewPostDiv } from '../../Components/SidebarComponents';
+import { NewPostDiv } from '../../Components/SidebarComponents';
 
 import GenreTab from '../GenreTab';
 

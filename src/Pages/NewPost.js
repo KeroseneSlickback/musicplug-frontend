@@ -121,7 +121,7 @@ function NewPost(props) {
 							required
 						/>
 					</FormBlock>
-					<MediumStyledButton>Submit New Post</MediumStyledButton>
+					<MediumStyledButton bottom>Submit New Post</MediumStyledButton>
 				</Form>
 			</FormContainer>
 		</PageContainer>

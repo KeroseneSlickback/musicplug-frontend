@@ -25,7 +25,6 @@ export const SmallButton = styled.button`
 export const SmallStyledButton = styled(SmallButton)`
 	color: #f7f7f7;
 	background-color: #a51d62;
-	margin: 8px 0;
 	&:hover {
 		background-color: #b42269;
 	}
@@ -43,6 +42,12 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 	padding: 8px 16px;
 	font-size: 1rem;
 	border-radius: 3px;
+
+	${props =>
+		props.bottom &&
+		css`
+			margin-top: 24px;
+		`}
 `;
 
 export const CloseButtonDiv = styled.div`

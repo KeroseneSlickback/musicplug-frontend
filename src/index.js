@@ -5,15 +5,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import theme from './Styles/Variables';
 import App from './App';
+import { AuthProvider } from './Utilities/AuthContext';
 
 import { GlobalStyle } from './Components/Global';
 
 ReactDOM.render(
-	<ThemeProvider theme={theme}>
-		<GlobalStyle />
-		<Router>
-			<App />
-		</Router>
-	</ThemeProvider>,
+	<AuthProvider>
+		<ThemeProvider theme={theme}>
+			<GlobalStyle />
+			<Router>
+				<App />
+			</Router>
+		</ThemeProvider>
+	</AuthProvider>,
 	document.getElementById('root')
 );
