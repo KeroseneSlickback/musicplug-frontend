@@ -1,16 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { useAuth } from './Utilities/AuthContext';
 
 // Components
 import MainLayout from './Modules/Layout/MainLayout';
 import Home from './Pages/Home';
 import NewPost from './Pages/NewPost';
 import Register from './Pages/Register';
-import SpotifyRedirect from './Pages/SpotifyRedirect';
+import Redirect from './Pages/Redirect';
 
 function App() {
-	const { loggedIn } = useAuth();
 	return (
 		<MainLayout>
 			<Switch>
@@ -23,8 +21,8 @@ function App() {
 				<Route path="/register">
 					<Register />
 				</Route>
-				<Route>
-					<SpotifyRedirect />
+				<Route path="/redirect">
+					<Redirect />
 				</Route>
 				{/* <Router path="/genre/:id" children={<Genre />} /> */}
 			</Switch>

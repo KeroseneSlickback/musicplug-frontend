@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import AuthContext from '../Utilities/AuthContext';
 import { getReturnedParamsFromCallback } from '../Utilities/UserAuthHelpers';
 
-function SpotifyRedirect() {
+function Redirect() {
 	const authContext = useContext(AuthContext);
 	const history = useHistory();
 
@@ -13,19 +13,22 @@ function SpotifyRedirect() {
 			const { access_token, refresh_token } = getReturnedParamsFromCallback(
 				window.location.hash
 			);
-			console.log('access:', access_token, 'refresh:', refresh_token);
 			localStorage.removeItem('spotify_access');
 			localStorage.removeItem('spotify_refresh');
 			localStorage.setItem('spotify_access', access_token);
 			localStorage.setItem('spotify_refresh', refresh_token);
 			authContext.setSpotifyVerify();
-			history.push('/register');
-		} else {
-			return;
 		}
-	}, [history]);
+
+		if (authContext.loggedIn) {
+			history.push('/newpost');
+		}
+		if (authContext.spotifyVer) {
+			history.push('/register');
+		}
+	}, [history, authContext]);
 
 	return <></>;
 }
 
-export default SpotifyRedirect;
+export default Redirect;

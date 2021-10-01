@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import AuthContext, { useAuth } from './../Utilities/AuthContext';
@@ -11,14 +12,11 @@ import {
 	FormLabel,
 } from './../Components/Forms';
 import { PageContainer } from '../Components/Containers';
-import {
-	MediumStyledButton,
-	CloseButton,
-	CloseButtonDiv,
-} from './../Components/Buttons';
+import { MediumStyledButton } from './../Components/Buttons';
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 
-function Register(props) {
+function Register() {
+	const history = useHistory();
 	const authContext = useContext(AuthContext);
 	const { spotifyVer } = useAuth();
 	const [registerData, setRegisterData] = useState({
@@ -26,11 +24,9 @@ function Register(props) {
 		username: '',
 		password: '',
 		passwordConfirmation: '',
+		avatarLink: '',
+		spotifyLink: '',
 	});
-
-	function closeHandler() {
-		props.closeModal();
-	}
 
 	function handleChange(e) {
 		const { name, value } = e.target;
@@ -49,12 +45,43 @@ function Register(props) {
 				localStorage.setItem('jwt', response.data.token.split(' ')[1]);
 				console.log('Account Created');
 				authContext.login();
-				props.closeModal();
+				history.push('/newpost');
 			})
 			.catch(error => {
 				console.log(error);
 			});
 	}
+
+	useEffect(() => {
+		const access_token = localStorage.getItem('spotify_access');
+		if (spotifyVer && spotifyVer !== undefined) {
+			axios
+				.get('https://api.spotify.com/v1/me', {
+					headers: {
+						Authorization: 'Bearer ' + access_token,
+					},
+				})
+				.then(res => {
+					console.log(res);
+					const username = res.data.display_name;
+					const email = res.data.email;
+					const avatarLink = res.data.images[0].url;
+					const spotifyLink = res.data.href;
+
+					setRegisterData(prevState => ({
+						...prevState,
+						username,
+						email,
+						avatarLink,
+						spotifyLink,
+					}));
+					console.log(username, email, avatarLink, spotifyLink);
+				})
+				.catch(err => console.log(err));
+		} else {
+			return;
+		}
+	}, [spotifyVer]);
 
 	return (
 		<PageContainer>

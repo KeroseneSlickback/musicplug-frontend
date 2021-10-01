@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-const sleep = ms => {
-	return new Promise(resolve => setTimeout(resolve, ms));
-};
+// const sleep = ms => {
+// 	return new Promise(resolve => setTimeout(resolve, ms));
+// };
 
 const AuthContext = createContext({});
 
