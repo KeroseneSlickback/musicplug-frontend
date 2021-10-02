@@ -62,21 +62,15 @@ Newest stuff to tackle:
     - By Genre 
 
 
-Register/Login system:
+New Post:
 
-New User setup:
+- Explore Spotify API for what can be used and how it can be used.
+- Test some get requests from Spotify API 
+  - Create helper function to refresh access_token if denied upon get request 
+- Wire up for New Post 
 
-- They hit "Register" button and are redirected to Register page
-  - Register has them verity through Spotify first
-  WORK ON: 
-    - Upon return, grab User from localstorage for Username and email
-      - Autofill forms
-  - After registering, redirect to Home 
+Display posts:
 
-Small things: Add on "If you're a registed user..." and "If you'd like to register..." links
-
-- If they click New Post when not Registered or Signed in:
-  - Prompt them with a modal to either Register or Signin => Port them to Register or swap modal for Login 
-  - If signed in, yet not verified, pop a modal up to verity through Spotify before making a new post 
-
-Small change: Conditional Redirect: If no user or jwt, redirect to Register form; if user and jwt, redirect to New Post
+- At Home, get posts by date and apply them to Home 
+(Save top posts for later when votes are implemented)
+-

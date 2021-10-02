@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import AuthContext, { useAuth } from './../Utilities/AuthContext';
+import { callForSpotifyRefresh } from './../Utilities/UserAuthHelpers';
 
 import {
 	FormContainer,
@@ -54,6 +55,7 @@ function Register() {
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('spotify_access');
+
 		if (spotifyVer && spotifyVer !== undefined) {
 			axios
 				.get('https://api.spotify.com/v1/me', {
@@ -75,9 +77,12 @@ function Register() {
 						avatarLink,
 						spotifyLink,
 					}));
-					console.log(username, email, avatarLink, spotifyLink);
 				})
-				.catch(err => console.log(err));
+				.catch(err => {
+					if (err.response.status === 401) {
+						callForSpotifyRefresh();
+					}
+				});
 		} else {
 			return;
 		}

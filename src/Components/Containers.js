@@ -35,6 +35,27 @@ export const PostContainer = styled(PageContainer)`
 	}
 `;
 
+export const PageInfoContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 32px;
+	height: 400px;
+
+	h1 {
+		color: #f7f7f7;
+		font-size: 2.1rem;
+		padding-bottom: 24px;
+	}
+
+	h3 {
+		color: #f7f7f7;
+		font-size: 1.25rem;
+		margin-bottom: 8px;
+	}
+`;
+
 export const CenterPageDiv = styled.div`
 	display: flex;
 	flex-direction: row;

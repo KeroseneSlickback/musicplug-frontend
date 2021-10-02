@@ -19,12 +19,11 @@ function Redirect() {
 			localStorage.setItem('spotify_refresh', refresh_token);
 			authContext.setSpotifyVerify();
 		}
-
-		if (authContext.loggedIn) {
-			history.push('/newpost');
-		}
 		if (authContext.spotifyVer) {
 			history.push('/register');
+		}
+		if (authContext.loggedIn) {
+			history.push('/newpost');
 		}
 	}, [history, authContext]);
 
