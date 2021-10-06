@@ -25,30 +25,29 @@ function searchParamsReducer(state, action) {
 		case 'artist': {
 			return {
 				...state,
-				params: { q: `artist:${action.payload}`, type: action.type },
+				artist: action.payload,
+				type: action.type,
 			};
 		}
 		case 'album': {
 			return {
 				...state,
-				q: `album:${action.payload}`,
+				album: action.payload,
 				type: action.type,
 			};
 		}
 		case 'track': {
 			return {
 				...state,
-				q: `track:${action.payload}`,
+				track: action.payload,
 				type: action.type,
-				limit: 30,
 			};
 		}
 		case 'playlist': {
 			return {
 				...state,
-				q: `playlist:${action.payload}`,
+				playlist: action.payload,
 				type: action.type,
-				limit: 20,
 			};
 		}
 		default:
@@ -57,20 +56,19 @@ function searchParamsReducer(state, action) {
 }
 
 const initialSearchState = {
-	url: 'https://api.spotify.com/v1/search',
-	params: {
-		q: '',
-		type: '',
-		limit: 3,
-	},
-	delay: 8,
+	artist: '',
+	album: '',
+	track: '',
+	playlist: '',
+	type: '',
 };
 
 function NewPost() {
 	const history = useHistory();
+	// const [initialRender, setInitialRender] = useState(true);
 	const { loggedIn, spotifyVer } = useContext(AuthContext);
-	// const [playlistSelect, setPlaylistSelect] = useState(false);
-	const { userRefreshed, freshAccessToken } = useSpotifyRefresh();
+	const [playlistSelect, setPlaylistSelect] = useState(false);
+	const freshAccessToken = useSpotifyRefresh();
 	const [postData, setPostData] = useState({
 		title: '',
 		text: '',
@@ -85,16 +83,28 @@ function NewPost() {
 		initialSearchState
 	);
 
-	// const [searchParams, setSearchParams] = useState({
-	// 	url: 'https://api.spotify.com/v1/search',
-	// 	params: {},
-	// 	delay: 5,
-	// });
-
-	const artistSearch = useSpotifyDebounceFetch(
-		artistSearchParams,
-		freshAccessToken
+	const [albumSearchParams, setAlbumSearchParams] = useReducer(
+		searchParamsReducer,
+		initialSearchState
 	);
+
+	const [searchParams, setSearchParams] = useState({
+		url: 'https://api.spotify.com/v1/search',
+		headers: {
+			Authorization: `Bearer ${freshAccessToken}`,
+		},
+		params: {},
+		delay: 5,
+	});
+
+	const { data, load, error } = useSpotifyDebounceFetch(searchParams);
+
+	// const [searchParams, setSearchParams] = useReducer(
+	// 	searchParamsReducer,
+	// 	initialSearchState
+	// );
+
+	console.log(searchParams);
 
 	function handlePostChange(e) {
 		const { name, value } = e.target;
@@ -131,6 +141,38 @@ function NewPost() {
 			});
 		e.target.reset(); // Upon success, redirect to post with post#
 	}
+
+	useEffect(() => {
+		// const url = 'https://api.spotify.com/v1/search';
+		// const headers = {
+		// 	Authorization: `Bearer ${access_token}`,
+		// };
+		// let params = {};
+		// if (playlistSelect) {
+		// 	params = {
+		// 		q: `${
+		// 			searchParams.playlist !== ''
+		// 				? `playlist:${searchParams.playlist}`
+		// 				: ''
+		// 		}`,
+		// 	};
+		// } else {
+		// 	params = {
+		// 		q: `${
+		// 			searchParams.artist !== '' ? `artist:${searchParams.artist}` : ''
+		// 		} ${searchParams.album !== '' ? `album:${searchParams.album}` : ''} ${
+		// 			searchParams.track !== '' ? `track:${searchParams.track}` : ''
+		// 		}`,
+		// 		type: `${searchParams.type}`,
+		// 		limit: 3,
+		// 	};
+		// }
+		// console.log(params);
+		// axios
+		// 	.get(url, { headers, params })
+		// 	.then(res => console.log(res))
+		// 	.catch(err => console.log(err));
+	}, []);
 
 	// const songSearch = () => {
 	// 	const access_token = localStorage.getItem('spotify_access');
@@ -188,7 +230,7 @@ function NewPost() {
 						</a>
 					</FormBlock>
 				</FormContainer>
-			) : userRefreshed === true ? (
+			) : freshAccessToken === true ? (
 				<FormContainer>
 					<h1>New Post</h1>
 					<h3>
@@ -210,7 +252,7 @@ function NewPost() {
 							placeholder="Tom Petty..."
 						></PostInput>
 					</FormBlock>
-					{/* <FormBlock>
+					<FormBlock>
 						<PostLabel htmlFor="album">Search for Album:</PostLabel>
 						<PostInput
 							name="album"
@@ -254,7 +296,7 @@ function NewPost() {
 							}
 							placeholder="Best of Rock 1982..."
 						></PostInput>
-					</FormBlock> */}
+					</FormBlock>
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>
 						<PostSelect

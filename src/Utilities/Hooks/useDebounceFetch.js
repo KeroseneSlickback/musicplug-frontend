@@ -53,11 +53,13 @@ function useDebounceFetch(searchParams) {
 						await axios({ url, params })
 							.then(response => {
 								console.log('Fetched');
+								console.log(response);
 								setData(response);
 								setLoad(false);
 							})
 							.catch(e => {
 								setError(e);
+								console.log(e);
 							});
 					};
 					getData();

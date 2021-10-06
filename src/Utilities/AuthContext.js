@@ -9,6 +9,7 @@ const AuthContext = createContext({});
 export const AuthProvider = props => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [spotifyVer, setSpotifyVer] = useState(false);
+	const [accessToken, setAccessToken] = useState('');
 
 	useEffect(() => {
 		// Pull saved login state from localStorage
@@ -37,12 +38,18 @@ export const AuthProvider = props => {
 		setSpotifyVer(true);
 	};
 
+	const setCurrentAccessToken = token => {
+		setAccessToken(token);
+	};
+
 	const authContextValue = {
 		login,
 		loggedIn,
 		logout,
 		spotifyVer,
 		setSpotifyVerify,
+		accessToken,
+		setCurrentAccessToken,
 	};
 
 	return <AuthContext.Provider value={authContextValue} {...props} />;

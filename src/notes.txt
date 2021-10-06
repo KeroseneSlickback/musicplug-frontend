@@ -62,15 +62,22 @@ Newest stuff to tackle:
     - By Genre 
 
 
-New Post:
+Searching process:
 
-- Explore Spotify API for what can be used and how it can be used.
-- Test some get requests from Spotify API 
-  - Create helper function to refresh access_token if denied upon get request 
-- Wire up for New Post 
+- User goes to New Post page
 
-Display posts:
-
-- At Home, get posts by date and apply them to Home 
-(Save top posts for later when votes are implemented)
--
+  - They choose either search by Artist/Album/Song or Playlist
+  
+  - If start with artist:
+    - Search only by Artist by giving the custom hook only artist params
+    - Upon selecting the offered choice:
+      - Auto search artist for albums
+    
+  - If start with album:
+    - Search only by album by giving the custom hook only artist params 
+    - Upon selecting the offered album:
+      - Auto search the album for track listing
+  
+  - If start with track:
+    - Search only for that track by giving the custom hook only track params 
+    - Select track, fill out rest of the info
