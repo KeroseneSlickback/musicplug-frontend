@@ -1,50 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import axios from 'axios';
 
-function useSpotifyDebounceFetch(searchParams, freshAccessToken) {
-	const [initialRender, setInitialRender] = useState(true);
+function useSpotifyDebounceFetch(params) {
+	const initialRender = useRef(false);
 	const [data, setData] = useState('');
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState(null);
-	const [headers, setHeaders] = useState({});
 
 	useEffect(() => {
-		setHeaders({
-			Authorization: `Bearer ${freshAccessToken}`,
-		});
-	}, [freshAccessToken]);
-
-	useEffect(() => {
-		if (initialRender) {
-			setInitialRender(false);
+		if (initialRender.current === false) {
+			initialRender.current = true;
 			console.log('Initial render');
 		} else {
-			const { url, params, delay } = searchParams;
 			console.log('Attempting fetch');
-			const debounceFetch = setTimeout(
-				() => {
-					setLoad(true);
-					const getData = async () => {
-						await axios(url, { headers, params })
-							.then(response => {
-								console.log('Fetched');
-								console.log(response);
-								setData(response);
-								setLoad(false);
-							})
-							.catch(e => {
-								setError(e);
-								console.log('Failed fetch:', e);
-							});
-					};
-					getData();
-				},
-				delay ? delay * 100 : 1000
-			);
+			const debounceFetch = setTimeout(() => {
+				const accessToken = localStorage.getItem('spotify_access');
+				setLoad(true);
+				const headers = {
+					Authorization: `Bearer ${accessToken}`,
+				};
+				const getData = async () => {
+					await axios
+						.get('https://api.spotify.com/v1/search', { headers, params })
+						.then(response => {
+							console.log('Fetched');
+							console.log(response);
+							setData(response);
+							setLoad(false);
+						})
+						.catch(e => {
+							setError(e);
+							console.log(e);
+						});
+				};
+				getData();
+			}, 1000);
 			return () => clearTimeout(debounceFetch);
 		}
-	}, [searchParams]);
+	}, [params]);
 
 	return { data, load, error };
 }

@@ -1,6 +1,8 @@
-import React, { useState, useContext, useEffect, useReducer } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+import ArtistSearch from '../Modules/ArtistSearch';
 
 import { MediumStyledButton } from '../Components/Buttons';
 import { PageContainer, PageInfoContainer } from '../Components/Containers';
@@ -25,7 +27,8 @@ function searchParamsReducer(state, action) {
 		case 'artist': {
 			return {
 				...state,
-				params: { q: `artist:${action.payload}`, type: action.type },
+				q: `artist:${action.payload}`,
+				type: action.type,
 			};
 		}
 		case 'album': {
@@ -57,13 +60,9 @@ function searchParamsReducer(state, action) {
 }
 
 const initialSearchState = {
-	url: 'https://api.spotify.com/v1/search',
-	params: {
-		q: '',
-		type: '',
-		limit: 3,
-	},
-	delay: 8,
+	q: '',
+	type: '',
+	limit: 3,
 };
 
 function NewPost() {
@@ -79,22 +78,24 @@ function NewPost() {
 		image: '',
 		recommended: '',
 	});
+	const [searchData, setSearchData] = useState({
+		artistName: '',
+		artistId: '',
+		artistImgURL: '',
+		albumName: '',
+		albumId: '',
+		albumImgURL: '',
+		trackName: '',
+		trackId: '',
+		trackImgURL: '',
+	});
 
 	const [artistSearchParams, setArtistSearchParams] = useReducer(
 		searchParamsReducer,
 		initialSearchState
 	);
 
-	// const [searchParams, setSearchParams] = useState({
-	// 	url: 'https://api.spotify.com/v1/search',
-	// 	params: {},
-	// 	delay: 5,
-	// });
-
-	const artistSearch = useSpotifyDebounceFetch(
-		artistSearchParams,
-		freshAccessToken
-	);
+	const artistFetched = useSpotifyDebounceFetch(artistSearchParams);
 
 	function handlePostChange(e) {
 		const { name, value } = e.target;
@@ -209,6 +210,7 @@ function NewPost() {
 							}
 							placeholder="Tom Petty..."
 						></PostInput>
+						<ArtistSearch></ArtistSearch>
 					</FormBlock>
 					{/* <FormBlock>
 						<PostLabel htmlFor="album">Search for Album:</PostLabel>

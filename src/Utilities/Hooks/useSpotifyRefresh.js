@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const useSpotifyRefresh = () => {
 	const [userRefreshed, setUserRefreshed] = useState(false);
-	const [freshAccessToken, setFreshAccessToken] = useState('');
+	const [freshAccessToken, setFreshAccessToken] = useState(undefined);
 	useEffect(() => {
 		const refresh_token = localStorage.getItem('spotify_refresh');
 		axios

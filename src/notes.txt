@@ -81,3 +81,8 @@ Searching process:
   - If start with track:
     - Search only for that track by giving the custom hook only track params 
     - Select track, fill out rest of the info
+
+
+Take the fetched Artist data and display in an expanding list below the search area. 
+Map the three with pictures and artist names
+Select (?) and save this data into searchData
