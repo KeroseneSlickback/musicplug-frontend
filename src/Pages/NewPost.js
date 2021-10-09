@@ -1,8 +1,8 @@
-import React, { useState, useContext, useReducer } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import ArtistSearch from '../Modules/ArtistSearch';
+import ArtistSearchModule from '../Modules/ArtistSearchModule';
 
 import { MediumStyledButton } from '../Components/Buttons';
 import { PageContainer, PageInfoContainer } from '../Components/Containers';
@@ -20,56 +20,12 @@ import {
 	PostSelect,
 } from '../Components/Forms';
 import useSpotifyRefresh from '../Utilities/Hooks/useSpotifyRefresh';
-import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
-
-function searchParamsReducer(state, action) {
-	switch (action.type) {
-		case 'artist': {
-			return {
-				...state,
-				q: `artist:${action.payload}`,
-				type: action.type,
-			};
-		}
-		case 'album': {
-			return {
-				...state,
-				q: `album:${action.payload}`,
-				type: action.type,
-			};
-		}
-		case 'track': {
-			return {
-				...state,
-				q: `track:${action.payload}`,
-				type: action.type,
-				limit: 30,
-			};
-		}
-		case 'playlist': {
-			return {
-				...state,
-				q: `playlist:${action.payload}`,
-				type: action.type,
-				limit: 20,
-			};
-		}
-		default:
-			throw new Error();
-	}
-}
-
-const initialSearchState = {
-	q: '',
-	type: '',
-	limit: 3,
-};
 
 function NewPost() {
 	const history = useHistory();
 	const { loggedIn, spotifyVer } = useContext(AuthContext);
 	// const [playlistSelect, setPlaylistSelect] = useState(false);
-	const { userRefreshed, freshAccessToken } = useSpotifyRefresh();
+	const { userRefreshed } = useSpotifyRefresh();
 	const [postData, setPostData] = useState({
 		title: '',
 		text: '',
@@ -81,21 +37,17 @@ function NewPost() {
 	const [searchData, setSearchData] = useState({
 		artistName: '',
 		artistId: '',
-		artistImgURL: '',
+		artistImgUrl: '',
+		artistUrl: '',
 		albumName: '',
 		albumId: '',
-		albumImgURL: '',
+		albumImgUrl: '',
+		albumUrl: '',
 		trackName: '',
 		trackId: '',
-		trackImgURL: '',
+		trackImgUrl: '',
+		trackUrl: '',
 	});
-
-	const [artistSearchParams, setArtistSearchParams] = useReducer(
-		searchParamsReducer,
-		initialSearchState
-	);
-
-	const artistFetched = useSpotifyDebounceFetch(artistSearchParams);
 
 	function handlePostChange(e) {
 		const { name, value } = e.target;
@@ -103,6 +55,10 @@ function NewPost() {
 			...prevState,
 			[name]: value,
 		}));
+	}
+
+	function recieveData(data) {
+		console.log(data);
 	}
 
 	function handleSubmit(e) {
@@ -133,45 +89,6 @@ function NewPost() {
 		e.target.reset(); // Upon success, redirect to post with post#
 	}
 
-	// const songSearch = () => {
-	// 	const access_token = localStorage.getItem('spotify_access');
-	// 	const headers = {
-	// 		Authorization: `Bearer ${access_token}`,
-	// 	};
-	// 	const params = {
-	// 		q: 'friday',
-	// 		type: 'track',
-	// 		limit: 3,
-	// 	};
-	// 	axios
-	// 		.get('https://api.spotify.com/v1/search', { headers, params })
-	// 		.then(res => console.log(res))
-	// 		.catch(err => console.log(err));
-	// };
-
-	// const refinedSearch = () => {
-	// 	const access_token = localStorage.getItem('spotify_access');
-	// 	const headers = {
-	// 		Authorization: `Bearer ${access_token}`,
-	// 	};
-
-	// 	const artistSearch = 'Def Leppard';
-	// 	const albumSearch = '';
-	// 	const songSearch = 'Photograph';
-
-	// 	const params = {
-	// 		q: `${artistSearch !== '' ? `artist:${artistSearch}` : ''}
-	// 				${albumSearch !== '' ? `album:${albumSearch}` : ''}
-	// 				${songSearch !== '' ? `track:${songSearch}` : ''}`,
-	// 		type: 'track',
-	// 		limit: 3,
-	// 	};
-	// 	axios
-	// 		.get('https://api.spotify.com/v1/search', { headers, params })
-	// 		.then(res => console.log(res))
-	// 		.catch(err => console.log(err));
-	// };
-
 	return (
 		<PageContainer>
 			{loggedIn === false ? (
@@ -196,67 +113,7 @@ function NewPost() {
 						First start by searching Spotify. You can refine your options as you
 						search.
 					</h3>
-					<FormBlock>
-						<PostLabel htmlFor="artist">Search for Artist:</PostLabel>
-						<PostInput
-							name="artist"
-							type="text"
-							value={artistSearchParams.artist}
-							onChange={e =>
-								setArtistSearchParams({
-									type: e.target.name,
-									payload: e.target.value,
-								})
-							}
-							placeholder="Tom Petty..."
-						></PostInput>
-						<ArtistSearch></ArtistSearch>
-					</FormBlock>
-					{/* <FormBlock>
-						<PostLabel htmlFor="album">Search for Album:</PostLabel>
-						<PostInput
-							name="album"
-							type="text"
-							value={searchParams.album}
-							onChange={e =>
-								setSearchParams({
-									type: e.target.name,
-									payload: e.target.value,
-								})
-							}
-							placeholder="Dark Side of the Moon..."
-						></PostInput>
-					</FormBlock>
-					<FormBlock>
-						<PostLabel htmlFor="track">Search for Song:</PostLabel>
-						<PostInput
-							name="track"
-							type="text"
-							value={searchParams.track}
-							onChange={e =>
-								setSearchParams({
-									type: e.target.name,
-									payload: e.target.value,
-								})
-							}
-							placeholder="Lose Yourself..."
-						></PostInput>
-					</FormBlock>
-					<FormBlock>
-						<PostLabel htmlFor="playlist">Search for Playlist:</PostLabel>
-						<PostInput
-							name="playlist"
-							type="text"
-							value={searchParams.playlist}
-							onChange={e =>
-								setSearchParams({
-									type: e.target.name,
-									payload: e.target.value,
-								})
-							}
-							placeholder="Best of Rock 1982..."
-						></PostInput>
-					</FormBlock> */}
+					<ArtistSearchModule sendData={recieveData} />
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>
 						<PostSelect

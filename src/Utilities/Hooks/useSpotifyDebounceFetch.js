@@ -11,9 +11,7 @@ function useSpotifyDebounceFetch(params) {
 	useEffect(() => {
 		if (initialRender.current === false) {
 			initialRender.current = true;
-			console.log('Initial render');
 		} else {
-			console.log('Attempting fetch');
 			const debounceFetch = setTimeout(() => {
 				const accessToken = localStorage.getItem('spotify_access');
 				setLoad(true);
@@ -24,14 +22,11 @@ function useSpotifyDebounceFetch(params) {
 					await axios
 						.get('https://api.spotify.com/v1/search', { headers, params })
 						.then(response => {
-							console.log('Fetched');
-							console.log(response);
 							setData(response);
 							setLoad(false);
 						})
 						.catch(e => {
 							setError(e);
-							console.log(e);
 						});
 				};
 				getData();

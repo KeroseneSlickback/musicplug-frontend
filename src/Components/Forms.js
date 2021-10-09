@@ -117,3 +117,30 @@ export const PostSelect = styled.select`
 	cursor: pointer;
 	color: #f7f7f7;
 `;
+
+export const FormDropDownDisplay = styled.div`
+	padding: 4px;
+	background-color: #272432;
+	border: 2px solid #2e2b3b;
+	cursor: pointer;
+	color: #f7f7f7;
+	display: flex;
+	align-items: center;
+
+	img {
+		height: 100px;
+		width: 100px;
+		object-fit: cover;
+	}
+
+	p {
+		margin-left: 16px;
+		font-size: 1.6rem;
+	}
+`;
+
+export const FormDropDownDiv = styled(FormDropDownDisplay)`
+	&:hover {
+		background-color: #2e2b3b;
+	}
+`;
