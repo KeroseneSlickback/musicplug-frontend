@@ -118,11 +118,11 @@ export const PostSelect = styled.select`
 	color: #f7f7f7;
 `;
 
-export const FormDropDownDisplay = styled.div`
+export const DropDownArtist = styled.div`
 	padding: 4px;
-	background-color: #272432;
 	border: 2px solid #2e2b3b;
-	cursor: pointer;
+	border-radius: 3px;
+	background-color: #272432;
 	color: #f7f7f7;
 	display: flex;
 	align-items: center;
@@ -139,8 +139,75 @@ export const FormDropDownDisplay = styled.div`
 	}
 `;
 
-export const FormDropDownDiv = styled(FormDropDownDisplay)`
+export const DropDownArtistSelect = styled(DropDownArtist)`
+	cursor: pointer;
 	&:hover {
 		background-color: #2e2b3b;
 	}
+`;
+
+export const DropDownAlbumDiv = styled.div`
+	padding: 4px;
+	border: 2px solid #2e2b3b;
+	border-radius: 3px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 4px;
+`;
+
+export const DropDownAlbumSingle = styled.div`
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.1);
+		background-image: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.4),
+			rgba(0, 0, 0, 0.2) 50%,
+			rgba(0, 0, 0, 0.4) 100%
+		);
+	}
+
+	img {
+		height: 100%;
+		max-width: 100%;
+		object-fit: cover;
+	}
+
+	p {
+		text-overflow: ellipsis;
+		z-index: 2;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: white;
+		font-size: 1.1rem;
+	}
+
+	&:hover {
+		&:after {
+			background-color: rgba(0, 0, 0, 0.6);
+
+			background-image: linear-gradient(
+				to top,
+				rgba(0, 0, 0, 0.4),
+				rgba(0, 0, 0, 0.2) 60%,
+				rgba(0, 0, 0, 0.4) 100%
+			);
+		}
+	}
+`;
+
+export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
+	cursor: pointer;
 `;

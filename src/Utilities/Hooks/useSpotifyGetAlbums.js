@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import axios from 'axios';
 
-function useSpotifyDebounceFetch(params) {
+function useSpotifyDebounceFetch(searchParams) {
 	const initialRender = useRef(false);
 	const [data, setData] = useState('');
 	const [load, setLoad] = useState(false);
@@ -11,10 +11,6 @@ function useSpotifyDebounceFetch(params) {
 	useEffect(() => {
 		if (initialRender.current === false) {
 			initialRender.current = true;
-		} else if (params.q === '') {
-			setData('');
-			setLoad(false);
-			setError(null);
 		} else {
 			const debounceFetch = setTimeout(() => {
 				const accessToken = localStorage.getItem('spotify_access');
@@ -22,9 +18,13 @@ function useSpotifyDebounceFetch(params) {
 				const headers = {
 					Authorization: `Bearer ${accessToken}`,
 				};
+				const { albumId, params } = searchParams;
 				const getData = async () => {
 					await axios
-						.get('https://api.spotify.com/v1/search', { headers, params })
+						.get(`https://api.spotify.com/v1/artists/${albumId}/albums`, {
+							headers,
+							params,
+						})
 						.then(response => {
 							setData(response);
 							setLoad(false);
@@ -34,10 +34,10 @@ function useSpotifyDebounceFetch(params) {
 						});
 				};
 				getData();
-			}, 1000);
+			}, 600);
 			return () => clearTimeout(debounceFetch);
 		}
-	}, [params]);
+	}, [searchParams]);
 
 	return { data, load, error };
 }

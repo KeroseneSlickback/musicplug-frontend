@@ -4,11 +4,14 @@ import {
 	FormBlock,
 	PostLabel,
 	PostInput,
-	FormDropDownDisplay,
-	FormDropDownDiv,
+	DropDownArtist,
+	DropDownArtistSelect,
 } from '../Components/Forms';
 import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+
+// Later fixes:
+// Clear results after clearing searchbar
 
 function ArtistSearchModule(props) {
 	const [artistSearchParams, setArtistSearchParams] = useState({
@@ -17,7 +20,7 @@ function ArtistSearchModule(props) {
 		limit: 3,
 	});
 	const [artistSearch, setArtistSearch] = useState('');
-	const [selectedArtist, setSelectedArtist] = useState(null);
+	const [artist, setartist] = useState(null);
 	const [searched, setSearched] = useState(false);
 
 	// loading and error handling
@@ -25,7 +28,7 @@ function ArtistSearchModule(props) {
 
 	const selectDropDownArtist = artist => {
 		const artistImgUrl = artist.images[1] ? artist.images[1].url : '';
-		setSelectedArtist(prev => ({
+		setartist(prev => ({
 			...prev,
 			artistName: artist.name,
 			artistId: artist.id,
@@ -34,11 +37,13 @@ function ArtistSearchModule(props) {
 		}));
 		setSearched(true);
 		setArtistSearch(artist.name);
+		props.sendData({
+			artistName: artist.name,
+			artistId: artist.id,
+			artistImgUrl,
+			artistUrl: artist.external_urls.spotify,
+		});
 	};
-
-	useEffect(() => {
-		props.sendData(selectedArtist);
-	}, [selectedArtist, props]);
 
 	const updateArtist = e => {
 		setArtistSearch(e.target.value);
@@ -47,6 +52,7 @@ function ArtistSearchModule(props) {
 
 	useEffect(() => {
 		if (artistSearch === '') {
+			setSearched(false);
 			return;
 		} else if (searched) {
 			return;
@@ -69,22 +75,22 @@ function ArtistSearchModule(props) {
 				placeholder="Tom Petty..."
 			></PostInput>
 			{searched ? (
-				<FormDropDownDisplay>
+				<DropDownArtist>
 					<img
 						src={
-							selectedArtist.artistImgUrl !== ''
-								? selectedArtist.artistImgUrl
+							artist.artistImgUrl !== ''
+								? artist.artistImgUrl
 								: StyledBrokenImage
 						}
-						alt={selectedArtist.artistName}
+						alt={artist.artistName}
 					/>
-					<p>{selectedArtist.artistName}</p>
-				</FormDropDownDisplay>
+					<p>{artist.artistName}</p>
+				</DropDownArtist>
 			) : data.data ? (
 				<div>
 					{data.data.artists?.items.map(artist => {
 						return (
-							<FormDropDownDiv
+							<DropDownArtistSelect
 								onClick={() => selectDropDownArtist(artist)}
 								key={artist.id}
 							>
@@ -95,7 +101,7 @@ function ArtistSearchModule(props) {
 									alt={artist.name}
 								/>
 								<p>{artist.name}</p>
-							</FormDropDownDiv>
+							</DropDownArtistSelect>
 						);
 					})}
 				</div>

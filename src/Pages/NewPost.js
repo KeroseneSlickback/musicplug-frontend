@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import ArtistSearchModule from '../Modules/ArtistSearchModule';
+import AlbumSearchModule from '../Modules/AlbumSearchModule';
 
 import { MediumStyledButton } from '../Components/Buttons';
 import { PageContainer, PageInfoContainer } from '../Components/Containers';
@@ -57,9 +58,31 @@ function NewPost() {
 		}));
 	}
 
-	function recieveData(data) {
-		console.log(data);
-	}
+	useEffect(() => {
+		console.log(searchData);
+	}, [searchData]);
+
+	const recieveArtistData = data => {
+		const { artistName, artistId, artistImgUrl, artistUrl } = data;
+		setSearchData(prev => ({
+			...prev,
+			artistName,
+			artistId,
+			artistImgUrl,
+			artistUrl,
+		}));
+	};
+
+	const recieveAlbumData = data => {
+		const { albumName, albumId, albumImgUrl, albumUrl } = data;
+		setSearchData(prev => ({
+			...prev,
+			albumName,
+			albumId,
+			albumImgUrl,
+			albumUrl,
+		}));
+	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -113,7 +136,11 @@ function NewPost() {
 						First start by searching Spotify. You can refine your options as you
 						search.
 					</h3>
-					<ArtistSearchModule sendData={recieveData} />
+					<ArtistSearchModule sendData={recieveArtistData} />
+					<AlbumSearchModule
+						artistId={searchData.artistId ? searchData.artistId : null}
+						sendData={recieveAlbumData}
+					/>
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>
 						<PostSelect

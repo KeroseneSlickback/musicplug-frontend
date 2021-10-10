@@ -86,3 +86,26 @@ Searching process:
 Take the fetched Artist data and display in an expanding list below the search area. 
 Map the three with pictures and artist names
 Select (?) and save this data into searchData
+
+
+To do:
+
+- Track module, same as album 
+  - However, list out the tracks under the search bar 
+  - List them in order if album-searched
+  - Otherwise it doesn't matter
+
+- Copy same album/track logic to artist 
+
+- Refine behavior to cover all three???
+  - If possible, to fill in album and then have artist and song searched alongside
+
+- Spotify href???
+
+
+
+
+- Tracks are display in a flexbox list
+  - Small icon of album image
+  - If from the initial search, track listings are shown (broken up by CD if available)
+  - If no initial search, just track names
