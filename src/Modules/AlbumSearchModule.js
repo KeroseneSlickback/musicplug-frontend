@@ -43,6 +43,7 @@ function AlbumSearchModule(props) {
 			albumId: album.id,
 			albumImgUrl,
 			albumUrl: album.external_urls.spotify,
+			artistId: album.artists[0].id,
 		}));
 		setSearched(true);
 		setAlbumSearch(album.name);
@@ -51,6 +52,7 @@ function AlbumSearchModule(props) {
 			albumId: album.id,
 			albumImgUrl,
 			albumUrl: album.external_urls.spotify,
+			artistId: album.artists[0].id,
 		});
 	};
 

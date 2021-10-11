@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import ArtistSearchModule from '../Modules/ArtistSearchModule';
 import AlbumSearchModule from '../Modules/AlbumSearchModule';
+import TrackSearchModule from '../Modules/TrackSearchModule';
 
 import { MediumStyledButton } from '../Components/Buttons';
 import { PageContainer, PageInfoContainer } from '../Components/Containers';
@@ -74,14 +75,69 @@ function NewPost() {
 	};
 
 	const recieveAlbumData = data => {
-		const { albumName, albumId, albumImgUrl, albumUrl } = data;
+		const { albumName, albumId, albumImgUrl, albumUrl, artistId } = data;
+		console.log(artistId);
 		setSearchData(prev => ({
 			...prev,
 			albumName,
 			albumId,
 			albumImgUrl,
 			albumUrl,
+			// artistId,
 		}));
+	};
+
+	// Now to work backwards
+	// If album is given an albumId, search and preselect an album OVER artist
+
+	// If artist is given an artistId, search adn preselect an artist
+
+	const recieveTrackData = data => {
+		const { trackName, trackId, trackImgUrl, trackUrl, albumId, artistId } =
+			data;
+		console.log('Data from Tracks:', data);
+		if (searchData.albumId === albumId && searchData.artistId === artistId) {
+			return;
+		} else if (
+			searchData.albumId !== albumId &&
+			searchData.artistId !== artistId
+		) {
+			setSearchData(prev => ({
+				...prev,
+				trackName,
+				trackId,
+				trackImgUrl,
+				trackUrl,
+				albumId,
+				artistId,
+			}));
+		} else if (searchData.albumId !== albumId) {
+			setSearchData(prev => ({
+				...prev,
+				trackName,
+				trackId,
+				trackImgUrl,
+				trackUrl,
+				albumId,
+			}));
+		} else if (searchData.artistId !== artistId) {
+			setSearchData(prev => ({
+				...prev,
+				trackName,
+				trackId,
+				trackImgUrl,
+				trackUrl,
+				artistId,
+			}));
+		} else {
+			setSearchData(prev => ({
+				...prev,
+				trackName,
+				trackId,
+				trackImgUrl,
+				trackUrl,
+			}));
+		}
 	};
 
 	function handleSubmit(e) {
@@ -140,6 +196,11 @@ function NewPost() {
 					<AlbumSearchModule
 						artistId={searchData.artistId ? searchData.artistId : null}
 						sendData={recieveAlbumData}
+					/>
+					<TrackSearchModule
+						albumId={searchData.albumId ? searchData.albumId : null}
+						albumImg={searchData.albumImgUrl ? searchData.albumImgUrl : null}
+						sendData={recieveTrackData}
 					/>
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>

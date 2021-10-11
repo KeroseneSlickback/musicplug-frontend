@@ -211,3 +211,39 @@ export const DropDownAlbumSingle = styled.div`
 export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
 	cursor: pointer;
 `;
+
+export const DropDownTrackDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 0 4px;
+	border: 2px solid #2e2b3b;
+	border-radius: 3px;
+	background-color: #272432;
+	color: #f7f7f7;
+`;
+
+export const DropDownTrackSingle = styled.div`
+	display: flex;
+	align-items: flex-start;
+	align-items: center;
+	margin: 2px 0;
+	padding: 4px 0;
+	img {
+		height: 50px;
+		width: 50px;
+		object-fit: cover;
+	}
+
+	p {
+		padding: 6px 0;
+		margin-left: 16px;
+		font-size: 1.1rem;
+	}
+`;
+
+export const DropDownTrackSelect = styled(DropDownTrackSingle)`
+	cursor: pointer;
+	&:hover {
+		background-color: #2e2b3b;
+	}
+`;
