@@ -224,7 +224,6 @@ export const DropDownTrackDiv = styled.div`
 
 export const DropDownTrackSingle = styled.div`
 	display: flex;
-	align-items: flex-start;
 	align-items: center;
 	margin: 2px 0;
 	padding: 4px 0;
@@ -236,8 +235,15 @@ export const DropDownTrackSingle = styled.div`
 
 	p {
 		padding: 6px 0;
-		margin-left: 16px;
+		margin: 0 16px;
 		font-size: 1.1rem;
+	}
+
+	div {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 	}
 `;
 

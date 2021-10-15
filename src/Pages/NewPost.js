@@ -76,73 +76,34 @@ function NewPost() {
 
 	const recieveAlbumData = data => {
 		const { albumName, albumId, albumImgUrl, albumUrl, artistId } = data;
-		console.log(artistId);
 		setSearchData(prev => ({
 			...prev,
 			albumName,
 			albumId,
 			albumImgUrl,
 			albumUrl,
-			// artistId,
+			artistId,
 		}));
 	};
-
-	// Now to work backwards
-	// If album is given an albumId, search and preselect an album OVER artist
-
-	// If artist is given an artistId, search adn preselect an artist
 
 	const recieveTrackData = data => {
 		const { trackName, trackId, trackImgUrl, trackUrl, albumId, artistId } =
 			data;
-		console.log('Data from Tracks:', data);
-		if (searchData.albumId === albumId && searchData.artistId === artistId) {
-			return;
-		} else if (
-			searchData.albumId !== albumId &&
-			searchData.artistId !== artistId
-		) {
-			setSearchData(prev => ({
-				...prev,
-				trackName,
-				trackId,
-				trackImgUrl,
-				trackUrl,
-				albumId,
-				artistId,
-			}));
-		} else if (searchData.albumId !== albumId) {
-			setSearchData(prev => ({
-				...prev,
-				trackName,
-				trackId,
-				trackImgUrl,
-				trackUrl,
-				albumId,
-			}));
-		} else if (searchData.artistId !== artistId) {
-			setSearchData(prev => ({
-				...prev,
-				trackName,
-				trackId,
-				trackImgUrl,
-				trackUrl,
-				artistId,
-			}));
-		} else {
-			setSearchData(prev => ({
-				...prev,
-				trackName,
-				trackId,
-				trackImgUrl,
-				trackUrl,
-			}));
-		}
+		console.log(albumId);
+
+		setSearchData(prev => ({
+			...prev,
+			trackName,
+			trackId,
+			trackImgUrl,
+			trackUrl,
+			albumId,
+			artistId,
+		}));
 	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		// make post request
 		const jwt = localStorage.getItem('jwt');
 		axios
 			.post('http://localhost:8888/posts', postData, {
@@ -195,9 +156,11 @@ function NewPost() {
 					<ArtistSearchModule sendData={recieveArtistData} />
 					<AlbumSearchModule
 						artistId={searchData.artistId ? searchData.artistId : null}
+						albumId={searchData.albumId ? searchData.albumId : null}
 						sendData={recieveAlbumData}
 					/>
 					<TrackSearchModule
+						trackId={searchData.trackId ? searchData.trackId : null}
 						albumId={searchData.albumId ? searchData.albumId : null}
 						albumImg={searchData.albumImgUrl ? searchData.albumImgUrl : null}
 						sendData={recieveTrackData}

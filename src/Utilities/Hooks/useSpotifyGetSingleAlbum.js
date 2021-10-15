@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import axios from 'axios';
 
-function useSpotifyGetAlbums(searchParams) {
+function useSpotifyGetSingleAlbum(searchParams) {
 	const initialRender = useRef(false);
 	const [data, setData] = useState('');
 	const [load, setLoad] = useState(false);
@@ -12,21 +12,21 @@ function useSpotifyGetAlbums(searchParams) {
 		if (initialRender.current === false) {
 			initialRender.current = true;
 		} else {
-			if (searchParams.artistId === '') {
+			if (searchParams.albumId === '') {
 				return;
 			} else {
+				console.log('trying to run');
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
 					setLoad(true);
 					const headers = {
 						Authorization: `Bearer ${accessToken}`,
 					};
-					const { artistId, params } = searchParams;
+					const { albumId } = searchParams;
 					const getData = async () => {
 						await axios
-							.get(`https://api.spotify.com/v1/artists/${artistId}/albums`, {
+							.get(`https://api.spotify.com/v1/albums/${albumId}`, {
 								headers,
-								params,
 							})
 							.then(response => {
 								setData(response);
@@ -46,4 +46,4 @@ function useSpotifyGetAlbums(searchParams) {
 	return { data, load, error };
 }
 
-export default useSpotifyGetAlbums;
+export default useSpotifyGetSingleAlbum;

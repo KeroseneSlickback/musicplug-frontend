@@ -26,7 +26,6 @@ function useSpotifyDebounceFetch(searchParams) {
 							params,
 						})
 						.then(response => {
-							console.log(response);
 							setData(response);
 							setLoad(false);
 						})

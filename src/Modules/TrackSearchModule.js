@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import {
 	FormBlock,
@@ -36,34 +36,37 @@ function TrackSearchModule(props) {
 	const { data } = useSpotifyDebounceFetch(trackSearchParams);
 	const trackData = useSpotifyGetTracks(autoTrackSearchParams);
 
-	const selectDropDownTrack = track => {
-		const albumId = track.album ? track.album.id : '';
-		const artistId = track.artists[0].id;
+	const selectDropDownTrack = useCallback(
+		track => {
+			// console.log('Album ID from Track:', track.album.id);
+			const albumId = track.album ? track.album.id : props.albumId;
+			const artistId = track.artists[0].id;
 
-		console.log(track);
-		const trackImgUrl = track.album
-			? track.album.images[2].url
-			: savedAlbumImgUrl;
-		setTrack(prev => ({
-			...prev,
-			trackName: track.name,
-			trackId: track.id,
-			trackImgUrl,
-			trackUrl: track.external_urls.spotify,
-			albumId,
-			artistId,
-		}));
-		setSearched(true);
-		setTrackSearch(track.name);
-		props.sendData({
-			trackName: track.name,
-			trackId: track.id,
-			trackImgUrl,
-			trackUrl: track.external_urls.spotify,
-			albumId,
-			artistId,
-		});
-	};
+			const trackImgUrl = track.album
+				? track.album.images[2].url
+				: savedAlbumImgUrl;
+			setTrack(prev => ({
+				...prev,
+				trackName: track.name,
+				trackId: track.id,
+				trackImgUrl,
+				trackUrl: track.external_urls.spotify,
+				albumId,
+				artistId,
+			}));
+			setSearched(true);
+			setTrackSearch(track.name);
+			props.sendData({
+				trackName: track.name,
+				trackId: track.id,
+				trackImgUrl,
+				trackUrl: track.external_urls.spotify,
+				albumId,
+				artistId,
+			});
+		},
+		[props, savedAlbumImgUrl]
+	);
 
 	const updateTrack = e => {
 		setTrackSearch(e.target.value);
@@ -84,25 +87,42 @@ function TrackSearchModule(props) {
 		}
 	}, [trackSearch, searched]);
 
+	const clearStates = useCallback(() => {
+		setTrackSearchParams({
+			q: '',
+			type: 'track',
+			limit: 3,
+		});
+		setTrackSearch('');
+		// setTrack(null);
+		setSearched(false);
+		setAutoTrackSearchParams({
+			albumId: '',
+			params: {
+				limit: 40,
+			},
+		});
+	}, []);
+
 	useEffect(() => {
 		if (props.albumId === null) {
 			return;
 		} else {
-			setTrackSearchParams({
-				q: '',
-				type: 'track',
-				limit: 3,
-			});
-			setTrackSearch('');
-			setTrack(null);
-			setSearched(false);
-			setAutoTrackSearchParams(prev => ({
-				...prev,
-				albumId: props.albumId,
-			}));
-			setSavedAlbumUrl(props.albumImg);
+			if (track === null) {
+				// console.log('SEARCHING FOR AN TRACK FROM TRACK MODULE');
+				clearStates();
+				setAutoTrackSearchParams(prev => ({
+					...prev,
+					albumId: props.albumId,
+				}));
+				setSavedAlbumUrl(props.albumImg);
+			} else {
+				if (track.trackId === props.trackId) {
+					return;
+				}
+			}
 		}
-	}, [props.albumId, props.albumImg]);
+	}, [props.albumId, props.trackId, props.albumImg, track, clearStates]);
 
 	return (
 		<FormBlock>
@@ -143,9 +163,10 @@ function TrackSearchModule(props) {
 									}
 									alt={track.name}
 								/>
-								<p>{track.name}</p>
-								<p>{track.album.name}</p>
-								<p>{track.artists[0].name}</p>
+								<div>
+									<p>{track.name}</p>
+									<p>{track.artists[0].name}</p>
+								</div>
 							</DropDownTrackSelect>
 						);
 					})}

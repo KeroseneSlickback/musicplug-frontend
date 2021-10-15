@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import {
 	FormBlock,
@@ -10,6 +10,7 @@ import {
 } from '../Components/Forms';
 import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
 import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
+import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbum';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
 
 // Later fixes:
@@ -22,10 +23,13 @@ function AlbumSearchModule(props) {
 		limit: 3,
 	});
 	const [autoAlbumSearchParams, setAutoAlbumSearchParams] = useState({
-		albumId: '',
+		artistId: '',
 		params: {
 			limit: 25,
 		},
+	});
+	const [singleAlbumSearchParams, setSingleAlbumSearchParams] = useState({
+		albumId: '',
 	});
 	const [albumSearch, setAlbumSearch] = useState('');
 	const [album, setAlbum] = useState(null);
@@ -34,38 +38,59 @@ function AlbumSearchModule(props) {
 	// loading and error handling
 	const { data } = useSpotifyDebounceFetch(albumSearchParams);
 	const albumData = useSpotifyGetAlbums(autoAlbumSearchParams);
+	const singleAlbumData = useSpotifyGetSingleAlbum(singleAlbumSearchParams);
 
-	const selectDropDownAlbum = album => {
-		const albumImgUrl = album.images[1] ? album.images[1].url : '';
-		setAlbum(prev => ({
-			...prev,
-			albumName: album.name,
-			albumId: album.id,
-			albumImgUrl,
-			albumUrl: album.external_urls.spotify,
-			artistId: album.artists[0].id,
-		}));
-		setSearched(true);
-		setAlbumSearch(album.name);
-		props.sendData({
-			albumName: album.name,
-			albumId: album.id,
-			albumImgUrl,
-			albumUrl: album.external_urls.spotify,
-			artistId: album.artists[0].id,
-		});
-	};
+	const selectDropDownAlbum = useCallback(
+		album => {
+			const albumImgUrl = album.images[1] ? album.images[1].url : '';
+			setAlbum(prev => ({
+				...prev,
+				albumName: album.name,
+				albumId: album.id,
+				albumImgUrl,
+				albumUrl: album.external_urls.spotify,
+				artistId: album.artists[0].id,
+			}));
+			setSearched(true);
+			setAlbumSearch(album.name);
+			props.sendData({
+				albumName: album.name,
+				albumId: album.id,
+				albumImgUrl,
+				albumUrl: album.external_urls.spotify,
+				artistId: album.artists[0].id,
+			});
+		},
+		[props]
+	);
 
 	const updateAlbum = e => {
 		setAlbumSearch(e.target.value);
 		setSearched(false);
 	};
 
+	// Line 43:8:  The 'selectDropDownAlbum' function makes the dependencies of useEffect Hook (at line 77) change on every render. To fix this, wrap the definition of 'selectDropDownAlbum' in its own useCallback() Hook  react-hooks/exhaustive-deps
+
+	// Also, some weird issue with albumsId not updating--maybe from either track or album section?
+
+	// What about the selectDropDownTrack function causes render?
+	// Should the whole, or part of it be memoized?
+
+	useEffect(() => {
+		if (
+			singleAlbumData.data.status === 200 &&
+			singleAlbumData.load === false &&
+			searched === false
+		) {
+			selectDropDownAlbum(singleAlbumData.data.data);
+		}
+	}, [singleAlbumData, searched, selectDropDownAlbum]);
+
 	useEffect(() => {
 		if (albumSearch === '') {
 			setSearched(false);
 			return;
-		} else if (searched) {
+		} else if (albumSearch !== '' && searched) {
 			return;
 		} else {
 			setAlbumSearchParams(prev => ({
@@ -75,24 +100,65 @@ function AlbumSearchModule(props) {
 		}
 	}, [albumSearch, searched]);
 
+	const clearStates = useCallback(() => {
+		setAlbumSearchParams({
+			q: '',
+			type: 'album',
+			limit: 3,
+		});
+		setAlbumSearch('');
+		setAlbum(null);
+		setSearched(false);
+		setAutoAlbumSearchParams({
+			artistId: '',
+			params: {
+				limit: 25,
+			},
+		});
+	}, []);
+
+	// some complication with recieving updates from props and referencing state
+	// Perhaps directly
+
 	useEffect(() => {
+		console.log('GIVEN ALBUMID:', props.albumId);
 		if (props.artistId === null) {
 			return;
 		} else {
-			setAlbumSearchParams({
-				q: '',
-				type: 'album',
-				limit: 3,
-			});
-			setAlbumSearch('');
-			setAlbum(null);
-			setSearched(false);
-			setAutoAlbumSearchParams(prev => ({
-				...prev,
-				albumId: props.artistId,
-			}));
+			if (album === null) {
+				console.log('No saved album');
+				if (props.albumId !== null) {
+					console.log('Album prop given');
+					clearStates();
+					setSingleAlbumSearchParams(prev => ({
+						albumId: props.albumId,
+					}));
+				} else {
+					console.log(
+						'Album prop NOT given, running auto search from artistID'
+					);
+					clearStates();
+					setAutoAlbumSearchParams(prev => ({
+						...prev,
+						artistId: props.artistId,
+					}));
+				}
+			} else if (album !== null) {
+				console.log('There is a saved album');
+				console.log('CURRENT SAVED ALBUM:', album.albumId);
+				if (album.albumId !== props.albumId) {
+					console.log('They dont match! Run single album search!');
+					clearStates();
+					setSingleAlbumSearchParams(prev => ({
+						albumId: props.albumId,
+					}));
+				} else {
+					console.log('But they match, so nothing happens');
+					return;
+				}
+			}
 		}
-	}, [props.artistId]);
+	}, [props.artistId, props.albumId, album, clearStates]);
 
 	return (
 		<FormBlock>
@@ -156,7 +222,6 @@ function AlbumSearchModule(props) {
 					})}
 				</DropDownAlbumDiv>
 			) : null}
-			{}
 		</FormBlock>
 	);
 }
