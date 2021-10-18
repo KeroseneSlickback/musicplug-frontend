@@ -11,6 +11,12 @@ function useSpotifyGetAlbums(searchParams) {
 	useEffect(() => {
 		if (initialRender.current === false) {
 			initialRender.current = true;
+		} else if (searchParams.artistId === '' && data === '') {
+			return;
+		} else if (searchParams.artistId === '' && data !== '') {
+			setData('');
+			setLoad(false);
+			setError(null);
 		} else {
 			if (searchParams.artistId === '') {
 				return;

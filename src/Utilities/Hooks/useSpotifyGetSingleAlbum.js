@@ -15,7 +15,6 @@ function useSpotifyGetSingleAlbum(searchParams) {
 			if (searchParams.albumId === '') {
 				return;
 			} else {
-				console.log('trying to run');
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
 					setLoad(true);

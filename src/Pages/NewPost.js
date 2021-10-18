@@ -212,6 +212,15 @@ function NewPost() {
 		const artistImgUrl = artist.images[1] ? artist.images[1].url : '';
 		setArtistSearched(true);
 		setArtistState(artist.name);
+		setAlbumState('');
+		setAlbumSearched(false);
+		setTrackState('');
+		setTrackSearched(false);
+		setAlbumSearchParams({
+			q: '',
+			type: 'album',
+			limit: 3,
+		});
 		setSelectedData(prev => ({
 			...prev,
 			artistName: artist.name,
@@ -224,11 +233,26 @@ function NewPost() {
 		const albumImgUrl = album.images[1] ? album.images[1].url : '';
 		setAlbumSearched(true);
 		setAlbumState(album.name);
+		console.log(album);
 
 		if (selectedData.artistId !== album.artists[0].id) {
 			setSingleArtistSearchParams(prev => ({
 				...prev,
 				artistId: album.artists[0].id,
+			}));
+		}
+		if (selectedData.albumId !== album.id) {
+			setTrackSearchParams({
+				q: '',
+				type: 'track',
+				limit: 6,
+			});
+			setAutoTrackSearchParams(prev => ({
+				...prev,
+				albumId: album.id,
+				params: {
+					limit: 40,
+				},
 			}));
 		}
 		setSelectedData(prev => ({
@@ -278,10 +302,6 @@ function NewPost() {
 			}));
 		}
 	};
-
-	// Run a check for tracks,
-	// If the selected track does not match the tracks in the album
-	// Clear track data, run track search by album
 
 	useEffect(() => {
 		if (albumSearched) {
@@ -336,6 +356,13 @@ function NewPost() {
 			setArtistState(singleArtistData.data.name);
 		}
 	}, [singleArtistData]);
+
+	useEffect(() => {
+		if (autoTrackData.status === 200) {
+			setTrackSearched(false);
+			setTrackState('');
+		}
+	}, [autoTrackData]);
 
 	return (
 		<PageContainer>

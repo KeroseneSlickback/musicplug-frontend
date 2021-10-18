@@ -15,6 +15,7 @@ function useSpotifyDebounceFetch(searchParams) {
 			if (searchParams.albumId === '') {
 				return;
 			} else {
+				console.log('running');
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
 					setLoad(true);
@@ -29,6 +30,7 @@ function useSpotifyDebounceFetch(searchParams) {
 								params,
 							})
 							.then(response => {
+								console.log(response);
 								setData(response);
 								setLoad(false);
 							})

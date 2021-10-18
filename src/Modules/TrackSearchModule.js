@@ -89,7 +89,7 @@ function TrackSearchModule({
 						);
 					})}
 				</DropDownTrackDiv>
-			) : trackState === '' ? null : null}
+			) : null}
 		</FormBlock>
 	);
 }
