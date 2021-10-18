@@ -22,11 +22,15 @@ import {
 	PostSelect,
 } from '../Components/Forms';
 import useSpotifyRefresh from '../Utilities/Hooks/useSpotifyRefresh';
+import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
+import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
+import useSpotifyGetTracks from '../Utilities/Hooks/useSpotifyGetTracks';
+import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbum';
+import useSpotifyGetSingleArtist from '../Utilities/Hooks/useSpotifyGetSingleArtist';
 
 function NewPost() {
 	const history = useHistory();
 	const { loggedIn, spotifyVer } = useContext(AuthContext);
-	// const [playlistSelect, setPlaylistSelect] = useState(false);
 	const { userRefreshed } = useSpotifyRefresh();
 	const [postData, setPostData] = useState({
 		title: '',
@@ -36,7 +40,8 @@ function NewPost() {
 		image: '',
 		recommended: '',
 	});
-	const [searchData, setSearchData] = useState({
+
+	const [selectedData, setSelectedData] = useState({
 		artistName: '',
 		artistId: '',
 		artistImgUrl: '',
@@ -51,6 +56,10 @@ function NewPost() {
 		trackUrl: '',
 	});
 
+	useEffect(() => {
+		console.log(selectedData);
+	}, [selectedData]);
+
 	function handlePostChange(e) {
 		const { name, value } = e.target;
 		setPostData(prevState => ({
@@ -58,49 +67,6 @@ function NewPost() {
 			[name]: value,
 		}));
 	}
-
-	useEffect(() => {
-		console.log(searchData);
-	}, [searchData]);
-
-	const recieveArtistData = data => {
-		const { artistName, artistId, artistImgUrl, artistUrl } = data;
-		setSearchData(prev => ({
-			...prev,
-			artistName,
-			artistId,
-			artistImgUrl,
-			artistUrl,
-		}));
-	};
-
-	const recieveAlbumData = data => {
-		const { albumName, albumId, albumImgUrl, albumUrl, artistId } = data;
-		setSearchData(prev => ({
-			...prev,
-			albumName,
-			albumId,
-			albumImgUrl,
-			albumUrl,
-			artistId,
-		}));
-	};
-
-	const recieveTrackData = data => {
-		const { trackName, trackId, trackImgUrl, trackUrl, albumId, artistId } =
-			data;
-		console.log(albumId);
-
-		setSearchData(prev => ({
-			...prev,
-			trackName,
-			trackId,
-			trackImgUrl,
-			trackUrl,
-			albumId,
-			artistId,
-		}));
-	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -129,6 +95,248 @@ function NewPost() {
 		e.target.reset(); // Upon success, redirect to post with post#
 	}
 
+	// Searching functions
+
+	// Free-form search
+	const [artistSearchParams, setArtistSearchParams] = useState({
+		q: '',
+		type: 'artist',
+		limit: 3,
+	});
+	const {
+		data: artistSearchData,
+		load: artistSearchLoad,
+		error: artistSearchError,
+	} = useSpotifyDebounceFetch(artistSearchParams);
+
+	const [albumSearchParams, setAlbumSearchParams] = useState({
+		q: '',
+		type: 'album',
+		limit: 3,
+	});
+	const {
+		data: albumSearchData,
+		load: albumSearchLoad,
+		error: albumSearchError,
+	} = useSpotifyDebounceFetch(albumSearchParams);
+
+	const [trackSearchParams, setTrackSearchParams] = useState({
+		q: '',
+		type: 'track',
+		limit: 6,
+	});
+	const {
+		data: trackSearchData,
+		load: trackSearchLoad,
+		error: trackSearchError,
+	} = useSpotifyDebounceFetch(trackSearchParams);
+
+	// By handed down ID
+	// Artist not yet made
+	const [autoAlbumSearchParams, setAutoAlbumSearchParams] = useState({
+		artistId: '',
+		params: {
+			limit: 25,
+		},
+	});
+	const {
+		data: autoAlbumData,
+		load: autoAlbumLoad,
+		error: autoAlbumError,
+	} = useSpotifyGetAlbums(autoAlbumSearchParams);
+
+	const [autoTrackSearchParams, setAutoTrackSearchParams] = useState({
+		albumId: '',
+		params: {
+			limit: 40,
+		},
+	});
+	const {
+		data: autoTrackData,
+		load: autoTrackLoad,
+		error: autoTrackError,
+	} = useSpotifyGetTracks(autoTrackSearchParams);
+
+	// Single
+	const [singleAlbumSearchParams, setSingleAlbumSearchParams] = useState({
+		albumId: '',
+	});
+	const {
+		data: singleAlbumData,
+		load: singleAlbumLoad,
+		error: singleAlbumError,
+	} = useSpotifyGetSingleAlbum(singleAlbumSearchParams);
+
+	const [singleArtistSearchParams, setSingleArtistSearchParams] = useState({
+		artistId: '',
+	});
+	const {
+		data: singleArtistData,
+		load: singleArtistLoad,
+		error: singleArtistError,
+	} = useSpotifyGetSingleArtist(singleArtistSearchParams);
+
+	// Module states
+	const [artistState, setArtistState] = useState('');
+	const [artistSearched, setArtistSearched] = useState(false);
+	const handleArtistChange = e => {
+		setArtistSearched(false);
+		setArtistState(e.target.value);
+		setArtistSearchParams(prev => ({
+			...prev,
+			q: e.target.value,
+		}));
+	};
+	const [albumState, setAlbumState] = useState('');
+	const [albumSearched, setAlbumSearched] = useState(false);
+	const handleAlbumChange = e => {
+		setAlbumSearched(false);
+		setAlbumState(e.target.value);
+		setAlbumSearchParams(prev => ({
+			...prev,
+			q: e.target.value,
+		}));
+	};
+	const [trackState, setTrackState] = useState('');
+	const [trackSearched, setTrackSearched] = useState(false);
+	const handleTrackChange = e => {
+		setTrackSearched(false);
+		setTrackState(e.target.value);
+		setTrackSearchParams(prev => ({
+			...prev,
+			q: e.target.value,
+		}));
+	};
+
+	const onArtistSelect = artist => {
+		const artistImgUrl = artist.images[1] ? artist.images[1].url : '';
+		setArtistSearched(true);
+		setArtistState(artist.name);
+		setSelectedData(prev => ({
+			...prev,
+			artistName: artist.name,
+			artistId: artist.id,
+			artistImgUrl,
+			artistUrl: artist.external_urls.spotify,
+		}));
+	};
+	const onAlbumSelect = album => {
+		const albumImgUrl = album.images[1] ? album.images[1].url : '';
+		setAlbumSearched(true);
+		setAlbumState(album.name);
+
+		if (selectedData.artistId !== album.artists[0].id) {
+			setSingleArtistSearchParams(prev => ({
+				...prev,
+				artistId: album.artists[0].id,
+			}));
+		}
+		setSelectedData(prev => ({
+			...prev,
+			albumName: album.name,
+			albumId: album.id,
+			albumImgUrl,
+			albumUrl: album.external_urls.spotify,
+		}));
+	};
+	const onTrackSelect = track => {
+		const albumId = track.album ? track.album.id : selectedData.albumId;
+		const artistId = track.artists[0].id;
+		const trackImgUrl = track.album
+			? track.album.images[2].url
+			: selectedData.albumImgUrl;
+
+		setTrackSearched(true);
+		setTrackState(track.name);
+		if (
+			selectedData.artistId !== artistId ||
+			selectedData.albumId !== albumId
+		) {
+			setSelectedData(prev => ({
+				...prev,
+				trackName: track.name,
+				trackId: track.id,
+				trackImgUrl,
+				trackUrl: track.external_urls.spotify,
+			}));
+			setSingleAlbumSearchParams(prev => ({
+				...prev,
+				albumId: albumId,
+			}));
+			setSingleArtistSearchParams(prev => ({
+				...prev,
+				artistId: artistId,
+			}));
+			// Set artist single search
+		} else {
+			setSelectedData(prev => ({
+				...prev,
+				trackName: track.name,
+				trackId: track.id,
+				trackImgUrl,
+				trackUrl: track.external_urls.spotify,
+			}));
+		}
+	};
+
+	// Run a check for tracks,
+	// If the selected track does not match the tracks in the album
+	// Clear track data, run track search by album
+
+	useEffect(() => {
+		if (albumSearched) {
+			return;
+		} else {
+			setAutoAlbumSearchParams(prev => ({
+				...prev,
+				artistId: selectedData.artistId,
+				params: {
+					limit: 25,
+				},
+			}));
+		}
+	}, [selectedData.artistId]);
+
+	useEffect(() => {
+		if (trackSearched) {
+			return;
+		} else {
+			setAutoTrackSearchParams(prev => ({
+				...prev,
+				albumId: selectedData.albumId,
+				params: {
+					limit: 40,
+				},
+			}));
+		}
+	}, [selectedData.albumId]);
+
+	useEffect(() => {
+		if (singleAlbumData.status === 200) {
+			setSelectedData(prev => ({
+				...prev,
+				albumId: singleAlbumData.data.id,
+				albumImgUrl: singleAlbumData.data.images[1].url,
+				albumName: singleAlbumData.data.name,
+			}));
+			setAlbumSearched(true);
+			setAlbumState(singleAlbumData.data.name);
+		}
+	}, [singleAlbumData]);
+
+	useEffect(() => {
+		if (singleArtistData.status === 200) {
+			setSelectedData(prev => ({
+				...prev,
+				artistId: singleArtistData.data.id,
+				artistImgUrl: singleArtistData.data.images[1].url,
+				artistName: singleArtistData.data.name,
+			}));
+			setArtistSearched(true);
+			setArtistState(singleArtistData.data.name);
+		}
+	}, [singleArtistData]);
+
 	return (
 		<PageContainer>
 			{loggedIn === false ? (
@@ -153,18 +361,36 @@ function NewPost() {
 						First start by searching Spotify. You can refine your options as you
 						search.
 					</h3>
-					<ArtistSearchModule sendData={recieveArtistData} />
+
+					<ArtistSearchModule
+						selectedData={selectedData}
+						artistState={artistState}
+						artistSearched={artistSearched}
+						onChange={handleArtistChange}
+						artistSearchData={artistSearchData}
+						onSelect={onArtistSelect}
+					/>
+
 					<AlbumSearchModule
-						artistId={searchData.artistId ? searchData.artistId : null}
-						albumId={searchData.albumId ? searchData.albumId : null}
-						sendData={recieveAlbumData}
+						selectedData={selectedData}
+						albumState={albumState}
+						albumSearched={albumSearched}
+						onChange={handleAlbumChange}
+						albumSearchData={albumSearchData}
+						autoAlbumData={autoAlbumData}
+						onSelect={onAlbumSelect}
 					/>
+
 					<TrackSearchModule
-						trackId={searchData.trackId ? searchData.trackId : null}
-						albumId={searchData.albumId ? searchData.albumId : null}
-						albumImg={searchData.albumImgUrl ? searchData.albumImgUrl : null}
-						sendData={recieveTrackData}
+						selectedData={selectedData}
+						trackState={trackState}
+						trackSearched={trackSearched}
+						onChange={handleTrackChange}
+						trackSearchData={trackSearchData}
+						autoTrackData={autoTrackData}
+						onSelect={onTrackSelect}
 					/>
+
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>
 						<PostSelect

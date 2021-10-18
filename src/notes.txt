@@ -65,5 +65,15 @@ Newest stuff to tackle:
 
 To do:
 
-  - If any search params in the useFetch hooks are empty => return
-  
+  - Change from independent children to parent holding state and handing down parts to display and intake from children
+  - The issue is the children can't correctly update between children and parent, thus children to hand up everything to the parent.
+  - Maybe a parent module with the children attached? Then that parent attached to the New post parent? 
+
+
+  - New Post Page:
+    Will hold the overall state of artist, album, and track info -- which is used to display the contents on the children.
+    Tenitatively: Hold the searching functionality as well. 
+
+  - Modules:
+    Will display infomation relevant from saved state, alter state, and let users choose stuff.
+    Has to recieve and push state from and to the parent.

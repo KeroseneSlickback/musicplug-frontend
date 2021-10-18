@@ -37,7 +37,7 @@ function useSpotifyGetAlbums(searchParams) {
 							});
 					};
 					getData();
-				}, 600);
+				}, 300);
 				return () => clearTimeout(debounceFetch);
 			}
 		}
