@@ -15,9 +15,9 @@ function useSpotifyGetSingleAlbum(searchParams) {
 			if (searchParams.albumId === '') {
 				return;
 			} else {
+				setLoad(true);
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
-					setLoad(true);
 					const headers = {
 						Authorization: `Bearer ${accessToken}`,
 					};
@@ -36,7 +36,7 @@ function useSpotifyGetSingleAlbum(searchParams) {
 							});
 					};
 					getData();
-				}, 300);
+				}, 500);
 				return () => clearTimeout(debounceFetch);
 			}
 		}

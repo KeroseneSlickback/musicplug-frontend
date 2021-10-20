@@ -6,8 +6,10 @@ import {
 	PostInput,
 	DropDownArtist,
 	DropDownArtistSelect,
+	CenteredModuleDiv,
 } from '../Components/Forms';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 function ArtistSearchModule({
 	selectedData,
@@ -15,6 +17,10 @@ function ArtistSearchModule({
 	artistSearched,
 	onChange,
 	artistSearchData,
+	artistSearchLoad,
+	artistSearchError,
+	singleArtistLoad,
+	singleArtistError,
 	onSelect,
 }) {
 	return (
@@ -29,7 +35,15 @@ function ArtistSearchModule({
 				}}
 				placeholder="Tom Petty..."
 			></PostInput>
-			{artistSearched ? (
+			{artistSearchLoad || singleArtistLoad ? (
+				<CenteredModuleDiv fade>
+					<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
+				</CenteredModuleDiv>
+			) : artistSearchError || singleArtistError ? (
+				<CenteredModuleDiv>
+					<h2>An error has occured, please refresh page.</h2>
+				</CenteredModuleDiv>
+			) : artistSearched ? (
 				<DropDownArtist>
 					<img
 						src={

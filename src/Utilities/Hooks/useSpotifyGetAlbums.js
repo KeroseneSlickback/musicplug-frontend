@@ -11,19 +11,16 @@ function useSpotifyGetAlbums(searchParams) {
 	useEffect(() => {
 		if (initialRender.current === false) {
 			initialRender.current = true;
-		} else if (searchParams.artistId === '' && data === '') {
-			return;
-		} else if (searchParams.artistId === '' && data !== '') {
-			setData('');
-			setLoad(false);
-			setError(null);
 		} else {
 			if (searchParams.artistId === '') {
+				setData('');
+				setLoad(false);
+				setError(null);
 				return;
 			} else {
+				setLoad(true);
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
-					setLoad(true);
 					const headers = {
 						Authorization: `Bearer ${accessToken}`,
 					};
@@ -43,7 +40,7 @@ function useSpotifyGetAlbums(searchParams) {
 							});
 					};
 					getData();
-				}, 300);
+				}, 500);
 				return () => clearTimeout(debounceFetch);
 			}
 		}

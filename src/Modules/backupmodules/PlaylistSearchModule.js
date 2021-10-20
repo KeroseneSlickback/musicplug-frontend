@@ -8,34 +8,22 @@ import {
 	DropDownTrackSingle,
 	DropDownTrackSelect,
 	CenteredModuleDiv,
-} from '../Components/Forms';
+} from '../../Components/Forms';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
-import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
+import { StyledLoading } from '../../Utilities/Images/StyledSVG/StyledLoading';
 
-function TrackSearchModule({
-	selectedData,
-	trackState,
-	trackSearched,
-	onChange,
-	trackSearchData,
-	trackSearchLoad,
-	trackSearchError,
-	autoTrackData,
-	autoTrackLoad,
-	autoTrackError,
-	onSelect,
-}) {
+function PlaylistSearchModule({}) {
 	return (
 		<FormBlock>
-			<PostLabel htmlFor="track">Search for song:</PostLabel>
+			<PostLabel htmlFor="playlist">Search for song:</PostLabel>
 			<PostInput
-				name="track"
+				name="playlist"
 				type="text"
 				value={trackState}
 				onChange={e => {
 					onChange(e);
 				}}
-				placeholder="Interstate Love Song..."
+				placeholder="Rock Love Songs..."
 			></PostInput>
 
 			{trackSearchLoad || autoTrackLoad ? (
@@ -65,7 +53,6 @@ function TrackSearchModule({
 					{trackSearchData.data.tracks?.items.map(track => {
 						return (
 							<DropDownTrackSelect
-								select
 								onClick={() => onSelect(track)}
 								key={track.id}
 							>
@@ -85,24 +72,9 @@ function TrackSearchModule({
 						);
 					})}
 				</DropDownTrackDiv>
-			) : trackSearchData === '' && autoTrackData.status === 200 ? (
-				<DropDownTrackDiv>
-					{autoTrackData.data?.items.map(track => {
-						return (
-							<DropDownTrackSelect
-								select
-								onClick={() => onSelect(track)}
-								key={track.id}
-							>
-								<p>{track.track_number}</p>
-								<p>{track.name}</p>
-							</DropDownTrackSelect>
-						);
-					})}
-				</DropDownTrackDiv>
 			) : null}
 		</FormBlock>
 	);
 }
 
-export default TrackSearchModule;
+export default PlaylistSearchModule;

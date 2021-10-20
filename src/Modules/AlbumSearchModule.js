@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 
 import {
 	FormBlock,
@@ -7,11 +7,10 @@ import {
 	DropDownAlbumDiv,
 	DropDownAlbumSingle,
 	DropDownAlbumSelect,
+	CenteredModuleDiv,
 } from '../Components/Forms';
-import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
-import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
-import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbum';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 // Later fixes:
 // Clear results after clearing searchbar
@@ -22,7 +21,13 @@ function AlbumSearchModule({
 	albumSearched,
 	onChange,
 	albumSearchData,
+	albumSearchLoad,
+	albumSearchError,
 	autoAlbumData,
+	autoAlbumLoad,
+	autoAlbumError,
+	singleAlbumLoad,
+	singleAlbumError,
 	onSelect,
 }) {
 	return (
@@ -38,7 +43,15 @@ function AlbumSearchModule({
 				placeholder="Dark Side of the Moon..."
 			></PostInput>
 
-			{albumSearched ? (
+			{albumSearchLoad || autoAlbumLoad || singleAlbumLoad ? (
+				<CenteredModuleDiv fade>
+					<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
+				</CenteredModuleDiv>
+			) : autoAlbumError || singleAlbumError || albumSearchError ? (
+				<CenteredModuleDiv>
+					<h2>An error has occured, please refresh page.</h2>
+				</CenteredModuleDiv>
+			) : albumSearched ? (
 				<DropDownAlbumDiv>
 					<DropDownAlbumSingle>
 						<img
@@ -52,7 +65,7 @@ function AlbumSearchModule({
 						<p>{selectedData.albumName}</p>
 					</DropDownAlbumSingle>
 				</DropDownAlbumDiv>
-			) : albumSearchData.data !== undefined ? (
+			) : albumSearchData.data ? (
 				<DropDownAlbumDiv>
 					{albumSearchData.data.albums?.items.map(album => {
 						return (

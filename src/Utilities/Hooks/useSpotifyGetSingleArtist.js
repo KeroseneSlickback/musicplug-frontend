@@ -15,9 +15,9 @@ function useSpotifyGetSingleArtist(searchParams) {
 			if (searchParams.artistId === '') {
 				return;
 			} else {
+				setLoad(true);
 				const debounceFetch = setTimeout(() => {
 					const accessToken = localStorage.getItem('spotify_access');
-					setLoad(true);
 					const headers = {
 						Authorization: `Bearer ${accessToken}`,
 					};
@@ -36,7 +36,7 @@ function useSpotifyGetSingleArtist(searchParams) {
 							});
 					};
 					getData();
-				}, 300);
+				}, 500);
 				return () => clearTimeout(debounceFetch);
 			}
 		}

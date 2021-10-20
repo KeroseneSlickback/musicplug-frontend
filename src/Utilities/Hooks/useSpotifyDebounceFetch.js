@@ -16,9 +16,9 @@ function useSpotifyDebounceFetch(params) {
 			setLoad(false);
 			setError(null);
 		} else {
+			setLoad(true);
 			const debounceFetch = setTimeout(() => {
 				const accessToken = localStorage.getItem('spotify_access');
-				setLoad(true);
 				const headers = {
 					Authorization: `Bearer ${accessToken}`,
 				};

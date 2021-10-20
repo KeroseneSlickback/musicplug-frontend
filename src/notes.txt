@@ -65,15 +65,16 @@ Newest stuff to tackle:
 
 To do:
 
-  - Change from independent children to parent holding state and handing down parts to display and intake from children
-  - The issue is the children can't correctly update between children and parent, thus children to hand up everything to the parent.
-  - Maybe a parent module with the children attached? Then that parent attached to the New post parent? 
-
-
-  - New Post Page:
-    Will hold the overall state of artist, album, and track info -- which is used to display the contents on the children.
-    Tenitatively: Hold the searching functionality as well. 
-
-  - Modules:
-    Will display infomation relevant from saved state, alter state, and let users choose stuff.
-    Has to recieve and push state from and to the parent.
+  - Playlist search, toggle on/off (copy)
+  - Upon sumbit, what info is saved? All as a single object?
+  
+  - Redesign post layout for Spotify and new info
+  
+Future stuff:
+  
+  - Post page -- routing, individual pages and their overall looks and feel
+    - Comment areas with new comment drop-down module on click
+  - Sorting between back-end and front-end 
+  - Dark/Light mode switching
+  - Overall style retune
+  - 

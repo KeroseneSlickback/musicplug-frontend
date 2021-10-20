@@ -56,10 +56,6 @@ function NewPost() {
 		trackUrl: '',
 	});
 
-	useEffect(() => {
-		console.log(selectedData);
-	}, [selectedData]);
-
 	function handlePostChange(e) {
 		const { name, value } = e.target;
 		setPostData(prevState => ({
@@ -136,7 +132,7 @@ function NewPost() {
 	const [autoAlbumSearchParams, setAutoAlbumSearchParams] = useState({
 		artistId: '',
 		params: {
-			limit: 25,
+			limit: 30,
 		},
 	});
 	const {
@@ -233,7 +229,6 @@ function NewPost() {
 		const albumImgUrl = album.images[1] ? album.images[1].url : '';
 		setAlbumSearched(true);
 		setAlbumState(album.name);
-		console.log(album);
 
 		if (selectedData.artistId !== album.artists[0].id) {
 			setSingleArtistSearchParams(prev => ({
@@ -291,7 +286,6 @@ function NewPost() {
 				...prev,
 				artistId: artistId,
 			}));
-			// Set artist single search
 		} else {
 			setSelectedData(prev => ({
 				...prev,
@@ -311,11 +305,11 @@ function NewPost() {
 				...prev,
 				artistId: selectedData.artistId,
 				params: {
-					limit: 25,
+					limit: 30,
 				},
 			}));
 		}
-	}, [selectedData.artistId]);
+	}, [selectedData.artistId, albumSearched]);
 
 	useEffect(() => {
 		if (trackSearched) {
@@ -329,7 +323,7 @@ function NewPost() {
 				},
 			}));
 		}
-	}, [selectedData.albumId]);
+	}, [selectedData.albumId, trackSearched]);
 
 	useEffect(() => {
 		if (singleAlbumData.status === 200) {
@@ -385,8 +379,8 @@ function NewPost() {
 				<FormContainer>
 					<h1>New Post</h1>
 					<h3>
-						First start by searching Spotify. You can refine your options as you
-						search.
+						Please recommend an artist, album, song, or any combination you wish
+						from Spotify!
 					</h3>
 
 					<ArtistSearchModule
@@ -395,6 +389,10 @@ function NewPost() {
 						artistSearched={artistSearched}
 						onChange={handleArtistChange}
 						artistSearchData={artistSearchData}
+						artistSearchLoad={artistSearchLoad}
+						artistSearchError={artistSearchError}
+						singleArtistLoad={singleArtistLoad}
+						singleArtistError={singleArtistError}
 						onSelect={onArtistSelect}
 					/>
 
@@ -404,7 +402,13 @@ function NewPost() {
 						albumSearched={albumSearched}
 						onChange={handleAlbumChange}
 						albumSearchData={albumSearchData}
+						albumSearchLoad={albumSearchLoad}
+						albumSearchError={albumSearchError}
 						autoAlbumData={autoAlbumData}
+						autoAlbumLoad={autoAlbumLoad}
+						autoAlbumError={autoAlbumError}
+						singleAlbumLoad={singleAlbumLoad}
+						singleAlbumError={singleAlbumError}
 						onSelect={onAlbumSelect}
 					/>
 
@@ -414,7 +418,11 @@ function NewPost() {
 						trackSearched={trackSearched}
 						onChange={handleTrackChange}
 						trackSearchData={trackSearchData}
+						trackSearchLoad={trackSearchLoad}
+						trackSearchError={trackSearchError}
 						autoTrackData={autoTrackData}
+						autoTrackLoad={autoTrackLoad}
+						autoTrackError={autoTrackError}
 						onSelect={onTrackSelect}
 					/>
 
@@ -464,42 +472,6 @@ function NewPost() {
 								required
 							></PostTextArea>
 						</FormBlock>
-
-						{/* <FormBlock>
-							<PostLabel htmlFor="artist">Artist/Band:</PostLabel>
-							<PostInput
-								name="artist"
-								type="text"
-								placeholder="Daft Punk"
-								value={postData.artist}
-								onChange={handlePostChange}
-								required
-							/>
-						</FormBlock>
-						<FormBlock>
-							<PostLabel htmlFor="image">Artist/Band image (URL):</PostLabel>
-							<PostInput
-								name="image"
-								type="url"
-								value={postData.image}
-								onChange={handlePostChange}
-								placeholder="https://bandimage..."
-								pattern="https://.*"
-								required
-							/>
-						</FormBlock>
-						<FormBlock>
-							<PostLabel>Recommended Youtube Link:</PostLabel>
-							<PostInput
-								name="recommended"
-								type="url"
-								value={postData.recommended}
-								onChange={handleChange}
-								placeholder="https://youtube.com..."
-								pattern="https://.*"
-								required
-							/>
-						</FormBlock> */}
 						<MediumStyledButton bottom>Submit New Post</MediumStyledButton>
 					</Form>
 				</FormContainer>

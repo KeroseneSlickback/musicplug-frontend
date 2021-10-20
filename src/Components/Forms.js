@@ -144,6 +144,28 @@ export const DropDownArtistSelect = styled(DropDownArtist)`
 	&:hover {
 		background-color: #2e2b3b;
 	}
+	animation: fadeIn 200ms ease-in both;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translate3d(0, -10%, 0);
+		}
+		to {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	&:nth-child(1) {
+		animation-delay: 100ms;
+	}
+	&:nth-child(2) {
+		animation-delay: 200ms;
+	}
+	&:nth-child(3) {
+		animation-delay: 300ms;
+	}
 `;
 
 export const DropDownAlbumDiv = styled.div`
@@ -210,6 +232,37 @@ export const DropDownAlbumSingle = styled.div`
 
 export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
 	cursor: pointer;
+	animation: fadeIn 200ms ease-in both;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translate3d(0, -10%, 0);
+		}
+		to {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	&:nth-child(n + 1) {
+		animation-delay: 50ms;
+	}
+	&:nth-child(n + 5) {
+		animation-delay: 100ms;
+	}
+	&:nth-child(n + 10) {
+		animation-delay: 150ms;
+	}
+	&:nth-child(n + 15) {
+		animation-delay: 200ms;
+	}
+	&:nth-child(n + 20) {
+		animation-delay: 250ms;
+	}
+	&:nth-child(n + 25) {
+		animation-delay: 300ms;
+	}
 `;
 
 export const DropDownTrackDiv = styled.div`
@@ -223,19 +276,28 @@ export const DropDownTrackDiv = styled.div`
 `;
 
 export const DropDownTrackSingle = styled.div`
-	display: flex;
+	display: grid;
+	grid-template-columns: 58px 1fr;
 	align-items: center;
 	margin: 2px 0;
 	padding: 4px 0;
+
+	${props =>
+		props.select &&
+		css`
+			border-bottom: 2px solid #2e2b3b;
+		`}
+
 	img {
 		height: 50px;
 		width: 50px;
 		object-fit: cover;
+		margin: 0 4px;
 	}
 
 	p {
 		padding: 6px 0;
-		margin: 0 16px;
+		margin: 0 8px 0 8px;
 		font-size: 1.1rem;
 	}
 
@@ -252,4 +314,45 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 	&:hover {
 		background-color: #2e2b3b;
 	}
+	animation: fadeIn 100ms ease-in both;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translate3d(0, -10%, 0);
+		}
+		to {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	&:nth-child(n + 1) {
+		animation-delay: 50ms;
+	}
+`;
+
+export const CenteredModuleDiv = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+
+	${props =>
+		props.fade &&
+		css`
+			opacity: 0;
+			animation: fade-in-out 500ms ease-in-out infinite;
+			@keyframes fade-in-out {
+				0% {
+					opacity: 0;
+				}
+				50% {
+					opacity: 0.5;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+		`}
 `;
