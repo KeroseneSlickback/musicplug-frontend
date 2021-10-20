@@ -65,7 +65,7 @@ Newest stuff to tackle:
 
 To do:
 
-  - Playlist search, toggle on/off (copy)
+  - Work out how to send an object... as JSON? Isn't it already parsed? 
   - Upon sumbit, what info is saved? All as a single object?
   
   - Redesign post layout for Spotify and new info

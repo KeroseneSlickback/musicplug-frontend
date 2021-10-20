@@ -93,6 +93,16 @@ export const PostInput = styled.input`
 	margin-bottom: 8px;
 `;
 
+export const PostInputRadioDiv = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`;
+
+export const PostInputRadio = styled(PostInput)`
+	margin: 10px;
+`;
+
 export const PostTextArea = styled(PostInput).attrs({
 	as: 'textarea',
 })`
@@ -342,13 +352,13 @@ export const CenteredModuleDiv = styled.div`
 		props.fade &&
 		css`
 			opacity: 0;
-			animation: fade-in-out 500ms ease-in-out infinite;
+			animation: fade-in-out 500ms ease-out infinite;
 			@keyframes fade-in-out {
 				0% {
 					opacity: 0;
 				}
 				50% {
-					opacity: 0.5;
+					opacity: 0.25;
 				}
 				100% {
 					opacity: 0;

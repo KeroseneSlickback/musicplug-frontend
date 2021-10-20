@@ -11,6 +11,7 @@ import { PageContainer, PageInfoContainer } from '../Components/Containers';
 import AuthContext from '../Utilities/AuthContext';
 
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
+import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 import {
 	FormContainer,
@@ -20,6 +21,9 @@ import {
 	PostInput,
 	PostTextArea,
 	PostSelect,
+	CenteredModuleDiv,
+	// PostInputRadioDiv,
+	// PostInputRadio,
 } from '../Components/Forms';
 import useSpotifyRefresh from '../Utilities/Hooks/useSpotifyRefresh';
 import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
@@ -34,13 +38,9 @@ function NewPost() {
 	const { userRefreshed } = useSpotifyRefresh();
 	const [postData, setPostData] = useState({
 		title: '',
-		text: '',
+		body: '',
 		genre: '',
-		artist: '',
-		image: '',
-		recommended: '',
 	});
-
 	const [selectedData, setSelectedData] = useState({
 		artistName: '',
 		artistId: '',
@@ -67,22 +67,16 @@ function NewPost() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const jwt = localStorage.getItem('jwt');
+		const requestBody = { ...postData, recommendation: selectedData };
 		axios
-			.post('http://localhost:8888/posts', postData, {
+			.post('http://localhost:8888/posts', requestBody, {
 				headers: {
 					Authorization: `Bearer ${jwt}`,
 				},
 			})
 			.then(res => {
 				console.log(res);
-				setPostData({
-					title: '',
-					text: '',
-					genre: '',
-					artist: '',
-					image: '',
-					recommended: '',
-				});
+				// Reset state?
 				history.push('/');
 			})
 			.catch(err => {
@@ -426,6 +420,27 @@ function NewPost() {
 						onSelect={onTrackSelect}
 					/>
 
+					{/* <FormBlock>
+						<PostLabel>Select an Image for the Post:</PostLabel>
+						<PostInputRadioDiv>
+							<PostInputRadio
+								type="radio"
+								name="image"
+								required
+							></PostInputRadio>
+							<PostInputRadio
+								type="radio"
+								name="image"
+								required
+							></PostInputRadio>
+							<PostInputRadio
+								type="radio"
+								name="image"
+								required
+							></PostInputRadio>
+						</PostInputRadioDiv>
+					</FormBlock> */}
+
 					<FormBlock>
 						<PostLabel htmlFor="genre">Genre:</PostLabel>
 						<PostSelect
@@ -463,11 +478,11 @@ function NewPost() {
 						<FormBlock>
 							<PostLabel htmlFor="text">Explain your recommendation:</PostLabel>
 							<PostTextArea
-								name="text"
+								name="body"
 								cols="50"
 								rows="15"
 								placeholder="This time when I was searching bandcamp, I came across this artist..."
-								value={postData.text}
+								value={postData.body}
 								onChange={handlePostChange}
 								required
 							></PostTextArea>
@@ -477,7 +492,9 @@ function NewPost() {
 				</FormContainer>
 			) : (
 				<FormContainer>
-					<h1>Loading...</h1>
+					<CenteredModuleDiv fade>
+						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
+					</CenteredModuleDiv>
 				</FormContainer>
 			)}
 		</PageContainer>
