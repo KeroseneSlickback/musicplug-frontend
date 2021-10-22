@@ -1,80 +1,31 @@
 To do:
 
-Home features:
+- Home Page / Posts
+  - Create a custom hook to fetch Posts
+    - Allow for fetch options, sorting and pages 
+  - Page button
+  - Add vote # to post output
+  - Keys?
+  - Save user in context to use for edit/delete and preferences?
+  - Sorting 
+    - Sort by vote #, new, and genres (genre context to hold state and highlight button)
+  - If post is clicked, expand post rather than create new page 
+    - Comments come in after expansion (loading too)
+    - Comment post section
 
-X - New Post button
-  - New post module
+- Edit
+- Delete
 
-Modals:
-
-X - Register
-
-X - Login
-  - Once logged in, change top-bar buttons (context)
-
-X - Logout
-
-Sorting:
-
-- New/Top on Home 
-
-- By Genre -> On Home
-  - Side-effect: Change background color of genre block to full
-
-View Post:
-
-- Pull up a single Post
-  - Display all comments
-  - Comment box
-
-Styling:
-
-- Global styles
-  - Page containers
-  - Buttons 
-  - Form styles 
-
-- Module styles
-  - Recreate for module styles
-  - Page, comment 
-
-
-Newest stuff to tackle:
-
-- Styling
-  - Page container
-  - Form container 
-  
-- SortDiv seperate component (reuse for genre pages)
-- Rework:
-  - Post for Youtube only
-  - Post blocks for Youtube thumbnail
-
-- Get/Post
-  - Wire up between Front + Back 
-    - Register
-    - Login
-    - Logout 
-  - Post wiring
-    - New Post
-    - Home
-      - Request, new and popular
-    - By Genre 
-
-
-
-To do:
-
-  - Work out how to send an object... as JSON? Isn't it already parsed? 
-  - Upon sumbit, what info is saved? All as a single object?
-  
-  - Redesign post layout for Spotify and new info
-  
-Future stuff:
-  
-  - Post page -- routing, individual pages and their overall looks and feel
-    - Comment areas with new comment drop-down module on click
-  - Sorting between back-end and front-end 
-  - Dark/Light mode switching
-  - Overall style retune
+- Dark/light mode switching
+  - Global styling
+- Refine styling
+  - Greater border-radius
+  - Less borders
+  - Floating New Post button
+  - Animations/transitions/loadings 
   - 
+
+- Test backend
+  - User register Form
+  - User login form 
+  - User new post create form 

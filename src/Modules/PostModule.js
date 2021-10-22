@@ -17,16 +17,31 @@ import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
 
 function PostModule(props) {
-	const { title, text, comments, owner } = props.data;
+	console.log(props);
+	const { title, body, genre, comments, owner } = props.data;
+	const {
+		artistName,
+		artistId,
+		artistImgUrl,
+		artistUrl,
+		albumName,
+		albumId,
+		albumImgUrl,
+		albumUrl,
+		trackName,
+		trackId,
+		trackImgUrl,
+		trackUrl,
+	} = props.data.recommendation;
 	return (
 		<PostContainer>
 			<PostTopDiv>
 				<a href="/">
 					<TextDiv>
 						<h3>{title}</h3>
-						<p>{text}</p>
+						<p>{body}</p>
 					</TextDiv>
-					<PostImg src={artImage} alt="artImage" />
+					<PostImg src={albumImgUrl} alt="artImage" />
 				</a>
 			</PostTopDiv>
 			<PostBottomDiv>
@@ -34,11 +49,11 @@ function PostModule(props) {
 					<p> - {owner.username}</p>
 				</div>
 				<PostButtonDiv>
-					<SmallButton>GENRE</SmallButton>
+					<SmallButton>{genre}</SmallButton>
 					<SmallButton>
-						<a href="/">
+						<a href={trackUrl} target="_blank">
 							<img src={headphoneSVG} alt="headphones" />
-							<p>Listen on Youtube</p>
+							<p>Listen on Spotify</p>
 						</a>
 					</SmallButton>
 					<PostCommentButton>

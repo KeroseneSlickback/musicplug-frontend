@@ -326,6 +326,7 @@ function NewPost() {
 				albumId: singleAlbumData.data.id,
 				albumImgUrl: singleAlbumData.data.images[1].url,
 				albumName: singleAlbumData.data.name,
+				albumUrl: singleAlbumData.data.external_urls.spotify,
 			}));
 			setAlbumSearched(true);
 			setAlbumState(singleAlbumData.data.name);
@@ -339,6 +340,7 @@ function NewPost() {
 				artistId: singleArtistData.data.id,
 				artistImgUrl: singleArtistData.data.images[1].url,
 				artistName: singleArtistData.data.name,
+				artistUrl: singleArtistData.data.external_urls.spotify,
 			}));
 			setArtistSearched(true);
 			setArtistState(singleArtistData.data.name);
@@ -453,14 +455,14 @@ function NewPost() {
 							<option value="" disabled>
 								Select a genre
 							</option>
-							<option value="pop">Pop</option>
-							<option value="hiphop">Hip-Hop</option>
-							<option value="rock">Rock</option>
-							<option value="country">Country</option>
-							<option value="electronic">Electronic</option>
-							<option value="bluesjazz">Blues/Jazz</option>
-							<option value="classical">Classical</option>
-							<option value="funkrb">Funk/R&B</option>
+							<option value="Pop">Pop</option>
+							<option value="HipHop">Hip-Hop</option>
+							<option value="Rock">Rock</option>
+							<option value="Rountry">Country</option>
+							<option value="Electronic">Electronic</option>
+							<option value="Blues/Jazz">Blues/Jazz</option>
+							<option value="Classical">Classical</option>
+							<option value="Funk/R&B">Funk/R&B</option>
 						</PostSelect>
 					</FormBlock>
 					<Form onSubmit={handleSubmit}>
