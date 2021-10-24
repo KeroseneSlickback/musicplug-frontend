@@ -12,7 +12,7 @@ import {
 	Form,
 	FormLabel,
 } from './../Components/Forms';
-import { PageContainer } from '../Components/Containers';
+import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton } from './../Components/Buttons';
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 
@@ -89,7 +89,7 @@ function Register() {
 	}, [spotifyVer]);
 
 	return (
-		<PageContainer>
+		<StylePageContainer>
 			<FormContainer>
 				<h1>Welcome to MusicPlug!</h1>
 				{spotifyVer ? (
@@ -147,7 +147,7 @@ function Register() {
 					</FormBlock>
 				)}
 			</FormContainer>
-		</PageContainer>
+		</StylePageContainer>
 	);
 }
 

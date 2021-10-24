@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export const PageContainer = styled.div`
+	width: 900px;
+	margin: 8px;
+`;
+
+export const StylePageContainer = styled(PageContainer)`
+	background-color: #272432;
+	border: 1px solid #5e5577;
+	border-radius: 3px;
+`;
+
 export const ModalContainer = styled.div`
 	background-color: #272432;
 	border-radius: 3px;
@@ -12,19 +23,9 @@ export const ModalContainer = styled.div`
 	z-index: 2;
 `;
 
-export const PageContainer = styled.div`
-	/* display: flex;
-	flex-direction: column;
-	justify-content: space-between; */
-	background-color: #272432;
-	width: 900px;
-	margin-top: 8px;
-	border: 1px solid #5e5577;
-	border-radius: 3px;
-`;
-
-export const PostContainer = styled(PageContainer)`
+export const PostContainer = styled(StylePageContainer)`
 	display: flex;
+	margin: 8px 0;
 	flex-direction: column;
 	justify-content: space-between;
 	&:hover {
@@ -77,4 +78,12 @@ export const NewPostDiv = styled.div`
 	border: 1px solid #5e5577;
 	border-radius: 3px;
 	background-color: #272432;
+`;
+
+export const HomePageButtonDiv = styled.div`
+	width: 100%;
+	padding: 4px 8px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 `;

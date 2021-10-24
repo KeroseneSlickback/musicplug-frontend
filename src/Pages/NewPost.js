@@ -7,7 +7,10 @@ import AlbumSearchModule from '../Modules/AlbumSearchModule';
 import TrackSearchModule from '../Modules/TrackSearchModule';
 
 import { MediumStyledButton } from '../Components/Buttons';
-import { PageContainer, PageInfoContainer } from '../Components/Containers';
+import {
+	StylePageContainer,
+	PageInfoContainer,
+} from '../Components/Containers';
 import AuthContext from '../Utilities/AuthContext';
 
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
@@ -355,7 +358,7 @@ function NewPost() {
 	}, [autoTrackData]);
 
 	return (
-		<PageContainer>
+		<StylePageContainer>
 			{loggedIn === false ? (
 				<PageInfoContainer>
 					<h1>Please Register or Login to create a new post.</h1>
@@ -499,7 +502,7 @@ function NewPost() {
 					</CenteredModuleDiv>
 				</FormContainer>
 			)}
-		</PageContainer>
+		</StylePageContainer>
 	);
 }
 

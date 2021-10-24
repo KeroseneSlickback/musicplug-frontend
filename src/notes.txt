@@ -29,3 +29,9 @@ To do:
   - User register Form
   - User login form 
   - User new post create form 
+
+To do:
+
+- Next/back page is working, now to figure out how to do sortBy and genre
+- Add genre to backend... new model for genre? How to sort with Mongoose?
+- 

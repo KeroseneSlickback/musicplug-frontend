@@ -90,13 +90,12 @@ export const CloseButton = styled.button`
 `;
 
 export const SortDiv = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	height: 28px;
-	width: 100%;
-	margin-top: 8px;
 `;
 
 export const SortButton = styled.button`
@@ -129,4 +128,18 @@ export const SortButton = styled.button`
 			border: 1px solid #a39abc;
 		}
 	}
+`;
+
+export const PageButton = styled(MediumStyledButton)`
+	padding: 10px 16px;
+	margin-left: 12px;
+
+	${props =>
+		props.primary &&
+		css`
+			background-color: #c52772;
+			&:hover {
+				background-color: #cf2e7d;
+			}
+		`}
 `;

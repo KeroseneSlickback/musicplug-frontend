@@ -10,27 +10,25 @@ import {
 	TextDiv,
 } from '../Components/PostComponents';
 
-import artImage from '../Utilities/Images/dearhunter.jpg';
-
 import fullHeartSVG from '../Utilities/Images/svg/favorite_black_24dp.svg';
 import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
 
 function PostModule(props) {
-	console.log(props);
+	// console.log(props);
 	const { title, body, genre, comments, owner } = props.data;
 	const {
-		artistName,
-		artistId,
-		artistImgUrl,
-		artistUrl,
-		albumName,
-		albumId,
+		// artistName,
+		// artistId,
+		// artistImgUrl,
+		// artistUrl,
+		// albumName,
+		// albumId,
 		albumImgUrl,
-		albumUrl,
-		trackName,
-		trackId,
-		trackImgUrl,
+		// albumUrl,
+		// trackName,
+		// trackId,
+		// trackImgUrl,
 		trackUrl,
 	} = props.data.recommendation;
 	return (
@@ -51,7 +49,7 @@ function PostModule(props) {
 				<PostButtonDiv>
 					<SmallButton>{genre}</SmallButton>
 					<SmallButton>
-						<a href={trackUrl} target="_blank">
+						<a href={trackUrl} target="_blank" rel="noreferrer">
 							<img src={headphoneSVG} alt="headphones" />
 							<p>Listen on Spotify</p>
 						</a>

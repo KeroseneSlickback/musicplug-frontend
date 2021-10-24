@@ -1,38 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { SortDiv, SortButton } from '../Components/Buttons';
-import PostModule from '../Modules/PostModule';
-import { CenteredModuleDiv } from '../Components/Forms';
-import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
+import { SortDiv, SortButton, PageButton } from '../Components/Buttons';
+import { HomePageButtonDiv, PageContainer } from '../Components/Containers';
+import PostListView from '../Modules/PostListView';
+import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
 function Home() {
+	const {
+		page: fetchedPage,
+		genre: fetchedGenre,
+		sortBy: fetchedSortBy,
+	} = useParseUrl();
+	const history = useHistory();
+	const [page, setPage] = useState();
 	const [sortNew, setSortNew] = useState(true);
-	const [loading, setLoading] = useState(false);
-	const [posts, setPosts] = useState({});
+	const [searchParams, setSearchParams] = useState({
+		limit: 5,
+		page: 0,
+		genre: 'rock',
+		sortBy: 'createdAt_asc',
+	});
+
+	useEffect(() => {
+		setSearchParams(prev => ({
+			...prev,
+			page: fetchedPage,
+			genre: fetchedGenre,
+			sortBy: fetchedSortBy,
+		}));
+		setPage(fetchedPage);
+	}, [fetchedPage, fetchedGenre, fetchedSortBy]);
 
 	function sortController(e, boolean) {
 		e.preventDefault();
 		setSortNew(boolean);
 	}
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('http://localhost:8888/posts?limit=10&page=0&sortBy=createdAt_asc')
-			.then(res => {
-				console.log(res);
-				setPosts(res);
-				setLoading(false);
-			});
-	}, []);
-
-	useEffect(() => {
-		console.log(posts.data);
-	}, [posts]);
+	const paginate = expr => {
+		switch (expr) {
+			case 'next':
+				return history.push({
+					pathname: '/',
+					search: `?page=${page + 1}`,
+				});
+				break;
+			case 'back':
+				history.push({
+					pathname: '/',
+					search: `?page=${page - 1}`,
+				});
+				break;
+			default:
+				throw new Error();
+		}
+	};
 
 	return (
-		<div>
+		<PageContainer>
 			<SortDiv>
 				<SortButton
 					className={`${sortNew ? 'selected' : ''}`}
@@ -47,17 +72,17 @@ function Home() {
 					Top Posts
 				</SortButton>
 			</SortDiv>
+			<PostListView searchParams={searchParams} />
 
-			{loading ? (
-				<CenteredModuleDiv>
-					<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
-				</CenteredModuleDiv>
-			) : (
-				posts.data?.map(post => {
-					return <PostModule data={post} key={post.id} />;
-				})
-			)}
-		</div>
+			<HomePageButtonDiv>
+				{fetchedPage === 0 ? null : (
+					<PageButton onClick={() => paginate('back')}>Back</PageButton>
+				)}
+				<PageButton primary onClick={() => paginate('next')}>
+					Next
+				</PageButton>
+			</HomePageButtonDiv>
+		</PageContainer>
 	);
 }
 
