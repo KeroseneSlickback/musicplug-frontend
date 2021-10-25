@@ -87,3 +87,7 @@ export const HomePageButtonDiv = styled.div`
 	justify-content: flex-end;
 	align-items: center;
 `;
+
+export const PaginateDiv = styled.div`
+	width: 100%;
+`;

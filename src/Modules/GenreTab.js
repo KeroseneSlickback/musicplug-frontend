@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GenreTabDiv } from '../Components/SidebarComponents';
 
 function GenreTab(props) {
-	const { genre, style } = props.data;
+	const { genre, style, path } = props.data;
+
 	return (
 		<GenreTabDiv>
-			<a style={{ borderLeft: style }} href="/">
+			<Link style={{ borderLeft: style }} to={path}>
 				{genre}
-			</a>
+			</Link>
 		</GenreTabDiv>
 	);
 }

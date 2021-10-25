@@ -32,6 +32,7 @@ To do:
 
 To do:
 
-- Next/back page is working, now to figure out how to do sortBy and genre
-- Add genre to backend... new model for genre? How to sort with Mongoose?
-- 
+- Add a posts/genre get request to back-end 
+- Add sorting by votes on backend (both options)
+- Add dynamic changing if given rock => Rock and funkrb => Funk/R&B
+- Sort out vote sorting on front-end

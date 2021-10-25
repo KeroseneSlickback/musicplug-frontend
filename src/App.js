@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import NewPost from './Pages/NewPost';
 import Register from './Pages/Register';
 import Redirect from './Pages/Redirect';
+import Genre from './Pages/Genre';
 
 function App() {
 	return (
@@ -24,7 +25,9 @@ function App() {
 				<Route path="/redirect">
 					<Redirect />
 				</Route>
-				{/* <Router path="/genre/:id" children={<Genre />} /> */}
+				<Route path="/genre/:genre">
+					<Genre />
+				</Route>
 			</Switch>
 		</MainLayout>
 	);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PostModule from '../Modules/PostModule';
 import { CenteredModuleDiv } from '../Components/Forms';
@@ -6,9 +6,13 @@ import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 
-function PostListView({ searchParams }) {
+function PostListView({ searchParams, endPage }) {
 	const { data, load, error } = useFetchPosts(searchParams);
-	// console.log(data);
+
+	useEffect(() => {
+		endPage(data);
+	}, [data]);
+
 	return (
 		<div>
 			{load ? (
