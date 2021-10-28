@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import AuthContext from '../../Utilities/AuthContext';
 
 import { FormContainer } from '../../Components/Forms';
@@ -10,6 +11,7 @@ import {
 } from '../../Components/Buttons';
 
 function LoginModal(props) {
+	const history = useHistory();
 	const authContext = useContext(AuthContext);
 	// Logout functions
 
@@ -23,6 +25,7 @@ function LoginModal(props) {
 		localStorage.removeItem('jwt');
 		authContext.logout();
 		props.closeModal();
+		history.go(0);
 	}
 
 	return (

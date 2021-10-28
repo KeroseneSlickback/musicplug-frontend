@@ -38,6 +38,18 @@ export const SmallStyledButton = styled(SmallButton)`
 		`}
 `;
 
+export const SmallEmptyButton = styled(SmallButton)`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4px 6px;
+
+	p {
+		padding: 0px 4px;
+		font-size: 0.9rem;
+	}
+`;
+
 export const MediumStyledButton = styled(SmallStyledButton)`
 	padding: 8px 16px;
 	font-size: 1rem;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-function useFetchPosts(params) {
+function useFetchPosts(url, params) {
 	const [data, setData] = useState('');
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ function useFetchPosts(params) {
 		const debounceFetch = setTimeout(() => {
 			const getData = async () => {
 				await axios
-					.get('http://localhost:8888/posts', { params })
+					.get(url, { params })
 					.then(response => {
 						setData(response);
 						setLoad(false);
@@ -24,7 +24,7 @@ function useFetchPosts(params) {
 			getData();
 		}, 200);
 		return () => clearTimeout(debounceFetch);
-	}, [params]);
+	}, [url, params]);
 
 	return { data, load, error };
 }

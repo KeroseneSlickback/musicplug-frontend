@@ -6,12 +6,13 @@ import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 
-function PostListView({ searchParams, endPage }) {
-	const { data, load, error } = useFetchPosts(searchParams);
+function PostListView({ searchParams, endPage, url }) {
+	const { data, load, error } = useFetchPosts(url, searchParams);
+	console.log(data);
 
 	useEffect(() => {
 		endPage(data);
-	}, [data]);
+	}, [endPage, data]);
 
 	return (
 		<div>

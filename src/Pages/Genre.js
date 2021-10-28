@@ -5,6 +5,8 @@ import { PageContainer } from '../Components/Containers';
 import Pagination from '../Modules/Pagination';
 import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
+const url = 'http://localhost:8888/posts/genre/';
+
 function Genre() {
 	const { genre } = useParams();
 	const { page: fetchedPage, pathName } = useParseUrl();
@@ -12,6 +14,7 @@ function Genre() {
 		limit: 5,
 		page: 0,
 		genre: undefined,
+		sortby: 'createdAt_desc',
 	});
 
 	useEffect(() => {
@@ -22,12 +25,33 @@ function Genre() {
 		}));
 	}, [fetchedPage, genre]);
 
+	const sortBy = expr => {
+		switch (expr) {
+			case 'new':
+				setSearchParams(prev => ({
+					...prev,
+					sortby: 'createdAt_desc',
+				}));
+				break;
+			case 'top':
+				setSearchParams(prev => ({
+					...prev,
+					sortby: 'votes_desc',
+				}));
+				break;
+			default:
+				throw new Error();
+		}
+	};
+
 	return (
 		<PageContainer>
 			<Pagination
 				searchParams={searchParams}
 				pathName={pathName}
 				fetchedPage={fetchedPage}
+				url={url}
+				sortBy={sortBy}
 			/>
 		</PageContainer>
 	);

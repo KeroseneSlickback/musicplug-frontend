@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../../Utilities/AuthContext';
 
@@ -17,6 +18,7 @@ import {
 } from '../../Components/Buttons';
 
 function LoginModal(props) {
+	const history = useHistory();
 	const authContext = useContext(AuthContext);
 	const [loginData, setLoginData] = useState({
 		username: '',
@@ -42,9 +44,9 @@ function LoginModal(props) {
 			.then(response => {
 				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('jwt', response.data.token.split(' ')[1]);
-				console.log('Logged In');
 				authContext.login();
 				props.closeModal();
+				history.go(0);
 			})
 			.catch(error => {
 				console.log(error);

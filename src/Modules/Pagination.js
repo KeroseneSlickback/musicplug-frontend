@@ -5,7 +5,7 @@ import { SortDiv, SortButton, PageButton } from '../Components/Buttons';
 import { HomePageButtonDiv, PaginateDiv } from '../Components/Containers';
 import PostListView from '../Modules/PostListView';
 
-function Pagination({ searchParams, pathName, fetchedPage }) {
+function Pagination({ searchParams, pathName, fetchedPage, url, sortBy }) {
 	const [sortNew, setSortNew] = useState(true);
 	const [endOfPage, setEndOfPage] = useState(false);
 	const history = useHistory();
@@ -13,6 +13,11 @@ function Pagination({ searchParams, pathName, fetchedPage }) {
 	function sortController(e, boolean) {
 		e.preventDefault();
 		setSortNew(boolean);
+		if (boolean === true) {
+			sortBy('new');
+		} else {
+			sortBy('top');
+		}
 	}
 
 	const paginate = expr => {
@@ -58,7 +63,7 @@ function Pagination({ searchParams, pathName, fetchedPage }) {
 					Top Posts
 				</SortButton>
 			</SortDiv>
-			<PostListView searchParams={searchParams} endPage={endPage} />
+			<PostListView searchParams={searchParams} endPage={endPage} url={url} />
 
 			<HomePageButtonDiv>
 				{fetchedPage === 0 ? null : (

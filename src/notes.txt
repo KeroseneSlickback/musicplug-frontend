@@ -1,14 +1,7 @@
 To do:
 
 - Home Page / Posts
-  - Create a custom hook to fetch Posts
-    - Allow for fetch options, sorting and pages 
-  - Page button
-  - Add vote # to post output
-  - Keys?
-  - Save user in context to use for edit/delete and preferences?
-  - Sorting 
-    - Sort by vote #, new, and genres (genre context to hold state and highlight button)
+ 
   - If post is clicked, expand post rather than create new page 
     - Comments come in after expansion (loading too)
     - Comment post section
@@ -32,7 +25,18 @@ To do:
 
 To do:
 
-- Add a posts/genre get request to back-end 
-- Add sorting by votes on backend (both options)
-- Add dynamic changing if given rock => Rock and funkrb => Funk/R&B
-- Sort out vote sorting on front-end
+- Show vote # on post block
+- post update to add vote to post -- 
+- Link genre on post block to genre sorting
+- User avatar from Spotify?
+- If click on post => url to post page by ID (fetch from backend)
+  - Design this page
+
+
+Currently working on:
+- The heart icon
+  - Create a click=>switcher for the two, setState and just flip-flop them
+  - prep for patch request
+
+
+- For full post, add an edit/remove button if owner._id matches current user
