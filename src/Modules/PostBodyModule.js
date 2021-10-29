@@ -4,6 +4,13 @@ import axios from 'axios';
 import { SmallButton, SmallEmptyButton } from '../Components/Buttons';
 import { PostContainer } from '../Components/Containers';
 import {
+	PostBodyAlbumImg,
+	PostBodyArtistImg,
+	PostBodyH1,
+	PostBodyImgDiv,
+	PostBodyInfoDiv,
+	PostBodyP,
+	PostBodyTopDiv,
 	PostBottomDiv,
 	PostButtonDiv,
 	PostCommentButton,
@@ -18,7 +25,8 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
 
-function PostModule(props) {
+function PostBodyModule(props) {
+	console.log(props.data);
 	const { title, body, genre, comments, votes, owner, _id, likedUsers } =
 		props.data;
 	const [userLiked, setUserLiked] = useState(false);
@@ -28,17 +36,17 @@ function PostModule(props) {
 		path: '/',
 	});
 	const {
-		// artistName,
-		// artistId,
-		// artistImgUrl,
-		// artistUrl,
-		// albumName,
-		// albumId,
+		artistName,
+		artistId,
+		artistImgUrl,
+		artistUrl,
+		albumName,
+		albumId,
 		albumImgUrl,
-		// albumUrl,
-		// trackName,
-		// trackId,
-		// trackImgUrl,
+		albumUrl,
+		trackName,
+		trackId,
+		trackImgUrl,
 		trackUrl,
 	} = props.data.recommendation;
 
@@ -130,18 +138,19 @@ function PostModule(props) {
 			}
 		}
 	};
-
 	return (
-		<PostContainer>
-			<PostTopDiv>
-				<Link to={`/post/${_id}`}>
-					<TextDiv>
-						<h3>{title}</h3>
-						<p>{body}</p>
-					</TextDiv>
-					<PostImg src={albumImgUrl} alt="artImage" />
-				</Link>
-			</PostTopDiv>
+		<>
+			<PostBodyTopDiv>
+				<PostBodyInfoDiv>
+					<PostBodyH1>{title}</PostBodyH1>
+					<PostBodyP>{body}</PostBodyP>
+				</PostBodyInfoDiv>
+				<PostBodyImgDiv>
+					<PostBodyArtistImg src={artistImgUrl} alt={artistName} />
+					<PostBodyAlbumImg src={albumImgUrl} alt={albumName} />
+				</PostBodyImgDiv>
+			</PostBodyTopDiv>
+
 			<PostBottomDiv>
 				<div>
 					<p> - {owner.username}</p>
@@ -150,12 +159,12 @@ function PostModule(props) {
 					<Link to={formattedGenre.path}>
 						<SmallButton>{formattedGenre.genre}</SmallButton>
 					</Link>
-					<SmallButton>
+					{/* <SmallButton>
 						<a href={trackUrl} target="_blank" rel="noreferrer">
 							<img src={headphoneSVG} alt="headphones" />
 							<p>Listen on Spotify</p>
 						</a>
-					</SmallButton>
+					</SmallButton> */}
 					<PostCommentButton>
 						<img src={chatSVG} alt={chatSVG} />
 						<p>{comments.length} Comments</p>
@@ -166,8 +175,8 @@ function PostModule(props) {
 					</SmallEmptyButton>
 				</PostButtonDiv>
 			</PostBottomDiv>
-		</PostContainer>
+		</>
 	);
 }
 
-export default PostModule;
+export default PostBodyModule;

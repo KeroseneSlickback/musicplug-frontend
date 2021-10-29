@@ -32,7 +32,7 @@ export const TextDiv = styled.div`
 
 	h3 {
 		margin-bottom: 10px;
-		font-size: 1.2rem;
+		font-size: 1.3rem;
 		font-weight: 500;
 	}
 `;
@@ -89,3 +89,51 @@ export const PostCommentButton = styled(SmallButton)`
 		margin-left: 6px;
 	}
 `;
+
+export const PostBodyTopDiv = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 14px 14px;
+`;
+
+export const PostBodyInfoDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	background-color: #272432;
+	width: 600px;
+`;
+
+export const PostBodyH1 = styled.h1`
+	font-size: 2rem;
+	color: #f7f7f7;
+`;
+
+export const PostBodyP = styled.p`
+	font-size: 1rem;
+	color: #f7f7f7;
+`;
+
+export const PostBodyImgDiv = styled.div`
+	position: relative;
+`;
+
+export const PostBodyArtistImg = styled.img`
+	max-height: 250px;
+	width: 250px;
+	object-fit: cover;
+	box-shadow: 0px 0px 0px 2px #5e5577;
+	margin: 2px;
+`;
+
+export const PostBodyAlbumImg = styled(PostBodyArtistImg)`
+	max-height: 100px;
+	width: 100px;
+	object-fit: cover;
+	box-shadow: 0px 0px 0px 2px #5e5577;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+`;
+
+export const PostCommentDiv = styled.div``;

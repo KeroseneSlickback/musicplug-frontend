@@ -8,6 +8,7 @@ import NewPost from './Pages/NewPost';
 import Register from './Pages/Register';
 import Redirect from './Pages/Redirect';
 import Genre from './Pages/Genre';
+import Post from './Pages/Post';
 
 function App() {
 	return (
@@ -27,6 +28,9 @@ function App() {
 				</Route>
 				<Route path="/genre/:genre">
 					<Genre />
+				</Route>
+				<Route path="/post/:id">
+					<Post />
 				</Route>
 			</Switch>
 		</MainLayout>

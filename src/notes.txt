@@ -33,10 +33,14 @@ To do:
   - Design this page
 
 
-Currently working on:
-- The heart icon
-  - Create a click=>switcher for the two, setState and just flip-flop them
-  - prep for patch request
-
-
 - For full post, add an edit/remove button if owner._id matches current user
+
+
+To do:
+
+- Restyle the post page
+- Figure out how to wrap the title, and extend the body
+- What's with the images splitting if the body is long?
+- Set margin for the post bottom as well
+
+- Text formatting to keep paragraphs?
