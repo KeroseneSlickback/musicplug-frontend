@@ -38,3 +38,4 @@ To do:
 
 To do:
 
+- Think about short text bodies -- what do? The current style doesn't match for that. 
