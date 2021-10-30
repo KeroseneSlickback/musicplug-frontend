@@ -25,41 +25,14 @@ export const FormBlock = styled.div`
 	padding-top: 12px;
 	display: flex;
 	flex-direction: column;
+	h3 {
+		font-size: 1.75rem;
+	}
 
 	${props =>
 		props.spotify &&
 		css`
 			align-items: center;
-
-			a {
-				margin: 48px 0px 36px 0px;
-				height: 100px;
-				width: 100px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				transform: scale(1);
-				animation: pulse 1.25s infinite;
-				@keyframes pulse {
-				0% {
-					transform: scale(0.95);
-					box-shadow: 0 0 0 0  #cf2e7d;
-				}
-
-				70% {
-					transform: scale(1);
-					box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
-					background-color:rgba(0, 0, 0, 0); 
-				}
-
-				100% {
-					transform: scale(0.95);
-					box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-					background-color: #b42269;
-				}
-			}
-
 			img {
 				height: 100px;
 			}
@@ -109,6 +82,7 @@ export const PostTextArea = styled(PostInput).attrs({
 	height: 140px;
 	font-family: inherit;
 	font-size: inherit;
+	white-space: pre-wrap;
 `;
 
 export const PostLabel = styled.label`

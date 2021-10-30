@@ -23,24 +23,12 @@ function PostModule(props) {
 		props.data;
 	const [userLiked, setUserLiked] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
+	const [formattedBody, setFormattedBody] = useState('');
 	const [formattedGenre, setFormattedGenre] = useState({
 		genre: '',
 		path: '/',
 	});
-	const {
-		// artistName,
-		// artistId,
-		// artistImgUrl,
-		// artistUrl,
-		// albumName,
-		// albumId,
-		albumImgUrl,
-		// albumUrl,
-		// trackName,
-		// trackId,
-		// trackImgUrl,
-		trackUrl,
-	} = props.data.recommendation;
+	const { albumImgUrl, trackUrl } = props.data.recommendation;
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -85,6 +73,12 @@ function PostModule(props) {
 				throw new Error();
 		}
 	}, [genre]);
+
+	useEffect(() => {
+		const newBody = body.split('\n').map(str => <p>{str}</p>);
+		setFormattedBody(newBody);
+		console.log(newBody);
+	}, [body]);
 
 	const likePost = () => {
 		const jwt = localStorage.getItem('jwt');
@@ -137,7 +131,7 @@ function PostModule(props) {
 				<Link to={`/post/${_id}`}>
 					<TextDiv>
 						<h3>{title}</h3>
-						<p>{body}</p>
+						<p>{formattedBody}</p>
 					</TextDiv>
 					<PostImg src={albumImgUrl} alt="artImage" />
 				</Link>
@@ -150,12 +144,12 @@ function PostModule(props) {
 					<Link to={formattedGenre.path}>
 						<SmallButton>{formattedGenre.genre}</SmallButton>
 					</Link>
-					<SmallButton>
-						<a href={trackUrl} target="_blank" rel="noreferrer">
+					<a href={trackUrl} target="_blank" rel="noreferrer">
+						<SmallButton link>
 							<img src={headphoneSVG} alt="headphones" />
 							<p>Listen on Spotify</p>
-						</a>
-					</SmallButton>
+						</SmallButton>
+					</a>
 					<PostCommentButton>
 						<img src={chatSVG} alt={chatSVG} />
 						<p>{comments.length} Comments</p>

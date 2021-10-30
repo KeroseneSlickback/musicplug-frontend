@@ -38,9 +38,3 @@ To do:
 
 To do:
 
-- Restyle the post page
-- Figure out how to wrap the title, and extend the body
-- What's with the images splitting if the body is long?
-- Set margin for the post bottom as well
-
-- Text formatting to keep paragraphs?

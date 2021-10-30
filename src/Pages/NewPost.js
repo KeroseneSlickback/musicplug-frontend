@@ -6,7 +6,7 @@ import ArtistSearchModule from '../Modules/ArtistSearchModule';
 import AlbumSearchModule from '../Modules/AlbumSearchModule';
 import TrackSearchModule from '../Modules/TrackSearchModule';
 
-import { MediumStyledButton } from '../Components/Buttons';
+import { MediumStyledButton, SpotifyButton } from '../Components/Buttons';
 import {
 	StylePageContainer,
 	PageInfoContainer,
@@ -61,6 +61,7 @@ function NewPost() {
 
 	function handlePostChange(e) {
 		const { name, value } = e.target;
+		console.log(value);
 		setPostData(prevState => ({
 			...prevState,
 			[name]: value,
@@ -369,9 +370,9 @@ function NewPost() {
 						<h3>
 							Please verify your account with Spotify before making a new post.
 						</h3>
-						<a href="http://localhost:8888/login">
+						<SpotifyButton href="http://localhost:8888/login">
 							<img src={spotifySVG} alt="spotifySVG" />
-						</a>
+						</SpotifyButton>
 					</FormBlock>
 				</FormContainer>
 			) : userRefreshed === true ? (

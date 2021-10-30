@@ -20,6 +20,18 @@ export const SmallButton = styled.button`
 				background-color: #422843;
 			}
 		`}
+	${props =>
+		props.link &&
+		css`
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+
+			p {
+				margin-left: 4px;
+			}
+		`}
 `;
 
 export const SmallStyledButton = styled(SmallButton)`
@@ -43,11 +55,19 @@ export const SmallEmptyButton = styled(SmallButton)`
 	justify-content: center;
 	align-items: center;
 	padding: 4px 6px;
-
+	background-color: inherit;
 	p {
 		padding: 0px 4px;
 		font-size: 0.9rem;
 	}
+
+	${props =>
+		props.body &&
+		css`
+			&:hover {
+				background-color: inherit;
+			}
+		`}
 `;
 
 export const MediumStyledButton = styled(SmallStyledButton)`
@@ -60,6 +80,11 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 		css`
 			margin-top: 24px;
 		`}
+`;
+
+export const LargeStyledButton = styled(MediumStyledButton)`
+	width: 100%;
+	text-decoration: none;
 `;
 
 export const CloseButtonDiv = styled.div`
@@ -154,4 +179,64 @@ export const PageButton = styled(MediumStyledButton)`
 				background-color: #cf2e7d;
 			}
 		`}
+`;
+
+export const SpotifyButton = styled.a`
+	margin: 48px 0px 36px 0px;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: scale(1);
+	animation: pulse 1.25s infinite;
+
+	${props =>
+		props.small &&
+		css`
+			margin: 0 0 0 0;
+			height: 50px;
+			width: 50px;
+			animation: pulseSmall 1.25s infinite;
+			img {
+				height: 50px;
+			}
+			@keyframes pulseSmall {
+				0% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0 #cf2e7d;
+				}
+
+				70% {
+					transform: scale(1);
+					box-shadow: 0 0 4px 12px rgba(0, 0, 0, 0);
+					background-color: rgba(0, 0, 0, 0);
+				}
+
+				100% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+					background-color: #b42269;
+				}
+			}
+		`}
+	@keyframes pulse {
+		0% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 #cf2e7d;
+		}
+
+		70% {
+			transform: scale(1);
+			box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		100% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+			background-color: #b42269;
+		}
+	}
 `;

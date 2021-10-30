@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { SmallButton, SmallEmptyButton } from '../Components/Buttons';
+import {
+	LargeStyledButton,
+	SmallButton,
+	SmallEmptyButton,
+	SpotifyButton,
+} from '../Components/Buttons';
 import { PostContainer } from '../Components/Containers';
 import {
+	DataInfoButtonContainer,
+	DataInfoContainer,
+	DataInfoLikeButtonContainer,
 	PostBodyAlbumImg,
 	PostBodyArtistImg,
+	PostBodyDataContainer,
+	PostBodyDataDiv,
 	PostBodyH1,
 	PostBodyImgDiv,
 	PostBodyInfoDiv,
@@ -24,6 +34,7 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 
 import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
+import spotify from '../Utilities/Images/svg/spotify.svg';
 
 function PostBodyModule(props) {
 	console.log(props.data);
@@ -31,6 +42,7 @@ function PostBodyModule(props) {
 		props.data;
 	const [userLiked, setUserLiked] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
+	const [formattedBody, setFormattedBody] = useState('');
 	const [formattedGenre, setFormattedGenre] = useState({
 		genre: '',
 		path: '/',
@@ -94,6 +106,12 @@ function PostBodyModule(props) {
 		}
 	}, [genre]);
 
+	useEffect(() => {
+		const newBody = body.split('\n').map(str => <p>{str}</p>);
+		setFormattedBody(newBody);
+		console.log(newBody);
+	}, [body]);
+
 	const likePost = () => {
 		const jwt = localStorage.getItem('jwt');
 		if (jwt !== null) {
@@ -143,38 +161,62 @@ function PostBodyModule(props) {
 			<PostBodyTopDiv>
 				<PostBodyInfoDiv>
 					<PostBodyH1>{title}</PostBodyH1>
-					<PostBodyP>{body}</PostBodyP>
+					<PostBodyP>{formattedBody}</PostBodyP>
 				</PostBodyInfoDiv>
-				<PostBodyImgDiv>
-					<PostBodyArtistImg src={artistImgUrl} alt={artistName} />
-					<PostBodyAlbumImg src={albumImgUrl} alt={albumName} />
-				</PostBodyImgDiv>
-			</PostBodyTopDiv>
 
-			<PostBottomDiv>
-				<div>
-					<p> - {owner.username}</p>
-				</div>
-				<PostButtonDiv>
-					<Link to={formattedGenre.path}>
-						<SmallButton>{formattedGenre.genre}</SmallButton>
-					</Link>
-					{/* <SmallButton>
-						<a href={trackUrl} target="_blank" rel="noreferrer">
-							<img src={headphoneSVG} alt="headphones" />
-							<p>Listen on Spotify</p>
-						</a>
-					</SmallButton> */}
-					<PostCommentButton>
-						<img src={chatSVG} alt={chatSVG} />
-						<p>{comments.length} Comments</p>
-					</PostCommentButton>
-					<SmallEmptyButton onClick={() => likePost()}>
-						<p>{voteNumber}</p>
-						{userLiked ? <FullHeart /> : <EmptyHeart />}
-					</SmallEmptyButton>
-				</PostButtonDiv>
-			</PostBottomDiv>
+				<PostBodyDataContainer>
+					<PostBodyImgDiv>
+						<PostBodyArtistImg src={artistImgUrl} alt={artistName} />
+						<PostBodyAlbumImg src={albumImgUrl} alt={albumName} />
+					</PostBodyImgDiv>
+					<PostBodyDataDiv>
+						<DataInfoContainer>
+							<div>
+								<p>Artist/Band: </p>
+								<strong>{artistName}</strong>
+							</div>
+							<div>
+								<p>Album: </p>
+								<strong>{albumName}</strong>
+							</div>
+							<div>
+								<p>Song: </p>
+								<strong>{trackName}</strong>
+							</div>
+							<div>
+								<p>Genre: </p>
+								<strong>{formattedGenre.genre}</strong>
+							</div>
+							<div>
+								<p>Sumbited by:</p>
+								<strong>{owner.username}</strong>
+							</div>
+						</DataInfoContainer>
+						<DataInfoButtonContainer>
+							<div>
+								<p>Listen on Spotify: </p>
+							</div>
+							<SpotifyButton
+								small
+								href={trackUrl}
+								target="_blank"
+								rel="noreferrer"
+							>
+								<img src={spotify} alt="headphones" />
+							</SpotifyButton>
+						</DataInfoButtonContainer>
+						<DataInfoLikeButtonContainer>
+							<div>
+								<p>Votes:</p>
+							</div>
+							<SmallEmptyButton body onClick={() => likePost()}>
+								<p>{voteNumber}</p>
+								{userLiked ? <FullHeart /> : <EmptyHeart />}
+							</SmallEmptyButton>
+						</DataInfoLikeButtonContainer>
+					</PostBodyDataDiv>
+				</PostBodyDataContainer>
+			</PostBodyTopDiv>
 		</>
 	);
 }
