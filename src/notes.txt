@@ -39,3 +39,5 @@ To do:
 To do:
 
 - Think about short text bodies -- what do? The current style doesn't match for that. 
+- If no artist/album/track data, what do? 
+- A tag over button is bad HTML

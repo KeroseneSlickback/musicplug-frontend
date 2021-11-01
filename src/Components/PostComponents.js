@@ -102,25 +102,68 @@ export const PostCommentButton = styled(SmallButton)`
 	}
 `;
 
-export const PostBodyTopDiv = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: 16px 16px;
+export const PostBodyContainer = styled.div`
+	width: 900px;
 `;
 
-export const PostBodyInfoDiv = styled.div`
+export const PostBodyGridContainer = styled.div`
+	padding: 8px;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas:
+		'body info'
+		'comment info';
+	align-items: start;
+	gap: 8px;
+`;
+
+export const PostBodyTextDiv = styled.div`
+	grid-area: body;
+	padding: 16px 16px 0px 16px;
+	background-color: #272432;
+	border: 1px solid #5e5577;
+	border-radius: 3px;
+	width: 100%;
+	color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+`;
+
+export const PostBodyInfoContainer = styled.div`
+	grid-area: info;
+	width: 250px;
+	padding: 8px;
 	background-color: #272432;
-	width: 600px;
+	border: 1px solid #5e5577;
+	border-radius: 3px;
+`;
+
+export const PostBodyCommentContainer = styled.div`
+	padding: 16px;
+	grid-area: comment;
+	background-color: #272432;
+	border: 1px solid #5e5577;
+	border-radius: 3px;
+	width: 100%;
+	color: #f7f7f7;
+`;
+
+export const PostBodyTextInnerDiv = styled.div`
+	flex-basis: 150px;
+	flex-shrink: 0;
 `;
 
 export const PostBodyH1 = styled.h1`
-	font-size: 2rem;
-	color: #f7f7f7;
-	margin: 8px;
 	word-break: break-word;
+	font-size: 1.6rem;
+	padding-bottom: 8px;
+`;
+
+export const PostBodyPDiv = styled.div`
+	p {
+	}
 `;
 
 export const PostBodyP = styled.p`
@@ -134,88 +177,39 @@ export const PostBodyP = styled.p`
 	}
 `;
 
-export const PostBodyDataContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-`;
-
 export const PostBodyImgDiv = styled.div`
-	height: 250px;
-	width: 254px;
-	position: relative;
-`;
-
-export const PostBodyArtistImg = styled.img`
-	height: 250px;
-	width: 250px;
-	object-fit: cover;
-	box-shadow: 0px 0px 0px 2px #5e5577;
-`;
-
-export const PostBodyAlbumImg = styled(PostBodyArtistImg)`
-	max-height: 110px;
-	width: 110px;
-	object-fit: cover;
-	box-shadow: 0px 0px 0px 2px #5e5577;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-`;
-
-export const PostBodyDataDiv = styled.div`
-	box-shadow: 0px 0px 0px 2px #5e5577;
-	width: 250px;
-	margin-top: 16px;
-	color: #f7f7f7;
-	padding: 6px;
-	background-color: #141221;
-`;
-
-export const DataInfoContainer = styled.div`
-	div {
-		width: 100%;
-		border-bottom: 2px solid #5e5577;
-		padding-bottom: 4px;
-		p {
-			font-size: 0.9rem;
-			margin: 4px 0 6px 0;
-		}
-		strong {
-			color: #f7f7f7;
-			font-size: 1.25rem;
-			margin-left: 18px;
-			word-break: break-word;
-			text-decoration: none;
-		}
-	}
-`;
-
-export const DataInfoButtonContainer = styled.div`
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	padding: 20px 0;
 	width: 100%;
-	border-bottom: 2px solid #5e5577;
-	div {
-		width: 80px;
-		p {
-			font-size: 1.25rem;
-		}
-	}
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 `;
 
-export const DataInfoLikeButtonContainer = styled(DataInfoButtonContainer)`
-	padding: 10px 0;
-	border-bottom: none;
-	button {
-		p {
-			font-size: 1.25rem;
-		}
-		svg {
-			height: 34px;
-		}
-	}
+export const PostBodyImg = styled.img`
+	height: 112px;
+	width: 112px;
+	object-fit: cover;
+	box-shadow: 0px 0px 0px 2px #5e5577;
 `;
 
-export const PostCommentDiv = styled.div``;
+export const PostBodyInfoMiniDiv = styled.div`
+	color: #f7f7f7;
+	padding: 6px 0;
+`;
+
+export const PostBodyInfoLabelP = styled.p`
+	font-size: 0.8rem;
+	margin-bottom: 2px;
+`;
+
+export const PostBodyInfoP = styled.p`
+	font-size: 1rem;
+	margin-left: 8px;
+`;
+
+export const PostBodyButtonDiv = styled.div``;
+
+export const PostBodyBottomDiv = styled.div``;
+
+export const PostBodyBottomLeft = styled.div``;
+
+export const PostBodyBottomRight = styled.div``;

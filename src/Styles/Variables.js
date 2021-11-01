@@ -12,6 +12,7 @@
 // }
 
 // const theme = {
+//  lighterHero: '#59C5A3',
 // 	hero: '#4ac09b',
 // 	bold: '#c52772',
 // 	boldAlt: '#cf2e7d',

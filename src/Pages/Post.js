@@ -3,15 +3,16 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
-import { PostBodyDiv } from '../Components/PostComponents';
+import { StylePageContainer } from '../Components/Containers';
 import {
-	PageContainer,
-	StylePageContainer,
-	PostContainer,
-} from '../Components/Containers';
+	PostBodyContainer,
+	PostBodyGridContainer,
+} from '../Components/PostComponents';
 import { CenteredModuleDiv } from '../Components/Forms';
 import PostBodyModule from '../Modules/PostBodyModule';
 import useFetchSinglePost from '../Utilities/Hooks/useFetchSinglePost';
+import PostBodyInfoModule from '../Modules/PostBodyInfoModule';
+import PostCommentModule from '../Modules/PostCommentModule';
 
 function Post() {
 	const { id } = useParams();
@@ -23,26 +24,29 @@ function Post() {
 	}, [id]);
 
 	return (
-		<PageContainer>
-			<StylePageContainer>
-				{load || data === '' ? (
+		<PostBodyContainer>
+			{load || data === '' ? (
+				<StylePageContainer>
 					<CenteredModuleDiv>
 						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 					</CenteredModuleDiv>
-				) : (
+				</StylePageContainer>
+			) : (
+				<PostBodyGridContainer>
 					<PostBodyModule data={data.data} />
-				)}
-			</StylePageContainer>
-			<StylePageContainer>
-				{load ? (
+					<PostBodyInfoModule data={data.data} />
+					<PostCommentModule data={data.data} />
+				</PostBodyGridContainer>
+			)}
+			{/* {load ? (
+				<StylePageContainer>
 					<CenteredModuleDiv>
 						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 					</CenteredModuleDiv>
-				) : (
-					<h1>Comment</h1>
-				)}
-			</StylePageContainer>
-		</PageContainer>
+				</StylePageContainer>
+			) : (
+			)} */}
+		</PostBodyContainer>
 	);
 }
 

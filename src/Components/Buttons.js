@@ -70,6 +70,23 @@ export const SmallEmptyButton = styled(SmallButton)`
 		`}
 `;
 
+export const EmptyLikeButton = styled.button`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	background-color: inherit;
+	border-radius: 3px;
+	text-decoration: none;
+	p {
+		padding-right: 4px;
+		font-size: 1rem;
+	}
+`;
+
 export const MediumStyledButton = styled(SmallStyledButton)`
 	padding: 8px 16px;
 	font-size: 1rem;
@@ -85,6 +102,54 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 export const LargeStyledButton = styled(MediumStyledButton)`
 	width: 100%;
 	text-decoration: none;
+`;
+
+export const WideStyledButton = styled.a`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	padding: 6px 14px;
+	border-radius: 3px;
+	text-decoration: none;
+	width: 100%;
+	background-color: #4ac09b;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 1rem;
+	&:hover {
+		background-color: #59c5a3;
+	}
+	img {
+		height: 25px;
+		width: 25px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: scale(1);
+		animation: pulse 1.25s infinite;
+
+		@keyframes pulse {
+			0% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 #b42269;
+			}
+
+			70% {
+				transform: scale(1);
+				box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0);
+				background-color: rgba(0, 0, 0, 0);
+			}
+
+			100% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+				background-color: #4ac09b;
+			}
+		}
+	}
 `;
 
 export const CloseButtonDiv = styled.div`
@@ -196,11 +261,11 @@ export const SpotifyButton = styled.a`
 		props.small &&
 		css`
 			margin: 0 0 0 0;
-			height: 50px;
-			width: 50px;
+			height: 38px;
+			width: 38px;
 			animation: pulseSmall 1.25s infinite;
 			img {
-				height: 50px;
+				height: 38px;
 			}
 			@keyframes pulseSmall {
 				0% {
@@ -210,7 +275,7 @@ export const SpotifyButton = styled.a`
 
 				70% {
 					transform: scale(1);
-					box-shadow: 0 0 4px 12px rgba(0, 0, 0, 0);
+					box-shadow: 0 0 4px 8px rgba(0, 0, 0, 0);
 					background-color: rgba(0, 0, 0, 0);
 				}
 
