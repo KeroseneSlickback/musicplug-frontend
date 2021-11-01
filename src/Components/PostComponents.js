@@ -161,11 +161,6 @@ export const PostBodyH1 = styled.h1`
 	padding-bottom: 8px;
 `;
 
-export const PostBodyPDiv = styled.div`
-	p {
-	}
-`;
-
 export const PostBodyP = styled.p`
 	font-size: 1rem;
 	color: #f7f7f7;
