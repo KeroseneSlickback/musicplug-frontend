@@ -85,6 +85,23 @@ export const PostTextArea = styled(PostInput).attrs({
 	white-space: pre-wrap;
 `;
 
+export const CommentTextLabel = styled.label`
+	display: inline-block;
+	margin-bottom: 8px;
+`;
+
+export const CommentTextArea = styled(PostTextArea)`
+	width: 100%;
+	height: 80px;
+	background-color: #272432;
+`;
+
+export const CommentButtonDiv = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+`;
+
 export const PostLabel = styled.label`
 	margin-bottom: 12px;
 	color: #f7f7f7;

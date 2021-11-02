@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
@@ -16,12 +15,12 @@ import PostCommentModule from '../Modules/PostCommentModule';
 
 function Post() {
 	const { id } = useParams();
-	const [searchId, setSearchId] = useState('');
+	// const [searchId, setSearchId] = useState('');
 	const { data, load, error } = useFetchSinglePost(id);
 
-	useEffect(() => {
-		setSearchId(id);
-	}, [id]);
+	// useEffect(() => {
+	// 	setSearchId(id);
+	// }, [id]);
 
 	return (
 		<PostBodyContainer>

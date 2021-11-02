@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { SmallEmptyButton } from '../Components/Buttons';
 import {
@@ -9,18 +8,17 @@ import {
 	PostBodyP,
 	PostBodyTextDiv,
 	PostBodyTextInnerDiv,
+	PostUserDiv,
 } from '../Components/PostComponents';
 
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
 import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 
 function PostBodyModule(props) {
-	const { title, body, genre, votes, owner, _id, likedUsers } = props.data;
-	console.log(props.data);
+	const { title, body, votes, owner, _id, likedUsers } = props.data;
 	const [userLiked, setUserLiked] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
 	const [formattedBody, setFormattedBody] = useState('');
-	console.log(formattedBody);
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -91,9 +89,10 @@ function PostBodyModule(props) {
 				<PostBodyP>{formattedBody}</PostBodyP>
 			</PostBodyTextInnerDiv>
 			<PostBottomDiv>
-				<div>
+				<PostUserDiv>
+					<img src={owner.avatarLink} alt={owner.username} />
 					<p> - {owner.username}</p>
-				</div>
+				</PostUserDiv>
 				<PostButtonDiv>
 					<SmallEmptyButton onClick={() => likePost()}>
 						<p>{voteNumber}</p>

@@ -1,11 +1,5 @@
 To do:
 
-- Home Page / Posts
- 
-  - If post is clicked, expand post rather than create new page 
-    - Comments come in after expansion (loading too)
-    - Comment post section
-
 - Edit
 - Delete
 
@@ -23,21 +17,31 @@ To do:
   - User login form 
   - User new post create form 
 
-To do:
-
-- Show vote # on post block
-- post update to add vote to post -- 
-- Link genre on post block to genre sorting
-- User avatar from Spotify?
-- If click on post => url to post page by ID (fetch from backend)
-  - Design this page
-
 
 - For full post, add an edit/remove button if owner._id matches current user
 
 
-To do:
 
-- Think about short text bodies -- what do? The current style doesn't match for that. 
-- If no artist/album/track data, what do? 
-- A tag over button is bad HTML
+To Do:
+
+- Alter User avatars
+  - PostBlock with avatar 
+  - Post with avatar
+    - Standardize the size to match comments
+    - New position?
+
+- Can afford more room for the Post Data
+- If no data entered, what to show?
+
+- Hunt down A and Link tags and see how they're working => A tag over button is bad. 
+- Spotify Register button went out - A around button 
+
+- When sorting by genre, user liking isn't working properly
+
+- Edit/remove posts and comments
+  - On Post page, check owner._id of post and comment matches the current user
+    - If so, show edit/delete button 
+  - What to show when editing?
+  - Module for removal warning?
+
+- User edit/delete account

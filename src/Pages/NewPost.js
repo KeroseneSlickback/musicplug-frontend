@@ -61,7 +61,6 @@ function NewPost() {
 
 	function handlePostChange(e) {
 		const { name, value } = e.target;
-		console.log(value);
 		setPostData(prevState => ({
 			...prevState,
 			[name]: value,
@@ -79,8 +78,6 @@ function NewPost() {
 				},
 			})
 			.then(res => {
-				console.log(res);
-				// Reset state?
 				history.push('/');
 			})
 			.catch(err => {

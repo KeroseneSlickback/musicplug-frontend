@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SmallButton } from './Buttons';
 
 export const PostTopDiv = styled.div`
@@ -81,6 +81,41 @@ export const PostBottomDiv = styled.div`
 	}
 `;
 
+export const PostUserDiv = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	img {
+		margin: 8px 4px;
+		width: 36px;
+		border-radius: 3px;
+		border: 1px solid #ebeaee;
+	}
+
+	${props =>
+		props.comment &&
+		css`
+			flex-direction: column;
+			p {
+				font-size: 0.8rem;
+			}
+			img {
+				width: 26px;
+			}
+		`}
+
+	${props =>
+		props.small &&
+		css`
+			p {
+				font-size: 0.8rem;
+			}
+			img {
+				width: 26px;
+			}
+		`}
+`;
+
 export const PostButtonDiv = styled.div`
 	display: flex;
 	align-items: center;
@@ -109,7 +144,7 @@ export const PostBodyContainer = styled.div`
 export const PostBodyGridContainer = styled.div`
 	padding: 8px;
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: 3fr 1fr;
 	grid-template-rows: auto 1fr;
 	grid-template-areas:
 		'body info'
@@ -120,6 +155,7 @@ export const PostBodyGridContainer = styled.div`
 
 export const PostBodyTextDiv = styled.div`
 	grid-area: body;
+	justify-self: stretch;
 	padding: 16px 16px 0px 16px;
 	background-color: #272432;
 	border: 1px solid #5e5577;
@@ -141,13 +177,13 @@ export const PostBodyInfoContainer = styled.div`
 `;
 
 export const PostBodyCommentContainer = styled.div`
-	padding: 16px;
 	grid-area: comment;
-	background-color: #272432;
-	border: 1px solid #5e5577;
-	border-radius: 3px;
 	width: 100%;
 	color: #f7f7f7;
+	h1 {
+		margin-bottom: 8px;
+		font-size: 1.3rem;
+	}
 `;
 
 export const PostBodyTextInnerDiv = styled.div`
@@ -208,3 +244,21 @@ export const PostBodyBottomDiv = styled.div``;
 export const PostBodyBottomLeft = styled.div``;
 
 export const PostBodyBottomRight = styled.div``;
+
+export const SinglePostDiv = styled.div`
+	padding: 12px;
+	background-color: #211f2e;
+	border: 1px solid #5e5577;
+	border-radius: 3px;
+	margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+`;
+
+export const CommentFormDiv = styled(SinglePostDiv)`
+	display: block;
+`;
+
+export const CommentP = styled.p`
+	margin-left: 16px;
+`;

@@ -48,6 +48,13 @@ export const SmallStyledButton = styled(SmallButton)`
 				background-color: #cf2e7d;
 			}
 		`}
+
+	${props =>
+		props.smaller &&
+		css`
+			font-size: 0.9rem;
+			padding: 6px 8px;
+		`}
 `;
 
 export const SmallEmptyButton = styled(SmallButton)`

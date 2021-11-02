@@ -1,26 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { SmallEmptyButton, WideStyledButton } from '../Components/Buttons';
+import { WideStyledButton } from '../Components/Buttons';
 import {
-	PostBottomDiv,
-	PostButtonDiv,
-	PostBodyContainer,
-	PostBodyH1,
 	PostBodyImgDiv,
 	PostBodyInfoContainer,
-	PostBodyP,
-	PostBodyTextDiv,
 	PostBodyImg,
 	PostBodyInfoLabelP,
 	PostBodyInfoP,
 	PostBodyInfoMiniDiv,
 	PostBodyButtonDiv,
-	PostBodyTextInnerDiv,
 } from '../Components/PostComponents';
-
-import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
-import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 
 import miniSpotify from '../Utilities/Images/svg/miniSpotify.svg';
 
