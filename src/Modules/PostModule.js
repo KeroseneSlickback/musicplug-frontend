@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { SmallButton, SmallEmptyButton } from '../Components/Buttons';
+import {
+	SmallEmptyButton,
+	SmallStyledLinkButton,
+	SmallStyledReactDomLink,
+} from '../Components/Buttons';
 import { PostContainer } from '../Components/Containers';
 import {
 	PostBottomDiv,
 	PostButtonDiv,
-	PostCommentButton,
 	PostImg,
 	PostTopDiv,
 	TextDiv,
+	PostUserDiv,
 } from '../Components/PostComponents';
 
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
@@ -23,12 +27,13 @@ function PostModule(props) {
 		props.data;
 	const [userLiked, setUserLiked] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
-	const [formattedBody, setFormattedBody] = useState('');
+	const [formattedBody, setFormattedBody] = useState([]);
 	const [formattedGenre, setFormattedGenre] = useState({
 		genre: '',
 		path: '/',
 	});
-	const { albumImgUrl, trackUrl } = props.data.recommendation;
+	const { albumImgUrl, trackUrl, albumUrl, artistUrl } =
+		props.data.recommendation;
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -41,7 +46,7 @@ function PostModule(props) {
 			}
 		}
 		setVoteNumber(votes);
-	}, [props.data, likedUsers, votes]);
+	}, [likedUsers, votes]);
 
 	useEffect(() => {
 		switch (genre) {
@@ -75,9 +80,9 @@ function PostModule(props) {
 	}, [genre]);
 
 	useEffect(() => {
-		const newBody = body.split('\n').map(str => <p>{str}</p>);
+		const newBody = body.split('\n');
+		// .map(str => <p>{str}</p>);
 		setFormattedBody(newBody);
-		console.log(newBody);
 	}, [body]);
 
 	const likePost = () => {
@@ -131,31 +136,44 @@ function PostModule(props) {
 				<Link to={`/post/${_id}`}>
 					<TextDiv>
 						<h3>{title}</h3>
-						<p>{formattedBody}</p>
+						{formattedBody.map((str, i) => {
+							return <p key={i}>{str}</p>;
+						})}
 					</TextDiv>
 					<PostImg src={albumImgUrl} alt="artImage" />
 				</Link>
 			</PostTopDiv>
 			<PostBottomDiv>
-				<div>
+				<PostUserDiv small>
+					<img src={owner.avatarLink} alt={owner.username} />
 					<p> - {owner.username}</p>
-				</div>
+				</PostUserDiv>
 				<PostButtonDiv>
-					<Link to={formattedGenre.path}>
-						<SmallButton>{formattedGenre.genre}</SmallButton>
-					</Link>
-					<a href={trackUrl} target="_blank" rel="noreferrer">
-						<SmallButton link>
-							<img src={headphoneSVG} alt="headphones" />
-							<p>Listen on Spotify</p>
-						</SmallButton>
-					</a>
-					<PostCommentButton>
+					<SmallStyledReactDomLink to={formattedGenre.path}>
+						{formattedGenre.genre}
+					</SmallStyledReactDomLink>
+					<SmallStyledLinkButton
+						href={
+							trackUrl !== ''
+								? trackUrl
+								: albumUrl !== ''
+								? albumUrl
+								: artistUrl !== ''
+								? artistUrl
+								: null
+						}
+						target="_blank"
+						rel="noreferrer"
+					>
+						<img src={headphoneSVG} alt="headphones" />
+						Listen on Spotify
+					</SmallStyledLinkButton>
+					<SmallStyledReactDomLink to={`/post/${_id}`}>
 						<img src={chatSVG} alt={chatSVG} />
 						<p>{comments.length} Comments</p>
-					</PostCommentButton>
+					</SmallStyledReactDomLink>
 					<SmallEmptyButton onClick={() => likePost()}>
-						<p>{voteNumber}</p>
+						{voteNumber}
 						{userLiked ? <FullHeart /> : <EmptyHeart />}
 					</SmallEmptyButton>
 				</PostButtonDiv>

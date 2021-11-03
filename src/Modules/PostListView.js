@@ -8,7 +8,6 @@ import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 
 function PostListView({ searchParams, endPage, url }) {
 	const { data, load, error } = useFetchPosts(url, searchParams);
-	console.log(data);
 
 	useEffect(() => {
 		endPage(data);

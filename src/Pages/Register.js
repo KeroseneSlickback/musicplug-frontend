@@ -13,7 +13,7 @@ import {
 	FormLabel,
 } from './../Components/Forms';
 import { StylePageContainer } from '../Components/Containers';
-import { MediumStyledButton } from './../Components/Buttons';
+import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 
 function Register() {
@@ -67,7 +67,10 @@ function Register() {
 					console.log(res);
 					const username = res.data.display_name;
 					const email = res.data.email;
-					const avatarLink = res.data.images[0].url;
+					const avatarLink = '';
+					if (res.data.images[0]) {
+						avatarLink = res.data.images[0].url;
+					}
 					const spotifyLink = res.data.href;
 
 					setRegisterData(prevState => ({
@@ -79,8 +82,11 @@ function Register() {
 					}));
 				})
 				.catch(err => {
+					console.log(err);
 					if (err.response.status === 401) {
 						callForSpotifyRefresh();
+					} else if (err.response.status === 403) {
+						console.log(err);
 					}
 				});
 		} else {
@@ -141,9 +147,9 @@ function Register() {
 				) : (
 					<FormBlock spotify>
 						<h3>Please verify your account with Spotify first.</h3>
-						<a href="http://localhost:8888/login">
+						<SpotifyButton href="http://localhost:8888/login">
 							<img src={spotifySVG} alt="spotifySVG" />
-						</a>
+						</SpotifyButton>
 					</FormBlock>
 				)}
 			</FormContainer>

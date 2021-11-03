@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SmallButton = styled.button`
 	color: #f7f7f7;
@@ -63,9 +64,9 @@ export const SmallEmptyButton = styled(SmallButton)`
 	align-items: center;
 	padding: 4px 6px;
 	background-color: inherit;
-	p {
-		padding: 0px 4px;
-		font-size: 0.9rem;
+	font-size: 0.8rem;
+	svg {
+		margin-left: 2px;
 	}
 
 	${props =>
@@ -109,54 +110,6 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 export const LargeStyledButton = styled(MediumStyledButton)`
 	width: 100%;
 	text-decoration: none;
-`;
-
-export const WideStyledButton = styled.a`
-	color: #f7f7f7;
-	border: none;
-	cursor: pointer;
-	padding: 6px 14px;
-	border-radius: 3px;
-	text-decoration: none;
-	width: 100%;
-	background-color: #4ac09b;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-evenly;
-	font-size: 1rem;
-	&:hover {
-		background-color: #59c5a3;
-	}
-	img {
-		height: 25px;
-		width: 25px;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transform: scale(1);
-		animation: pulse 1.25s infinite;
-
-		@keyframes pulse {
-			0% {
-				transform: scale(0.95);
-				box-shadow: 0 0 0 0 #b42269;
-			}
-
-			70% {
-				transform: scale(1);
-				box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0);
-				background-color: rgba(0, 0, 0, 0);
-			}
-
-			100% {
-				transform: scale(0.95);
-				box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-				background-color: #4ac09b;
-			}
-		}
-	}
 `;
 
 export const CloseButtonDiv = styled.div`
@@ -263,36 +216,6 @@ export const SpotifyButton = styled.a`
 	justify-content: center;
 	transform: scale(1);
 	animation: pulse 1.25s infinite;
-
-	${props =>
-		props.small &&
-		css`
-			margin: 0 0 0 0;
-			height: 38px;
-			width: 38px;
-			animation: pulseSmall 1.25s infinite;
-			img {
-				height: 38px;
-			}
-			@keyframes pulseSmall {
-				0% {
-					transform: scale(0.95);
-					box-shadow: 0 0 0 0 #cf2e7d;
-				}
-
-				70% {
-					transform: scale(1);
-					box-shadow: 0 0 4px 8px rgba(0, 0, 0, 0);
-					background-color: rgba(0, 0, 0, 0);
-				}
-
-				100% {
-					transform: scale(0.95);
-					box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-					background-color: #b42269;
-				}
-			}
-		`}
 	@keyframes pulse {
 		0% {
 			transform: scale(0.95);
@@ -311,4 +234,115 @@ export const SpotifyButton = styled.a`
 			background-color: #b42269;
 		}
 	}
+`;
+
+export const SmallSpotifyPulseImg = styled.img`
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: scale(1);
+	animation: pulse 1.25s infinite;
+
+	@keyframes pulse {
+		0% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 #b42269;
+		}
+
+		70% {
+			transform: scale(1);
+			box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0);
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		100% {
+			transform: scale(0.95);
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+			background-color: #4ac09b;
+		}
+	}
+`;
+
+export const SmallStyledLinkButton = styled.a`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	background-color: #272432;
+	padding: 8px 16px;
+	font-size: 0.8rem;
+	border-radius: 3px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	img {
+		margin-right: 4px;
+	}
+	&:hover {
+		background-color: #2e2b3b;
+	}
+`;
+
+export const SmallStyledReactDomLink = styled(Link)`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	background-color: #272432;
+	padding: 8px 16px;
+	font-size: 0.8rem;
+	border-radius: 3px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	img {
+		margin-right: 4px;
+	}
+	&:hover {
+		background-color: #2e2b3b;
+	}
+`;
+
+export const WideStyledLinkButton = styled.a`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	padding: 6px 14px;
+	border-radius: 3px;
+	text-decoration: none;
+	width: 100%;
+	background-color: #4ac09b;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 1.1rem;
+	&:hover {
+		background-color: #59c5a3;
+	}
+`;
+
+export const TinyButton = styled.button`
+	color: #f7f7f7;
+	font-size: 0.7rem;
+	padding: 3px 4px;
+	border-radius: 3px;
+	background-color: #a51d62;
+	border: 1px solid #5e5577;
+	&:hover {
+		background-color: #b42269;
+		border: 1px solid #a39abc;
+	}
+
+	${props =>
+		props.alt &&
+		css`
+			background-color: #301f33;
+			border: 1px solid #5e5577;
+			&:hover {
+				background-color: #422843;
+				border: 1px solid #a39abc;
+			}
+		`}
 `;

@@ -24,20 +24,6 @@ To do:
 
 To Do:
 
-- Alter User avatars
-  - PostBlock with avatar 
-  - Post with avatar
-    - Standardize the size to match comments
-    - New position?
-
-- Can afford more room for the Post Data
-- If no data entered, what to show?
-
-- Hunt down A and Link tags and see how they're working => A tag over button is bad. 
-- Spotify Register button went out - A around button 
-
-- When sorting by genre, user liking isn't working properly
-
 - Edit/remove posts and comments
   - On Post page, check owner._id of post and comment matches the current user
     - If so, show edit/delete button 

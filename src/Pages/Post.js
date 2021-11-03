@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
@@ -15,12 +15,7 @@ import PostCommentModule from '../Modules/PostCommentModule';
 
 function Post() {
 	const { id } = useParams();
-	// const [searchId, setSearchId] = useState('');
 	const { data, load, error } = useFetchSinglePost(id);
-
-	// useEffect(() => {
-	// 	setSearchId(id);
-	// }, [id]);
 
 	return (
 		<PostBodyContainer>
@@ -37,14 +32,6 @@ function Post() {
 					<PostCommentModule data={data.data} />
 				</PostBodyGridContainer>
 			)}
-			{/* {load ? (
-				<StylePageContainer>
-					<CenteredModuleDiv>
-						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
-					</CenteredModuleDiv>
-				</StylePageContainer>
-			) : (
-			)} */}
 		</PostBodyContainer>
 	);
 }

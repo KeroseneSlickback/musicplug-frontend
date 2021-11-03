@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SmallEmptyButton } from '../Components/Buttons';
+import { SmallEmptyButton, TinyButton } from '../Components/Buttons';
 import {
 	PostBottomDiv,
 	PostButtonDiv,
 	PostBodyH1,
-	PostBodyP,
 	PostBodyTextDiv,
+	PostBodyContentDiv,
 	PostBodyTextInnerDiv,
 	PostUserDiv,
+	EditDeleteButtonDiv,
 } from '../Components/PostComponents';
 
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
@@ -17,8 +18,20 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 function PostBodyModule(props) {
 	const { title, body, votes, owner, _id, likedUsers } = props.data;
 	const [userLiked, setUserLiked] = useState(false);
+	const [postUser, setPostUser] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
-	const [formattedBody, setFormattedBody] = useState('');
+	const [formattedBody, setFormattedBody] = useState([]);
+
+	useEffect(() => {
+		const user = JSON.parse(localStorage.getItem('user'));
+		if (user) {
+			if (user._id === owner._id) {
+				setPostUser(true);
+			} else {
+				setPostUser(false);
+			}
+		}
+	}, [owner]);
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -34,7 +47,8 @@ function PostBodyModule(props) {
 	}, [props.data, likedUsers, votes]);
 
 	useEffect(() => {
-		const newBody = body.split('\n').map(str => <p>{str}</p>);
+		const newBody = body.split('\n');
+		// .map(str => <p>{str}</p>);
 		setFormattedBody(newBody);
 	}, [body]);
 
@@ -86,7 +100,11 @@ function PostBodyModule(props) {
 		<PostBodyTextDiv>
 			<PostBodyTextInnerDiv>
 				<PostBodyH1>{title}</PostBodyH1>
-				<PostBodyP>{formattedBody}</PostBodyP>
+				<PostBodyContentDiv>
+					{formattedBody.map((str, i) => {
+						return <p key={i}>{str}</p>;
+					})}
+				</PostBodyContentDiv>
 			</PostBodyTextInnerDiv>
 			<PostBottomDiv>
 				<PostUserDiv>
@@ -94,6 +112,12 @@ function PostBodyModule(props) {
 					<p> - {owner.username}</p>
 				</PostUserDiv>
 				<PostButtonDiv>
+					{postUser ? (
+						<EditDeleteButtonDiv>
+							<TinyButton>Edit</TinyButton>
+							<TinyButton alt>Delete</TinyButton>
+						</EditDeleteButtonDiv>
+					) : null}
 					<SmallEmptyButton onClick={() => likePost()}>
 						<p>{voteNumber}</p>
 						{userLiked ? <FullHeart /> : <EmptyHeart />}

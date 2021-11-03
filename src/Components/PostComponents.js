@@ -31,10 +31,9 @@ export const TextDiv = styled.div`
 	max-height: 250px;
 
 	h3 {
-		margin-bottom: 10px;
-		font-size: 1.3rem;
-		font-weight: 500;
 		word-break: break-word;
+		font-size: 1.6rem;
+		padding-bottom: 8px;
 	}
 
 	p {
@@ -43,9 +42,7 @@ export const TextDiv = styled.div`
 		text-indent: 20px;
 		line-height: 1.2;
 		white-space: pre-wrap;
-		p {
-			margin-top: 10px;
-		}
+		margin-top: 6px;
 	}
 `;
 
@@ -55,30 +52,6 @@ export const PostBottomDiv = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin: 4px 8px;
-
-	p,
-	a,
-	button {
-		font-size: 0.8rem;
-		color: #f7f7f7;
-	}
-
-	button {
-		background-color: #272432;
-
-		a {
-			text-decoration: none;
-			display: flex;
-			align-items: center;
-			p {
-				margin-left: 4px;
-			}
-		}
-
-		&:hover {
-			background-color: #2e2b3b;
-		}
-	}
 `;
 
 export const PostUserDiv = styled.div`
@@ -86,32 +59,27 @@ export const PostUserDiv = styled.div`
 	flex-direction: row;
 	align-items: center;
 	img {
-		margin: 8px 4px;
-		width: 36px;
+		margin: 4px 4px;
+		width: 34px;
 		border-radius: 3px;
 		border: 1px solid #ebeaee;
+	}
+	p {
+		font-size: 0.8rem;
+		color: #f7f7f7;
 	}
 
 	${props =>
 		props.comment &&
 		css`
 			flex-direction: column;
-			p {
-				font-size: 0.8rem;
-			}
-			img {
-				width: 26px;
-			}
 		`}
 
 	${props =>
 		props.small &&
 		css`
-			p {
-				font-size: 0.8rem;
-			}
 			img {
-				width: 26px;
+				width: 28px;
 			}
 		`}
 `;
@@ -119,6 +87,7 @@ export const PostUserDiv = styled.div`
 export const PostButtonDiv = styled.div`
 	display: flex;
 	align-items: center;
+
 	img {
 		height: 20px;
 	}
@@ -156,7 +125,6 @@ export const PostBodyGridContainer = styled.div`
 export const PostBodyTextDiv = styled.div`
 	grid-area: body;
 	justify-self: stretch;
-	padding: 16px 16px 0px 16px;
 	background-color: #272432;
 	border: 1px solid #5e5577;
 	border-radius: 3px;
@@ -187,6 +155,7 @@ export const PostBodyCommentContainer = styled.div`
 `;
 
 export const PostBodyTextInnerDiv = styled.div`
+	padding: 16px 16px 0px 16px;
 	flex-basis: 150px;
 	flex-shrink: 0;
 `;
@@ -197,14 +166,14 @@ export const PostBodyH1 = styled.h1`
 	padding-bottom: 8px;
 `;
 
-export const PostBodyP = styled.p`
-	font-size: 1rem;
-	color: #f7f7f7;
-	text-indent: 20px;
-	line-height: 1.2;
-	white-space: pre-wrap;
+export const PostBodyContentDiv = styled.div`
 	p {
-		margin-top: 10px;
+		font-size: 1rem;
+		color: #f7f7f7;
+		text-indent: 20px;
+		line-height: 1.2;
+		white-space: pre-wrap;
+		margin-top: 6px;
 	}
 `;
 
@@ -229,24 +198,18 @@ export const PostBodyInfoMiniDiv = styled.div`
 
 export const PostBodyInfoLabelP = styled.p`
 	font-size: 0.8rem;
-	margin-bottom: 2px;
+	margin-bottom: 4px;
 `;
 
 export const PostBodyInfoP = styled.p`
-	font-size: 1rem;
+	font-size: 1.1rem;
 	margin-left: 8px;
 `;
 
 export const PostBodyButtonDiv = styled.div``;
 
-export const PostBodyBottomDiv = styled.div``;
-
-export const PostBodyBottomLeft = styled.div``;
-
-export const PostBodyBottomRight = styled.div``;
-
 export const SinglePostDiv = styled.div`
-	padding: 12px;
+	padding: 8px;
 	background-color: #211f2e;
 	border: 1px solid #5e5577;
 	border-radius: 3px;
@@ -260,5 +223,22 @@ export const CommentFormDiv = styled(SinglePostDiv)`
 `;
 
 export const CommentP = styled.p`
-	margin-left: 16px;
+	line-height: 1.1;
+	margin-left: 8px;
+`;
+
+export const EditDeleteButtonDiv = styled.div`
+	button {
+		margin: 0 2px;
+	}
+`;
+
+export const CommentBodyDiv = styled.div`
+	width: 100%;
+`;
+
+export const CommentBottomBarDiv = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 8px;
 `;

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { WideStyledButton } from '../Components/Buttons';
+import {
+	SmallSpotifyPulseImg,
+	WideStyledLinkButton,
+} from '../Components/Buttons';
 import {
 	PostBodyImgDiv,
 	PostBodyInfoContainer,
@@ -63,26 +66,35 @@ function PostBodyInfoModule(props) {
 				<PostBodyImg src={artistImgUrl} alt={artistName}></PostBodyImg>
 				<PostBodyImg src={albumImgUrl} alt={albumName}></PostBodyImg>
 			</PostBodyImgDiv>
-			<PostBodyInfoMiniDiv>
-				<PostBodyInfoLabelP>Artist</PostBodyInfoLabelP>
-				<PostBodyInfoP>{artistName}</PostBodyInfoP>
-			</PostBodyInfoMiniDiv>
-			<PostBodyInfoMiniDiv>
-				<PostBodyInfoLabelP>Album</PostBodyInfoLabelP>
-				<PostBodyInfoP>{albumName}</PostBodyInfoP>
-			</PostBodyInfoMiniDiv>
-			<PostBodyInfoMiniDiv>
-				<PostBodyInfoLabelP>Song</PostBodyInfoLabelP>
-				<PostBodyInfoP>{trackName}</PostBodyInfoP>
-			</PostBodyInfoMiniDiv>
-			<PostBodyInfoMiniDiv>
-				<PostBodyInfoLabelP>Genre</PostBodyInfoLabelP>
-				<PostBodyInfoP>{formattedGenre.genre}</PostBodyInfoP>
-			</PostBodyInfoMiniDiv>
+			{artistName !== '' ? (
+				<PostBodyInfoMiniDiv>
+					<PostBodyInfoLabelP>Artist</PostBodyInfoLabelP>
+					<PostBodyInfoP>{artistName}</PostBodyInfoP>
+				</PostBodyInfoMiniDiv>
+			) : null}
+			{albumName !== '' ? (
+				<PostBodyInfoMiniDiv>
+					<PostBodyInfoLabelP>Album</PostBodyInfoLabelP>
+					<PostBodyInfoP>{albumName}</PostBodyInfoP>
+				</PostBodyInfoMiniDiv>
+			) : null}
+			{trackName !== '' ? (
+				<PostBodyInfoMiniDiv>
+					<PostBodyInfoLabelP>Song</PostBodyInfoLabelP>
+					<PostBodyInfoP>{trackName}</PostBodyInfoP>
+				</PostBodyInfoMiniDiv>
+			) : null}
+			{genre !== '' ? (
+				<PostBodyInfoMiniDiv>
+					<PostBodyInfoLabelP>Genre</PostBodyInfoLabelP>
+					<PostBodyInfoP>{formattedGenre.genre}</PostBodyInfoP>
+				</PostBodyInfoMiniDiv>
+			) : null}
 			<PostBodyButtonDiv>
-				<WideStyledButton href={trackUrl} target="_blank" rel="noreferrer">
-					Listen on Spotify <img src={miniSpotify} alt="headphones" />
-				</WideStyledButton>
+				<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
+					Listen on Spotify
+					<SmallSpotifyPulseImg src={miniSpotify} alt="spotify" />
+				</WideStyledLinkButton>
 			</PostBodyButtonDiv>
 		</PostBodyInfoContainer>
 	);
