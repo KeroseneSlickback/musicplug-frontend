@@ -7,7 +7,7 @@ export const SmallButton = styled.button`
 	cursor: pointer;
 	background-color: #272432;
 	padding: 8px 16px;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	border-radius: 3px;
 	text-decoration: none;
 	&:hover {
@@ -19,6 +19,14 @@ export const SmallButton = styled.button`
 			background-color: #301f33;
 			&:hover {
 				background-color: #422843;
+			}
+		`}
+	${props =>
+		props.delete &&
+		css`
+			background-color: #141221;
+			&:hover {
+				background-color: #211f2e;
 			}
 		`}
 	${props =>
@@ -38,6 +46,8 @@ export const SmallButton = styled.button`
 export const SmallStyledButton = styled(SmallButton)`
 	color: #f7f7f7;
 	background-color: #a51d62;
+	display: flex;
+	align-items: center;
 	&:hover {
 		background-color: #b42269;
 	}
@@ -89,10 +99,6 @@ export const EmptyLikeButton = styled.button`
 	background-color: inherit;
 	border-radius: 3px;
 	text-decoration: none;
-	p {
-		padding-right: 4px;
-		font-size: 1rem;
-	}
 `;
 
 export const MediumStyledButton = styled(SmallStyledButton)`
@@ -304,6 +310,25 @@ export const SmallStyledReactDomLink = styled(Link)`
 	}
 `;
 
+export const MediumStyledReactDomLink = styled(SmallStyledReactDomLink)`
+	background-color: #a51d62;
+	padding: 8px 16px;
+	font-size: 1.08rem;
+	border-radius: 3px;
+
+	&:hover {
+		background-color: #b42269;
+	}
+	${props =>
+		props.primary &&
+		css`
+			background-color: #c52772;
+			&:hover {
+				background-color: #cf2e7d;
+			}
+		`}
+`;
+
 export const WideStyledLinkButton = styled.a`
 	color: #f7f7f7;
 	border: none;
@@ -328,6 +353,7 @@ export const TinyButton = styled.button`
 	font-size: 0.7rem;
 	padding: 3px 4px;
 	border-radius: 3px;
+	cursor: pointer;
 	background-color: #a51d62;
 	border: 1px solid #5e5577;
 	&:hover {
@@ -336,7 +362,7 @@ export const TinyButton = styled.button`
 	}
 
 	${props =>
-		props.alt &&
+		props.alternative &&
 		css`
 			background-color: #301f33;
 			border: 1px solid #5e5577;

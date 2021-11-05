@@ -148,10 +148,11 @@ export const PostBodyCommentContainer = styled.div`
 	grid-area: comment;
 	width: 100%;
 	color: #f7f7f7;
-	h1 {
-		margin-bottom: 8px;
-		font-size: 1.3rem;
-	}
+`;
+
+export const PostBodyCommentH1 = styled.h1`
+	margin-bottom: 8px;
+	font-size: 1.3rem;
 `;
 
 export const PostBodyTextInnerDiv = styled.div`

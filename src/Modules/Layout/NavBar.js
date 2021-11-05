@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../Utilities/AuthContext';
 
 import { NavHeader, NavButtonDiv } from '../../Components/NavBarComponents';
-import { MediumStyledButton } from '../../Components/Buttons';
+import {
+	MediumStyledButton,
+	MediumStyledReactDomLink,
+} from '../../Components/Buttons';
 import { StyledLogo } from '../../Utilities/Images/StyledSVG/LogoSVGComponent';
 
 import LoginModal from '../../Modules/Modals/LoginModal';
@@ -41,9 +44,9 @@ function MainNavBar() {
 				</NavButtonDiv>
 			) : (
 				<NavButtonDiv>
-					<Link to="/register">
-						<MediumStyledButton primary>Register</MediumStyledButton>
-					</Link>
+					<MediumStyledReactDomLink primary to="/register">
+						Register
+					</MediumStyledReactDomLink>
 					<MediumStyledButton onClick={() => toggleLogin()}>
 						Login
 					</MediumStyledButton>

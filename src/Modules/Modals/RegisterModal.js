@@ -9,6 +9,7 @@ import {
 	FormInput,
 	Form,
 	FormLabel,
+	FormH1,
 } from '../../Components/Forms';
 import { ModalContainer } from '../../Components/Containers';
 import {
@@ -59,7 +60,7 @@ function RegisterModal(props) {
 	return (
 		<ModalContainer>
 			<FormContainer>
-				<h1>Welcome to MusicPlug!</h1>
+				<FormH1>Welcome to MusicPlug!</FormH1>
 				{spotifyVer ? (
 					<Form onSubmit={registerHandler}>
 						<h3>Enter the info below to register</h3>

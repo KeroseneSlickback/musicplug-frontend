@@ -25,6 +25,7 @@ import {
 	PostTextArea,
 	PostSelect,
 	CenteredModuleDiv,
+	FormH1,
 	// PostInputRadioDiv,
 	// PostInputRadio,
 } from '../Components/Forms';
@@ -359,7 +360,7 @@ function NewPost() {
 		<StylePageContainer>
 			{loggedIn === false ? (
 				<PageInfoContainer>
-					<h1>Please Register or Login to create a new post.</h1>
+					<FormH1>Please Register or Login to create a new post.</FormH1>
 				</PageInfoContainer>
 			) : spotifyVer === false ? (
 				<FormContainer>
@@ -374,7 +375,7 @@ function NewPost() {
 				</FormContainer>
 			) : userRefreshed === true ? (
 				<FormContainer>
-					<h1>New Post</h1>
+					<FormH1>New Post</FormH1>
 					<h3>
 						Please recommend an artist, album, song, or any combination you wish
 						from Spotify!

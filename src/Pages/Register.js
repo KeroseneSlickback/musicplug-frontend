@@ -11,6 +11,7 @@ import {
 	FormInput,
 	Form,
 	FormLabel,
+	FormH1,
 } from './../Components/Forms';
 import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
@@ -97,7 +98,7 @@ function Register() {
 	return (
 		<StylePageContainer>
 			<FormContainer>
-				<h1>Welcome to MusicPlug!</h1>
+				<FormH1>Welcome to MusicPlug!</FormH1>
 				{spotifyVer ? (
 					<Form onSubmit={registerHandler}>
 						<h3>Enter the info below to register</h3>

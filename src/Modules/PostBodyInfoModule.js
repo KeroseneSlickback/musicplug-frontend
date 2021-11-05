@@ -60,6 +60,7 @@ function PostBodyInfoModule(props) {
 				throw new Error();
 		}
 	}, [genre]);
+
 	return (
 		<PostBodyInfoContainer>
 			<PostBodyImgDiv>

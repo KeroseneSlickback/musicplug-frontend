@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { TinyButton } from '../Components/Buttons';
 import {
 	SinglePostDiv,
@@ -8,10 +10,21 @@ import {
 	CommentBottomBarDiv,
 	CommentBodyDiv,
 } from '../Components/PostComponents';
+import CommentPatchModule from './CommentPatchModule';
+import DeleteModal from './Modals/DeleteModal';
+import { Backdrop } from '../Components/Backdrop';
 
 function SingleCommentModule(props) {
-	const { body, owner, _id } = props.data;
+	const history = useHistory();
+	const { body, owner, _id, postId } = props.data;
 	const [postUser, setPostUser] = useState(false);
+	const [showDeleteModule, setShowDeleteModule] = useState(false);
+	const [showPatch, setShowPatch] = useState(false);
+	const [patchData, setPatchData] = useState({ body: '' });
+
+	useEffect(() => {
+		setPatchData({ body });
+	}, [body]);
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
@@ -24,6 +37,61 @@ function SingleCommentModule(props) {
 		}
 	}, [owner]);
 
+	const showEdit = () => {
+		setShowPatch(prev => !prev);
+	};
+
+	const handleCommentPatch = e => {
+		const { name, value } = e.target;
+		setPatchData(prev => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	const submitCommentPatch = e => {
+		e.preventDefault();
+		const jwt = localStorage.getItem('jwt');
+		axios
+			.patch(
+				`http://localhost:8888/posts/${postId}/comments/${_id}`,
+				patchData,
+				{
+					headers: {
+						Authorization: `Bearer ${jwt}`,
+					},
+				}
+			)
+			.then(res => {
+				console.log(res);
+				history.go(0);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
+	const toggleDelete = () => {
+		setShowDeleteModule(prev => !prev);
+	};
+
+	const deleteComment = () => {
+		const jwt = localStorage.getItem('jwt');
+		axios
+			.delete(`http://localhost:8888/posts/${postId}/comments/${_id}`, {
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			})
+			.then(res => {
+				console.log(res);
+				history.go(0);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
 	return (
 		<SinglePostDiv>
 			<PostUserDiv comment>
@@ -31,16 +99,41 @@ function SingleCommentModule(props) {
 				<p>{owner.username}</p>
 			</PostUserDiv>
 			<CommentBodyDiv>
-				<CommentP>{body}</CommentP>
+				{showPatch ? (
+					<CommentPatchModule
+						patchData={patchData}
+						handleCommentPatch={handleCommentPatch}
+					/>
+				) : (
+					<CommentP>{body}</CommentP>
+				)}
 				{postUser ? (
 					<CommentBottomBarDiv>
-						<EditDeleteButtonDiv>
-							<TinyButton>Edit</TinyButton>
-							<TinyButton alt>Delete</TinyButton>
-						</EditDeleteButtonDiv>
+						{showPatch ? (
+							<EditDeleteButtonDiv>
+								<TinyButton onClick={submitCommentPatch}>Save</TinyButton>
+								<TinyButton alternative onClick={() => showEdit()}>
+									Cancel
+								</TinyButton>
+							</EditDeleteButtonDiv>
+						) : (
+							<EditDeleteButtonDiv>
+								<TinyButton onClick={() => showEdit()}>Edit</TinyButton>
+								<TinyButton alternative onClick={() => toggleDelete()}>
+									Delete
+								</TinyButton>
+							</EditDeleteButtonDiv>
+						)}
 					</CommentBottomBarDiv>
 				) : null}
 			</CommentBodyDiv>
+			{showDeleteModule ? (
+				<DeleteModal
+					toggleDelete={toggleDelete}
+					confirmDelete={deleteComment}
+				/>
+			) : null}
+			{showDeleteModule ? <Backdrop onClick={toggleDelete} /> : null}
 		</SinglePostDiv>
 	);
 }

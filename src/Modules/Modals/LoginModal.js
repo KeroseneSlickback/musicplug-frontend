@@ -9,6 +9,7 @@ import {
 	FormInput,
 	Form,
 	FormLabel,
+	FormH1,
 } from '../../Components/Forms';
 import { ModalContainer } from '../../Components/Containers';
 import {
@@ -56,7 +57,7 @@ function LoginModal(props) {
 	return (
 		<ModalContainer>
 			<FormContainer>
-				<h1>Welcome Back!</h1>
+				<FormH1>Welcome Back!</FormH1>
 				<h3>Login below</h3>
 				<Form onSubmit={loginHandler}>
 					<FormBlock>

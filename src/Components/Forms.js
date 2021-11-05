@@ -6,17 +6,23 @@ export const FormContainer = styled.div`
 	justify-content: space-evenly;
 	padding: 32px;
 
-	h1 {
+	/* h1 {
 		color: #f7f7f7;
 		font-size: 2.1rem;
 		padding-bottom: 24px;
-	}
+	} */
 
 	h3 {
 		color: #f7f7f7;
 		font-size: 1.25rem;
 		margin-bottom: 8px;
 	}
+`;
+
+export const FormH1 = styled.h1`
+	color: #f7f7f7;
+	font-size: 2.1rem;
+	padding-bottom: 24px;
 `;
 
 export const Form = styled.form``;
@@ -356,4 +362,8 @@ export const CenteredModuleDiv = styled.div`
 				}
 			}
 		`}
+`;
+
+export const PostPatchDiv = styled.div`
+	margin: 0 8px;
 `;

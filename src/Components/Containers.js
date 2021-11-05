@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const PageContainer = styled.div`
 	width: 900px;
@@ -21,6 +21,12 @@ export const ModalContainer = styled.div`
 	width: 600px;
 	transform: translate(-50%, -50%);
 	z-index: 2;
+
+	${props =>
+		props.delete &&
+		css`
+			position: fixed;
+		`}
 `;
 
 export const PostContainer = styled(StylePageContainer)`
