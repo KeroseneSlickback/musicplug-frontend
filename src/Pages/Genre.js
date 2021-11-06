@@ -5,8 +5,6 @@ import { PageContainer } from '../Components/Containers';
 import Pagination from '../Modules/Pagination';
 import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
-const url = 'http://localhost:8888/posts/genre/';
-
 function Genre() {
 	const { genre } = useParams();
 	const { page: fetchedPage, pathName } = useParseUrl();
@@ -50,7 +48,7 @@ function Genre() {
 				searchParams={searchParams}
 				pathName={pathName}
 				fetchedPage={fetchedPage}
-				url={url}
+				// url={url}
 				sortBy={sortBy}
 			/>
 		</PageContainer>

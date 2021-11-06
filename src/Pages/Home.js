@@ -4,8 +4,6 @@ import { PageContainer } from '../Components/Containers';
 import Pagination from '../Modules/Pagination';
 import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
-const url = 'http://localhost:8888/posts';
-
 function Home() {
 	const { page: fetchedPage, pathName } = useParseUrl();
 	const [searchParams, setSearchParams] = useState({
@@ -46,7 +44,7 @@ function Home() {
 				searchParams={searchParams}
 				fetchedPage={fetchedPage}
 				pathName={pathName}
-				url={url}
+				// url={url}
 				sortBy={sortBy}
 			/>
 		</PageContainer>

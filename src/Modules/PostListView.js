@@ -6,23 +6,21 @@ import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 
-function PostListView({ searchParams, endPage, url }) {
-	const { data, load, error } = useFetchPosts(url, searchParams);
-
-	useEffect(() => {
-		endPage(data);
-	}, [endPage, data]);
-
+function PostListView({ data, load }) {
 	return (
 		<div>
 			{load ? (
 				<CenteredModuleDiv>
 					<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 				</CenteredModuleDiv>
-			) : (
+			) : data.data.length !== 0 ? (
 				data.data?.map(post => {
 					return <PostModule data={post} key={post._id} />;
 				})
+			) : (
+				<CenteredModuleDiv>
+					<h1>Oops, sorry, that was all.</h1>
+				</CenteredModuleDiv>
 			)}
 		</div>
 	);

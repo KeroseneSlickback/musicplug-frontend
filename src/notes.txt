@@ -18,7 +18,9 @@ To do:
 To Do:
 
 - Empty genre fucks everything -- required
-
-- Url is somehow shared? Maybe create a different custom hook for home and genre?
-- Mongoose model to return total number of documents?
 - React-router-dom inteferring with props from styled components?
+
+
+- Pagination doesn't know when to not show Next page button
+  - So what to do? 
+  - The best idea I have is to return a total number of possible documents from Mongoose... but I haven't figured out how yet...

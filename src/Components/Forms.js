@@ -345,6 +345,11 @@ export const CenteredModuleDiv = styled.div`
 	align-items: center;
 	height: 100px;
 
+	h1 {
+		font-size: 2rem;
+		color: #f7f7f7;
+	}
+
 	${props =>
 		props.fade &&
 		css`

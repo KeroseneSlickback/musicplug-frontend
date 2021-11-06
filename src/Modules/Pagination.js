@@ -5,15 +5,30 @@ import { SortDiv, SortButton, PageButton } from '../Components/Buttons';
 import { HomePageButtonDiv, PaginateDiv } from '../Components/Containers';
 import PostListView from '../Modules/PostListView';
 
-function Pagination({ searchParams, pathName, fetchedPage, url, sortBy }) {
+import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
+
+function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
+	const [url, setUrl] = useState('');
+	const { data, load, error } = useFetchPosts(url, searchParams);
 	const [sortNew, setSortNew] = useState(true);
 	const [endOfPage, setEndOfPage] = useState(false);
 	const history = useHistory();
 
 	useEffect(() => {
-		const check = pathName.includes('genre');
-		console.log(check);
+		if (pathName.includes('genre')) {
+			setUrl('http://localhost:8888/posts/genre/');
+		} else {
+			setUrl('http://localhost:8888/posts');
+		}
 	}, [pathName]);
+
+	useEffect(() => {
+		if (data.data?.length < searchParams.limit) {
+			setEndOfPage(true);
+		} else {
+			setEndOfPage(false);
+		}
+	}, [data]);
 
 	function sortController(e, boolean) {
 		e.preventDefault();
@@ -44,14 +59,6 @@ function Pagination({ searchParams, pathName, fetchedPage, url, sortBy }) {
 		}
 	};
 
-	const endPage = data => {
-		if (data.data?.length < searchParams.limit) {
-			setEndOfPage(true);
-		} else {
-			setEndOfPage(false);
-		}
-	};
-
 	return (
 		<PaginateDiv>
 			<SortDiv>
@@ -68,7 +75,7 @@ function Pagination({ searchParams, pathName, fetchedPage, url, sortBy }) {
 					Top Posts
 				</SortButton>
 			</SortDiv>
-			<PostListView searchParams={searchParams} endPage={endPage} url={url} />
+			<PostListView data={data} load={load} />
 
 			<HomePageButtonDiv>
 				{fetchedPage === 0 ? null : (
