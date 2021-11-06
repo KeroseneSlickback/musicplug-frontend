@@ -72,7 +72,6 @@ function LoginModal(props) {
 					</FormBlock>
 					<FormBlock>
 						<FormInput
-							className="password"
 							name="password"
 							type="password"
 							placeholder="Password"

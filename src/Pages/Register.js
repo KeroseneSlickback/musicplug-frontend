@@ -21,6 +21,7 @@ function Register() {
 	const history = useHistory();
 	const authContext = useContext(AuthContext);
 	const { spotifyVer } = useAuth();
+	// const [avatarLink, setAvatarLink] = useState('');
 	const [registerData, setRegisterData] = useState({
 		email: '',
 		username: '',
@@ -68,12 +69,11 @@ function Register() {
 					console.log(res);
 					const username = res.data.display_name;
 					const email = res.data.email;
-					const avatarLink = '';
-					if (res.data.images[0]) {
-						avatarLink = res.data.images[0].url;
-					}
 					const spotifyLink = res.data.href;
-
+					const avatarLink = res.data.images[0] ? res.data.images[0].url : '';
+					// if (res.data.images[0]) {
+					// 	setAvatarLink(res.data.images[0].url);
+					// }
 					setRegisterData(prevState => ({
 						...prevState,
 						username,

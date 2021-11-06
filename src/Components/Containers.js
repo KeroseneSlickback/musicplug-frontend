@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components';
 
+export const MainPageContainer = styled.div`
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+`;
+
 export const PageContainer = styled.div`
 	width: 900px;
 	margin: 8px;
@@ -23,9 +29,17 @@ export const ModalContainer = styled.div`
 	z-index: 2;
 
 	${props =>
+		props.sticky &&
+		css`
+			position: fixed;
+		`}
+
+	${props =>
 		props.delete &&
 		css`
 			position: fixed;
+			background-color: #141221;
+			width: 500px;
 		`}
 `;
 

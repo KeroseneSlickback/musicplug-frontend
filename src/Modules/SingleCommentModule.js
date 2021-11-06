@@ -13,11 +13,13 @@ import {
 import CommentPatchModule from './CommentPatchModule';
 import DeleteModal from './Modals/DeleteModal';
 import { Backdrop } from '../Components/Backdrop';
+import userIcon from '../Utilities/Images/svg/userIcon.svg';
 
 function SingleCommentModule(props) {
 	const history = useHistory();
 	const { body, owner, _id, postId } = props.data;
 	const [postUser, setPostUser] = useState(false);
+	const [message, setMessage] = useState('');
 	const [showDeleteModule, setShowDeleteModule] = useState(false);
 	const [showPatch, setShowPatch] = useState(false);
 	const [patchData, setPatchData] = useState({ body: '' });
@@ -72,6 +74,7 @@ function SingleCommentModule(props) {
 	};
 
 	const toggleDelete = () => {
+		setMessage('this comment');
 		setShowDeleteModule(prev => !prev);
 	};
 
@@ -95,7 +98,10 @@ function SingleCommentModule(props) {
 	return (
 		<SinglePostDiv>
 			<PostUserDiv comment>
-				<img src={owner.avatarLink} alt={owner.username} />
+				<img
+					src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
+					alt={owner.username}
+				/>
 				<p>{owner.username}</p>
 			</PostUserDiv>
 			<CommentBodyDiv>
@@ -131,6 +137,7 @@ function SingleCommentModule(props) {
 				<DeleteModal
 					toggleDelete={toggleDelete}
 					confirmDelete={deleteComment}
+					message={message}
 				/>
 			) : null}
 			{showDeleteModule ? <Backdrop onClick={toggleDelete} /> : null}

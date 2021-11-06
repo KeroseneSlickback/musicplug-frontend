@@ -9,6 +9,7 @@ export const FooterContainer = styled.footer`
 	background-color: #272432;
 	width: 100%;
 	border-top: 1px solid #a39abc;
+	margin-top: auto;
 `;
 
 export const FooterUserDiv = styled.div`

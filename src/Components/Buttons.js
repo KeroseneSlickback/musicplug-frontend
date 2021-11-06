@@ -134,6 +134,12 @@ export const CloseButton = styled.button`
 	border: none;
 	cursor: pointer;
 
+	${props =>
+		props.dark &&
+		css`
+			background-color: #141221;
+		`}
+
 	&:hover:after,
 	&:hover:before {
 		background-color: #f7f7f7;

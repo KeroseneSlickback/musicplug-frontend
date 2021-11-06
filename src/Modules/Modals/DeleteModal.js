@@ -12,7 +12,7 @@ function DeleteModal(props) {
 		<ModalContainer delete>
 			<FormContainer>
 				<FormH1>Delete</FormH1>
-				<h3>Are you use you want to delete?</h3>
+				<h3>Are you use you want to delete {props.message}?</h3>
 				<div>
 					<MediumStyledButton bottom onClick={props.confirmDelete}>
 						Yes
@@ -20,7 +20,7 @@ function DeleteModal(props) {
 				</div>
 			</FormContainer>
 			<CloseButtonDiv>
-				<CloseButton onClick={props.toggleDelete} />
+				<CloseButton dark onClick={props.toggleDelete} />
 			</CloseButtonDiv>
 		</ModalContainer>
 	);

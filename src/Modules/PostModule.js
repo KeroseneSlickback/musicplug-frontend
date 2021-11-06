@@ -21,6 +21,7 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 
 import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
+import userIcon from '../Utilities/Images/svg/userIcon.svg';
 
 function PostModule(props) {
 	const { title, body, genre, comments, votes, owner, _id, likedUsers } =
@@ -145,7 +146,10 @@ function PostModule(props) {
 			</PostTopDiv>
 			<PostBottomDiv>
 				<PostUserDiv small>
-					<img src={owner.avatarLink} alt={owner.username} />
+					<img
+						src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
+						alt={owner.username}
+					/>
 					<p> - {owner.username}</p>
 				</PostUserDiv>
 				<PostButtonDiv>

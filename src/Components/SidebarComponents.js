@@ -11,7 +11,7 @@ export const NewPostDiv = styled.div`
 		border-radius: 3px;
 		border: 3px solid #a39abc;
 		font-size: 1.8rem;
-		margin: 8px 16px 0 0;
+		margin-top: 8px;
 		height: 80px;
 		width: 150px;
 
@@ -27,7 +27,7 @@ export const GenreTabDiv = styled.div`
 		color: #f7f7f7;
 		text-decoration: none;
 		font-size: 1.5rem;
-		margin: 8px 16px 0 0;
+		margin-top: 8px;
 		background-color: #272432;
 		height: 50px;
 		width: 150px;

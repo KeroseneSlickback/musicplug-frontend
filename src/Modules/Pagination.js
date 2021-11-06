@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { SortDiv, SortButton, PageButton } from '../Components/Buttons';
@@ -9,6 +9,11 @@ function Pagination({ searchParams, pathName, fetchedPage, url, sortBy }) {
 	const [sortNew, setSortNew] = useState(true);
 	const [endOfPage, setEndOfPage] = useState(false);
 	const history = useHistory();
+
+	useEffect(() => {
+		const check = pathName.includes('genre');
+		console.log(check);
+	}, [pathName]);
 
 	function sortController(e, boolean) {
 		e.preventDefault();

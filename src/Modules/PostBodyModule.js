@@ -18,11 +18,13 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 import PostPatchModule from './PostPatchModule';
 import DeleteModal from './Modals/DeleteModal';
 import { Backdrop } from '../Components/Backdrop';
+import userIcon from '../Utilities/Images/svg/userIcon.svg';
 
 function PostBodyModule(props) {
 	const history = useHistory();
 	const { title, body, votes, owner, _id, likedUsers } = props.data;
 	const [userLiked, setUserLiked] = useState(false);
+	const [message, setMessage] = useState('');
 	const [postUser, setPostUser] = useState(false);
 	const [voteNumber, setVoteNumber] = useState(0);
 	const [formattedBody, setFormattedBody] = useState([]);
@@ -143,6 +145,7 @@ function PostBodyModule(props) {
 	};
 
 	const toggleDelete = () => {
+		setMessage('this post');
 		setShowDeleteModule(prev => !prev);
 	};
 
@@ -182,7 +185,10 @@ function PostBodyModule(props) {
 			)}
 			<PostBottomDiv>
 				<PostUserDiv>
-					<img src={owner.avatarLink} alt={owner.username} />
+					<img
+						src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
+						alt={owner.username}
+					/>
 					<p> - {owner.username}</p>
 				</PostUserDiv>
 				<PostButtonDiv>
@@ -210,7 +216,11 @@ function PostBodyModule(props) {
 				</PostButtonDiv>
 			</PostBottomDiv>
 			{showDeleteModule ? (
-				<DeleteModal toggleDelete={toggleDelete} confirmDelete={deletePost} />
+				<DeleteModal
+					toggleDelete={toggleDelete}
+					confirmDelete={deletePost}
+					message={message}
+				/>
 			) : null}
 			{showDeleteModule ? <Backdrop onClick={toggleDelete} /> : null}
 		</PostBodyTextDiv>

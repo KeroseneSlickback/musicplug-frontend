@@ -30,7 +30,12 @@ function Footer() {
 				</p>
 			</FooterMessageDiv>
 
-			{openModal ? <UserModal closeModal={toggleUserModal} /> : null}
+			{openModal ? (
+				<UserModal
+					closeModal={toggleUserModal}
+					toggleUserModal={toggleUserModal}
+				/>
+			) : null}
 			{openModal ? <Backdrop onClick={toggleUserModal} /> : null}
 		</FooterContainer>
 	);

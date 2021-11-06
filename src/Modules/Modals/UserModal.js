@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import {
 	CloseButton,
 	CloseButtonDiv,
@@ -16,60 +18,112 @@ import {
 	FormLabel,
 } from '../../Components/Forms';
 import DeleteModal from './DeleteModal';
+import AuthContext from '../../Utilities/AuthContext';
 
 function UserModal(props) {
+	const history = useHistory();
+	const authContext = useContext(AuthContext);
 	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-	const [newUserInfo, setNewUserInfo] = useState({
-		username: '',
-		password: '',
-	});
+	const [message, setMessage] = useState('');
+	const [newUsername, setNewUsername] = useState('');
+	const [newPassword, setNewPassword] = useState('');
 
-	const handleChange = e => {
-		const { name, value } = e.target;
-		setNewUserInfo(prev => ({
-			...prev,
-			[name]: value,
-		}));
+	const updateUsername = e => {
+		e.preventDefault();
+		const jwt = localStorage.getItem('jwt');
+		axios
+			.patch(
+				`http://localhost:8888/users/me`,
+				{ username: newUsername },
+				{
+					headers: {
+						Authorization: `Bearer ${jwt}`,
+					},
+				}
+			)
+			.then(res => {
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
-	const updateUser = e => {
-		console.log(e);
+	const updatePassword = e => {
+		e.preventDefault();
+		const jwt = localStorage.getItem('jwt');
+		axios
+			.patch(
+				`http://localhost:8888/users/me`,
+				{ password: newPassword },
+				{
+					headers: {
+						Authorization: `Bearer ${jwt}`,
+					},
+				}
+			)
+			.then(res => {
+				console.log(res);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
 	const deleteUser = e => {
-		console.log('deleted!');
+		const jwt = localStorage.getItem('jwt');
+		axios
+			.delete('http://localhost:8888/users/me', {
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			})
+			.then(res => {
+				localStorage.clear();
+				authContext.logout();
+				history.go(0);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
 	const toggleDelete = e => {
+		setMessage('your account');
 		setShowDeleteConfirm(prev => !prev);
 	};
 
 	return (
-		<ModalContainer delete>
+		<ModalContainer sticky>
 			<FormContainer>
 				<FormH1>User Settings</FormH1>
-				<Form onSubmit={updateUser}>
+				<Form onSubmit={updateUsername}>
 					<FormBlock>
 						<FormInput
 							name="username"
 							type="text"
 							placeholder="Enter New Username"
-							value={newUserInfo.username}
-							onChange={handleChange}
+							value={newUsername}
+							onChange={e => setNewUsername(e.target.value)}
+							required
 						/>
-						<FormLabel>New Username</FormLabel>
+						<FormLabel htmlFor="username">New Username</FormLabel>
 					</FormBlock>
+					<MediumStyledButton>Submit</MediumStyledButton>
+				</Form>
+				<Form onSubmit={updatePassword}>
 					<FormBlock>
 						<FormInput
 							name="password"
-							type="text"
+							type="password"
 							placeholder="Enter New Password"
-							value={newUserInfo.password}
-							onChange={handleChange}
+							value={newPassword}
+							onChange={e => setNewPassword(e.target.value)}
+							required
 						/>
-						<FormLabel>New Password</FormLabel>
+						<FormLabel htmlFor="password">New Password</FormLabel>
 					</FormBlock>
-					<MediumStyledButton>Submit Changes</MediumStyledButton>
+					<MediumStyledButton>Submit</MediumStyledButton>
 				</Form>
 				<DeleteUserDiv>
 					<p>Delete Account, all posts and comments</p>
@@ -83,7 +137,11 @@ function UserModal(props) {
 				<CloseButton onClick={props.closeModal} />
 			</CloseButtonDiv>
 			{showDeleteConfirm ? (
-				<DeleteModal toggleDelete={toggleDelete} confirmDelete={deleteUser} />
+				<DeleteModal
+					toggleDelete={toggleDelete}
+					confirmDelete={deleteUser}
+					message={message}
+				/>
 			) : null}
 		</ModalContainer>
 	);

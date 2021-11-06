@@ -11,6 +11,7 @@ function useFetchPosts(url, params) {
 		setLoad(true);
 		const debounceFetch = setTimeout(() => {
 			const getData = async () => {
+				console.log(url, params);
 				await axios
 					.get(url, { params })
 					.then(response => {
