@@ -4,31 +4,41 @@ import { useHistory } from 'react-router-dom';
 import { SortDiv, SortButton, PageButton } from '../Components/Buttons';
 import { HomePageButtonDiv, PaginateDiv } from '../Components/Containers';
 import PostListView from '../Modules/PostListView';
+import useFetchPostCount from '../Utilities/Hooks/useFetchPostCount';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 
 function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 	const [url, setUrl] = useState('');
+	const [countUrl, setCountUrl] = useState('');
 	const { data, load, error } = useFetchPosts(url, searchParams);
 	const [sortNew, setSortNew] = useState(true);
 	const [endOfPage, setEndOfPage] = useState(false);
 	const history = useHistory();
+	const { count, countLoad, countError } = useFetchPostCount(
+		countUrl,
+		searchParams
+	);
 
 	useEffect(() => {
 		if (pathName.includes('genre')) {
 			setUrl('http://localhost:8888/posts/genre/');
+			setCountUrl('http://localhost:8888/posts/genre/count');
 		} else {
 			setUrl('http://localhost:8888/posts');
+			setCountUrl('http://localhost:8888/posts/count');
 		}
 	}, [pathName]);
+	console.log('load');
 
 	useEffect(() => {
-		if (data.data?.length < searchParams.limit) {
-			setEndOfPage(true);
-		} else {
+		const testPageCount = searchParams.limit * (searchParams.page + 1);
+		if (count > testPageCount) {
 			setEndOfPage(false);
+		} else if (count <= testPageCount) {
+			setEndOfPage(true);
 		}
-	}, [data]);
+	}, [data, searchParams, count]);
 
 	function sortController(e, boolean) {
 		e.preventDefault();
@@ -75,7 +85,7 @@ function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 					Top Posts
 				</SortButton>
 			</SortDiv>
-			<PostListView data={data} load={load} />
+			<PostListView data={data} load={load} countLoad={countLoad} />
 
 			<HomePageButtonDiv>
 				{fetchedPage === 0 ? null : (

@@ -5,7 +5,7 @@ import { useAuth } from '../../Utilities/AuthContext';
 import { NavHeader, NavButtonDiv } from '../../Components/NavBarComponents';
 import {
 	MediumStyledButton,
-	MediumStyledReactDomLink,
+	MediumStyledReactDomLinkPrimary,
 } from '../../Components/Buttons';
 import { StyledLogo } from '../../Utilities/Images/StyledSVG/LogoSVGComponent';
 
@@ -44,9 +44,9 @@ function MainNavBar() {
 				</NavButtonDiv>
 			) : (
 				<NavButtonDiv>
-					<MediumStyledReactDomLink primary to="/register">
+					<MediumStyledReactDomLinkPrimary to="/register">
 						Register
-					</MediumStyledReactDomLink>
+					</MediumStyledReactDomLinkPrimary>
 					<MediumStyledButton onClick={() => toggleLogin()}>
 						Login
 					</MediumStyledButton>

@@ -21,7 +21,7 @@ function Post() {
 		<PostBodyContainer>
 			{load || data === '' ? (
 				<StylePageContainer>
-					<CenteredModuleDiv>
+					<CenteredModuleDiv fade>
 						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 					</CenteredModuleDiv>
 				</StylePageContainer>

@@ -1,11 +1,6 @@
 import React from 'react';
 import { CommentFormDiv } from '../Components/PostComponents';
-import {
-	CommentTextArea,
-	Form,
-	CommentTextLabel,
-	CommentButtonDiv,
-} from '../Components/Forms';
+import { CommentTextArea, Form, CommentTextLabel } from '../Components/Forms';
 
 function CommentPatchModule(props) {
 	return (

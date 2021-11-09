@@ -3,6 +3,7 @@ import { SmallButton } from './Buttons';
 
 export const PostTopDiv = styled.div`
 	background-color: #272432;
+	border-radius: 6px;
 	&:hover {
 		background-color: #2e2b3b;
 	}
@@ -32,17 +33,17 @@ export const TextDiv = styled.div`
 
 	h3 {
 		word-break: break-word;
-		font-size: 1.6rem;
+		font-size: 1.3rem;
 		padding-bottom: 8px;
 	}
 
 	p {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		color: #f7f7f7;
 		text-indent: 20px;
-		line-height: 1.2;
+		line-height: 1;
 		white-space: pre-wrap;
-		margin-top: 6px;
+		margin-top: 9px;
 	}
 `;
 
@@ -61,11 +62,11 @@ export const PostUserDiv = styled.div`
 	img {
 		margin: 4px 4px;
 		width: 34px;
-		border-radius: 3px;
+		border-radius: 6px;
 		border: 1px solid #ebeaee;
 	}
 	p {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		color: #f7f7f7;
 	}
 
@@ -127,7 +128,7 @@ export const PostBodyTextDiv = styled.div`
 	justify-self: stretch;
 	background-color: #272432;
 	border: 1px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	width: 100%;
 	color: #f7f7f7;
 	display: flex;
@@ -141,7 +142,7 @@ export const PostBodyInfoContainer = styled.div`
 	padding: 8px;
 	background-color: #272432;
 	border: 1px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 `;
 
 export const PostBodyCommentContainer = styled.div`
@@ -152,7 +153,7 @@ export const PostBodyCommentContainer = styled.div`
 
 export const PostBodyCommentH1 = styled.h1`
 	margin-bottom: 8px;
-	font-size: 1.3rem;
+	font-size: 1.2rem;
 `;
 
 export const PostBodyTextInnerDiv = styled.div`
@@ -163,13 +164,13 @@ export const PostBodyTextInnerDiv = styled.div`
 
 export const PostBodyH1 = styled.h1`
 	word-break: break-word;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	padding-bottom: 8px;
 `;
 
 export const PostBodyContentDiv = styled.div`
 	p {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		color: #f7f7f7;
 		text-indent: 20px;
 		line-height: 1.2;
@@ -183,9 +184,11 @@ export const PostBodyImgDiv = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	margin-bottom: 4px;
 `;
 
 export const PostBodyImg = styled.img`
+	border-radius: 6px;
 	height: 112px;
 	width: 112px;
 	object-fit: cover;
@@ -203,7 +206,7 @@ export const PostBodyInfoLabelP = styled.p`
 `;
 
 export const PostBodyInfoP = styled.p`
-	font-size: 1.1rem;
+	font-size: 1rem;
 	margin-left: 8px;
 `;
 
@@ -213,7 +216,7 @@ export const SinglePostDiv = styled.div`
 	padding: 8px;
 	background-color: #211f2e;
 	border: 1px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	margin-bottom: 8px;
 	display: flex;
 	align-items: center;

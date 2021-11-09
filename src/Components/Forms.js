@@ -6,22 +6,16 @@ export const FormContainer = styled.div`
 	justify-content: space-evenly;
 	padding: 32px;
 
-	/* h1 {
-		color: #f7f7f7;
-		font-size: 2.1rem;
-		padding-bottom: 24px;
-	} */
-
 	h3 {
 		color: #f7f7f7;
-		font-size: 1.25rem;
+		font-size: 1rem;
 		margin-bottom: 8px;
 	}
 `;
 
 export const FormH1 = styled.h1`
 	color: #f7f7f7;
-	font-size: 2.1rem;
+	font-size: 2.2rem;
 	padding-bottom: 24px;
 `;
 
@@ -49,7 +43,7 @@ export const FormInput = styled.input`
 	color: #f7f7f7;
 	background-color: #272432;
 	border: 2px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
 	font-size: 1rem;
@@ -65,7 +59,7 @@ export const PostInput = styled.input`
 	color: #f7f7f7;
 	background-color: #272432;
 	border: 2px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
 	font-size: 1rem;
@@ -86,7 +80,6 @@ export const PostTextArea = styled(PostInput).attrs({
 	as: 'textarea',
 })`
 	height: 140px;
-	font-family: inherit;
 	font-size: inherit;
 	white-space: pre-wrap;
 `;
@@ -111,14 +104,14 @@ export const CommentButtonDiv = styled.div`
 export const PostLabel = styled.label`
 	margin-bottom: 12px;
 	color: #f7f7f7;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 `;
 
 export const PostSelect = styled.select`
 	width: 150px;
 	background-color: #272432;
 	border: 2px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	font-size: 1rem;
 	height: 38px;
 	cursor: pointer;
@@ -128,7 +121,7 @@ export const PostSelect = styled.select`
 export const DropDownArtist = styled.div`
 	padding: 4px;
 	border: 2px solid #2e2b3b;
-	border-radius: 3px;
+	border-radius: 6px;
 	background-color: #272432;
 	color: #f7f7f7;
 	display: flex;
@@ -178,7 +171,7 @@ export const DropDownArtistSelect = styled(DropDownArtist)`
 export const DropDownAlbumDiv = styled.div`
 	padding: 4px;
 	border: 2px solid #2e2b3b;
-	border-radius: 3px;
+	border-radius: 6px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
@@ -220,7 +213,7 @@ export const DropDownAlbumSingle = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		color: white;
-		font-size: 1.1rem;
+		font-size: 1rem;
 	}
 
 	&:hover {
@@ -277,7 +270,7 @@ export const DropDownTrackDiv = styled.div`
 	flex-direction: column;
 	padding: 0 4px;
 	border: 2px solid #2e2b3b;
-	border-radius: 3px;
+	border-radius: 6px;
 	background-color: #272432;
 	color: #f7f7f7;
 `;
@@ -305,7 +298,7 @@ export const DropDownTrackSingle = styled.div`
 	p {
 		padding: 6px 0;
 		margin: 0 8px 0 8px;
-		font-size: 1.1rem;
+		font-size: 1rem;
 	}
 
 	div {
@@ -354,7 +347,7 @@ export const CenteredModuleDiv = styled.div`
 		props.fade &&
 		css`
 			opacity: 0;
-			animation: fade-in-out 500ms ease-out infinite;
+			animation: fade-in-out 350ms ease-out infinite;
 			@keyframes fade-in-out {
 				0% {
 					opacity: 0;

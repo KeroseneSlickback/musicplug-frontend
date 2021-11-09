@@ -13,14 +13,14 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterUserDiv = styled.div`
-	margin: 16px;
+	margin: 6px;
 `;
 
 export const FooterMessageDiv = styled.div`
 	margin: 16px;
 	width: 200px;
 	p {
-		font-size: 0.8rem;
+		font-size: 0.75rem;
 	}
 `;
 

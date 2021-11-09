@@ -8,7 +8,7 @@ export const SmallButton = styled.button`
 	background-color: #272432;
 	padding: 8px 16px;
 	font-size: 1rem;
-	border-radius: 3px;
+	border-radius: 6px;
 	text-decoration: none;
 	&:hover {
 		background-color: #2e2b3b;
@@ -44,7 +44,6 @@ export const SmallButton = styled.button`
 `;
 
 export const SmallStyledButton = styled(SmallButton)`
-	color: #f7f7f7;
 	background-color: #a51d62;
 	display: flex;
 	align-items: center;
@@ -63,8 +62,11 @@ export const SmallStyledButton = styled(SmallButton)`
 	${props =>
 		props.smaller &&
 		css`
-			font-size: 0.9rem;
+			font-size: 0.8rem;
 			padding: 6px 8px;
+			img {
+				height: 18px;
+			}
 		`}
 `;
 
@@ -97,14 +99,14 @@ export const EmptyLikeButton = styled.button`
 	border: none;
 	cursor: pointer;
 	background-color: inherit;
-	border-radius: 3px;
+	border-radius: 6px;
 	text-decoration: none;
 `;
 
 export const MediumStyledButton = styled(SmallStyledButton)`
 	padding: 8px 16px;
 	font-size: 1rem;
-	border-radius: 3px;
+	border-radius: 6px;
 
 	${props =>
 		props.bottom &&
@@ -180,7 +182,7 @@ export const SortButton = styled.button`
 	height: 100%;
 	font-size: 0.9rem;
 	text-decoration: none;
-	border-radius: 3px;
+	border-radius: 6px;
 	margin: 1px;
 	width: 50%;
 	text-align: center;
@@ -285,7 +287,7 @@ export const SmallStyledLinkButton = styled.a`
 	background-color: #272432;
 	padding: 8px 16px;
 	font-size: 0.8rem;
-	border-radius: 3px;
+	border-radius: 6px;
 	text-decoration: none;
 	display: flex;
 	align-items: center;
@@ -304,7 +306,7 @@ export const SmallStyledReactDomLink = styled(Link)`
 	background-color: #272432;
 	padding: 8px 16px;
 	font-size: 0.8rem;
-	border-radius: 3px;
+	border-radius: 6px;
 	text-decoration: none;
 	display: flex;
 	align-items: center;
@@ -316,23 +318,45 @@ export const SmallStyledReactDomLink = styled(Link)`
 	}
 `;
 
-export const MediumStyledReactDomLink = styled(SmallStyledReactDomLink)`
+export const MediumStyledReactDomLink = styled(Link)`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	img {
+		margin-right: 4px;
+	}
+
 	background-color: #a51d62;
 	padding: 8px 16px;
-	font-size: 1.08rem;
-	border-radius: 3px;
+	font-size: 1rem;
+	border-radius: 6px;
 
 	&:hover {
 		background-color: #b42269;
 	}
-	${props =>
-		props.primary &&
-		css`
-			background-color: #c52772;
-			&:hover {
-				background-color: #cf2e7d;
-			}
-		`}
+`;
+
+export const MediumStyledReactDomLinkPrimary = styled(Link)`
+	color: #f7f7f7;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	background-color: #c52772;
+	padding: 8px 16px;
+	font-size: 1rem;
+	border-radius: 6px;
+	img {
+		margin-right: 4px;
+	}
+
+	&:hover {
+		background-color: #cf2e7d;
+	}
 `;
 
 export const WideStyledLinkButton = styled.a`
@@ -340,7 +364,7 @@ export const WideStyledLinkButton = styled.a`
 	border: none;
 	cursor: pointer;
 	padding: 6px 14px;
-	border-radius: 3px;
+	border-radius: 6px;
 	text-decoration: none;
 	width: 100%;
 	background-color: #4ac09b;
@@ -348,7 +372,7 @@ export const WideStyledLinkButton = styled.a`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	&:hover {
 		background-color: #59c5a3;
 	}
@@ -358,7 +382,7 @@ export const TinyButton = styled.button`
 	color: #f7f7f7;
 	font-size: 0.7rem;
 	padding: 3px 4px;
-	border-radius: 3px;
+	border-radius: 6px;
 	cursor: pointer;
 	background-color: #a51d62;
 	border: 1px solid #5e5577;

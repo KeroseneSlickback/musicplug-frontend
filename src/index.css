@@ -84,6 +84,7 @@ body {
 body * {
 	box-sizing: border-box;
 	text-rendering: optimizelegibility;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 article,

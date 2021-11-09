@@ -17,10 +17,11 @@ To do:
 
 To Do:
 
-- Empty genre fucks everything -- required
-- React-router-dom inteferring with props from styled components?
+- Figure out Form requirements and such
+  - Empty genre fucks everything
 
-
-- Pagination doesn't know when to not show Next page button
-  - So what to do? 
-  - The best idea I have is to return a total number of possible documents from Mongoose... but I haven't figured out how yet...
+- Ensure error handling on the backend is covered.
+- Error reporting on the front-end
+  - If error, warn user 
+  - Error of bad register, login, forms and whatnot -- what do?
+  

@@ -14,12 +14,20 @@ export const PageContainer = styled.div`
 export const StylePageContainer = styled(PageContainer)`
 	background-color: #272432;
 	border: 1px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
+`;
+
+export const LoadingPageContainer = styled.div`
+	width: 900px;
+	margin-top: 8px;
+	background-color: #272432;
+	border: 1px solid #5e5577;
+	border-radius: 6px;
 `;
 
 export const ModalContainer = styled.div`
 	background-color: #272432;
-	border-radius: 3px;
+	border-radius: 6px;
 	box-shadow: 0 0 3px #141221;
 	position: absolute;
 	top: 50%;
@@ -66,13 +74,13 @@ export const PageInfoContainer = styled.div`
 
 	h1 {
 		color: #f7f7f7;
-		font-size: 2.1rem;
+		font-size: 2rem;
 		padding-bottom: 24px;
 	}
 
 	h3 {
 		color: #f7f7f7;
-		font-size: 1.25rem;
+		font-size: 1.2rem;
 		margin-bottom: 8px;
 	}
 `;
@@ -96,7 +104,7 @@ export const NewPostDiv = styled.div`
 	width: 700px;
 	margin-top: 8px;
 	border: 1px solid #5e5577;
-	border-radius: 3px;
+	border-radius: 6px;
 	background-color: #272432;
 `;
 

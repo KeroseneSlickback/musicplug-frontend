@@ -22,7 +22,7 @@ function useFetchPosts(url, params) {
 					});
 			};
 			getData();
-		}, 200);
+		}, 300);
 		return () => clearTimeout(debounceFetch);
 	}, [url, params]);
 
