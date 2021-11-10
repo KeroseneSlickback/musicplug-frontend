@@ -43,7 +43,7 @@ export const TextDiv = styled.div`
 		text-indent: 20px;
 		line-height: 1;
 		white-space: pre-wrap;
-		margin-top: 9px;
+		margin-top: 6px;
 	}
 `;
 

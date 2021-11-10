@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -16,12 +16,14 @@ import {
 import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
+import WarningModule from '../Modules/WarningModule';
 
 function Register() {
 	const history = useHistory();
 	const authContext = useContext(AuthContext);
 	const { spotifyVer } = useAuth();
-	// const [avatarLink, setAvatarLink] = useState('');
+	const [passwordMatch, setPasswordMatch] = useState(false);
+	const [passwordLength, setPasswordLength] = useState(false);
 	const [registerData, setRegisterData] = useState({
 		email: '',
 		username: '',
@@ -39,8 +41,7 @@ function Register() {
 		}));
 	}
 
-	function registerHandler(e) {
-		e.preventDefault();
+	function registerUser() {
 		axios
 			.post('http://localhost:8888/users/register', registerData)
 			.then(response => {
@@ -53,6 +54,17 @@ function Register() {
 			.catch(error => {
 				console.log(error);
 			});
+	}
+
+	function registerHandler(e) {
+		e.preventDefault();
+		if (registerData.password !== registerData.passwordConfirmation) {
+			setPasswordMatch(true);
+		} else if (registerData.password.length < 7) {
+			setPasswordLength(true);
+		} else {
+			registerUser();
+		}
 	}
 
 	useEffect(() => {
@@ -104,6 +116,7 @@ function Register() {
 						<h3>Enter the info below to register</h3>
 						<FormBlock>
 							<FormInput
+								required
 								name="email"
 								type="text"
 								placeholder="Email"
@@ -114,6 +127,7 @@ function Register() {
 						</FormBlock>
 						<FormBlock>
 							<FormInput
+								required
 								name="username"
 								type="text"
 								placeholder="Username"
@@ -124,6 +138,7 @@ function Register() {
 						</FormBlock>
 						<FormBlock>
 							<FormInput
+								required
 								name="password"
 								type="password"
 								placeholder="Password"
@@ -136,6 +151,7 @@ function Register() {
 						</FormBlock>
 						<FormBlock>
 							<FormInput
+								required
 								name="passwordConfirmation"
 								type="password"
 								placeholder="Confirm Password"
@@ -143,6 +159,12 @@ function Register() {
 								onChange={handleChange}
 							/>
 						</FormBlock>
+						{passwordMatch ? (
+							<WarningModule string="Passwords do not match." />
+						) : null}
+						{passwordLength ? (
+							<WarningModule string="Password must be at least 7 characters long." />
+						) : null}
 						<MediumStyledButton bottom>Create your Account</MediumStyledButton>
 					</Form>
 				) : (

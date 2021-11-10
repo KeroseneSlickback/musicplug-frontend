@@ -29,7 +29,6 @@ function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 			setCountUrl('http://localhost:8888/posts/count');
 		}
 	}, [pathName]);
-	console.log('load');
 
 	useEffect(() => {
 		const testPageCount = searchParams.limit * (searchParams.page + 1);

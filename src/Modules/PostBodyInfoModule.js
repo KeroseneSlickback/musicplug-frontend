@@ -14,6 +14,7 @@ import {
 } from '../Components/PostComponents';
 
 import miniSpotify from '../Utilities/Images/svg/miniSpotify.svg';
+import brokenImage from '../Utilities/Images/svg/broken_image.svg';
 
 function PostBodyInfoModule(props) {
 	const { genre } = props.data;
@@ -64,8 +65,14 @@ function PostBodyInfoModule(props) {
 	return (
 		<PostBodyInfoContainer>
 			<PostBodyImgDiv>
-				<PostBodyImg src={artistImgUrl} alt={artistName}></PostBodyImg>
-				<PostBodyImg src={albumImgUrl} alt={albumName}></PostBodyImg>
+				<PostBodyImg
+					src={artistImgUrl ? artistImgUrl : brokenImage}
+					alt={artistName}
+				></PostBodyImg>
+				<PostBodyImg
+					src={albumImgUrl ? albumImgUrl : brokenImage}
+					alt={albumName}
+				></PostBodyImg>
 			</PostBodyImgDiv>
 			{artistName !== '' ? (
 				<PostBodyInfoMiniDiv>

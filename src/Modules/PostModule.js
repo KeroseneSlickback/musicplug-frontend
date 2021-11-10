@@ -22,6 +22,7 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
 import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
 import userIcon from '../Utilities/Images/svg/userIcon.svg';
+import brokenImage from '../Utilities/Images/svg/broken_image.svg';
 
 function PostModule(props) {
 	const { title, body, genre, comments, votes, owner, _id, likedUsers } =
@@ -33,7 +34,7 @@ function PostModule(props) {
 		genre: '',
 		path: '/',
 	});
-	const { albumImgUrl, trackUrl, albumUrl, artistUrl } =
+	const { albumImgUrl, albumName, trackUrl, albumUrl, artistUrl } =
 		props.data.recommendation;
 
 	useEffect(() => {
@@ -141,7 +142,10 @@ function PostModule(props) {
 							return <p key={i}>{str}</p>;
 						})}
 					</TextDiv>
-					<PostImg src={albumImgUrl} alt="artImage" />
+					<PostImg
+						src={albumImgUrl ? albumImgUrl : brokenImage}
+						alt={albumName}
+					/>
 				</Link>
 			</PostTopDiv>
 			<PostBottomDiv>
@@ -169,7 +173,7 @@ function PostModule(props) {
 						target="_blank"
 						rel="noreferrer"
 					>
-						<img src={headphoneSVG} alt="headphones" />
+						<img src={headphoneSVG} alt="listen" />
 						Listen on Spotify
 					</SmallStyledLinkButton>
 					<SmallStyledReactDomLink to={`/post/${_id}`}>

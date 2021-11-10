@@ -30,4 +30,7 @@
 // 	highlightWhite: '#ebeaee',
 // 	highlightMuted: '#a39abc',
 // 	highlightDark: '#5e5577',
+//  message: '#FC215F',
+//  messageDark: '#FB0E51',
+
 // };

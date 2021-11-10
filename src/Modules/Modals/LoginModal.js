@@ -62,6 +62,7 @@ function LoginModal(props) {
 				<Form onSubmit={loginHandler}>
 					<FormBlock>
 						<FormInput
+							required
 							name="username"
 							type="text"
 							placeholder="Username"
@@ -72,6 +73,7 @@ function LoginModal(props) {
 					</FormBlock>
 					<FormBlock>
 						<FormInput
+							required
 							name="password"
 							type="password"
 							placeholder="Password"

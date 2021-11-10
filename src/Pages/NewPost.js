@@ -421,51 +421,29 @@ function NewPost() {
 						autoTrackError={autoTrackError}
 						onSelect={onTrackSelect}
 					/>
-
-					{/* <FormBlock>
-						<PostLabel>Select an Image for the Post:</PostLabel>
-						<PostInputRadioDiv>
-							<PostInputRadio
-								type="radio"
-								name="image"
-								required
-							></PostInputRadio>
-							<PostInputRadio
-								type="radio"
-								name="image"
-								required
-							></PostInputRadio>
-							<PostInputRadio
-								type="radio"
-								name="image"
-								required
-							></PostInputRadio>
-						</PostInputRadioDiv>
-					</FormBlock> */}
-
-					<FormBlock>
-						<PostLabel htmlFor="genre">Genre:</PostLabel>
-						<PostSelect
-							className="genreSelect"
-							name="genre"
-							value={postData.genre}
-							onChange={handlePostChange}
-							required
-						>
-							<option value="" disabled>
-								Select a genre
-							</option>
-							<option value="pop">Pop</option>
-							<option value="hiphop">Hip-Hop</option>
-							<option value="rock">Rock</option>
-							<option value="country">Country</option>
-							<option value="electronic">Electronic</option>
-							<option value="bluesjazz">Blues/Jazz</option>
-							<option value="classical">Classical</option>
-							<option value="funkrb">Funk/R&B</option>
-						</PostSelect>
-					</FormBlock>
 					<Form onSubmit={handleSubmit}>
+						<FormBlock>
+							<PostLabel htmlFor="genre">Genre:</PostLabel>
+							<PostSelect
+								required
+								className="genreSelect"
+								name="genre"
+								value={postData.genre}
+								onChange={handlePostChange}
+							>
+								<option value="" disabled>
+									Select a genre
+								</option>
+								<option value="pop">Pop</option>
+								<option value="hiphop">Hip-Hop</option>
+								<option value="rock">Rock</option>
+								<option value="country">Country</option>
+								<option value="electronic">Electronic</option>
+								<option value="bluesjazz">Blues/Jazz</option>
+								<option value="classical">Classical</option>
+								<option value="funkrb">Funk/R&B</option>
+							</PostSelect>
+						</FormBlock>
 						<FormBlock>
 							<PostLabel htmlFor="title">Post Title:</PostLabel>
 							<PostInput
