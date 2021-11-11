@@ -17,10 +17,15 @@ import {
 	CloseButton,
 	CloseButtonDiv,
 } from '../../Components/Buttons';
+import { ConfirmContainer } from '../../Components/Messages';
+import ConfirmMessageModule from '../ConfirmMessageModule';
+import WarningModule from '../WarningModule';
 
 function LoginModal(props) {
 	const history = useHistory();
 	const authContext = useContext(AuthContext);
+	const [confirm, setConfirm] = useState(false);
+	const [loginError, setLoginError] = useState(false);
 	const [loginData, setLoginData] = useState({
 		username: '',
 		password: '',
@@ -43,14 +48,18 @@ function LoginModal(props) {
 		axios
 			.post('http://localhost:8888/users/login', loginData)
 			.then(response => {
+				setConfirm(true);
+				setLoginError(false);
 				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('jwt', response.data.token.split(' ')[1]);
 				authContext.login();
-				props.closeModal();
-				history.go(0);
+				setTimeout(() => {
+					props.closeModal();
+					history.go(0);
+				}, 1000);
 			})
 			.catch(error => {
-				console.log(error);
+				setLoginError(true);
 			});
 	}
 
@@ -82,6 +91,12 @@ function LoginModal(props) {
 						/>
 						<FormLabel htmlFor="password">Your Password</FormLabel>
 					</FormBlock>
+					{confirm ? (
+						<ConfirmMessageModule string="You've successfully logged in." />
+					) : null}
+					{loginError ? (
+						<WarningModule string="Please try logging in again." />
+					) : null}
 					<MediumStyledButton bottom>Login</MediumStyledButton>
 				</Form>
 			</FormContainer>

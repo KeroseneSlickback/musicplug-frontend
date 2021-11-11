@@ -1,11 +1,11 @@
 import React from 'react';
-import { MessageContainer } from '../Components/Messages';
+import { ConfirmContainer } from '../Components/Messages';
 
 function ConfirmMessageModule({ string }) {
 	return (
-		<MessageContainer>
+		<ConfirmContainer>
 			<p>{string}</p>
-		</MessageContainer>
+		</ConfirmContainer>
 	);
 }
 

@@ -33,9 +33,13 @@ import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
 import useSpotifyGetTracks from '../Utilities/Hooks/useSpotifyGetTracks';
 import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbum';
 import useSpotifyGetSingleArtist from '../Utilities/Hooks/useSpotifyGetSingleArtist';
+import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
+import WarningModule from '../Modules/WarningModule';
 
 function NewPost() {
 	const history = useHistory();
+	const [confirm, setConfirm] = useState(false);
+	const [submitError, setSubmitError] = useState(false);
 	const { loggedIn, spotifyVer } = useContext(AuthContext);
 	const { userRefreshed } = useSpotifyRefresh();
 	const [postData, setPostData] = useState({
@@ -77,10 +81,14 @@ function NewPost() {
 				},
 			})
 			.then(res => {
-				history.push('/');
+				setConfirm(true);
+				setSubmitError(false);
+				setTimeout(() => {
+					history.push('/');
+				}, 1000);
 			})
 			.catch(err => {
-				console.log(err);
+				setSubmitError(true);
 			});
 		e.target.reset(); // Upon success, redirect to post with post#
 	}
@@ -467,6 +475,12 @@ function NewPost() {
 								required
 							></PostTextArea>
 						</FormBlock>
+						{confirm ? (
+							<ConfirmMessageModule string="Post successfully created." />
+						) : null}
+						{submitError ? (
+							<WarningModule string="Something went wrong. Please refresh page and try again." />
+						) : null}
 						<MediumStyledButton bottom>Submit New Post</MediumStyledButton>
 					</Form>
 				</FormContainer>

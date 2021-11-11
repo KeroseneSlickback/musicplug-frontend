@@ -9,9 +9,15 @@ import {
 	CommentButtonDiv,
 } from '../Components/Forms';
 import { CommentFormDiv } from '../Components/PostComponents';
+import {
+	ConfirmCommentMessage,
+	WarningCommentMessage,
+} from '../Components/Messages';
 
 function PostCommentForm(props) {
 	const { id } = props;
+	const [confirm, setConfirm] = useState(false);
+	const [submitError, setSubmitError] = useState(false);
 	const history = useHistory();
 	const [comment, setComment] = useState({ body: '' });
 	const handleSubmit = e => {
@@ -24,11 +30,14 @@ function PostCommentForm(props) {
 				},
 			})
 			.then(res => {
-				console.log(res);
-				history.go(0);
+				setConfirm(true);
+				setSubmitError(false);
+				setTimeout(() => {
+					history.go(0);
+				}, 1000);
 			})
 			.catch(err => {
-				console.log(err);
+				setSubmitError(true);
 			});
 	};
 
@@ -51,6 +60,16 @@ function PostCommentForm(props) {
 					onChange={handleCommentChange}
 					required
 				/>
+				{confirm ? (
+					<ConfirmCommentMessage>
+						<p>Comment successfully created.</p>
+					</ConfirmCommentMessage>
+				) : null}
+				{submitError ? (
+					<WarningCommentMessage>
+						<p>Something went wrong. Please refresh page and try again.</p>
+					</WarningCommentMessage>
+				) : null}
 				<CommentButtonDiv>
 					<SmallStyledButton smaller>Submit</SmallStyledButton>
 				</CommentButtonDiv>

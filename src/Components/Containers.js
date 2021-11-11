@@ -12,23 +12,23 @@ export const PageContainer = styled.div`
 `;
 
 export const StylePageContainer = styled(PageContainer)`
-	background-color: #272432;
-	border: 1px solid #5e5577;
+	background-color: ${props => props.theme.subdued};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
 export const LoadingPageContainer = styled.div`
 	width: 900px;
 	margin-top: 8px;
-	background-color: #272432;
-	border: 1px solid #5e5577;
+	background-color: ${props => props.theme.subdued};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
 export const ModalContainer = styled.div`
-	background-color: #272432;
+	background-color: ${props => props.theme.subdued};
 	border-radius: 6px;
-	box-shadow: 0 0 3px #141221;
+	box-shadow: 0 0 3px ${props => props.theme.background};
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -46,7 +46,7 @@ export const ModalContainer = styled.div`
 		props.delete &&
 		css`
 			position: fixed;
-			background-color: #141221;
+			background-color: ${props => props.theme.background};
 			width: 500px;
 		`}
 `;
@@ -57,7 +57,7 @@ export const PostContainer = styled(StylePageContainer)`
 	flex-direction: column;
 	justify-content: space-between;
 	&:hover {
-		border: 1px solid #a39abc;
+		border: 1px solid ${props => props.theme.highlightMuted};
 	}
 	a {
 		text-decoration: none;
@@ -73,13 +73,13 @@ export const PageInfoContainer = styled.div`
 	height: 400px;
 
 	h1 {
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		font-size: 2rem;
 		padding-bottom: 24px;
 	}
 
 	h3 {
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		font-size: 1.2rem;
 		margin-bottom: 8px;
 	}
@@ -103,9 +103,9 @@ export const GenreBlockDiv = styled.div`
 export const NewPostDiv = styled.div`
 	width: 700px;
 	margin-top: 8px;
-	border: 1px solid #5e5577;
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
-	background-color: #272432;
+	background-color: ${props => props.theme.subdued};
 `;
 
 export const HomePageButtonDiv = styled.div`

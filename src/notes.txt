@@ -16,17 +16,5 @@ To do:
 
 
 To Do:
-
-- Successful confirmation messages
-  - User register confirmation
-  - User login confirmation 
-  - User new Post confirmation
-  - User comment confirmation 
-
-  - Upon successful actions, create a delay where the success message is played and then action is taken
-
-- For each fetch function, set an error state that alerts the user if something wrong occurs
-- For Login/Register, see about more accurate error reporting from the back-end
-- For New Post content, see about what error messages are recieved
-- For comments, same as New Post
   
+- Duplicate user from backend -- how to handle error?

@@ -5,9 +5,9 @@ export const NavHeader = styled.header`
 	align-items: center;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
-	background-color: #272432;
+	background-color: ${props => props.theme.subdued};
 	width: 100%;
-	border-bottom: 1px solid #a39abc;
+	border-bottom: 1px solid ${props => props.theme.highlightMuted};
 `;
 
 export const NavButtonDiv = styled.div`

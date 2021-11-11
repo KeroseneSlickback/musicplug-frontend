@@ -11,6 +11,8 @@ import {
 } from '../Components/Forms';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
+import WarningModule from './WarningModule';
+import RegularMessageModule from './RegularMessageModule';
 
 function TrackSearchModule({
 	selectedData,
@@ -44,7 +46,7 @@ function TrackSearchModule({
 				</CenteredModuleDiv>
 			) : trackSearchError || autoTrackError ? (
 				<CenteredModuleDiv>
-					<h2>An error has occured, please refresh page.</h2>
+					<WarningModule string="An error has occured, please refresh and try again." />
 				</CenteredModuleDiv>
 			) : trackSearched ? (
 				<DropDownTrackDiv>
@@ -61,45 +63,53 @@ function TrackSearchModule({
 					</DropDownTrackSingle>
 				</DropDownTrackDiv>
 			) : trackSearchData.data !== undefined ? (
-				<DropDownTrackDiv>
-					{trackSearchData.data.tracks?.items.map(track => {
-						return (
-							<DropDownTrackSelect
-								select
-								onClick={() => onSelect(track)}
-								key={track.id}
-							>
-								<img
-									src={
-										track.album.images[2]
-											? track.album.images[2].url
-											: StyledBrokenImage
-									}
-									alt={track.name}
-								/>
-								<div>
-									<p>{track.name}</p>
-									<p>{track.artists[0].name}</p>
-								</div>
-							</DropDownTrackSelect>
-						);
-					})}
-				</DropDownTrackDiv>
+				trackSearchData.data.tracks.items.length === 0 ? (
+					<RegularMessageModule string="No songs found." />
+				) : (
+					<DropDownTrackDiv>
+						{trackSearchData.data.tracks?.items.map(track => {
+							return (
+								<DropDownTrackSelect
+									select
+									onClick={() => onSelect(track)}
+									key={track.id}
+								>
+									<img
+										src={
+											track.album.images[2]
+												? track.album.images[2].url
+												: StyledBrokenImage
+										}
+										alt={track.name}
+									/>
+									<div>
+										<p>{track.name}</p>
+										<p>{track.artists[0].name}</p>
+									</div>
+								</DropDownTrackSelect>
+							);
+						})}
+					</DropDownTrackDiv>
+				)
 			) : trackSearchData === '' && autoTrackData.status === 200 ? (
-				<DropDownTrackDiv>
-					{autoTrackData.data?.items.map(track => {
-						return (
-							<DropDownTrackSelect
-								select
-								onClick={() => onSelect(track)}
-								key={track.id}
-							>
-								<p>{track.track_number}</p>
-								<p>{track.name}</p>
-							</DropDownTrackSelect>
-						);
-					})}
-				</DropDownTrackDiv>
+				autoTrackData.data.items.length === 0 ? (
+					<RegularMessageModule string="No songs found." />
+				) : (
+					<DropDownTrackDiv>
+						{autoTrackData.data?.items.map(track => {
+							return (
+								<DropDownTrackSelect
+									select
+									onClick={() => onSelect(track)}
+									key={track.id}
+								>
+									<p>{track.track_number}</p>
+									<p>{track.name}</p>
+								</DropDownTrackSelect>
+							);
+						})}
+					</DropDownTrackDiv>
+				)
 			) : null}
 		</FormBlock>
 	);

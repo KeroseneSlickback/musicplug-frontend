@@ -17,6 +17,7 @@ import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
 import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 import WarningModule from '../Modules/WarningModule';
+import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
 
 function Register() {
 	const history = useHistory();
@@ -24,6 +25,8 @@ function Register() {
 	const { spotifyVer } = useAuth();
 	const [passwordMatch, setPasswordMatch] = useState(false);
 	const [passwordLength, setPasswordLength] = useState(false);
+	const [confirm, setConfirm] = useState(false);
+	const [registerError, setRegisterError] = useState(false);
 	const [registerData, setRegisterData] = useState({
 		email: '',
 		username: '',
@@ -45,14 +48,18 @@ function Register() {
 		axios
 			.post('http://localhost:8888/users/register', registerData)
 			.then(response => {
+				setConfirm(true);
+				setRegisterError(false);
 				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('jwt', response.data.token.split(' ')[1]);
 				console.log('Account Created');
 				authContext.login();
-				history.push('/newpost');
+				setTimeout(() => {
+					history.push('/newpost');
+				}, 1000);
 			})
 			.catch(error => {
-				console.log(error);
+				setRegisterError(true);
 			});
 	}
 
@@ -61,6 +68,7 @@ function Register() {
 		if (registerData.password !== registerData.passwordConfirmation) {
 			setPasswordMatch(true);
 		} else if (registerData.password.length < 7) {
+			setPasswordMatch(false);
 			setPasswordLength(true);
 		} else {
 			registerUser();
@@ -78,7 +86,7 @@ function Register() {
 					},
 				})
 				.then(res => {
-					console.log(res);
+					setRegisterError(false);
 					const username = res.data.display_name;
 					const email = res.data.email;
 					const spotifyLink = res.data.href;
@@ -99,7 +107,7 @@ function Register() {
 					if (err.response.status === 401) {
 						callForSpotifyRefresh();
 					} else if (err.response.status === 403) {
-						console.log(err);
+						setRegisterError(true);
 					}
 				});
 		} else {
@@ -164,6 +172,12 @@ function Register() {
 						) : null}
 						{passwordLength ? (
 							<WarningModule string="Password must be at least 7 characters long." />
+						) : null}
+						{confirm ? (
+							<ConfirmMessageModule string="You've successfully registered." />
+						) : null}
+						{registerError ? (
+							<WarningModule string="Something went wrong. Please refresh page and try again." />
 						) : null}
 						<MediumStyledButton bottom>Create your Account</MediumStyledButton>
 					</Form>

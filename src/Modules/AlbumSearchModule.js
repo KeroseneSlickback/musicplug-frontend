@@ -11,6 +11,8 @@ import {
 } from '../Components/Forms';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
+import RegularMessageModule from './RegularMessageModule';
+import WarningModule from './WarningModule';
 
 // Later fixes:
 // Clear results after clearing searchbar
@@ -49,7 +51,7 @@ function AlbumSearchModule({
 				</CenteredModuleDiv>
 			) : autoAlbumError || singleAlbumError || albumSearchError ? (
 				<CenteredModuleDiv>
-					<h2>An error has occured, please refresh page.</h2>
+					<WarningModule string="An error has occured, please refresh and try again." />
 				</CenteredModuleDiv>
 			) : albumSearched ? (
 				<DropDownAlbumDiv>
@@ -66,43 +68,51 @@ function AlbumSearchModule({
 					</DropDownAlbumSingle>
 				</DropDownAlbumDiv>
 			) : albumSearchData.data ? (
-				<DropDownAlbumDiv>
-					{albumSearchData.data.albums?.items.map(album => {
-						return (
-							<DropDownAlbumSelect
-								onClick={() => onSelect(album)}
-								key={album.id}
-							>
-								<img
-									src={
-										album.images[1] ? album.images[1].url : StyledBrokenImage
-									}
-									alt={album.name}
-								/>
-								<p>{album.name}</p>
-							</DropDownAlbumSelect>
-						);
-					})}
-				</DropDownAlbumDiv>
+				albumSearchData.data.albums?.items.length === 0 ? (
+					<RegularMessageModule string="No albums found." />
+				) : (
+					<DropDownAlbumDiv>
+						{albumSearchData.data.albums?.items.map(album => {
+							return (
+								<DropDownAlbumSelect
+									onClick={() => onSelect(album)}
+									key={album.id}
+								>
+									<img
+										src={
+											album.images[1] ? album.images[1].url : StyledBrokenImage
+										}
+										alt={album.name}
+									/>
+									<p>{album.name}</p>
+								</DropDownAlbumSelect>
+							);
+						})}
+					</DropDownAlbumDiv>
+				)
 			) : albumSearchData === '' && autoAlbumData.status === 200 ? (
-				<DropDownAlbumDiv>
-					{autoAlbumData.data?.items.map(album => {
-						return (
-							<DropDownAlbumSelect
-								onClick={() => onSelect(album)}
-								key={album.id}
-							>
-								<img
-									src={
-										album.images[1] ? album.images[1].url : StyledBrokenImage
-									}
-									alt={album.name}
-								/>
-								<p>{album.name}</p>
-							</DropDownAlbumSelect>
-						);
-					})}
-				</DropDownAlbumDiv>
+				autoAlbumData.data.items.length === 0 ? (
+					<RegularMessageModule string="No albums found." />
+				) : (
+					<DropDownAlbumDiv>
+						{autoAlbumData.data?.items.map(album => {
+							return (
+								<DropDownAlbumSelect
+									onClick={() => onSelect(album)}
+									key={album.id}
+								>
+									<img
+										src={
+											album.images[1] ? album.images[1].url : StyledBrokenImage
+										}
+										alt={album.name}
+									/>
+									<p>{album.name}</p>
+								</DropDownAlbumSelect>
+							);
+						})}
+					</DropDownAlbumDiv>
+				)
 			) : albumState === '' ? null : null}
 		</FormBlock>
 	);

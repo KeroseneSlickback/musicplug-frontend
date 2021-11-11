@@ -1,36 +1,48 @@
-// const DarkMode = {
-//   Some list of colors here.
-// }
+import { createGlobalStyle } from 'styled-components';
 
-// const LightMode = {
-//   Same here.
-// }
+export const DarkTheme = {
+	liteHero: '#59C5A3',
+	hero: '#4ac09b',
+	primary: '#c52772',
+	primaryAlt: '#cf2e7d',
+	secondary: '#a51d62',
+	secondaryAlt: '#b42269',
+	background: '#141221',
+	backgroundAlt: '#211f2e',
+	subdued: '#272432',
+	subduedAlt: '#2e2b3b',
+	alternative: '#301f33',
+	alternativeAlt: '#422843',
+	fontColor: '#f7f7f7',
+	highlightWhite: '#ebeaee',
+	highlightMuted: '#a39abc',
+	highlightDark: '#5e5577',
+	warning: '#9b0832',
+};
 
-// const theme = {
-//   light: LightMode,
-//   dark: DarkMode
-// }
+export const LightTheme = {
+	liteHero: '#59C5A3',
+	hero: '#4ac09b',
+	primary: '#c52772',
+	primaryAlt: '#cf2e7d',
+	secondary: '#a51d62',
+	secondaryAlt: '#b42269',
+	background: '#141221',
+	background: '#fff',
+	backgroundAlt: '#211f2e',
+	subdued: '#272432',
+	subduedAlt: '#2e2b3b',
+	alternative: '#301f33',
+	alternativeAlt: '#422843',
+	fontColor: '#f7f7f7',
+	highlightWhite: '#ebeaee',
+	highlightMuted: '#a39abc',
+	highlightDark: '#5e5577',
+	warning: '#9b0832',
+};
 
-// const theme = {
-//  lighterHero: '#59C5A3',
-// 	hero: '#4ac09b',
-// 	bold: '#c52772',
-// 	boldAlt: '#cf2e7d',
-// 	darkerBold: '#a51d62',
-// 	darkerBoldAlt: '#b42269',
-// 	baseDark: '#141221',
-// 	baseDarkAlt: '#211f2e',
-// 	forwardDark: '#272432',
-// 	forwardDarkAlt: '#2e2b3b',
-// 	secondary: '#301f33',
-// 	secondaryAlt: '#422843',
-// 	textWhite: '#ffffff',
-// 	textLight: '#f7f7f7',
-// 	textMuted: '#bababa',
-// 	highlightWhite: '#ebeaee',
-// 	highlightMuted: '#a39abc',
-// 	highlightDark: '#5e5577',
-//  message: '#FC215F',
-//  messageDark: '#FB0E51',
-
-// };
+export const GlobalStyles = createGlobalStyle` 
+  body {
+    background-color: ${props => props.theme.background};
+  }
+`;

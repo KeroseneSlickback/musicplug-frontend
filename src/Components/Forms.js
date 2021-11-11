@@ -7,14 +7,14 @@ export const FormContainer = styled.div`
 	padding: 32px;
 
 	h3 {
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		font-size: 1rem;
 		margin-bottom: 8px;
 	}
 `;
 
 export const FormH1 = styled.h1`
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 	font-size: 2.2rem;
 	padding-bottom: 24px;
 `;
@@ -40,9 +40,9 @@ export const FormBlock = styled.div`
 `;
 
 export const FormInput = styled.input`
-	color: #f7f7f7;
-	background-color: #272432;
-	border: 2px solid #5e5577;
+	color: ${props => props.theme.fontColor};
+	background-color: ${props => props.theme.subdued};
+	border: 2px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
@@ -52,13 +52,13 @@ export const FormInput = styled.input`
 export const FormLabel = styled.label`
 	font-size: 1.1rem;
 	padding: 8px 0;
-	color: #bababa;
+	color: ${props => props.theme.highlightWhite};
 `;
 
 export const PostInput = styled.input`
-	color: #f7f7f7;
-	background-color: #272432;
-	border: 2px solid #5e5577;
+	color: ${props => props.theme.fontColor};
+	background-color: ${props => props.theme.subdued};
+	border: 2px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
@@ -92,7 +92,7 @@ export const CommentTextLabel = styled.label`
 export const CommentTextArea = styled(PostTextArea)`
 	width: 100%;
 	height: 80px;
-	background-color: #272432;
+	background-color: ${props => props.theme.subdued};
 `;
 
 export const CommentButtonDiv = styled.div`
@@ -103,31 +103,32 @@ export const CommentButtonDiv = styled.div`
 
 export const PostLabel = styled.label`
 	margin-bottom: 12px;
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 	font-size: 1.1rem;
 `;
 
 export const PostSelect = styled.select`
 	width: 150px;
-	background-color: #272432;
-	border: 2px solid #5e5577;
+	background-color: ${props => props.theme.subdued};
+	border: 2px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	font-size: 1rem;
 	height: 38px;
 	cursor: pointer;
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 `;
 
 export const DropDownArtist = styled.div`
 	padding: 4px;
-	border: 2px solid #2e2b3b;
+	border: 2px solid ${props => props.theme.subduedAlt};
 	border-radius: 6px;
-	background-color: #272432;
-	color: #f7f7f7;
+	background-color: ${props => props.theme.subdued};
+	color: ${props => props.theme.fontColor};
 	display: flex;
 	align-items: center;
 
 	img {
+		border-radius: 6px;
 		height: 100px;
 		width: 100px;
 		object-fit: cover;
@@ -142,7 +143,7 @@ export const DropDownArtist = styled.div`
 export const DropDownArtistSelect = styled(DropDownArtist)`
 	cursor: pointer;
 	&:hover {
-		background-color: #2e2b3b;
+		background-color: ${props => props.theme.subduedAlt};
 	}
 	animation: fadeIn 200ms ease-in both;
 
@@ -170,7 +171,7 @@ export const DropDownArtistSelect = styled(DropDownArtist)`
 
 export const DropDownAlbumDiv = styled.div`
 	padding: 4px;
-	border: 2px solid #2e2b3b;
+	border: 2px solid ${props => props.theme.subduedAlt};
 	border-radius: 6px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -186,6 +187,7 @@ export const DropDownAlbumSingle = styled.div`
 	&:after {
 		content: '';
 		position: absolute;
+		border-radius: 6px;
 		left: 0;
 		top: 0;
 		width: 100%;
@@ -200,6 +202,7 @@ export const DropDownAlbumSingle = styled.div`
 	}
 
 	img {
+		border-radius: 6px;
 		height: 100%;
 		max-width: 100%;
 		object-fit: cover;
@@ -268,27 +271,28 @@ export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
 export const DropDownTrackDiv = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 0 4px;
-	border: 2px solid #2e2b3b;
+	border: 2px solid ${props => props.theme.subduedAlt};
 	border-radius: 6px;
-	background-color: #272432;
-	color: #f7f7f7;
+	background-color: ${props => props.theme.subdued};
+	color: ${props => props.theme.fontColor};
 `;
 
 export const DropDownTrackSingle = styled.div`
 	display: grid;
 	grid-template-columns: 58px 1fr;
 	align-items: center;
-	margin: 2px 0;
-	padding: 4px 0;
+	margin: 0;
+	border-radius: 6px;
+	padding: 4px 4px;
 
 	${props =>
 		props.select &&
 		css`
-			border-bottom: 2px solid #2e2b3b;
+			border-bottom: 2px solid ${props => props.theme.subduedAlt};
 		`}
 
 	img {
+		border-radius: 6px;
 		height: 50px;
 		width: 50px;
 		object-fit: cover;
@@ -297,7 +301,7 @@ export const DropDownTrackSingle = styled.div`
 
 	p {
 		padding: 6px 0;
-		margin: 0 8px 0 8px;
+		margin: 0 8px;
 		font-size: 1rem;
 	}
 
@@ -312,7 +316,7 @@ export const DropDownTrackSingle = styled.div`
 export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 	cursor: pointer;
 	&:hover {
-		background-color: #2e2b3b;
+		background-color: ${props => props.theme.subduedAlt};
 	}
 	animation: fadeIn 100ms ease-in both;
 
@@ -340,7 +344,7 @@ export const CenteredModuleDiv = styled.div`
 
 	h1 {
 		font-size: 2rem;
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 	}
 
 	${props =>

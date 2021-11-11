@@ -10,6 +10,8 @@ import {
 } from '../Components/Forms';
 import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
+import WarningModule from './WarningModule';
+import RegularMessageModule from './RegularMessageModule';
 
 function ArtistSearchModule({
 	selectedData,
@@ -41,7 +43,7 @@ function ArtistSearchModule({
 				</CenteredModuleDiv>
 			) : artistSearchError || singleArtistError ? (
 				<CenteredModuleDiv>
-					<h2>An error has occured, please refresh page.</h2>
+					<WarningModule string="An error has occured, please refresh and try again." />
 				</CenteredModuleDiv>
 			) : artistSearched ? (
 				<DropDownArtist>
@@ -56,24 +58,30 @@ function ArtistSearchModule({
 					<p>{selectedData.artistName}</p>
 				</DropDownArtist>
 			) : artistSearchData.data ? (
-				<div>
-					{artistSearchData.data.artists?.items.map(artist => {
-						return (
-							<DropDownArtistSelect
-								onClick={() => onSelect(artist)}
-								key={artist.id}
-							>
-								<img
-									src={
-										artist.images[1] ? artist.images[1].url : StyledBrokenImage
-									}
-									alt={artist.name}
-								/>
-								<p>{artist.name}</p>
-							</DropDownArtistSelect>
-						);
-					})}
-				</div>
+				artistSearchData.data.artists.items.length === 0 ? (
+					<RegularMessageModule string="No Artists Found." />
+				) : (
+					<div>
+						{artistSearchData.data.artists?.items.map(artist => {
+							return (
+								<DropDownArtistSelect
+									onClick={() => onSelect(artist)}
+									key={artist.id}
+								>
+									<img
+										src={
+											artist.images[1]
+												? artist.images[1].url
+												: StyledBrokenImage
+										}
+										alt={artist.name}
+									/>
+									<p>{artist.name}</p>
+								</DropDownArtistSelect>
+							);
+						})}
+					</div>
+				)
 			) : artistState === '' ? null : null}
 			{}
 		</FormBlock>

@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components';
 import { SmallButton } from './Buttons';
 
 export const PostTopDiv = styled.div`
-	background-color: #272432;
+	background-color: ${props => props.theme.subdued};
 	border-radius: 6px;
 	&:hover {
-		background-color: #2e2b3b;
+		background-color: ${props => props.theme.subduedAlt};
 	}
 	a {
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -19,7 +19,7 @@ export const PostTopDiv = styled.div`
 export const PostImg = styled.img`
 	max-height: 150px;
 	width: 150px;
-	box-shadow: 0px 0px 0px 2px #5e5577;
+	box-shadow: 0px 0px 0px 2px ${props => props.theme.highlightDark};
 	margin: 2px;
 `;
 
@@ -39,7 +39,7 @@ export const TextDiv = styled.div`
 
 	p {
 		font-size: 0.9rem;
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		text-indent: 20px;
 		line-height: 1;
 		white-space: pre-wrap;
@@ -63,11 +63,11 @@ export const PostUserDiv = styled.div`
 		margin: 4px 4px;
 		width: 34px;
 		border-radius: 6px;
-		border: 1px solid #ebeaee;
+		border: 1px solid ${props => props.theme.highlightWhite};
 	}
 	p {
 		font-size: 0.9rem;
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 	}
 
 	${props =>
@@ -126,11 +126,11 @@ export const PostBodyGridContainer = styled.div`
 export const PostBodyTextDiv = styled.div`
 	grid-area: body;
 	justify-self: stretch;
-	background-color: #272432;
-	border: 1px solid #5e5577;
+	background-color: ${props => props.theme.subdued};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	width: 100%;
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -140,15 +140,15 @@ export const PostBodyInfoContainer = styled.div`
 	grid-area: info;
 	width: 250px;
 	padding: 8px;
-	background-color: #272432;
-	border: 1px solid #5e5577;
+	background-color: ${props => props.theme.subdued};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
 export const PostBodyCommentContainer = styled.div`
 	grid-area: comment;
 	width: 100%;
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 `;
 
 export const PostBodyCommentH1 = styled.h1`
@@ -171,7 +171,7 @@ export const PostBodyH1 = styled.h1`
 export const PostBodyContentDiv = styled.div`
 	p {
 		font-size: 0.9rem;
-		color: #f7f7f7;
+		color: ${props => props.theme.fontColor};
 		text-indent: 20px;
 		line-height: 1.2;
 		white-space: pre-wrap;
@@ -192,11 +192,11 @@ export const PostBodyImg = styled.img`
 	height: 112px;
 	width: 112px;
 	object-fit: cover;
-	box-shadow: 0px 0px 0px 2px #5e5577;
+	box-shadow: 0px 0px 0px 2px ${props => props.theme.highlightDark};
 `;
 
 export const PostBodyInfoMiniDiv = styled.div`
-	color: #f7f7f7;
+	color: ${props => props.theme.fontColor};
 	padding: 6px 0;
 `;
 
@@ -214,8 +214,8 @@ export const PostBodyButtonDiv = styled.div``;
 
 export const SinglePostDiv = styled.div`
 	padding: 8px;
-	background-color: #211f2e;
-	border: 1px solid #5e5577;
+	background-color: ${props => props.theme.backgroundAlt};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	margin-bottom: 8px;
 	display: flex;

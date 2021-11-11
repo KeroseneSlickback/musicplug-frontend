@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AuthContext from '../../Utilities/AuthContext';
 
@@ -9,11 +9,12 @@ import {
 	CloseButton,
 	CloseButtonDiv,
 } from '../../Components/Buttons';
+import ConfirmMessageModule from '../ConfirmMessageModule';
 
 function LoginModal(props) {
 	const history = useHistory();
+	const [confirm, setConfirm] = useState(false);
 	const authContext = useContext(AuthContext);
-	// Logout functions
 
 	function closeHandler() {
 		props.closeModal();
@@ -21,11 +22,14 @@ function LoginModal(props) {
 
 	function logoutHandler(e) {
 		e.preventDefault();
+		setConfirm(true);
 		localStorage.removeItem('user');
 		localStorage.removeItem('jwt');
 		authContext.logout();
-		props.closeModal();
-		history.go(0);
+		setTimeout(() => {
+			props.closeModal();
+			history.go(0);
+		}, 1000);
 	}
 
 	return (
@@ -34,6 +38,9 @@ function LoginModal(props) {
 				<FormH1>Logout</FormH1>
 				<h3>Are you sure you want to logout?</h3>
 				<div>
+					{confirm ? (
+						<ConfirmMessageModule string="You've successfully logged out." />
+					) : null}
 					<MediumStyledButton bottom onClick={logoutHandler}>
 						Logout
 					</MediumStyledButton>
