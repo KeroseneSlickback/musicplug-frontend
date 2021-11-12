@@ -17,9 +17,10 @@ export const PostTopDiv = styled.div`
 `;
 
 export const PostImg = styled.img`
+	border-radius: 6px;
 	max-height: 150px;
 	width: 150px;
-	box-shadow: 0px 0px 0px 2px ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	margin: 2px;
 `;
 
@@ -63,7 +64,7 @@ export const PostUserDiv = styled.div`
 		margin: 4px 4px;
 		width: 34px;
 		border-radius: 6px;
-		border: 1px solid ${props => props.theme.highlightWhite};
+		box-shadow: 0px 0px 1px 1px ${props => props.theme.highlightWhite};
 	}
 	p {
 		font-size: 0.9rem;
@@ -127,7 +128,7 @@ export const PostBodyTextDiv = styled.div`
 	grid-area: body;
 	justify-self: stretch;
 	background-color: ${props => props.theme.subdued};
-	border: 1px solid ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	width: 100%;
 	color: ${props => props.theme.fontColor};
@@ -141,7 +142,7 @@ export const PostBodyInfoContainer = styled.div`
 	width: 250px;
 	padding: 8px;
 	background-color: ${props => props.theme.subdued};
-	border: 1px solid ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
@@ -192,7 +193,7 @@ export const PostBodyImg = styled.img`
 	height: 112px;
 	width: 112px;
 	object-fit: cover;
-	box-shadow: 0px 0px 0px 2px ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 `;
 
 export const PostBodyInfoMiniDiv = styled.div`
@@ -214,8 +215,8 @@ export const PostBodyButtonDiv = styled.div``;
 
 export const SinglePostDiv = styled.div`
 	padding: 8px;
-	background-color: ${props => props.theme.backgroundAlt};
-	border: 1px solid ${props => props.theme.highlightDark};
+	background-color: ${props => props.theme.subdued};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	margin-bottom: 8px;
 	display: flex;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const SmallButton = styled.button`
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	border: none;
 	cursor: pointer;
 	background-color: ${props => props.theme.subdued};
@@ -24,9 +24,9 @@ export const SmallButton = styled.button`
 	${props =>
 		props.delete &&
 		css`
-			background-color: ${props => props.theme.background};
+			background-color: ${props => props.theme.alternative};
 			&:hover {
-				background-color: ${props => props.theme.backgroundAlt};
+				background-color: ${props => props.theme.alternativeAlt};
 			}
 		`}
 	${props =>
@@ -95,7 +95,7 @@ export const EmptyLikeButton = styled.button`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	border: none;
 	cursor: pointer;
 	background-color: inherit;
@@ -153,7 +153,7 @@ export const CloseButton = styled.button`
 		content: ' ';
 		height: 36px;
 		width: 4px;
-		background-color: ${props => props.theme.highlightWhite};
+		background-color: ${props => props.theme.fontColor};
 	}
 
 	&:before {
@@ -175,7 +175,7 @@ export const SortDiv = styled.div`
 `;
 
 export const SortButton = styled.button`
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -187,21 +187,19 @@ export const SortButton = styled.button`
 	width: 50%;
 	text-align: center;
 	background-color: ${props => props.theme.subdued};
-	border: 1px solid ${props => props.theme.highlightDark};
+	box-shadow: 0 0 3px ${props => props.theme.highlightDark};
+	border: none;
 	cursor: pointer;
 
 	&:hover {
 		background-color: ${props => props.theme.subduedAlt};
-		border: 1px solid ${props => props.theme.highlightMuted};
 	}
 
 	&.selected {
 		background-color: ${props => props.theme.secondary};
-		border: 1px solid ${props => props.theme.highlightDark};
 
 		&:hover {
 			background-color: ${props => props.theme.secondaryAlt};
-			border: 1px solid ${props => props.theme.highlightMuted};
 		}
 	}
 `;
@@ -360,7 +358,7 @@ export const MediumStyledReactDomLinkPrimary = styled(Link)`
 `;
 
 export const WideStyledLinkButton = styled.a`
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	border: none;
 	cursor: pointer;
 	padding: 6px 14px;
@@ -379,26 +377,23 @@ export const WideStyledLinkButton = styled.a`
 `;
 
 export const TinyButton = styled.button`
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	font-size: 0.7rem;
-	padding: 3px 4px;
+	padding: 4px 6px;
 	border-radius: 6px;
 	cursor: pointer;
 	background-color: ${props => props.theme.secondary};
-	border: 1px solid ${props => props.theme.highlightDark};
+	border: none;
 	&:hover {
 		background-color: ${props => props.theme.secondaryAlt};
-		border: 1px solid ${props => props.theme.highlightMuted};
 	}
 
 	${props =>
 		props.alternative &&
 		css`
 			background-color: ${props => props.theme.alternative};
-			border: 1px solid ${props => props.theme.highlightDark};
 			&:hover {
 				background-color: ${props => props.theme.alternativeAlt};
-				border: 1px solid ${props => props.theme.highlightMuted};
 			}
 		`}
 `;

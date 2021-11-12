@@ -34,7 +34,7 @@ function MainNavBar() {
 	return (
 		<NavHeader>
 			<Link to="/">
-				<StyledLogo firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
+				<StyledLogo firstColor={'#40B590'} secondColor={'#f7f7f7'} />
 			</Link>
 			{loggedIn ? (
 				<NavButtonDiv>

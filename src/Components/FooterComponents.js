@@ -8,7 +8,7 @@ export const FooterContainer = styled.footer`
 	flex-wrap: wrap;
 	background-color: ${props => props.theme.subdued};
 	width: 100%;
-	border-top: 1px solid ${props => props.theme.highlightMuted};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	margin-top: auto;
 `;
 

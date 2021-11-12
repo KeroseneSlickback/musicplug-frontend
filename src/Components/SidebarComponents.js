@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const NewPostDiv = styled.div`
 	a {
 		text-decoration: none;
-		color: ${props => props.theme.fontColor};
+		color: ${props => props.theme.fontColorAlt};
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: ${props => props.theme.primary};
 		border-radius: 6px;
-		border: 3px solid ${props => props.theme.highlightMuted};
+		box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightDark};
 		font-size: 1.6rem;
 		margin-top: 8px;
 		height: 80px;
@@ -17,7 +17,7 @@ export const NewPostDiv = styled.div`
 
 		&:hover {
 			background-color: ${props => props.theme.primaryAlt};
-			border: 3px solid ${props => props.theme.highlightWhite};
+			box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightMuted};
 		}
 	}
 `;
@@ -25,6 +25,8 @@ export const NewPostDiv = styled.div`
 export const GenreTabDiv = styled.div`
 	a {
 		color: ${props => props.theme.fontColor};
+
+		box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
 		text-decoration: none;
 		font-size: 1.4rem;
 		margin-top: 8px;

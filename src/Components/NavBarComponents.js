@@ -7,7 +7,7 @@ export const NavHeader = styled.header`
 	flex-wrap: wrap;
 	background-color: ${props => props.theme.subdued};
 	width: 100%;
-	border-bottom: 1px solid ${props => props.theme.highlightMuted};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 `;
 
 export const NavButtonDiv = styled.div`

@@ -13,7 +13,7 @@ export const PageContainer = styled.div`
 
 export const StylePageContainer = styled(PageContainer)`
 	background-color: ${props => props.theme.subdued};
-	border: 1px solid ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
@@ -21,7 +21,7 @@ export const LoadingPageContainer = styled.div`
 	width: 900px;
 	margin-top: 8px;
 	background-color: ${props => props.theme.subdued};
-	border: 1px solid ${props => props.theme.highlightDark};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 `;
 
@@ -57,7 +57,7 @@ export const PostContainer = styled(StylePageContainer)`
 	flex-direction: column;
 	justify-content: space-between;
 	&:hover {
-		border: 1px solid ${props => props.theme.highlightMuted};
+		box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightMuted};
 	}
 	a {
 		text-decoration: none;
@@ -103,7 +103,8 @@ export const GenreBlockDiv = styled.div`
 export const NewPostDiv = styled.div`
 	width: 700px;
 	margin-top: 8px;
-	border: 1px solid ${props => props.theme.highlightDark};
+
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	background-color: ${props => props.theme.subdued};
 `;

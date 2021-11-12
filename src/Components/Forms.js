@@ -42,7 +42,7 @@ export const FormBlock = styled.div`
 export const FormInput = styled.input`
 	color: ${props => props.theme.fontColor};
 	background-color: ${props => props.theme.subdued};
-	border: 2px solid ${props => props.theme.highlightDark};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
@@ -58,7 +58,7 @@ export const FormLabel = styled.label`
 export const PostInput = styled.input`
 	color: ${props => props.theme.fontColor};
 	background-color: ${props => props.theme.subdued};
-	border: 2px solid ${props => props.theme.highlightDark};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
 	height: 38px;
@@ -92,6 +92,8 @@ export const CommentTextLabel = styled.label`
 export const CommentTextArea = styled(PostTextArea)`
 	width: 100%;
 	height: 80px;
+	border: none;
+	box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
 	background-color: ${props => props.theme.subdued};
 `;
 
@@ -110,7 +112,7 @@ export const PostLabel = styled.label`
 export const PostSelect = styled.select`
 	width: 150px;
 	background-color: ${props => props.theme.subdued};
-	border: 2px solid ${props => props.theme.highlightDark};
+	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	font-size: 1rem;
 	height: 38px;
@@ -120,7 +122,7 @@ export const PostSelect = styled.select`
 
 export const DropDownArtist = styled.div`
 	padding: 4px;
-	border: 2px solid ${props => props.theme.subduedAlt};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	background-color: ${props => props.theme.subdued};
 	color: ${props => props.theme.fontColor};
@@ -171,7 +173,7 @@ export const DropDownArtistSelect = styled(DropDownArtist)`
 
 export const DropDownAlbumDiv = styled.div`
 	padding: 4px;
-	border: 2px solid ${props => props.theme.subduedAlt};
+	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -271,7 +273,7 @@ export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
 export const DropDownTrackDiv = styled.div`
 	display: flex;
 	flex-direction: column;
-	border: 2px solid ${props => props.theme.subduedAlt};
+	box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	background-color: ${props => props.theme.subdued};
 	color: ${props => props.theme.fontColor};
