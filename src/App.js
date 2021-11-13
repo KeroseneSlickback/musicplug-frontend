@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -13,13 +13,24 @@ import Post from './Pages/Post';
 import { DarkTheme, LightTheme, GlobalStyles } from './Styles/Variables';
 
 function App() {
-	const [theme, setTheme] = useState(true);
+	const [theme, setTheme] = useState('dark');
+
+	const setMode = mode => {
+		localStorage.setItem('theme', mode);
+		setTheme(mode);
+	};
 
 	const themeToggle = () => {
-		setTheme(prev => !prev);
+		theme === 'dark' ? setMode('light') : setMode('dark');
 	};
+
+	useEffect(() => {
+		const localTheme = localStorage.getItem('theme');
+		localTheme ? setTheme(localTheme) : setMode('dark');
+	}, []);
+
 	return (
-		<ThemeProvider theme={theme ? DarkTheme : LightTheme}>
+		<ThemeProvider theme={theme === 'dark' ? DarkTheme : LightTheme}>
 			<GlobalStyles />
 			<MainLayout themeToggle={themeToggle}>
 				<Switch>

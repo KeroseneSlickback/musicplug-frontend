@@ -64,9 +64,6 @@ export const SmallStyledButton = styled(SmallButton)`
 		css`
 			font-size: 0.8rem;
 			padding: 6px 8px;
-			img {
-				height: 18px;
-			}
 		`}
 `;
 
@@ -77,6 +74,9 @@ export const SmallEmptyButton = styled(SmallButton)`
 	padding: 4px 6px;
 	background-color: inherit;
 	font-size: 0.8rem;
+
+	color: ${props => props.theme.fontColor};
+
 	svg {
 		margin-left: 2px;
 	}
@@ -107,6 +107,7 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 	padding: 8px 16px;
 	font-size: 1rem;
 	border-radius: 6px;
+	font-family: inherit;
 
 	${props =>
 		props.bottom &&
@@ -175,7 +176,7 @@ export const SortDiv = styled.div`
 `;
 
 export const SortButton = styled.button`
-	color: ${props => props.theme.fontColorAlt};
+	color: ${props => props.theme.fontColor};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -197,6 +198,7 @@ export const SortButton = styled.button`
 
 	&.selected {
 		background-color: ${props => props.theme.secondary};
+		color: ${props => props.theme.fontColorAlt};
 
 		&:hover {
 			background-color: ${props => props.theme.secondaryAlt};
@@ -218,65 +220,7 @@ export const PageButton = styled(MediumStyledButton)`
 		`}
 `;
 
-export const SpotifyButton = styled.a`
-	margin: 48px 0px 36px 0px;
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transform: scale(1);
-	animation: pulse 1.25s infinite;
-	@keyframes pulse {
-		0% {
-			transform: scale(0.95);
-			box-shadow: 0 0 0 0 ${props => props.theme.primaryAlt};
-		}
-
-		70% {
-			transform: scale(1);
-			box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
-			background-color: rgba(0, 0, 0, 0);
-		}
-
-		100% {
-			transform: scale(0.95);
-			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-			background-color: ${props => props.theme.secondaryAlt};
-		}
-	}
-`;
-
-export const SmallSpotifyPulseImg = styled.img`
-	height: 25px;
-	width: 25px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transform: scale(1);
-	animation: pulse 1.25s infinite;
-
-	@keyframes pulse {
-		0% {
-			transform: scale(0.95);
-			box-shadow: 0 0 0 0 ${props => props.theme.secondaryAlt};
-		}
-
-		70% {
-			transform: scale(1);
-			box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0);
-			background-color: rgba(0, 0, 0, 0);
-		}
-
-		100% {
-			transform: scale(0.95);
-			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-			background-color: ${props => props.theme.hero};
-		}
-	}
-`;
+export const SpotifyButton = styled.a``;
 
 export const SmallStyledLinkButton = styled.a`
 	color: ${props => props.theme.fontColor};
@@ -345,7 +289,7 @@ export const MediumStyledReactDomLinkPrimary = styled(Link)`
 	display: flex;
 	align-items: center;
 	background-color: ${props => props.theme.primary};
-	padding: 8px 16px;
+	padding: 9px 16px;
 	font-size: 1rem;
 	border-radius: 6px;
 	img {

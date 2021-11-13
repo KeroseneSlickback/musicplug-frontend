@@ -8,12 +8,7 @@ const Svg = styled(Icon)`
 `;
 
 export const StyledLogo = ({ className, firstColor, secondColor }) => (
-	<Svg
-		// width="409" height="60"
-		viewBox="0 0 409 60"
-		fill={firstColor}
-		className={className}
-	>
+	<Svg viewBox="0 0 409 60" fill={firstColor} className={className}>
 		<path
 			d="M404.542 27.8016C406.531 28.9585 406.531 31.831 404.542 32.9879L369.435 53.4109C367.435 54.5744 364.927 53.1315 364.927 50.8178V9.97174C364.927 7.65796 367.435 6.21514 369.435 7.3786L404.542 27.8016Z"
 			fill={firstColor}

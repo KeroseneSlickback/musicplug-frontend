@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -15,9 +15,9 @@ import {
 } from './../Components/Forms';
 import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
-import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 import WarningModule from '../Modules/WarningModule';
 import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
+import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
 
 function Register() {
 	const history = useHistory();
@@ -177,7 +177,7 @@ function Register() {
 							<ConfirmMessageModule string="You've successfully registered." />
 						) : null}
 						{registerError ? (
-							<WarningModule string="Something went wrong. Please refresh page and try again." />
+							<WarningModule string="Something went wrong. Please refresh the page and try again." />
 						) : null}
 						<MediumStyledButton bottom>Create your Account</MediumStyledButton>
 					</Form>
@@ -185,7 +185,7 @@ function Register() {
 					<FormBlock spotify>
 						<h3>Please verify your account with Spotify first.</h3>
 						<SpotifyButton href="http://localhost:8888/login">
-							<img src={spotifySVG} alt="spotifySVG" />
+							<SpotifySVG />
 						</SpotifyButton>
 					</FormBlock>
 				)}

@@ -9,7 +9,7 @@ import {
 	DropDownTrackSelect,
 	CenteredModuleDiv,
 } from '../Components/Forms';
-import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 import WarningModule from './WarningModule';
 import RegularMessageModule from './RegularMessageModule';
@@ -51,14 +51,14 @@ function TrackSearchModule({
 			) : trackSearched ? (
 				<DropDownTrackDiv>
 					<DropDownTrackSingle>
-						<img
-							src={
-								selectedData.trackImgUrl !== ''
-									? selectedData.trackImgUrl
-									: StyledBrokenImage
-							}
-							alt={selectedData.trackName}
-						/>
+						{selectedData.trackImgUrl ? (
+							<img
+								src={selectedData.trackImgUrl}
+								alt={selectedData.trackName}
+							/>
+						) : (
+							<BrokenImageSVG />
+						)}
 						<p>{selectedData.trackName}</p>
 					</DropDownTrackSingle>
 				</DropDownTrackDiv>
@@ -74,14 +74,11 @@ function TrackSearchModule({
 									onClick={() => onSelect(track)}
 									key={track.id}
 								>
-									<img
-										src={
-											track.album.images[2]
-												? track.album.images[2].url
-												: StyledBrokenImage
-										}
-										alt={track.name}
-									/>
+									{track.album.images[2].url ? (
+										<img src={track.album.images[2].url} alt={track.name} />
+									) : (
+										<BrokenImageSVG />
+									)}
 									<div>
 										<p>{track.name}</p>
 										<p>{track.artists[0].name}</p>

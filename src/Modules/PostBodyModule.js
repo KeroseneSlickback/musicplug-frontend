@@ -18,7 +18,7 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 import PostPatchModule from './PostPatchModule';
 import DeleteModal from './Modals/DeleteModal';
 import { Backdrop } from '../Components/Backdrop';
-import userIcon from '../Utilities/Images/svg/userIcon.svg';
+import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function PostBodyModule(props) {
 	const history = useHistory();
@@ -185,10 +185,11 @@ function PostBodyModule(props) {
 			)}
 			<PostBottomDiv>
 				<PostUserDiv>
-					<img
-						src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
-						alt={owner.username}
-					/>
+					{owner.avatarLink ? (
+						<img src={owner.avatarLink} alt={owner.username} />
+					) : (
+						<UserAccountSVG />
+					)}
 					<p> - {owner.username}</p>
 				</PostUserDiv>
 				<PostButtonDiv>

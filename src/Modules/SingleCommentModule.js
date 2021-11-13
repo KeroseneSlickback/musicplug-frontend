@@ -13,7 +13,7 @@ import {
 import CommentPatchModule from './CommentPatchModule';
 import DeleteModal from './Modals/DeleteModal';
 import { Backdrop } from '../Components/Backdrop';
-import userIcon from '../Utilities/Images/svg/userIcon.svg';
+import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function SingleCommentModule(props) {
 	const history = useHistory();
@@ -98,10 +98,11 @@ function SingleCommentModule(props) {
 	return (
 		<SinglePostDiv>
 			<PostUserDiv comment>
-				<img
-					src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
-					alt={owner.username}
-				/>
+				{owner.avatarLink ? (
+					<img src={owner.avatarLink} alt={owner.username} />
+				) : (
+					<UserAccountSVG />
+				)}
 				<p>{owner.username}</p>
 			</PostUserDiv>
 			<CommentBodyDiv>

@@ -8,8 +8,8 @@ export const DarkTheme = {
 	secondaryAlt: '#b42269',
 	background: '#08070C',
 	backgroundAlt: '#120F1A',
-	subdued: '#191627',
-	subduedAlt: '#221F33',
+	subdued: '#151221',
+	subduedAlt: '#1B182A',
 	alternative: '#1E265A',
 	alternativeAlt: '#242D6B',
 	fontColor: '#f7f7f7',
@@ -20,10 +20,8 @@ export const DarkTheme = {
 	warning: '#9b0832',
 };
 
-// On hover some spots are too light
-
 export const LightTheme = {
-	hero: '#4ac09b',
+	hero: '#40B590',
 	primary: '#c52772',
 	primaryAlt: '#cf2e7d',
 	secondary: '#a51d62',
@@ -31,7 +29,7 @@ export const LightTheme = {
 	background: '#E0E1EB',
 	backgroundAlt: '#E6E7EF',
 	subdued: '#F2F3F7',
-	subduedAlt: '#F6F6F9',
+	subduedAlt: '#F9F9FB',
 	alternative: '#1E265A',
 	alternativeAlt: '#242D6B',
 	fontColor: '#08070C',
@@ -41,8 +39,6 @@ export const LightTheme = {
 	highlightDark: '#1F326E',
 	warning: '#9b0832',
 };
-
-// Really need to fix up the font colors
 
 export const GlobalStyles = createGlobalStyle` 
   body {

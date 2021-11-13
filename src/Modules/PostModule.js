@@ -19,10 +19,10 @@ import {
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
 import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 
-import chatSVG from '../Utilities/Images/svg/forum_black_24dp.svg';
-import headphoneSVG from '../Utilities/Images/svg/headphones_black_24dp.svg';
-import userIcon from '../Utilities/Images/svg/userIcon.svg';
-import brokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { HeadphoneSVG } from '../Utilities/Images/StyledSVG/HeadphoneSVG';
+import { ChatSVG } from '../Utilities/Images/StyledSVG/ChatSVG';
+import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
+import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function PostModule(props) {
 	const { title, body, genre, comments, votes, owner, _id, likedUsers } =
@@ -142,18 +142,20 @@ function PostModule(props) {
 							return <p key={i}>{str}</p>;
 						})}
 					</TextDiv>
-					<PostImg
-						src={albumImgUrl ? albumImgUrl : brokenImage}
-						alt={albumName}
-					/>
+					{albumImgUrl ? (
+						<PostImg src={albumImgUrl} alt={albumName} />
+					) : (
+						<BrokenImageSVG />
+					)}
 				</Link>
 			</PostTopDiv>
 			<PostBottomDiv>
 				<PostUserDiv small>
-					<img
-						src={owner.avatarLink !== '' ? owner.avatarLink : userIcon}
-						alt={owner.username}
-					/>
+					{owner.avatarLink ? (
+						<img src={owner.avatarLink} alt={owner.username} />
+					) : (
+						<UserAccountSVG />
+					)}
 					<p> - {owner.username}</p>
 				</PostUserDiv>
 				<PostButtonDiv>
@@ -173,11 +175,11 @@ function PostModule(props) {
 						target="_blank"
 						rel="noreferrer"
 					>
-						<img src={headphoneSVG} alt="listen" />
+						<HeadphoneSVG />
 						Listen on Spotify
 					</SmallStyledLinkButton>
 					<SmallStyledReactDomLink to={`/post/${_id}`}>
-						<img src={chatSVG} alt={chatSVG} />
+						<ChatSVG />
 						<p>{comments.length} Comments</p>
 					</SmallStyledReactDomLink>
 					<SmallEmptyButton onClick={() => likePost()}>

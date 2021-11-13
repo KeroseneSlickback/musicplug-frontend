@@ -7,6 +7,7 @@ import PostListView from '../Modules/PostListView';
 import useFetchPostCount from '../Utilities/Hooks/useFetchPostCount';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
+import WarningModule from './WarningModule';
 
 function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 	const [url, setUrl] = useState('');
@@ -84,7 +85,11 @@ function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 					Top Posts
 				</SortButton>
 			</SortDiv>
-			<PostListView data={data} load={load} countLoad={countLoad} />
+			{error || countError ? (
+				<WarningModule string="Something went wrong. Please refresh the page and try again." />
+			) : (
+				<PostListView data={data} load={load} countLoad={countLoad} />
+			)}
 
 			<HomePageButtonDiv>
 				{fetchedPage === 0 ? null : (

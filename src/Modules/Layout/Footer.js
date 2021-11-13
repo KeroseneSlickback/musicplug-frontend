@@ -6,9 +6,9 @@ import {
 	FooterUserDiv,
 } from '../../Components/FooterComponents';
 
-import settings from '../../Utilities/Images/svg/settings.svg';
 import UserModal from '../Modals/UserModal';
 import { Backdrop } from '../../Components/Backdrop';
+import { SettingSVG } from '../../Utilities/Images/StyledSVG/SettingSVG';
 
 function Footer({ themeToggle }) {
 	const [openModal, setOpenModal] = useState(false);
@@ -23,7 +23,7 @@ function Footer({ themeToggle }) {
 			</SmallStyledButton>
 			<FooterUserDiv>
 				<SmallStyledButton smaller onClick={() => toggleUserModal()}>
-					<img src={settings} alt="user settings" />
+					<SettingSVG />
 					User Settings
 				</SmallStyledButton>
 			</FooterUserDiv>

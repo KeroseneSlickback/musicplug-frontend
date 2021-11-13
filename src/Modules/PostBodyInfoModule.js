@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-	SmallSpotifyPulseImg,
-	WideStyledLinkButton,
-} from '../Components/Buttons';
+import { WideStyledLinkButton } from '../Components/Buttons';
 import {
 	PostBodyImgDiv,
 	PostBodyInfoContainer,
@@ -13,8 +10,8 @@ import {
 	PostBodyButtonDiv,
 } from '../Components/PostComponents';
 
-import miniSpotify from '../Utilities/Images/svg/miniSpotify.svg';
-import brokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
+import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
 
 function PostBodyInfoModule(props) {
 	const { genre } = props.data;
@@ -65,14 +62,16 @@ function PostBodyInfoModule(props) {
 	return (
 		<PostBodyInfoContainer>
 			<PostBodyImgDiv>
-				<PostBodyImg
-					src={artistImgUrl ? artistImgUrl : brokenImage}
-					alt={artistName}
-				></PostBodyImg>
-				<PostBodyImg
-					src={albumImgUrl ? albumImgUrl : brokenImage}
-					alt={albumName}
-				></PostBodyImg>
+				{artistImgUrl ? (
+					<PostBodyImg src={artistImgUrl} alt={artistName} />
+				) : (
+					<BrokenImageSVG />
+				)}
+				{albumImgUrl ? (
+					<PostBodyImg src={albumImgUrl} alt={albumName} />
+				) : (
+					<BrokenImageSVG />
+				)}
 			</PostBodyImgDiv>
 			{artistName !== '' ? (
 				<PostBodyInfoMiniDiv>
@@ -101,7 +100,7 @@ function PostBodyInfoModule(props) {
 			<PostBodyButtonDiv>
 				<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
 					Listen on Spotify
-					<SmallSpotifyPulseImg src={miniSpotify} alt="spotify" />
+					<SpotifySVG small />
 				</WideStyledLinkButton>
 			</PostBodyButtonDiv>
 		</PostBodyInfoContainer>

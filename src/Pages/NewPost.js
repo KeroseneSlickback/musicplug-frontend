@@ -13,7 +13,6 @@ import {
 } from '../Components/Containers';
 import AuthContext from '../Utilities/AuthContext';
 
-import spotifySVG from './../Utilities/Images/svg/spotify.svg';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 
 import {
@@ -27,6 +26,7 @@ import {
 	CenteredModuleDiv,
 	FormH1,
 } from '../Components/Forms';
+
 import useSpotifyRefresh from '../Utilities/Hooks/useSpotifyRefresh';
 import useSpotifyDebounceFetch from '../Utilities/Hooks/useSpotifyDebounceFetch';
 import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
@@ -35,6 +35,7 @@ import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbu
 import useSpotifyGetSingleArtist from '../Utilities/Hooks/useSpotifyGetSingleArtist';
 import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
 import WarningModule from '../Modules/WarningModule';
+import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
 
 function NewPost() {
 	const history = useHistory();
@@ -375,7 +376,7 @@ function NewPost() {
 							Please verify your account with Spotify before making a new post.
 						</h3>
 						<SpotifyButton href="http://localhost:8888/login">
-							<img src={spotifySVG} alt="spotifySVG" />
+							<SpotifySVG />
 						</SpotifyButton>
 					</FormBlock>
 				</FormContainer>

@@ -1,13 +1,8 @@
 To do:
 
 - Dark/light mode switching
-  - Global styling
 - Refine styling
-  - Greater border-radius
-  - Less borders
   - Floating New Post button
-  - Animations/transitions/loadings 
-  - 
 
 - Test backend
   - User register Form
@@ -19,4 +14,6 @@ To Do:
   
 - Duplicate user from backend -- how to handle error?
 
-- Save theme in user auth, then localstorage -- auto fetch and apply 
+- Wrong post ID CRASHES server.
+
+- Light/Dark mode button with SVGs? 

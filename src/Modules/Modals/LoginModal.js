@@ -17,7 +17,6 @@ import {
 	CloseButton,
 	CloseButtonDiv,
 } from '../../Components/Buttons';
-import { ConfirmContainer } from '../../Components/Messages';
 import ConfirmMessageModule from '../ConfirmMessageModule';
 import WarningModule from '../WarningModule';
 

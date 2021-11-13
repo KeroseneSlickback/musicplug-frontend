@@ -52,7 +52,7 @@ export const FormInput = styled.input`
 export const FormLabel = styled.label`
 	font-size: 1.1rem;
 	padding: 8px 0;
-	color: ${props => props.theme.highlightWhite};
+	color: ${props => props.theme.fontColor};
 `;
 
 export const PostInput = styled.input`
@@ -129,7 +129,8 @@ export const DropDownArtist = styled.div`
 	display: flex;
 	align-items: center;
 
-	img {
+	img,
+	svg {
 		border-radius: 6px;
 		height: 100px;
 		width: 100px;
@@ -152,7 +153,7 @@ export const DropDownArtistSelect = styled(DropDownArtist)`
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translate3d(0, -10%, 0);
+			transform: translate3d(0, -3%, 0);
 		}
 		to {
 			opacity: 1;
@@ -203,7 +204,8 @@ export const DropDownAlbumSingle = styled.div`
 		);
 	}
 
-	img {
+	img,
+	svg {
 		border-radius: 6px;
 		height: 100%;
 		max-width: 100%;
@@ -242,7 +244,7 @@ export const DropDownAlbumSelect = styled(DropDownAlbumSingle)`
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translate3d(0, -10%, 0);
+			transform: translate3d(0, -3%, 0);
 		}
 		to {
 			opacity: 1;
@@ -293,7 +295,7 @@ export const DropDownTrackSingle = styled.div`
 			border-bottom: 2px solid ${props => props.theme.subduedAlt};
 		`}
 
-	img {
+	img, svg {
 		border-radius: 6px;
 		height: 50px;
 		width: 50px;
@@ -325,7 +327,7 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translate3d(0, -10%, 0);
+			transform: translate3d(0, -3%, 0);
 		}
 		to {
 			opacity: 1;

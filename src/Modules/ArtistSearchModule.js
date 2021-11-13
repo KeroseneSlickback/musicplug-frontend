@@ -8,7 +8,7 @@ import {
 	DropDownArtistSelect,
 	CenteredModuleDiv,
 } from '../Components/Forms';
-import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 import WarningModule from './WarningModule';
 import RegularMessageModule from './RegularMessageModule';
@@ -47,14 +47,14 @@ function ArtistSearchModule({
 				</CenteredModuleDiv>
 			) : artistSearched ? (
 				<DropDownArtist>
-					<img
-						src={
-							selectedData.artistImgUrl !== ''
-								? selectedData.artistImgUrl
-								: StyledBrokenImage
-						}
-						alt={selectedData.artistName}
-					/>
+					{selectedData.artistImgUrl !== '' ? (
+						<img
+							src={selectedData.artistImgUrl}
+							alt={selectedData.artistName}
+						/>
+					) : (
+						<BrokenImageSVG />
+					)}
 					<p>{selectedData.artistName}</p>
 				</DropDownArtist>
 			) : artistSearchData.data ? (
@@ -68,14 +68,11 @@ function ArtistSearchModule({
 									onClick={() => onSelect(artist)}
 									key={artist.id}
 								>
-									<img
-										src={
-											artist.images[1]
-												? artist.images[1].url
-												: StyledBrokenImage
-										}
-										alt={artist.name}
-									/>
+									{artist.images[1] ? (
+										<img src={artist.images[1].url} alt={artist.name} />
+									) : (
+										<BrokenImageSVG />
+									)}
 									<p>{artist.name}</p>
 								</DropDownArtistSelect>
 							);

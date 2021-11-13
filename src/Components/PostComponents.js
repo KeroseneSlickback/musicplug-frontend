@@ -60,7 +60,8 @@ export const PostUserDiv = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	img {
+	img,
+	svg {
 		margin: 4px 4px;
 		width: 34px;
 		border-radius: 6px;
@@ -80,7 +81,8 @@ export const PostUserDiv = styled.div`
 	${props =>
 		props.small &&
 		css`
-			img {
+			img,
+			svg {
 				width: 28px;
 			}
 		`}

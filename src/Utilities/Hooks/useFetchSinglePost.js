@@ -18,6 +18,7 @@ function useFetchSinglePost(id) {
 						setLoad(false);
 					})
 					.catch(e => {
+						setLoad(false);
 						setError(e);
 					});
 			};

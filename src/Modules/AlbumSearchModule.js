@@ -9,7 +9,7 @@ import {
 	DropDownAlbumSelect,
 	CenteredModuleDiv,
 } from '../Components/Forms';
-import StyledBrokenImage from '../Utilities/Images/svg/broken_image.svg';
+import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
 import RegularMessageModule from './RegularMessageModule';
 import WarningModule from './WarningModule';
@@ -56,14 +56,14 @@ function AlbumSearchModule({
 			) : albumSearched ? (
 				<DropDownAlbumDiv>
 					<DropDownAlbumSingle>
-						<img
-							src={
-								selectedData.albumImgUrl !== ''
-									? selectedData.albumImgUrl
-									: StyledBrokenImage
-							}
-							alt={selectedData.albumName}
-						/>
+						{selectedData.albumImgUrl ? (
+							<img
+								src={selectedData.albumImgUrl}
+								alt={selectedData.albumName}
+							/>
+						) : (
+							<BrokenImageSVG />
+						)}
 						<p>{selectedData.albumName}</p>
 					</DropDownAlbumSingle>
 				</DropDownAlbumDiv>
@@ -78,12 +78,11 @@ function AlbumSearchModule({
 									onClick={() => onSelect(album)}
 									key={album.id}
 								>
-									<img
-										src={
-											album.images[1] ? album.images[1].url : StyledBrokenImage
-										}
-										alt={album.name}
-									/>
+									{album.images[1].url ? (
+										<img src={album.images[1].url} alt={album.name} />
+									) : (
+										<BrokenImageSVG />
+									)}
 									<p>{album.name}</p>
 								</DropDownAlbumSelect>
 							);
@@ -101,12 +100,11 @@ function AlbumSearchModule({
 									onClick={() => onSelect(album)}
 									key={album.id}
 								>
-									<img
-										src={
-											album.images[1] ? album.images[1].url : StyledBrokenImage
-										}
-										alt={album.name}
-									/>
+									{album.images[1].url ? (
+										<img src={album.images[1].url} alt={album.name} />
+									) : (
+										<BrokenImageSVG />
+									)}
 									<p>{album.name}</p>
 								</DropDownAlbumSelect>
 							);
