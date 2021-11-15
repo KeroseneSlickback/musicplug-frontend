@@ -21,7 +21,9 @@ function Post() {
 	return (
 		<PostBodyContainer>
 			{error !== null ? (
-				<WarningModule string="Something went wrong. Please refresh the page and try again." />
+				<StylePageContainer>
+					<WarningModule string="Something went wrong. Please refresh the page and try again." />
+				</StylePageContainer>
 			) : load || data === '' ? (
 				<StylePageContainer>
 					<CenteredModuleDiv fade>

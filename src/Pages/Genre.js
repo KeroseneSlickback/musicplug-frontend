@@ -7,7 +7,7 @@ import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
 function Genre() {
 	const { genre } = useParams();
-	const { page: fetchedPage, pathName } = useParseUrl();
+	const { page: fetchedPage, pathName, sortby } = useParseUrl();
 	const [searchParams, setSearchParams] = useState({
 		limit: 5,
 		page: 0,
@@ -20,22 +20,27 @@ function Genre() {
 			...prev,
 			page: fetchedPage,
 			genre,
+			sortby,
 		}));
-	}, [fetchedPage, genre]);
+	}, [fetchedPage, genre, sortby]);
 
-	const sortBy = expr => {
+	const sortByController = expr => {
 		switch (expr) {
 			case 'new':
-				setSearchParams(prev => ({
-					...prev,
+				setSearchParams({
+					limit: 5,
+					page: 0,
+					genre,
 					sortby: 'createdAt_desc',
-				}));
+				});
 				break;
 			case 'top':
-				setSearchParams(prev => ({
-					...prev,
+				setSearchParams({
+					limit: 5,
+					page: 0,
+					genre,
 					sortby: 'votes_desc',
-				}));
+				});
 				break;
 			default:
 				throw new Error();
@@ -49,7 +54,7 @@ function Genre() {
 				pathName={pathName}
 				fetchedPage={fetchedPage}
 				// url={url}
-				sortBy={sortBy}
+				sortByController={sortByController}
 			/>
 		</PageContainer>
 	);

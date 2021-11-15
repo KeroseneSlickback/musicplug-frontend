@@ -64,6 +64,20 @@ export const SmallStyledButton = styled(SmallButton)`
 		css`
 			font-size: 0.8rem;
 			padding: 6px 8px;
+			svg {
+				height: 18px;
+				width: 18px;
+				opacity: 1;
+				animation: fade-in 0.5s;
+				@keyframes fade-in {
+					0% {
+						opacity: 0;
+					}
+					100% {
+						opacity: 1;
+					}
+				}
+			}
 		`}
 `;
 
@@ -282,7 +296,7 @@ export const MediumStyledReactDomLink = styled(Link)`
 `;
 
 export const MediumStyledReactDomLinkPrimary = styled(Link)`
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	border: none;
 	cursor: pointer;
 	text-decoration: none;

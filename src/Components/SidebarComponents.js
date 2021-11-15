@@ -10,10 +10,14 @@ export const NewPostDiv = styled.div`
 		background-color: ${props => props.theme.primary};
 		border-radius: 6px;
 		box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightDark};
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		margin-top: 8px;
 		height: 80px;
 		width: 150px;
+
+		svg {
+			height: 36px;
+		}
 
 		&:hover {
 			background-color: ${props => props.theme.primaryAlt};
@@ -25,7 +29,6 @@ export const NewPostDiv = styled.div`
 export const GenreTabDiv = styled.div`
 	a {
 		color: ${props => props.theme.fontColor};
-
 		box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
 		text-decoration: none;
 		font-size: 1.4rem;

@@ -12,7 +12,7 @@ function MainLayout(props) {
 				<MainSidebar />
 				<main>{props.children}</main>
 			</CenterPageDiv>
-			<Footer themeToggle={props.themeToggle} />
+			<Footer themeToggle={props.themeToggle} theme={props.theme} />
 		</MainPageContainer>
 	);
 }

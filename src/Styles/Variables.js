@@ -46,43 +46,30 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-// export const DarkTheme = {
-// 	liteHero: '#59C5A3',
-// 	hero: '#4ac09b',
-// 	primary: '#c52772',
-// 	primaryAlt: '#cf2e7d',
-// 	secondary: '#a51d62',
-// 	secondaryAlt: '#b42269',
-// 	background: '#141221',
-// 	backgroundAlt: '#211f2e',
-// 	subdued: '#272432',
-// 	subduedAlt: '#2e2b3b',
-// 	alternative: '#301f33',
-// 	alternativeAlt: '#422843',
-// 	fontColor: '#f7f7f7',
-// 	highlightWhite: '#ebeaee',
-// 	highlightMuted: '#a39abc',
-// 	highlightDark: '#5e5577',
-// 	warning: '#9b0832',
-// };
+const sizes = {
+	mobileSmall: '280px',
+	mobileMedium: '380px',
+	mobileLarge: '480px',
+	tabletSmall: '580px',
+	tabletMedium: '680px',
+	tabletLarge: '780px',
+	laptopSmall: '880px',
+	laptopMedium: '980px',
+	laptopLarge: '1080px',
+	desktop: '1440px',
+};
 
-// export const LightTheme = {
-// 	liteHero: '#59C5A3',
-// 	hero: '#4ac09b',
-// 	primary: '#c52772',
-// 	primaryAlt: '#cf2e7d',
-// 	secondary: '#a51d62',
-// 	secondaryAlt: '#b42269',
-// 	background: '#fff',
-// 	backgroundAlt: '#fff',
-// 	subdued: '#fff',
-// 	subduedAlt: '#fff',
-// 	alternative: '#fff',
-// 	alternativeAlt: '#fff',
-// 	fontColor: '#000',
-// 	fontColorAlt: '#f7f7f7',
-// 	highlightWhite: '#ebeaee',
-// 	highlightMuted: '#a39abc',
-// 	highlightDark: '#5e5577',
-// 	warning: '#9b0832',
-// };
+// from tabletMedium => go to mobile design
+
+export const devices = {
+	mobileSmall: `only screen and (max-width: ${sizes.mobileSmall})`,
+	mobileMedium: `only screen and (max-width: ${sizes.mobileMedium})`,
+	mobileLarge: `only screen and (max-width: ${sizes.mobileLarge})`,
+	tabletSmall: `only screen and (max-width: ${sizes.tabletSmall})`,
+	tabletMedium: `only screen and (max-width: ${sizes.tabletMedium})`,
+	tabletLarge: `only screen and (max-width: ${sizes.tabletLarge})`,
+	laptopSmall: `only screen and (max-width: ${sizes.laptopSmall})`,
+	laptopMedium: `only screen and (max-width: ${sizes.laptopMedium})`,
+	laptopLarge: `only screen and (max-width: ${sizes.laptopLarge})`,
+	desktop: `only screen and (max-width: ${sizes.desktop})`,
+};

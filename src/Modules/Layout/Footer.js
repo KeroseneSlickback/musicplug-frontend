@@ -9,8 +9,10 @@ import {
 import UserModal from '../Modals/UserModal';
 import { Backdrop } from '../../Components/Backdrop';
 import { SettingSVG } from '../../Utilities/Images/StyledSVG/SettingSVG';
+import { DarkModeSVG } from '../../Utilities/Images/StyledSVG/DarkModeSVG';
+import { LightModeSVG } from '../../Utilities/Images/StyledSVG/LightModeSVG';
 
-function Footer({ themeToggle }) {
+function Footer({ themeToggle, theme }) {
 	const [openModal, setOpenModal] = useState(false);
 
 	const toggleUserModal = () => {
@@ -19,7 +21,7 @@ function Footer({ themeToggle }) {
 	return (
 		<FooterContainer>
 			<SmallStyledButton smaller onClick={themeToggle}>
-				Theme Switch
+				{theme === 'dark' ? <DarkModeSVG /> : <LightModeSVG />}
 			</SmallStyledButton>
 			<FooterUserDiv>
 				<SmallStyledButton smaller onClick={() => toggleUserModal()}>

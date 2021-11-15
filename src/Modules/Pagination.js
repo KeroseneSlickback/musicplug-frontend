@@ -9,7 +9,7 @@ import useFetchPostCount from '../Utilities/Hooks/useFetchPostCount';
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
 import WarningModule from './WarningModule';
 
-function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
+function Pagination({ searchParams, pathName, fetchedPage, sortByController }) {
 	const [url, setUrl] = useState('');
 	const [countUrl, setCountUrl] = useState('');
 	const { data, load, error } = useFetchPosts(url, searchParams);
@@ -44,9 +44,18 @@ function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 		e.preventDefault();
 		setSortNew(boolean);
 		if (boolean === true) {
-			sortBy('new');
+			history.push({
+				pathname: pathName,
+				search: `?sortby=createdAt_desc`,
+			});
+
+			// sortBy('new');
 		} else {
-			sortBy('top');
+			history.push({
+				pathname: pathName,
+				search: `?sortby=votes_desc`,
+			});
+			// sortBy('top');
 		}
 	}
 
@@ -55,13 +64,17 @@ function Pagination({ searchParams, pathName, fetchedPage, sortBy }) {
 			case 'next':
 				history.push({
 					pathname: pathName,
-					search: `?page=${searchParams.page + 1}`,
+					search: `?page=${searchParams.page + 1}&sortby=${
+						searchParams.sortby
+					}`,
 				});
 				break;
 			case 'back':
 				history.push({
 					pathname: pathName,
-					search: `?page=${searchParams.page - 1}`,
+					search: `?page=${searchParams.page - 1}&sortby=${
+						searchParams.sortby
+					}`,
 				});
 				break;
 			default:

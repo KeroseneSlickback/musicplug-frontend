@@ -32,7 +32,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme === 'dark' ? DarkTheme : LightTheme}>
 			<GlobalStyles />
-			<MainLayout themeToggle={themeToggle}>
+			<MainLayout themeToggle={themeToggle} theme={theme}>
 				<Switch>
 					<Route path="/" exact>
 						<Home />

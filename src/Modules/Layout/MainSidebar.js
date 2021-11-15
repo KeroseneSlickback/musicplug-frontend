@@ -1,6 +1,7 @@
 import React from 'react';
 import { GenreBlockDiv } from '../../Components/Containers';
 import { NewPostDiv } from '../../Components/SidebarComponents';
+// import { AddSVG } from '../../Utilities/Images/StyledSVG/AddSVG';
 
 import GenreTab from '../GenreTab';
 
@@ -54,7 +55,10 @@ function MainSidebar() {
 				})}
 			</div>
 			<NewPostDiv>
-				<a href="/newpost">New Post</a>
+				<a href="/newpost">
+					{/* <AddSVG /> */}
+					New Post
+				</a>
 			</NewPostDiv>
 		</GenreBlockDiv>
 	);

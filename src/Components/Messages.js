@@ -7,9 +7,9 @@ export const MessageContainer = styled.div`
 
 export const WarningContainer = styled.div`
 	border-radius: 6px;
-	border: 1px solid ${props => props.theme.fontColor};
+	box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
 	background-color: ${props => props.theme.warning};
-	color: ${props => props.theme.fontColor};
+	color: ${props => props.theme.fontColorAlt};
 	animation: fadeIn 50ms ease-in both;
 
 	@keyframes fadeIn {

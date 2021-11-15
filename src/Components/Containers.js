@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { devices } from '../Styles/Variables';
 
 export const MainPageContainer = styled.div`
 	min-height: 100vh;
@@ -9,6 +10,25 @@ export const MainPageContainer = styled.div`
 export const PageContainer = styled.div`
 	width: 900px;
 	margin: 8px;
+
+	@media ${devices.laptopLarge} {
+		width: 800px;
+	}
+	@media ${devices.laptopMedium} {
+		width: 700px;
+	}
+	@media ${devices.laptopSmall} {
+		width: 600px;
+	}
+	@media ${devices.tabletLarge} {
+		width: 500px;
+	}
+	@media ${devices.tabletMedium} {
+		width: 400px;
+	}
+	@media ${devices.tabletSmall} {
+		width: 300px;
+	}
 `;
 
 export const StylePageContainer = styled(PageContainer)`
@@ -56,6 +76,19 @@ export const PostContainer = styled(StylePageContainer)`
 	margin: 8px 0;
 	flex-direction: column;
 	justify-content: space-between;
+
+	animation: fadeIn 250ms ease-in both;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translate3d(0, -3%, 0);
+		}
+		to {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
 	&:hover {
 		box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightMuted};
 	}
@@ -111,7 +144,7 @@ export const NewPostDiv = styled.div`
 
 export const HomePageButtonDiv = styled.div`
 	width: 100%;
-	padding: 4px 8px;
+	padding: 4px 0px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;

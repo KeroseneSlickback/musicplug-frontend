@@ -5,7 +5,7 @@ import Pagination from '../Modules/Pagination';
 import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
 function Home() {
-	const { page: fetchedPage, pathName } = useParseUrl();
+	const { page: fetchedPage, pathName, sortby } = useParseUrl();
 	const [searchParams, setSearchParams] = useState({
 		limit: 5,
 		page: 0,
@@ -16,22 +16,25 @@ function Home() {
 		setSearchParams(prev => ({
 			...prev,
 			page: fetchedPage,
+			sortby,
 		}));
-	}, [fetchedPage]);
+	}, [fetchedPage, sortby]);
 
-	const sortBy = expr => {
+	const sortByController = expr => {
 		switch (expr) {
 			case 'new':
-				setSearchParams(prev => ({
-					...prev,
+				setSearchParams({
+					limit: 5,
+					page: 0,
 					sortby: 'createdAt_desc',
-				}));
+				});
 				break;
 			case 'top':
-				setSearchParams(prev => ({
-					...prev,
+				setSearchParams({
+					limit: 5,
+					page: 0,
 					sortby: 'votes_desc',
-				}));
+				});
 				break;
 			default:
 				throw new Error();
@@ -44,8 +47,7 @@ function Home() {
 				searchParams={searchParams}
 				fetchedPage={fetchedPage}
 				pathName={pathName}
-				// url={url}
-				sortBy={sortBy}
+				sortByController={sortByController}
 			/>
 		</PageContainer>
 	);
