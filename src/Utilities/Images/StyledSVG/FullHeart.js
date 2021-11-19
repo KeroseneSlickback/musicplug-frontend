@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Icon from './Icon';
 
 const Svg = styled(Icon)`
-	height: 28px;
+	height: 20px;
 	cursor: pointer;
 	fill: ${props => props.theme.hero};
 `;

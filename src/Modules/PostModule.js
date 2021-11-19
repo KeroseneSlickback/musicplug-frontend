@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
+	InactiveUserButton,
 	SmallEmptyButton,
 	SmallStyledLinkButton,
 	SmallStyledReactDomLink,
@@ -14,6 +15,7 @@ import {
 	PostTopDiv,
 	TextDiv,
 	PostUserDiv,
+	PostViewImgUserDiv,
 } from '../Components/PostComponents';
 
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
@@ -142,52 +144,55 @@ function PostModule(props) {
 							return <p key={i}>{str}</p>;
 						})}
 					</TextDiv>
-					{albumImgUrl ? (
-						<PostImg src={albumImgUrl} alt={albumName} />
-					) : (
-						<BrokenImageSVG />
-					)}
+					<PostViewImgUserDiv>
+						{albumImgUrl ? (
+							<PostImg src={albumImgUrl} alt={albumName} />
+						) : (
+							<BrokenImageSVG />
+						)}
+						<InactiveUserButton>
+							{owner.avatarLink ? (
+								<img src={owner.avatarLink} alt={owner.username} />
+							) : (
+								<UserAccountSVG />
+							)}
+							<p>- {owner.username}</p>
+						</InactiveUserButton>
+					</PostViewImgUserDiv>
 				</Link>
 			</PostTopDiv>
-			<PostBottomDiv>
-				<PostUserDiv small>
-					{owner.avatarLink ? (
-						<img src={owner.avatarLink} alt={owner.username} />
-					) : (
-						<UserAccountSVG />
-					)}
-					<p> - {owner.username}</p>
-				</PostUserDiv>
-				<PostButtonDiv>
-					<SmallStyledReactDomLink to={formattedGenre.path}>
-						{formattedGenre.genre}
-					</SmallStyledReactDomLink>
-					<SmallStyledLinkButton
-						href={
-							trackUrl !== ''
-								? trackUrl
-								: albumUrl !== ''
-								? albumUrl
-								: artistUrl !== ''
-								? artistUrl
-								: null
-						}
-						target="_blank"
-						rel="noreferrer"
-					>
-						<HeadphoneSVG />
-						Listen on Spotify
-					</SmallStyledLinkButton>
-					<SmallStyledReactDomLink to={`/post/${_id}`}>
-						<ChatSVG />
-						<p>{comments.length} Comments</p>
-					</SmallStyledReactDomLink>
-					<SmallEmptyButton onClick={() => likePost()}>
-						{voteNumber}
-						{userLiked ? <FullHeart /> : <EmptyHeart />}
-					</SmallEmptyButton>
-				</PostButtonDiv>
-			</PostBottomDiv>
+			<PostButtonDiv>
+				<SmallStyledReactDomLink to={formattedGenre.path}>
+					{formattedGenre.genre}
+				</SmallStyledReactDomLink>
+
+				<SmallStyledLinkButton
+					href={
+						trackUrl !== ''
+							? trackUrl
+							: albumUrl !== ''
+							? albumUrl
+							: artistUrl !== ''
+							? artistUrl
+							: null
+					}
+					target="_blank"
+					rel="noreferrer"
+				>
+					<HeadphoneSVG />
+					Spotify
+				</SmallStyledLinkButton>
+
+				<SmallStyledReactDomLink to={`/post/${_id}`}>
+					<ChatSVG />
+					<p>{comments.length} Comments</p>
+				</SmallStyledReactDomLink>
+
+				<SmallEmptyButton onClick={() => likePost()}>
+					{voteNumber}
+					{userLiked ? <FullHeart /> : <EmptyHeart />}
+				</SmallEmptyButton>
+			</PostButtonDiv>
 		</PostContainer>
 	);
 }

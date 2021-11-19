@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { SmallEmptyButton, TinyButton } from '../Components/Buttons';
+import {
+	InactiveUserButton,
+	SmallEmptyButton,
+	TinyButton,
+} from '../Components/Buttons';
 import {
 	PostBottomDiv,
-	PostButtonDiv,
+	PostBodyButtonDiv,
 	PostBodyH1,
 	PostBodyTextDiv,
 	PostBodyContentDiv,
 	PostBodyTextInnerDiv,
 	PostUserDiv,
 	EditDeleteButtonDiv,
+	PostBodyRightButtonDiv,
 } from '../Components/PostComponents';
 
 import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
@@ -183,26 +188,26 @@ function PostBodyModule(props) {
 					</PostBodyContentDiv>
 				</PostBodyTextInnerDiv>
 			)}
-			<PostBottomDiv>
-				<PostUserDiv>
+			<PostBodyButtonDiv>
+				<InactiveUserButton post>
 					{owner.avatarLink ? (
 						<img src={owner.avatarLink} alt={owner.username} />
 					) : (
 						<UserAccountSVG />
 					)}
 					<p> - {owner.username}</p>
-				</PostUserDiv>
-				<PostButtonDiv>
+				</InactiveUserButton>
+				<PostBodyRightButtonDiv>
 					{postUser ? (
 						showPatch ? (
-							<EditDeleteButtonDiv>
+							<EditDeleteButtonDiv body>
 								<TinyButton onClick={submitPostPatch}>Save</TinyButton>
 								<TinyButton alternative onClick={() => showEdit()}>
 									Cancel
 								</TinyButton>
 							</EditDeleteButtonDiv>
 						) : (
-							<EditDeleteButtonDiv>
+							<EditDeleteButtonDiv body>
 								<TinyButton onClick={() => showEdit()}>Edit</TinyButton>
 								<TinyButton alternative onClick={() => toggleDelete()}>
 									Delete
@@ -210,12 +215,12 @@ function PostBodyModule(props) {
 							</EditDeleteButtonDiv>
 						)
 					) : null}
-					<SmallEmptyButton onClick={() => likePost()}>
+					<SmallEmptyButton post onClick={() => likePost()}>
 						<p>{voteNumber}</p>
 						{userLiked ? <FullHeart /> : <EmptyHeart />}
 					</SmallEmptyButton>
-				</PostButtonDiv>
-			</PostBottomDiv>
+				</PostBodyRightButtonDiv>
+			</PostBodyButtonDiv>
 			{showDeleteModule ? (
 				<DeleteModal
 					toggleDelete={toggleDelete}

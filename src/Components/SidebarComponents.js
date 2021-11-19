@@ -1,6 +1,13 @@
 import styled from 'styled-components';
+import { devices } from '../Styles/Variables';
 
 export const NewPostDiv = styled.div`
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	margin: 20px 10px;
+
 	a {
 		text-decoration: none;
 		color: ${props => props.theme.fontColorAlt};
@@ -10,13 +17,13 @@ export const NewPostDiv = styled.div`
 		background-color: ${props => props.theme.primary};
 		border-radius: 6px;
 		box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightDark};
-		font-size: 1.4rem;
-		margin-top: 8px;
-		height: 80px;
-		width: 150px;
+		font-size: 0.8rem;
+		height: 30px;
+		width: 90px;
 
 		svg {
-			height: 36px;
+			padding-right: 2px;
+			height: 18px;
 		}
 
 		&:hover {
@@ -24,24 +31,28 @@ export const NewPostDiv = styled.div`
 			box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightMuted};
 		}
 	}
-`;
 
-export const GenreTabDiv = styled.div`
-	a {
-		color: ${props => props.theme.fontColor};
-		box-shadow: 0px 0px 2px 0px ${props => props.theme.highlightDark};
-		text-decoration: none;
-		font-size: 1.4rem;
-		margin-top: 8px;
-		background-color: ${props => props.theme.subdued};
-		height: 50px;
-		width: 150px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 6px;
-		&:hover {
-			background-color: ${props => props.theme.subduedAlt};
+	@media ${devices.tabletS} {
+		position: static;
+		margin: 0;
+
+		a {
+			font-size: 1rem;
+			height: 40px;
+			width: 100px;
+			margin: 0px 0 4px 0;
+
+			svg {
+				height: 22px;
+			}
+		}
+	}
+
+	@media ${devices.tabletM} {
+		a {
+			font-size: 1.2rem;
+			height: 50px;
+			width: 120px;
 		}
 	}
 `;

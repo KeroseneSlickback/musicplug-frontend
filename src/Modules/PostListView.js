@@ -3,11 +3,14 @@ import React from 'react';
 import PostModule from '../Modules/PostModule';
 import { CenteredModuleDiv } from '../Components/Forms';
 import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
-import { LoadingPageContainer } from '../Components/Containers';
+import {
+	LoadingPageContainer,
+	PostListContainer,
+} from '../Components/Containers';
 
 function PostListView({ data, load, countLoad }) {
 	return (
-		<div>
+		<PostListContainer>
 			{load && countLoad ? (
 				<LoadingPageContainer>
 					<CenteredModuleDiv fade>
@@ -19,7 +22,7 @@ function PostListView({ data, load, countLoad }) {
 					return <PostModule data={post} key={post._id} />;
 				})
 			)}
-		</div>
+		</PostListContainer>
 	);
 }
 

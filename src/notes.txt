@@ -10,3 +10,11 @@ To Do:
 - Duplicate user from backend -- how to handle error?
 
 - Mobile
+
+- Work backwards from mobile sizing to full desktop
+
+
+- Go over Post page and ensure it works well from 320 => 1024
+  - Have a hard 900px cap 
+
+- Then go over other modules, from 425px and up. Hard cut at 900px

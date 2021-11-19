@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { TinyButton } from '../Components/Buttons';
+import { InactiveUserButton, TinyButton } from '../Components/Buttons';
 import {
 	SinglePostDiv,
 	PostUserDiv,
@@ -97,14 +97,14 @@ function SingleCommentModule(props) {
 
 	return (
 		<SinglePostDiv>
-			<PostUserDiv comment>
+			<InactiveUserButton comment>
 				{owner.avatarLink ? (
 					<img src={owner.avatarLink} alt={owner.username} />
 				) : (
 					<UserAccountSVG />
 				)}
 				<p>{owner.username}</p>
-			</PostUserDiv>
+			</InactiveUserButton>
 			<CommentBodyDiv>
 				{showPatch ? (
 					<CommentPatchModule

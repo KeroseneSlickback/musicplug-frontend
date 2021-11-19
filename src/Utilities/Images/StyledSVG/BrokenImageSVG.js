@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 import Icon from './Icon';
+import { devices } from '../../../Styles/Variables';
 
 const Svg = styled(Icon)`
 	border-radius: 6px;
-	max-height: 150px;
-	width: 150px;
+	max-height: 75px;
+	width: 75px;
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	margin: 2px;
 	fill: ${props => props.theme.fontColor};
+
+	@media ${devices.tabletS} {
+		max-height: 100px;
+		width: 100px;
+	}
+
+	@media ${devices.tabletM} {
+		max-height: 120px;
+		width: 120px;
+	}
 `;
 
 export const BrokenImageSVG = props => (

@@ -19,6 +19,8 @@ import {
 } from '../../Components/Forms';
 import DeleteModal from './DeleteModal';
 import AuthContext from '../../Utilities/AuthContext';
+import ConfirmMessageModule from '../ConfirmMessageModule';
+import WarningModule from '../WarningModule';
 
 function UserModal(props) {
 	const history = useHistory();
@@ -27,6 +29,12 @@ function UserModal(props) {
 	const [message, setMessage] = useState('');
 	const [newUsername, setNewUsername] = useState('');
 	const [newPassword, setNewPassword] = useState('');
+	const [usernameError, setUsernameError] = useState(false);
+	const [passwordError, setPasswordError] = useState(false);
+	const [deleteUserError, setDeleteUserError] = useState(false);
+	const [confirmUsername, setConfirmUsername] = useState(false);
+	const [confirmPassword, setConfirmPassword] = useState(false);
+	const [deleteUserConfirm, setDeleteUserConfirm] = useState(false);
 
 	const updateUsername = e => {
 		e.preventDefault();
@@ -42,10 +50,14 @@ function UserModal(props) {
 				}
 			)
 			.then(res => {
-				console.log(res);
+				setUsernameError(false);
+				setConfirmUsername(true);
+				setTimeout(() => {
+					props.closeModal();
+				}, 1000);
 			})
 			.catch(err => {
-				console.log(err);
+				setUsernameError(true);
 			});
 	};
 
@@ -63,10 +75,14 @@ function UserModal(props) {
 				}
 			)
 			.then(res => {
-				console.log(res);
+				setPasswordError(false);
+				setConfirmPassword(true);
+				setTimeout(() => {
+					props.closeModal();
+				}, 1000);
 			})
 			.catch(err => {
-				console.log(err);
+				setPasswordError(true);
 			});
 	};
 
@@ -79,12 +95,17 @@ function UserModal(props) {
 				},
 			})
 			.then(res => {
-				localStorage.clear();
-				authContext.logout();
-				history.go(0);
+				setDeleteUserError(false);
+				setDeleteUserConfirm(true);
+				setTimeout(() => {
+					toggleDelete();
+					localStorage.clear();
+					authContext.logout();
+					history.go(0);
+				}, 1500);
 			})
 			.catch(err => {
-				console.log(err);
+				setDeleteUserError(true);
 			});
 	};
 
@@ -108,6 +129,12 @@ function UserModal(props) {
 							required
 						/>
 						<FormLabel htmlFor="username">New Username</FormLabel>
+						{confirmUsername ? (
+							<ConfirmMessageModule string="Username changed." />
+						) : null}
+						{usernameError ? (
+							<WarningModule string="Error. Please refresh and try again." />
+						) : null}
 					</FormBlock>
 					<MediumStyledButton>Submit</MediumStyledButton>
 				</Form>
@@ -122,6 +149,12 @@ function UserModal(props) {
 							required
 						/>
 						<FormLabel htmlFor="password">New Password</FormLabel>
+						{confirmPassword ? (
+							<ConfirmMessageModule string="Password updated." />
+						) : null}
+						{passwordError ? (
+							<WarningModule string="Error. Please refresh and try again." />
+						) : null}
 					</FormBlock>
 					<MediumStyledButton>Submit</MediumStyledButton>
 				</Form>
@@ -141,6 +174,8 @@ function UserModal(props) {
 					toggleDelete={toggleDelete}
 					confirmDelete={deleteUser}
 					message={message}
+					deleteUserConfirm={deleteUserConfirm}
+					deleteUserError={deleteUserError}
 				/>
 			) : null}
 		</ModalContainer>

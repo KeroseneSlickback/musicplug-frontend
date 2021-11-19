@@ -73,36 +73,36 @@ function PostBodyInfoModule(props) {
 					<BrokenImageSVG />
 				)}
 			</PostBodyImgDiv>
-			{artistName !== '' ? (
-				<PostBodyInfoMiniDiv>
-					<PostBodyInfoLabelP>Artist</PostBodyInfoLabelP>
-					<PostBodyInfoP>{artistName}</PostBodyInfoP>
-				</PostBodyInfoMiniDiv>
-			) : null}
-			{albumName !== '' ? (
-				<PostBodyInfoMiniDiv>
-					<PostBodyInfoLabelP>Album</PostBodyInfoLabelP>
-					<PostBodyInfoP>{albumName}</PostBodyInfoP>
-				</PostBodyInfoMiniDiv>
-			) : null}
-			{trackName !== '' ? (
-				<PostBodyInfoMiniDiv>
-					<PostBodyInfoLabelP>Song</PostBodyInfoLabelP>
-					<PostBodyInfoP>{trackName}</PostBodyInfoP>
-				</PostBodyInfoMiniDiv>
-			) : null}
-			{genre !== '' ? (
-				<PostBodyInfoMiniDiv>
-					<PostBodyInfoLabelP>Genre</PostBodyInfoLabelP>
-					<PostBodyInfoP>{formattedGenre.genre}</PostBodyInfoP>
-				</PostBodyInfoMiniDiv>
-			) : null}
-			<PostBodyButtonDiv>
-				<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
-					Listen on Spotify
-					<SpotifySVG small />
-				</WideStyledLinkButton>
-			</PostBodyButtonDiv>
+			<div>
+				{artistName !== '' ? (
+					<PostBodyInfoMiniDiv>
+						<PostBodyInfoLabelP>Artist</PostBodyInfoLabelP>
+						<PostBodyInfoP>{artistName}</PostBodyInfoP>
+					</PostBodyInfoMiniDiv>
+				) : null}
+				{albumName !== '' ? (
+					<PostBodyInfoMiniDiv>
+						<PostBodyInfoLabelP>Album</PostBodyInfoLabelP>
+						<PostBodyInfoP>{albumName}</PostBodyInfoP>
+					</PostBodyInfoMiniDiv>
+				) : null}
+				{trackName !== '' ? (
+					<PostBodyInfoMiniDiv>
+						<PostBodyInfoLabelP>Song</PostBodyInfoLabelP>
+						<PostBodyInfoP>{trackName}</PostBodyInfoP>
+					</PostBodyInfoMiniDiv>
+				) : null}
+				{genre !== '' ? (
+					<PostBodyInfoMiniDiv>
+						<PostBodyInfoLabelP>Genre</PostBodyInfoLabelP>
+						<PostBodyInfoP>{formattedGenre.genre}</PostBodyInfoP>
+					</PostBodyInfoMiniDiv>
+				) : null}
+			</div>
+			<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
+				Listen on Spotify
+				<SpotifySVG small />
+			</WideStyledLinkButton>
 		</PostBodyInfoContainer>
 	);
 }

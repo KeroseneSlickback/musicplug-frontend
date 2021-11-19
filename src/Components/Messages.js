@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../Styles/Variables';
 
 export const MessageContainer = styled.div`
 	border-radius: 6px;
@@ -12,6 +13,10 @@ export const WarningContainer = styled.div`
 	color: ${props => props.theme.fontColorAlt};
 	animation: fadeIn 50ms ease-in both;
 
+	p {
+		text-align: center;
+		font-size: 0.8rem;
+	}
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -26,6 +31,17 @@ export const WarningContainer = styled.div`
 			transform: translate3d(0, 0, 0);
 		}
 	}
+
+	@media ${devices.tabletS} {
+		p {
+			font-size: 0.9rem;
+		}
+	}
+	@media ${devices.tabletM} {
+		p {
+			font-size: 1rem;
+		}
+	}
 `;
 
 export const ConfirmContainer = styled(WarningContainer)`
@@ -37,10 +53,6 @@ export const RegularContainer = styled(WarningContainer)`
 `;
 
 export const ConfirmCommentMessage = styled(ConfirmContainer)`
-	p {
-		text-align: center;
-		font-size: 0.8rem;
-	}
 	@keyframes fadeIn {
 		from {
 			opacity: 0;

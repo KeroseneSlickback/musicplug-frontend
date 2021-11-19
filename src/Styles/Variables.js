@@ -47,29 +47,25 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 const sizes = {
-	mobileSmall: '280px',
-	mobileMedium: '380px',
-	mobileLarge: '480px',
-	tabletSmall: '580px',
-	tabletMedium: '680px',
-	tabletLarge: '780px',
-	laptopSmall: '880px',
-	laptopMedium: '980px',
-	laptopLarge: '1080px',
-	desktop: '1440px',
+	mobileS: '320px',
+	mobileM: '375px',
+	mobileL: '425px',
+	tabletS: '600px',
+	tabletM: '768px',
+	tabletL: '850px',
+	laptop: '1024px',
+	laptopL: '1440px',
 };
 
 // from tabletMedium => go to mobile design
 
 export const devices = {
-	mobileSmall: `only screen and (max-width: ${sizes.mobileSmall})`,
-	mobileMedium: `only screen and (max-width: ${sizes.mobileMedium})`,
-	mobileLarge: `only screen and (max-width: ${sizes.mobileLarge})`,
-	tabletSmall: `only screen and (max-width: ${sizes.tabletSmall})`,
-	tabletMedium: `only screen and (max-width: ${sizes.tabletMedium})`,
-	tabletLarge: `only screen and (max-width: ${sizes.tabletLarge})`,
-	laptopSmall: `only screen and (max-width: ${sizes.laptopSmall})`,
-	laptopMedium: `only screen and (max-width: ${sizes.laptopMedium})`,
-	laptopLarge: `only screen and (max-width: ${sizes.laptopLarge})`,
-	desktop: `only screen and (max-width: ${sizes.desktop})`,
+	mobileS: `only screen and (min-width: ${sizes.mobileS})`,
+	mobileM: `only screen and (min-width: ${sizes.mobileM})`,
+	mobileL: `only screen and (min-width: ${sizes.mobileL})`,
+	tabletS: `only screen and (min-width: ${sizes.tabletS})`,
+	tabletM: `only screen and (min-width: ${sizes.tabletM})`,
+	tabletL: `only screen and (min-width: ${sizes.tabletL})`,
+	laptop: `only screen and (min-width: ${sizes.laptop})`,
+	laptopL: `only screen and (min-width: ${sizes.laptopL})`,
 };

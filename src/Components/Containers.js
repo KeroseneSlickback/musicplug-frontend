@@ -1,58 +1,53 @@
 import styled, { css } from 'styled-components';
 import { devices } from '../Styles/Variables';
 
+export const ContentContainer = styled.main`
+	/* width: 100vw; */
+	@media ${devices.tabletS} {
+		margin: 0 16px 0 0;
+		width: 80vw;
+		max-width: 750px;
+	}
+`;
+
 export const MainPageContainer = styled.div`
 	min-height: 100vh;
+	min-width: 100vw;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 `;
 
 export const PageContainer = styled.div`
-	width: 900px;
-	margin: 8px;
-
-	@media ${devices.laptopLarge} {
-		width: 800px;
-	}
-	@media ${devices.laptopMedium} {
-		width: 700px;
-	}
-	@media ${devices.laptopSmall} {
-		width: 600px;
-	}
-	@media ${devices.tabletLarge} {
-		width: 500px;
-	}
-	@media ${devices.tabletMedium} {
-		width: 400px;
-	}
-	@media ${devices.tabletSmall} {
-		width: 300px;
+	@media ${devices.tabletS} {
+		margin: 8px;
+		border-radius: 6px;
 	}
 `;
 
 export const StylePageContainer = styled(PageContainer)`
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
-	border-radius: 6px;
 `;
 
 export const LoadingPageContainer = styled.div`
-	width: 900px;
 	margin-top: 8px;
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
-	border-radius: 6px;
+	@media ${devices.tabletS} {
+		/* width: 100%; */
+		border-radius: 6px;
+	}
 `;
 
 export const ModalContainer = styled.div`
 	background-color: ${props => props.theme.subdued};
 	border-radius: 6px;
 	box-shadow: 0 0 3px ${props => props.theme.background};
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 50%;
-	width: 600px;
+	width: 300px;
 	transform: translate(-50%, -50%);
 	z-index: 2;
 
@@ -67,8 +62,15 @@ export const ModalContainer = styled.div`
 		css`
 			position: fixed;
 			background-color: ${props => props.theme.background};
-			width: 500px;
+			width: 300px;
 		`}
+
+		@media ${devices.tabletS} {
+		width: 400px;
+	}
+	@media ${devices.tabletM} {
+		width: 500px;
+	}
 `;
 
 export const PostContainer = styled(StylePageContainer)`
@@ -97,12 +99,14 @@ export const PostContainer = styled(StylePageContainer)`
 	}
 `;
 
+export const PostListContainer = styled.div``;
+
 export const PageInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 32px;
+	padding: 18px;
 	height: 400px;
 
 	h1 {
@@ -119,24 +123,56 @@ export const PageInfoContainer = styled.div`
 `;
 
 export const CenterPageDiv = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: center;
-`;
-
-export const GenreBlockDiv = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	position: sticky;
-	top: 0;
+	justify-content: center;
+
+	@media ${devices.tabletS} {
+		align-items: flex-start;
+		flex-direction: row;
+		margin: 0 18px;
+	}
+`;
+
+export const GenreBlockDiv = styled.div`
+	padding: 0 18px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@media ${devices.tabletS} {
+		width: auto;
+		padding: 0;
+		position: sticky;
+		top: 0;
+	}
+`;
+
+export const GenreContainer = styled.div`
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 8px;
+	margin: 8px;
+	align-items: center;
+	justify-items: stretch;
+
+	@media ${devices.tabletS} {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 4px 0;
+		grid-gap: 0;
+		margin: 0;
+	}
 `;
 
 export const NewPostDiv = styled.div`
 	width: 700px;
 	margin-top: 8px;
-
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	background-color: ${props => props.theme.subdued};
@@ -144,12 +180,14 @@ export const NewPostDiv = styled.div`
 
 export const HomePageButtonDiv = styled.div`
 	width: 100%;
-	padding: 4px 0px;
+	padding: 4px 18px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+
+	@media ${devices.tabletS} {
+		padding: 0;
+	}
 `;
 
-export const PaginateDiv = styled.div`
-	width: 100%;
-`;
+export const PaginateDiv = styled.div``;

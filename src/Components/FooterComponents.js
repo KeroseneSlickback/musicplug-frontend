@@ -5,22 +5,22 @@ export const FooterContainer = styled.footer`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	background-color: ${props => props.theme.subdued};
 	width: 100%;
+	padding: 0 18px;
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	margin-top: auto;
 `;
 
 export const FooterUserDiv = styled.div`
-	margin: 6px;
+	margin: 4px;
 `;
 
 export const FooterMessageDiv = styled.div`
-	margin: 16px;
-	width: 200px;
+	max-width: 200px;
 	p {
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 	}
 `;
 

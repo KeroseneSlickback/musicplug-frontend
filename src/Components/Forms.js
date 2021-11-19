@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
+import { devices } from '../Styles/Variables';
 
 export const FormContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	padding: 32px;
+	padding: 18px;
 
 	h3 {
 		color: ${props => props.theme.fontColor};
@@ -14,19 +15,25 @@ export const FormContainer = styled.div`
 `;
 
 export const FormH1 = styled.h1`
+	width: 400px;
 	color: ${props => props.theme.fontColor};
-	font-size: 2.2rem;
-	padding-bottom: 24px;
+	font-size: 1.6rem;
+	padding-bottom: 18px;
+
+	@media ${devices.tabletM} {
+		font-size: 2rem;
+	}
 `;
 
 export const Form = styled.form``;
 
 export const FormBlock = styled.div`
-	padding-top: 12px;
+	padding-top: 8px;
 	display: flex;
 	flex-direction: column;
 	h3 {
-		font-size: 1.75rem;
+		text-align: center;
+		font-size: 1rem;
 	}
 
 	${props =>
@@ -37,6 +44,18 @@ export const FormBlock = styled.div`
 				height: 100px;
 			}
 		`}
+
+	@media ${devices.tabletS} {
+		h3 {
+			font-size: 1.4rem;
+		}
+	}
+
+	@media ${devices.tabletM} {
+		h3 {
+			font-size: 1.75rem;
+		}
+	}
 `;
 
 export const FormInput = styled.input`
@@ -45,14 +64,23 @@ export const FormInput = styled.input`
 	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
-	height: 38px;
-	font-size: 1rem;
+	height: 30px;
+	font-size: 0.9rem;
+
+	@media ${devices.tabletS} {
+		height: 36px;
+		font-size: 1rem;
+	}
 `;
 
 export const FormLabel = styled.label`
-	font-size: 1.1rem;
+	font-size: 0.8rem;
 	padding: 8px 0;
 	color: ${props => props.theme.fontColor};
+
+	@media ${devices.tabletS} {
+		font-size: 1rem;
+	}
 `;
 
 export const PostInput = styled.input`
@@ -61,8 +89,8 @@ export const PostInput = styled.input`
 	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	padding: 4px 6px;
-	height: 38px;
-	font-size: 1rem;
+	height: 30px;
+	font-size: 0.9rem;
 	margin-bottom: 8px;
 `;
 
@@ -79,7 +107,7 @@ export const PostInputRadio = styled(PostInput)`
 export const PostTextArea = styled(PostInput).attrs({
 	as: 'textarea',
 })`
-	height: 140px;
+	height: 180px;
 	font-size: inherit;
 	white-space: pre-wrap;
 `;
@@ -114,8 +142,8 @@ export const PostSelect = styled.select`
 	background-color: ${props => props.theme.subdued};
 	border: 1px solid ${props => props.theme.highlightDark};
 	border-radius: 6px;
-	font-size: 1rem;
-	height: 38px;
+	font-size: 0.8rem;
+	height: 28px;
 	cursor: pointer;
 	color: ${props => props.theme.fontColor};
 `;
@@ -132,14 +160,14 @@ export const DropDownArtist = styled.div`
 	img,
 	svg {
 		border-radius: 6px;
-		height: 100px;
-		width: 100px;
+		height: 60px;
+		width: 60px;
 		object-fit: cover;
 	}
 
 	p {
 		margin-left: 16px;
-		font-size: 1.6rem;
+		font-size: 1.1rem;
 	}
 `;
 
@@ -177,8 +205,12 @@ export const DropDownAlbumDiv = styled.div`
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+	/* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(150px, 1fr)); */
+
+	grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
+	gap: 4px;
 	gap: 4px;
 `;
 
@@ -220,7 +252,8 @@ export const DropDownAlbumSingle = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		color: white;
-		font-size: 1rem;
+		/* font-size: 1rem; */
+		font-size: 0.8rem;
 	}
 
 	&:hover {
@@ -300,13 +333,12 @@ export const DropDownTrackSingle = styled.div`
 		height: 50px;
 		width: 50px;
 		object-fit: cover;
-		margin: 0 4px;
 	}
 
 	p {
 		padding: 6px 0;
 		margin: 0 8px;
-		font-size: 1rem;
+		font-size: 0.8rem;
 	}
 
 	div {
@@ -341,6 +373,7 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 `;
 
 export const CenteredModuleDiv = styled.div`
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Icon from './Icon';
 
 const Svg = styled(Icon)`
-	height: 18px;
+	height: 16px;
 	margin: auto 4px auto auto;
 	fill: ${props => props.theme.fontColor};
 `;

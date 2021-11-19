@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import Icon from './Icon';
 
 const Svg = styled(Icon)`
-	max-height: 40px;
-	width: 260px;
-	margin: 8px;
+	height: 34px;
+	margin: 6px 4px 4px 4px;
 `;
 
 export const StyledLogo = ({ className, firstColor, secondColor }) => (

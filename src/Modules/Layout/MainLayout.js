@@ -1,5 +1,9 @@
 import React from 'react';
-import { CenterPageDiv, MainPageContainer } from '../../Components/Containers';
+import {
+	CenterPageDiv,
+	MainPageContainer,
+	ContentContainer,
+} from '../../Components/Containers';
 import NavBar from './NavBar';
 import MainSidebar from './MainSidebar';
 import Footer from './Footer';
@@ -10,7 +14,7 @@ function MainLayout(props) {
 			<NavBar />
 			<CenterPageDiv>
 				<MainSidebar />
-				<main>{props.children}</main>
+				<ContentContainer>{props.children}</ContentContainer>
 			</CenterPageDiv>
 			<Footer themeToggle={props.themeToggle} theme={props.theme} />
 		</MainPageContainer>

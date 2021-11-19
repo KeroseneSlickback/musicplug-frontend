@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
 import Icon from './Icon';
+import { devices } from '../../../Styles/Variables';
 
 const Svg = styled(Icon)`
 	fill: ${props => props.theme.hero};
 	margin: 48px 0px 36px 0px;
-	height: 100px;
-	width: 100px;
+	height: 75px;
+	width: 75px;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -20,7 +21,7 @@ const Svg = styled(Icon)`
 
 		70% {
 			transform: scale(1);
-			box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
+			box-shadow: 0 0 4px 22px rgba(0, 0, 0, 0);
 			background-color: rgba(0, 0, 0, 0);
 		}
 
@@ -63,6 +64,61 @@ const Svg = styled(Icon)`
 				}
 			}
 		`}
+
+	@media ${devices.tabletS} {
+		height: 100px;
+		width: 100px;
+		@keyframes pulse {
+			0% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 ${props => props.theme.primaryAlt};
+			}
+
+			70% {
+				transform: scale(1);
+				box-shadow: 0 0 4px 32px rgba(0, 0, 0, 0);
+				background-color: rgba(0, 0, 0, 0);
+			}
+
+			100% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+				background-color: ${props => props.theme.secondaryAlt};
+			}
+		}
+		${props =>
+			props.small &&
+			css`
+				margin: 0px;
+				height: 25px;
+				width: 25px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transform: scale(1);
+				fill: ${props => props.theme.primary};
+				animation: smallPulse 1.5s infinite;
+				@keyframes smallPulse {
+					0% {
+						transform: scale(0.95);
+						box-shadow: 0 0 0 0 ${props => props.theme.secondaryAlt};
+					}
+
+					70% {
+						transform: scale(1);
+						box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0);
+						background-color: rgba(0, 0, 0, 0);
+					}
+
+					100% {
+						transform: scale(0.95);
+						box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+						background-color: ${props => props.theme.hero};
+					}
+				}
+			`}
+	}
 `;
 
 export const SpotifySVG = props => (

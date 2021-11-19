@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SmallStyledButton } from '../../Components/Buttons';
 import {
 	FooterContainer,
@@ -14,26 +14,38 @@ import { LightModeSVG } from '../../Utilities/Images/StyledSVG/LightModeSVG';
 
 function Footer({ themeToggle, theme }) {
 	const [openModal, setOpenModal] = useState(false);
+	const [isUser, setIsUser] = useState(false);
+
+	useEffect(() => {
+		const user = localStorage.getItem('user');
+		if (user) {
+			setIsUser(true);
+		} else {
+			setIsUser(false);
+		}
+	}, []);
 
 	const toggleUserModal = () => {
 		setOpenModal(prev => !prev);
 	};
 	return (
 		<FooterContainer>
-			<SmallStyledButton smaller onClick={themeToggle}>
-				{theme === 'dark' ? <DarkModeSVG /> : <LightModeSVG />}
-			</SmallStyledButton>
-			<FooterUserDiv>
-				<SmallStyledButton smaller onClick={() => toggleUserModal()}>
-					<SettingSVG />
-					User Settings
-				</SmallStyledButton>
-			</FooterUserDiv>
 			<FooterMessageDiv>
 				<p>
 					MusicPlug is a demonstration app created by Mitchell William Spaur.
 				</p>
 			</FooterMessageDiv>
+			<SmallStyledButton smaller onClick={themeToggle}>
+				{theme === 'dark' ? <DarkModeSVG /> : <LightModeSVG />}
+			</SmallStyledButton>
+			{isUser ? (
+				<FooterUserDiv>
+					<SmallStyledButton smaller onClick={() => toggleUserModal()}>
+						<SettingSVG />
+						User Settings
+					</SmallStyledButton>
+				</FooterUserDiv>
+			) : null}
 
 			{openModal ? (
 				<UserModal
