@@ -6,7 +6,7 @@ export const NewPostDiv = styled.div`
 	bottom: 0;
 	left: 0;
 	z-index: 2;
-	margin: 20px 10px;
+	margin: 10px 10px;
 
 	a {
 		text-decoration: none;
@@ -15,15 +15,18 @@ export const NewPostDiv = styled.div`
 		justify-content: center;
 		align-items: center;
 		background-color: ${props => props.theme.primary};
-		border-radius: 6px;
 		box-shadow: 0px 0px 3px 1px ${props => props.theme.highlightDark};
 		font-size: 0.8rem;
-		height: 30px;
-		width: 90px;
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+
+		p {
+			display: none;
+		}
 
 		svg {
-			padding-right: 2px;
-			height: 18px;
+			height: 40px;
 		}
 
 		&:hover {
@@ -37,17 +40,23 @@ export const NewPostDiv = styled.div`
 		margin: 0;
 
 		a {
+			border-radius: 6px;
 			font-size: 1rem;
-			height: 40px;
+			height: 50px;
 			width: 100px;
 			margin: 0px 0 4px 0;
 
+			p {
+				display: inline;
+			}
+
 			svg {
 				height: 22px;
+				padding-right: 2px;
 			}
 		}
 	}
-
+	/* 
 	@media ${devices.tabletM} {
 		a {
 			font-size: 1rem;
@@ -55,12 +64,12 @@ export const NewPostDiv = styled.div`
 			width: 100px;
 			margin: 0px 0 4px 0;
 		}
-	}
+	} */
 
 	@media ${devices.tabletL} {
 		a {
 			font-size: 1.2rem;
-			height: 50px;
+			height: 60px;
 			width: 120px;
 		}
 	}

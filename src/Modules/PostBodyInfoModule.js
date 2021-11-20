@@ -65,12 +65,12 @@ function PostBodyInfoModule(props) {
 		<PostBodyInfoContainer>
 			<PostBodyImgDiv>
 				{artistImgUrl ? (
-					<PostBodyImg src={artistImgUrl} alt={artistName} />
+					<PostBodyImg artist src={artistImgUrl} alt={artistName} />
 				) : (
 					<BrokenImageSVG />
 				)}
 				{albumImgUrl ? (
-					<PostBodyImg src={albumImgUrl} alt={albumName} />
+					<PostBodyImg album src={albumImgUrl} alt={albumName} />
 				) : (
 					<BrokenImageSVG />
 				)}

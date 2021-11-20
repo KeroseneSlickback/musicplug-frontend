@@ -292,7 +292,7 @@ export const PostBodyInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-evenly;
 	width: 100%;
 	/* padding: 8px; */
 	background-color: ${props => props.theme.subdued};
@@ -335,7 +335,7 @@ export const PostBodyTextInnerDiv = styled.div`
 	flex-shrink: 0;
 
 	@media ${devices.tabletL} {
-		padding: 8px;
+		/* padding: 4px; */
 	}
 `;
 
@@ -368,6 +368,7 @@ export const PostBodyImgDiv = styled.div`
 	justify-content: center;
 	align-items: center;
 	margin: 2px 0 2px 0;
+	position: relative;
 
 	@media ${devices.mobileL} {
 		flex-direction: column;
@@ -382,6 +383,11 @@ export const PostBodyImgDiv = styled.div`
 
 export const PostBodyInfoBlock = styled.div`
 	margin: 4px;
+	display: flex;
+	max-width: 250px;
+	flex-direction: column;
+	@media ${devices.mobileL} {
+	}
 `;
 
 // export const PostBodyInfoWrapper = styled.div` `
@@ -393,6 +399,55 @@ export const PostBodyImg = styled.img`
 	width: 100px;
 	object-fit: cover;
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
+
+	${props =>
+		props.artist &&
+		css`
+			@media ${devices.tabletS} {
+				width: 200px;
+				height: 200px;
+			}
+			/* @media ${devices.tabletM} {
+				width: 100px;
+				height: 100px;
+			} */
+			/* @media ${devices.tabletL} {
+				width: 200px;
+				height: 200px;
+			} */
+		`}
+
+	${props =>
+		props.album &&
+		css`
+			@media ${devices.tabletS} {
+				height: 75px;
+				width: 75px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			/* @media ${devices.tabletM} {
+				height: 100px;
+				width: 100px;
+				position: static;
+			} */
+			/* @media ${devices.tabletL} {
+				height: 75px;
+				width: 75px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			} */
+		`}
+
+	@media ${devices.mobileL} {
+		margin: 4px 0;
+	}
+
+	@media ${devices.tabletS} {
+		margin: 0 4px;
+	}
 `;
 
 export const PostBodyInfoMiniDiv = styled.div`

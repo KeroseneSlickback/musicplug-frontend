@@ -57,7 +57,7 @@ function MainSidebar() {
 			<NewPostDiv>
 				<a href="/newpost">
 					<AddSVG />
-					New Post
+					<p>New Post</p>
 				</a>
 			</NewPostDiv>
 		</GenreBlockDiv>

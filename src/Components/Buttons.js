@@ -162,7 +162,7 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 			font-size: 0.9rem;
 		`}
 	@media ${devices.tabletM} {
-		padding: 8px 14px;
+		padding: 7px 14px;
 		font-size: 1rem;
 		${props =>
 			props.bottom &&
@@ -404,7 +404,7 @@ export const MediumStyledReactDomLinkPrimary = styled(Link)`
 	}
 
 	@media ${devices.tabletM} {
-		padding: 9px 14px;
+		padding: 8px 14px;
 		font-size: 1rem;
 	}
 `;
@@ -417,7 +417,8 @@ export const WideStyledLinkButton = styled.a`
 	border-radius: 6px;
 	text-decoration: none;
 	/* width: 100%; */
-	width: 200px;
+	width: 100%;
+	max-width: 250px;
 	background-color: ${props => props.theme.hero};
 	display: flex;
 	flex-direction: row;
@@ -427,6 +428,7 @@ export const WideStyledLinkButton = styled.a`
 	&:hover {
 		background-color: ${props => props.theme.liteHero};
 	}
+	align-self: center;
 `;
 
 export const TinyButton = styled.button`
@@ -490,7 +492,7 @@ export const GenreLinkButton = styled(Link)`
 
 	@media ${devices.tabletL} {
 		font-size: 1.3rem;
-		height: 50px;
+		height: 46px;
 		width: 120px;
 		margin: 4px 0 4px 0;
 	}
