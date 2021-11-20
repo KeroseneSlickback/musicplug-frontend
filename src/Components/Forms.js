@@ -15,7 +15,7 @@ export const FormContainer = styled.div`
 `;
 
 export const FormH1 = styled.h1`
-	width: 400px;
+	max-width: 400px;
 	color: ${props => props.theme.fontColor};
 	font-size: 1.6rem;
 	padding-bottom: 18px;
@@ -92,6 +92,10 @@ export const PostInput = styled.input`
 	height: 30px;
 	font-size: 0.9rem;
 	margin-bottom: 8px;
+	@media ${devices.tabletM} {
+		font-size: 1rem;
+		height: 32px;
+	}
 `;
 
 export const PostInputRadioDiv = styled.div`
@@ -110,6 +114,7 @@ export const PostTextArea = styled(PostInput).attrs({
 	height: 180px;
 	font-size: inherit;
 	white-space: pre-wrap;
+	margin: 0;
 `;
 
 export const CommentTextLabel = styled.label`
@@ -146,6 +151,12 @@ export const PostSelect = styled.select`
 	height: 28px;
 	cursor: pointer;
 	color: ${props => props.theme.fontColor};
+	margin: 0 0 4px 0;
+
+	@media ${devices.tabletM} {
+		height: 32px;
+		font-size: 1rem;
+	}
 `;
 
 export const DropDownArtist = styled.div`
@@ -168,6 +179,27 @@ export const DropDownArtist = styled.div`
 	p {
 		margin-left: 16px;
 		font-size: 1.1rem;
+	}
+
+	@media ${devices.tabletS} {
+		img,
+		svg {
+			height: 86px;
+			width: 86px;
+		}
+		p {
+			font-size: 1.3rem;
+		}
+	}
+	@media ${devices.tabletL} {
+		img,
+		svg {
+			height: 100px;
+			width: 100px;
+		}
+		p {
+			font-size: 1.6rem;
+		}
 	}
 `;
 
@@ -212,6 +244,16 @@ export const DropDownAlbumDiv = styled.div`
 	grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
 	gap: 4px;
 	gap: 4px;
+
+	@media ${devices.tabletS} {
+		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+		grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+	}
+
+	@media ${devices.tabletL} {
+		grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+		grid-template-rows: repeat(auto-fill, minmax(130px, 1fr));
+	}
 `;
 
 export const DropDownAlbumSingle = styled.div`
@@ -316,7 +358,7 @@ export const DropDownTrackDiv = styled.div`
 
 export const DropDownTrackSingle = styled.div`
 	display: grid;
-	grid-template-columns: 58px 1fr;
+	grid-template-columns: 1fr 20fr;
 	align-items: center;
 	margin: 0;
 	border-radius: 6px;
@@ -346,6 +388,17 @@ export const DropDownTrackSingle = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+	}
+
+	@media ${devices.tabletM} {
+		img,
+		svg {
+			height: 56px;
+			width: 56px;
+		}
+		p {
+			font-size: 1rem;
+		}
 	}
 `;
 

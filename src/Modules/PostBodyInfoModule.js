@@ -8,6 +8,8 @@ import {
 	PostBodyInfoP,
 	PostBodyInfoMiniDiv,
 	PostBodyButtonDiv,
+	PostBodyInfoBlock,
+	PostBodyInfoWrapper,
 } from '../Components/PostComponents';
 
 import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
@@ -73,7 +75,7 @@ function PostBodyInfoModule(props) {
 					<BrokenImageSVG />
 				)}
 			</PostBodyImgDiv>
-			<div>
+			<PostBodyInfoBlock>
 				{artistName !== '' ? (
 					<PostBodyInfoMiniDiv>
 						<PostBodyInfoLabelP>Artist</PostBodyInfoLabelP>
@@ -98,11 +100,11 @@ function PostBodyInfoModule(props) {
 						<PostBodyInfoP>{formattedGenre.genre}</PostBodyInfoP>
 					</PostBodyInfoMiniDiv>
 				) : null}
-			</div>
-			<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
-				Listen on Spotify
-				<SpotifySVG small />
-			</WideStyledLinkButton>
+				<WideStyledLinkButton href={trackUrl} target="_blank" rel="noreferrer">
+					Listen on Spotify
+					<SpotifySVG small />
+				</WideStyledLinkButton>
+			</PostBodyInfoBlock>
 		</PostBodyInfoContainer>
 	);
 }

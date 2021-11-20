@@ -364,7 +364,7 @@ function NewPost() {
 	}, [autoTrackData]);
 
 	return (
-		<StylePageContainer>
+		<StylePageContainer margin>
 			{loggedIn === false ? (
 				<PageInfoContainer>
 					<FormH1>Please Register or Login to create a new post.</FormH1>
@@ -468,8 +468,6 @@ function NewPost() {
 							<PostLabel htmlFor="text">Explain your recommendation:</PostLabel>
 							<PostTextArea
 								name="body"
-								cols="50"
-								rows="15"
 								placeholder="This time when I was searching bandcamp, I came across this artist..."
 								value={postData.body}
 								onChange={handlePostChange}

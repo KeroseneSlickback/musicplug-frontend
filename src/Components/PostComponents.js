@@ -292,15 +292,23 @@ export const PostBodyInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	width: 100%;
 	/* padding: 8px; */
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
-	border-radius: 6px;
 	padding: 8px;
 
 	@media ${devices.mobileL} {
-		width: 224px;
+		flex-direction: row;
+	}
+
+	@media ${devices.tabletS} {
+		border-radius: 6px;
+	}
+
+	@media ${devices.tabletM} {
+		flex-direction: column;
 	}
 `;
 
@@ -326,7 +334,7 @@ export const PostBodyTextInnerDiv = styled.div`
 	flex-basis: 150px;
 	flex-shrink: 0;
 
-	@media ${devices.tabletM} {
+	@media ${devices.tabletL} {
 		padding: 8px;
 	}
 `;
@@ -354,13 +362,29 @@ export const PostBodyContentDiv = styled.div`
 `;
 
 export const PostBodyImgDiv = styled.div`
-	width: 100%;
+	/* width: 100%; */
 	display: flex;
 	flex-direction: row;
-	/* justify-content: space-between; */
 	justify-content: center;
-	margin-bottom: 4px;
+	align-items: center;
+	margin: 2px 0 2px 0;
+
+	@media ${devices.mobileL} {
+		flex-direction: column;
+		margin: 0 4px 0 4px;
+	}
+
+	@media ${devices.tabletS} {
+		flex-direction: row;
+		margin: 2px 0 2px 0;
+	}
 `;
+
+export const PostBodyInfoBlock = styled.div`
+	margin: 4px;
+`;
+
+// export const PostBodyInfoWrapper = styled.div` `
 
 export const PostBodyImg = styled.img`
 	margin: 0 4px;
@@ -412,6 +436,7 @@ export const CommentP = styled.p`
 	white-space: normal;
 	line-height: 1.1;
 	margin-left: 8px;
+	font-size: 0.9rem;
 `;
 
 export const EditDeleteButtonDiv = styled.div`

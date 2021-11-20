@@ -21,11 +21,11 @@ function Post() {
 	return (
 		<PostBodyContainer>
 			{error !== null ? (
-				<StylePageContainer>
+				<StylePageContainer margin>
 					<WarningModule string="Something went wrong. Please refresh the page and try again." />
 				</StylePageContainer>
 			) : load || data === '' ? (
-				<StylePageContainer>
+				<StylePageContainer margin>
 					<CenteredModuleDiv fade>
 						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 					</CenteredModuleDiv>

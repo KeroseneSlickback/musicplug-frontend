@@ -149,6 +149,7 @@ export const EmptyLikeButton = styled.button`
 `;
 
 export const MediumStyledButton = styled(SmallStyledButton)`
+	margin: 4px;
 	padding: 6px 12px;
 	font-size: 0.8rem;
 	border-radius: 6px;
@@ -481,6 +482,13 @@ export const GenreLinkButton = styled(Link)`
 	}
 
 	@media ${devices.tabletM} {
+		font-size: 1rem;
+		height: 40px;
+		width: 100px;
+		margin: 4px 0 4px 0;
+	}
+
+	@media ${devices.tabletL} {
 		font-size: 1.3rem;
 		height: 50px;
 		width: 120px;

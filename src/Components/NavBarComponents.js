@@ -7,7 +7,7 @@ export const NavHeader = styled.header`
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 	background-color: ${props => props.theme.subdued};
-	width: 100vw;
+	width: 100%;
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 `;
 

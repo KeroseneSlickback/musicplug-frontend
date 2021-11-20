@@ -2,17 +2,15 @@ import styled, { css } from 'styled-components';
 import { devices } from '../Styles/Variables';
 
 export const ContentContainer = styled.main`
-	/* width: 100vw; */
+	width: 100%;
 	@media ${devices.tabletS} {
-		margin: 0 16px 0 0;
-		width: 80vw;
+		/* margin: 0 16px 0 0; */
 		max-width: 750px;
 	}
 `;
 
 export const MainPageContainer = styled.div`
 	min-height: 100vh;
-	min-width: 100vw;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -20,14 +18,23 @@ export const MainPageContainer = styled.div`
 
 export const PageContainer = styled.div`
 	@media ${devices.tabletS} {
-		margin: 8px;
+		padding: 8px;
 		border-radius: 6px;
 	}
 `;
 
 export const StylePageContainer = styled(PageContainer)`
+	/* width: 100%; */
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
+
+	${props =>
+		props.margin &&
+		css`
+			@media ${devices.tabletS} {
+				margin: 8px;
+			}
+		`}
 `;
 
 export const LoadingPageContainer = styled.div`
@@ -60,9 +67,9 @@ export const ModalContainer = styled.div`
 	${props =>
 		props.delete &&
 		css`
+			width: 30px;
 			position: fixed;
 			background-color: ${props => props.theme.background};
-			width: 300px;
 		`}
 
 		@media ${devices.tabletS} {
@@ -75,7 +82,8 @@ export const ModalContainer = styled.div`
 
 export const PostContainer = styled(StylePageContainer)`
 	display: flex;
-	margin: 8px 0;
+	margin-top: 8px;
+	padding: 0;
 	flex-direction: column;
 	justify-content: space-between;
 
@@ -132,7 +140,7 @@ export const CenterPageDiv = styled.div`
 	@media ${devices.tabletS} {
 		align-items: flex-start;
 		flex-direction: row;
-		margin: 0 18px;
+		padding: 0 18px;
 	}
 `;
 
@@ -180,13 +188,13 @@ export const NewPostDiv = styled.div`
 
 export const HomePageButtonDiv = styled.div`
 	width: 100%;
-	padding: 4px 18px;
+	padding: 2px 18px 4px 0;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 
 	@media ${devices.tabletS} {
-		padding: 0;
+		padding: 8px 0 0 0;
 	}
 `;
 

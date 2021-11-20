@@ -21,6 +21,7 @@ import DeleteModal from './DeleteModal';
 import AuthContext from '../../Utilities/AuthContext';
 import ConfirmMessageModule from '../ConfirmMessageModule';
 import WarningModule from '../WarningModule';
+import { Backdrop } from '../../Components/Backdrop';
 
 function UserModal(props) {
 	const history = useHistory();

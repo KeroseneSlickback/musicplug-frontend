@@ -116,7 +116,7 @@ function Register() {
 	}, [spotifyVer]);
 
 	return (
-		<StylePageContainer>
+		<StylePageContainer margin>
 			<FormContainer>
 				<FormH1>Welcome to MusicPlug!</FormH1>
 				{spotifyVer ? (

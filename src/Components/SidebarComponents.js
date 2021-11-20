@@ -50,6 +50,15 @@ export const NewPostDiv = styled.div`
 
 	@media ${devices.tabletM} {
 		a {
+			font-size: 1rem;
+			height: 40px;
+			width: 100px;
+			margin: 0px 0 4px 0;
+		}
+	}
+
+	@media ${devices.tabletL} {
+		a {
 			font-size: 1.2rem;
 			height: 50px;
 			width: 120px;
