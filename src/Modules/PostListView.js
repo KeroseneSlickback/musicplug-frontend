@@ -7,6 +7,7 @@ import {
 	LoadingPageContainer,
 	PostListContainer,
 } from '../Components/Containers';
+import RegularMessageModule from './RegularMessageModule';
 
 function PostListView({ data, load, countLoad }) {
 	return (
@@ -17,6 +18,8 @@ function PostListView({ data, load, countLoad }) {
 						<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 					</CenteredModuleDiv>
 				</LoadingPageContainer>
+			) : data.data?.length === 0 ? (
+				<RegularMessageModule string="No posts found. Create a New Post!" />
 			) : (
 				data.data?.map(post => {
 					return <PostModule data={post} key={post._id} />;
