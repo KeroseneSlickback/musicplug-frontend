@@ -416,7 +416,6 @@ export const WideStyledLinkButton = styled.a`
 	padding: 6px 14px;
 	border-radius: 6px;
 	text-decoration: none;
-	/* width: 100%; */
 	width: 100%;
 	max-width: 250px;
 	background-color: ${props => props.theme.hero};

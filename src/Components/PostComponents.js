@@ -384,7 +384,7 @@ export const PostBodyImgDiv = styled.div`
 export const PostBodyInfoBlock = styled.div`
 	margin: 4px;
 	display: flex;
-	max-width: 250px;
+	max-width: 350px;
 	flex-direction: column;
 	@media ${devices.mobileL} {
 	}

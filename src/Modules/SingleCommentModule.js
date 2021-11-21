@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { InactiveUserButton, TinyButton } from '../Components/Buttons';
 import {
 	SinglePostDiv,
-	PostUserDiv,
 	CommentP,
 	EditDeleteButtonDiv,
 	CommentBottomBarDiv,

@@ -7,9 +7,7 @@ import {
 	PostBodyInfoLabelP,
 	PostBodyInfoP,
 	PostBodyInfoMiniDiv,
-	PostBodyButtonDiv,
 	PostBodyInfoBlock,
-	PostBodyInfoWrapper,
 } from '../Components/PostComponents';
 
 import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';

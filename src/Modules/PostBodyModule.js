@@ -7,13 +7,11 @@ import {
 	TinyButton,
 } from '../Components/Buttons';
 import {
-	PostBottomDiv,
 	PostBodyButtonDiv,
 	PostBodyH1,
 	PostBodyTextDiv,
 	PostBodyContentDiv,
 	PostBodyTextInnerDiv,
-	PostUserDiv,
 	EditDeleteButtonDiv,
 	PostBodyRightButtonDiv,
 } from '../Components/PostComponents';
@@ -90,9 +88,9 @@ function PostBodyModule(props) {
 							},
 						}
 					)
-					.then(res => {
-						console.log(res);
-					})
+					// .then(res => {
+					// 	console.log(res);
+					// })
 					.catch(err => {
 						console.log(err);
 					});
@@ -109,9 +107,9 @@ function PostBodyModule(props) {
 							},
 						}
 					)
-					.then(res => {
-						console.log(res);
-					})
+					// .then(res => {
+					// 	console.log(res);
+					// })
 					.catch(err => {
 						console.log(err);
 					});

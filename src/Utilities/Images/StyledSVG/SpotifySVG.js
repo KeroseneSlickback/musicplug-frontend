@@ -35,7 +35,7 @@ const Svg = styled(Icon)`
 	${props =>
 		props.small &&
 		css`
-			margin: 0px;
+			margin: 0 0 0 8px;
 			height: 25px;
 			width: 25px;
 			border-radius: 50%;
@@ -89,7 +89,7 @@ const Svg = styled(Icon)`
 		${props =>
 			props.small &&
 			css`
-				margin: 0px;
+				margin: 0 0 0 8px;
 				height: 25px;
 				width: 25px;
 				border-radius: 50%;

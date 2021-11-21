@@ -5,7 +5,7 @@ export const ContentContainer = styled.main`
 	width: 100%;
 	@media ${devices.tabletS} {
 		/* margin: 0 16px 0 0; */
-		max-width: 750px;
+		max-width: 800px;
 	}
 `;
 

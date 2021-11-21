@@ -9,12 +9,10 @@ import {
 } from '../Components/Buttons';
 import { PostContainer } from '../Components/Containers';
 import {
-	PostBottomDiv,
 	PostButtonDiv,
 	PostImg,
 	PostTopDiv,
 	TextDiv,
-	PostUserDiv,
 	PostViewImgUserDiv,
 } from '../Components/PostComponents';
 
@@ -105,9 +103,9 @@ function PostModule(props) {
 							},
 						}
 					)
-					.then(res => {
-						console.log(res);
-					})
+					// .then(res => {
+					// 	console.log(res);
+					// })
 					.catch(err => {
 						console.log(err);
 					});
@@ -124,9 +122,9 @@ function PostModule(props) {
 							},
 						}
 					)
-					.then(res => {
-						console.log(res);
-					})
+					// .then(res => {
+					// 	console.log(res);
+					// })
 					.catch(err => {
 						console.log(err);
 					});
