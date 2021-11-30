@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { WideStyledLinkButton } from '../Components/Buttons';
+import { WideStyledLinkButton } from '../../Components/Buttons';
 import {
 	PostBodyImgDiv,
 	PostBodyInfoContainer,
@@ -8,10 +8,10 @@ import {
 	PostBodyInfoP,
 	PostBodyInfoMiniDiv,
 	PostBodyInfoBlock,
-} from '../Components/PostComponents';
+} from '../../Components/PostComponents';
 
-import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
-import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
+import { BrokenImageSVG } from '../../Utilities/Images/StyledSVG/BrokenImageSVG';
+import { SpotifySVG } from '../../Utilities/Images/StyledSVG/SpotifySVG';
 
 function PostBodyInfoModule(props) {
 	const { genre } = props.data;

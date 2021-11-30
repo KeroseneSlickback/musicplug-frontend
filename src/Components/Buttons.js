@@ -135,19 +135,6 @@ export const SmallEmptyButton = styled(SmallButton)`
 	}
 `;
 
-export const EmptyLikeButton = styled.button`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	color: ${props => props.theme.fontColorAlt};
-	border: none;
-	cursor: pointer;
-	background-color: inherit;
-	border-radius: 6px;
-	text-decoration: none;
-`;
-
 export const MediumStyledButton = styled(SmallStyledButton)`
 	margin: 4px;
 	padding: 6px 12px;
@@ -171,11 +158,6 @@ export const MediumStyledButton = styled(SmallStyledButton)`
 				font-size: 1rem;
 			`}
 	}
-`;
-
-export const LargeStyledButton = styled(MediumStyledButton)`
-	width: 100%;
-	text-decoration: none;
 `;
 
 export const CloseButtonDiv = styled.div`
@@ -359,27 +341,6 @@ export const SmallStyledReactDomLink = styled(Link)`
 
 	@media ${devices.tabletM} {
 		font-size: 0.8rem;
-	}
-`;
-
-export const MediumStyledReactDomLink = styled(Link)`
-	color: ${props => props.theme.fontColor};
-	border: none;
-	cursor: pointer;
-	text-decoration: none;
-	display: flex;
-	align-items: center;
-	img {
-		margin-right: 4px;
-	}
-
-	background-color: ${props => props.theme.secondary};
-	padding: 8px 16px;
-	font-size: 1rem;
-	border-radius: 6px;
-
-	&:hover {
-		background-color: ${props => props.theme.secondaryAlt};
 	}
 `;
 

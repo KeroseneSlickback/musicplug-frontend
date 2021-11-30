@@ -237,9 +237,6 @@ export const DropDownAlbumDiv = styled.div`
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	border-radius: 6px;
 	display: grid;
-	/* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	grid-template-rows: repeat(auto-fill, minmax(150px, 1fr)); */
-
 	grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
 	grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
 	gap: 4px;
@@ -294,7 +291,6 @@ export const DropDownAlbumSingle = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		color: white;
-		/* font-size: 1rem; */
 		font-size: 0.8rem;
 	}
 

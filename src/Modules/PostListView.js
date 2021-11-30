@@ -7,7 +7,7 @@ import {
 	LoadingPageContainer,
 	PostListContainer,
 } from '../Components/Containers';
-import RegularMessageModule from './RegularMessageModule';
+import RegularMessageModule from './MessageComponents/RegularMessageModule';
 
 function PostListView({ data, load, countLoad }) {
 	return (

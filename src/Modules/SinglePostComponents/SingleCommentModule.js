@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { InactiveUserButton, TinyButton } from '../Components/Buttons';
+import { InactiveUserButton, TinyButton } from '../../Components/Buttons';
 import {
 	SinglePostDiv,
 	CommentP,
 	EditDeleteButtonDiv,
 	CommentBottomBarDiv,
 	CommentBodyDiv,
-} from '../Components/PostComponents';
+} from '../../Components/PostComponents';
 import CommentPatchModule from './CommentPatchModule';
-import DeleteModal from './Modals/DeleteModal';
-import { Backdrop } from '../Components/Backdrop';
-import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
+import DeleteModal from '../Modals/DeleteModal';
+import { Backdrop } from '../../Components/Backdrop';
+import { UserAccountSVG } from '../../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function SingleCommentModule(props) {
 	const history = useHistory();

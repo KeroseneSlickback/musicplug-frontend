@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConfirmContainer } from '../Components/Messages';
+import { ConfirmContainer } from '../../Components/Messages';
 
 function ConfirmMessageModule({ string }) {
 	return (

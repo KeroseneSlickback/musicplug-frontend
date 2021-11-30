@@ -8,6 +8,8 @@ import NavBar from './NavBar';
 import MainSidebar from './MainSidebar';
 import Footer from './Footer';
 
+// This component wraps the overall app, styled-component styles changes the main sections of the app upon screen resolution change
+
 function MainLayout(props) {
 	return (
 		<MainPageContainer>

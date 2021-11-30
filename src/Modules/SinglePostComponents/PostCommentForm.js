@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { SmallStyledButton } from '../Components/Buttons';
+import { SmallStyledButton } from '../../Components/Buttons';
 import {
 	CommentTextArea,
 	Form,
 	CommentTextLabel,
 	CommentButtonDiv,
-} from '../Components/Forms';
-import { CommentFormDiv } from '../Components/PostComponents';
-import {
-	ConfirmCommentMessage,
-	WarningCommentMessage,
-} from '../Components/Messages';
+} from '../../Components/Forms';
+import { CommentFormDiv } from '../../Components/PostComponents';
+import ConfirmMessageModule from './../MessageComponents/ConfirmMessageModule';
+import WarningMessageModule from './../MessageComponents/WarningMessageModule';
 
 function PostCommentForm(props) {
 	const { id } = props;
@@ -61,14 +59,10 @@ function PostCommentForm(props) {
 					required
 				/>
 				{confirm ? (
-					<ConfirmCommentMessage>
-						<p>Comment successfully created.</p>
-					</ConfirmCommentMessage>
+					<ConfirmMessageModule string="Comment successfully created." />
 				) : null}
 				{submitError ? (
-					<WarningCommentMessage>
-						<p>Something went wrong. Please refresh page and try again.</p>
-					</WarningCommentMessage>
+					<WarningMessageModule string="Something went wrong. Please refresh page and try again." />
 				) : null}
 				<CommentButtonDiv>
 					<SmallStyledButton smaller>Submit</SmallStyledButton>

@@ -5,6 +5,8 @@ import { AddSVG } from '../../Utilities/Images/StyledSVG/AddSVG';
 
 import GenreTab from '../GenreTab';
 
+// This array of objects holds the genre sorting infomation
+// React key, redirect path, proper genre title, and additional styling for that genre
 const genres = [
 	{ key: 0, path: '/genre/pop', genre: 'Pop', style: '2px solid #E833D3' },
 	{

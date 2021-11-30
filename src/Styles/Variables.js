@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+// Global variables, themes, Global styles, and media breaks
+
 export const DarkTheme = {
 	hero: '#40B590',
 	primary: '#c52772',

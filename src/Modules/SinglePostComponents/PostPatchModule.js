@@ -6,7 +6,7 @@ import {
 	PostLabel,
 	PostPatchDiv,
 	PostTextArea,
-} from '../Components/Forms';
+} from '../../Components/Forms';
 
 function PostPatchModule(props) {
 	return (

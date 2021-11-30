@@ -15,6 +15,7 @@ import { DarkTheme, LightTheme, GlobalStyles } from './Styles/Variables';
 function App() {
 	const [theme, setTheme] = useState('dark');
 
+	// Theme toggle from dark/light with styled-components
 	const setMode = mode => {
 		localStorage.setItem('theme', mode);
 		setTheme(mode);

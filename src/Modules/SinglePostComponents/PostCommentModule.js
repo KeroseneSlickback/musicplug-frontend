@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
 	PostBodyCommentContainer,
 	PostBodyCommentH1,
-} from '../Components/PostComponents';
+} from '../../Components/PostComponents';
 import PostCommentForm from './PostCommentForm';
 import SingleCommentModule from './SingleCommentModule';
 

@@ -8,11 +8,11 @@ import {
 	PostBodyGridContainer,
 } from '../Components/PostComponents';
 import { CenteredModuleDiv } from '../Components/Forms';
-import PostBodyModule from '../Modules/PostBodyModule';
+import PostBodyModule from '../Modules/SinglePostComponents/PostBodyModule';
 import useFetchSinglePost from '../Utilities/Hooks/useFetchSinglePost';
-import PostBodyInfoModule from '../Modules/PostBodyInfoModule';
-import PostCommentModule from '../Modules/PostCommentModule';
-import WarningModule from '../Modules/WarningModule';
+import PostBodyInfoModule from '../Modules/SinglePostComponents/PostBodyInfoModule';
+import PostCommentModule from '../Modules/SinglePostComponents/PostCommentModule';
+import WarningMessageModule from '../Modules/MessageComponents/WarningMessageModule';
 
 function Post() {
 	const { id } = useParams();
@@ -22,7 +22,7 @@ function Post() {
 		<PostBodyContainer>
 			{error !== null ? (
 				<StylePageContainer margin>
-					<WarningModule string="Something went wrong. Please refresh the page and try again." />
+					<WarningMessageModule string="Something went wrong. Please refresh the page and try again." />
 				</StylePageContainer>
 			) : load || data === '' ? (
 				<StylePageContainer margin>

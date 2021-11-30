@@ -5,7 +5,7 @@ import {
 	InactiveUserButton,
 	SmallEmptyButton,
 	TinyButton,
-} from '../Components/Buttons';
+} from '../../Components/Buttons';
 import {
 	PostBodyButtonDiv,
 	PostBodyH1,
@@ -14,14 +14,14 @@ import {
 	PostBodyTextInnerDiv,
 	EditDeleteButtonDiv,
 	PostBodyRightButtonDiv,
-} from '../Components/PostComponents';
+} from '../../Components/PostComponents';
 
-import { FullHeart } from '../Utilities/Images/StyledSVG/FullHeart.js';
-import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
+import { FullHeart } from '../../Utilities/Images/StyledSVG/FullHeart.js';
+import { EmptyHeart } from '../../Utilities/Images/StyledSVG/EmptyHeart.js';
 import PostPatchModule from './PostPatchModule';
-import DeleteModal from './Modals/DeleteModal';
-import { Backdrop } from '../Components/Backdrop';
-import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
+import DeleteModal from './../Modals/DeleteModal';
+import { Backdrop } from '../../Components/Backdrop';
+import { UserAccountSVG } from '../../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function PostBodyModule(props) {
 	const history = useHistory();
@@ -68,7 +68,6 @@ function PostBodyModule(props) {
 			body,
 		});
 		const newBody = body.split('\n');
-		// .map(str => <p>{str}</p>);
 		setFormattedBody(newBody);
 	}, [title, body]);
 
@@ -88,9 +87,6 @@ function PostBodyModule(props) {
 							},
 						}
 					)
-					// .then(res => {
-					// 	console.log(res);
-					// })
 					.catch(err => {
 						console.log(err);
 					});
@@ -107,9 +103,6 @@ function PostBodyModule(props) {
 							},
 						}
 					)
-					// .then(res => {
-					// 	console.log(res);
-					// })
 					.catch(err => {
 						console.log(err);
 					});

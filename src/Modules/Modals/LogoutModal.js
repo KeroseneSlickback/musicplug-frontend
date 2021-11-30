@@ -9,18 +9,18 @@ import {
 	CloseButton,
 	CloseButtonDiv,
 } from '../../Components/Buttons';
-import ConfirmMessageModule from '../ConfirmMessageModule';
+import ConfirmMessageModule from '../MessageComponents/ConfirmMessageModule';
 
 function LoginModal(props) {
 	const history = useHistory();
 	const [confirm, setConfirm] = useState(false);
 	const authContext = useContext(AuthContext);
 
-	function closeHandler() {
+	const closeHandler = () => {
 		props.closeModal();
-	}
+	};
 
-	function logoutHandler(e) {
+	const logoutHandler = e => {
 		e.preventDefault();
 		setConfirm(true);
 		localStorage.removeItem('user');
@@ -30,7 +30,7 @@ function LoginModal(props) {
 			props.closeModal();
 			history.go(0);
 		}, 1000);
-	}
+	};
 
 	return (
 		<ModalContainer>

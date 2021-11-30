@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
+// Currently unused, but kept for demonstration and documentation purposes
+
 /*
 
 Input:

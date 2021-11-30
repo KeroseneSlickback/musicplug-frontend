@@ -4,7 +4,6 @@ import { devices } from '../Styles/Variables';
 export const ContentContainer = styled.main`
 	width: 100%;
 	@media ${devices.tabletS} {
-		/* margin: 0 16px 0 0; */
 		max-width: 800px;
 	}
 `;
@@ -24,7 +23,6 @@ export const PageContainer = styled.div`
 `;
 
 export const StylePageContainer = styled(PageContainer)`
-	/* width: 100%; */
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 
@@ -42,7 +40,6 @@ export const LoadingPageContainer = styled.div`
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	@media ${devices.tabletS} {
-		/* width: 100%; */
 		border-radius: 6px;
 	}
 `;

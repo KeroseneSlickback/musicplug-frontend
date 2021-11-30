@@ -14,7 +14,9 @@ export const getReturnedParamsFromCallback = hash => {
 export const callForSpotifyRefresh = () => {
 	const refresh_token = localStorage.getItem('spotify_refresh');
 	axios
-		.get('http://localhost:8888/refresh_token', { params: { refresh_token } })
+		.get('http://localhost:8888/spotify/refresh_token', {
+			params: { refresh_token },
+		})
 		.then(res => {
 			localStorage.setItem('spotify_access', res.data.access_token);
 			return true;

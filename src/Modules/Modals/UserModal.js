@@ -19,8 +19,8 @@ import {
 } from '../../Components/Forms';
 import DeleteModal from './DeleteModal';
 import AuthContext from '../../Utilities/AuthContext';
-import ConfirmMessageModule from '../ConfirmMessageModule';
-import WarningModule from '../WarningModule';
+import ConfirmMessageModule from '../MessageComponents/ConfirmMessageModule';
+import WarningMessageModule from '../MessageComponents/WarningMessageModule';
 
 function UserModal(props) {
 	const history = useHistory();
@@ -133,7 +133,7 @@ function UserModal(props) {
 							<ConfirmMessageModule string="Username changed." />
 						) : null}
 						{usernameError ? (
-							<WarningModule string="Error. Please refresh and try again." />
+							<WarningMessageModule string="Error. Please refresh and try again." />
 						) : null}
 					</FormBlock>
 					<MediumStyledButton>Submit</MediumStyledButton>
@@ -153,7 +153,7 @@ function UserModal(props) {
 							<ConfirmMessageModule string="Password updated." />
 						) : null}
 						{passwordError ? (
-							<WarningModule string="Error. Please refresh and try again." />
+							<WarningMessageModule string="Error. Please refresh and try again." />
 						) : null}
 					</FormBlock>
 					<MediumStyledButton>Submit</MediumStyledButton>

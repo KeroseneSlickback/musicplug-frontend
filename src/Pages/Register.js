@@ -15,8 +15,8 @@ import {
 } from './../Components/Forms';
 import { StylePageContainer } from '../Components/Containers';
 import { MediumStyledButton, SpotifyButton } from './../Components/Buttons';
-import WarningModule from '../Modules/WarningModule';
-import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
+import WarningMessageModule from '../Modules/MessageComponents/WarningMessageModule';
+import ConfirmMessageModule from '../Modules/MessageComponents/ConfirmMessageModule';
 import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
 
 function Register() {
@@ -36,15 +36,15 @@ function Register() {
 		spotifyLink: '',
 	});
 
-	function handleChange(e) {
+	const handleChange = e => {
 		const { name, value } = e.target;
 		setRegisterData(prevState => ({
 			...prevState,
 			[name]: value,
 		}));
-	}
+	};
 
-	function registerUser() {
+	const registerUser = () => {
 		axios
 			.post('http://localhost:8888/users/register', registerData)
 			.then(response => {
@@ -61,9 +61,9 @@ function Register() {
 			.catch(error => {
 				setRegisterError(true);
 			});
-	}
+	};
 
-	function registerHandler(e) {
+	const registerHandler = e => {
 		e.preventDefault();
 		if (registerData.password !== registerData.passwordConfirmation) {
 			setPasswordMatch(true);
@@ -73,7 +73,7 @@ function Register() {
 		} else {
 			registerUser();
 		}
-	}
+	};
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('spotify_access');
@@ -168,23 +168,23 @@ function Register() {
 							/>
 						</FormBlock>
 						{passwordMatch ? (
-							<WarningModule string="Passwords do not match." />
+							<WarningMessageModule string="Passwords do not match." />
 						) : null}
 						{passwordLength ? (
-							<WarningModule string="Password must be at least 7 characters long." />
+							<WarningMessageModule string="Password must be at least 7 characters long." />
 						) : null}
 						{confirm ? (
 							<ConfirmMessageModule string="You've successfully registered." />
 						) : null}
 						{registerError ? (
-							<WarningModule string="Something went wrong. Please refresh the page and try again." />
+							<WarningMessageModule string="Something went wrong. Please refresh the page and try again." />
 						) : null}
 						<MediumStyledButton bottom>Create your Account</MediumStyledButton>
 					</Form>
 				) : (
 					<FormBlock spotify>
 						<h3>Please verify your account with Spotify first.</h3>
-						<SpotifyButton href="http://localhost:8888/login">
+						<SpotifyButton href="http://localhost:8888/spotify/login">
 							<SpotifySVG />
 						</SpotifyButton>
 					</FormBlock>

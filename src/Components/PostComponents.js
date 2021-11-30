@@ -5,7 +5,6 @@ import { devices } from '../Styles/Variables';
 export const PostTopDiv = styled.div`
 	padding: 0 18px;
 	background-color: ${props => props.theme.subdued};
-	/* border-radius: 6px; */
 	&:hover {
 		background-color: ${props => props.theme.subduedAlt};
 	}
@@ -82,25 +81,6 @@ export const PostViewImgUserDiv = styled.div`
 	justify-content: space-between;
 `;
 
-// export const PostBottomDiv = styled.div`
-// 	padding: 0 18px;
-// 	display: flex;
-// 	flex-direction: row;
-// 	flex-wrap: wrap;
-// 	justify-content: space-between;
-// 	align-items: flex-start;
-
-// 	${props =>
-// 		props.post &&
-// 		css`
-// 			padding: 0;
-// 		`}
-
-// 	@media ${devices.mobileL} {
-// 		flex-direction: row;
-// 	}
-// `;
-
 export const PostUserDiv = styled.div`
 	background-color: red;
 	height: 25px;
@@ -137,11 +117,6 @@ export const PostUserDiv = styled.div`
 `;
 
 export const PostButtonDiv = styled.div`
-	/* display: flex;
-	flex-grow: 1;
-	align-items: center;
-	justify-content: space-between; */
-	padding: 0 18px;
 	height: 26px;
 	width: 100%;
 	display: grid;
@@ -175,10 +150,6 @@ export const PostButtonDiv = styled.div`
 `;
 
 export const PostBodyButtonDiv = styled.div`
-	/* display: flex;
-	flex-grow: 1;
-	align-items: center;
-	justify-content: space-between; */
 	display: grid;
 	grid-gap: 2px;
 	grid-template-rows: 1fr;
@@ -196,15 +167,11 @@ export const PostBodyButtonDiv = styled.div`
 
 	@media ${devices.mobileL} {
 		grid-template-columns: 3fr 1fr;
-		/* width: auto;
-		display: flex;
-		flex-direction: row; */
 	}
 
 	@media ${devices.tabletM} {
 		padding: 0;
 		width: 100%;
-		/* justify-content: space-evenly; */
 		height: 35px;
 	}
 `;
@@ -226,10 +193,6 @@ export const PostCommentButton = styled(SmallButton)`
 `;
 
 export const PostBodyContainer = styled.div`
-	/* @media ${devices.tabletM} {
-		padding: 0 18px 0 0;
-	} */
-
 	@media ${devices.tabletS} {
 		padding: 8px;
 	}
@@ -250,10 +213,6 @@ export const PostBodyGridContainer = styled.div`
 		'info'
 		'comment';
 	gap: 8px;
-
-	/* @media ${devices.tabletS} {
-		padding: 8px;
-	} */
 
 	@media ${devices.tabletM} {
 		padding: 8px;
@@ -294,7 +253,6 @@ export const PostBodyInfoContainer = styled.div`
 	align-items: center;
 	justify-content: space-evenly;
 	width: 100%;
-	/* padding: 8px; */
 	background-color: ${props => props.theme.subdued};
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	padding: 8px;
@@ -325,18 +283,12 @@ export const PostBodyCommentContainer = styled.div`
 
 export const PostBodyCommentH1 = styled.h1`
 	margin: 0 0 8px 18px;
-	/* margin-bottom: 8px; */
 	font-size: 1rem;
 `;
 
 export const PostBodyTextInnerDiv = styled.div`
-	/* padding: 16px 16px 0px 16px; */
 	flex-basis: 150px;
 	flex-shrink: 0;
-
-	@media ${devices.tabletL} {
-		/* padding: 4px; */
-	}
 `;
 
 export const PostBodyH1 = styled.h1`
@@ -362,7 +314,6 @@ export const PostBodyContentDiv = styled.div`
 `;
 
 export const PostBodyImgDiv = styled.div`
-	/* width: 100%; */
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -390,8 +341,6 @@ export const PostBodyInfoBlock = styled.div`
 	}
 `;
 
-// export const PostBodyInfoWrapper = styled.div` `
-
 export const PostBodyImg = styled.img`
 	margin: 0 4px;
 	border-radius: 6px;
@@ -407,14 +356,6 @@ export const PostBodyImg = styled.img`
 				width: 200px;
 				height: 200px;
 			}
-			/* @media ${devices.tabletM} {
-				width: 100px;
-				height: 100px;
-			} */
-			/* @media ${devices.tabletL} {
-				width: 200px;
-				height: 200px;
-			} */
 		`}
 
 	${props =>
@@ -427,18 +368,6 @@ export const PostBodyImg = styled.img`
 				bottom: 0;
 				left: 0;
 			}
-			/* @media ${devices.tabletM} {
-				height: 100px;
-				width: 100px;
-				position: static;
-			} */
-			/* @media ${devices.tabletL} {
-				height: 75px;
-				width: 75px;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-			} */
 		`}
 
 	@media ${devices.mobileL} {

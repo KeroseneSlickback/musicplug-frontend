@@ -6,8 +6,8 @@ import {
 } from '../../Components/Buttons';
 import { ModalContainer } from '../../Components/Containers';
 import { FormContainer, FormH1 } from '../../Components/Forms';
-import ConfirmMessageModule from '../ConfirmMessageModule';
-import WarningModule from '../WarningModule';
+import ConfirmMessageModule from '../MessageComponents/ConfirmMessageModule';
+import WarningMessageModule from '../MessageComponents/WarningMessageModule';
 
 function DeleteModal(props) {
 	return (
@@ -20,7 +20,7 @@ function DeleteModal(props) {
 					<ConfirmMessageModule string="Account deleted." />
 				) : null}
 				{props.deleteUserError ? (
-					<WarningModule string="Error. Please refresh and try again." />
+					<WarningMessageModule string="Error. Please refresh and try again." />
 				) : null}
 				<div>
 					<MediumStyledButton bottom onClick={props.confirmDelete}>

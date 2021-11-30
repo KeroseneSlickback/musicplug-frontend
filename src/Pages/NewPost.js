@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import ArtistSearchModule from '../Modules/ArtistSearchModule';
-import AlbumSearchModule from '../Modules/AlbumSearchModule';
-import TrackSearchModule from '../Modules/TrackSearchModule';
+import ArtistSearchModule from '../Modules/NewPostComponents/ArtistSearchModule';
+import AlbumSearchModule from '../Modules/NewPostComponents/AlbumSearchModule';
+import TrackSearchModule from '../Modules/NewPostComponents/TrackSearchModule';
 
 import { MediumStyledButton, SpotifyButton } from '../Components/Buttons';
 import {
@@ -33,8 +33,8 @@ import useSpotifyGetAlbums from '../Utilities/Hooks/useSpotifyGetAlbums';
 import useSpotifyGetTracks from '../Utilities/Hooks/useSpotifyGetTracks';
 import useSpotifyGetSingleAlbum from '../Utilities/Hooks/useSpotifyGetSingleAlbum';
 import useSpotifyGetSingleArtist from '../Utilities/Hooks/useSpotifyGetSingleArtist';
-import ConfirmMessageModule from '../Modules/ConfirmMessageModule';
-import WarningModule from '../Modules/WarningModule';
+import ConfirmMessageModule from '../Modules/MessageComponents/ConfirmMessageModule';
+import WarningMessageModule from '../Modules/MessageComponents/WarningMessageModule';
 import { SpotifySVG } from '../Utilities/Images/StyledSVG/SpotifySVG';
 
 function NewPost() {
@@ -63,15 +63,15 @@ function NewPost() {
 		trackUrl: '',
 	});
 
-	function handlePostChange(e) {
+	const handlePostChange = e => {
 		const { name, value } = e.target;
 		setPostData(prevState => ({
 			...prevState,
 			[name]: value,
 		}));
-	}
+	};
 
-	function handleSubmit(e) {
+	const handleSubmit = e => {
 		e.preventDefault();
 		const jwt = localStorage.getItem('jwt');
 		const requestBody = { ...postData, recommendation: selectedData };
@@ -91,12 +91,12 @@ function NewPost() {
 			.catch(err => {
 				setSubmitError(true);
 			});
-		e.target.reset(); // Upon success, redirect to post with post#
-	}
+		e.target.reset();
+	};
 
 	// Searching functions
 
-	// Free-form search
+	// Free-form search states and custom hooks
 	const [artistSearchParams, setArtistSearchParams] = useState({
 		q: '',
 		type: 'artist',
@@ -130,8 +130,7 @@ function NewPost() {
 		error: trackSearchError,
 	} = useSpotifyDebounceFetch(trackSearchParams);
 
-	// By handed down ID
-	// Artist not yet made
+	// Automatic seraches based on given id
 	const [autoAlbumSearchParams, setAutoAlbumSearchParams] = useState({
 		artistId: '',
 		params: {
@@ -156,7 +155,7 @@ function NewPost() {
 		error: autoTrackError,
 	} = useSpotifyGetTracks(autoTrackSearchParams);
 
-	// Single
+	// Single, direct user input search functionality
 	const [singleAlbumSearchParams, setSingleAlbumSearchParams] = useState({
 		albumId: '',
 	});
@@ -175,7 +174,7 @@ function NewPost() {
 		error: singleArtistError,
 	} = useSpotifyGetSingleArtist(singleArtistSearchParams);
 
-	// Module states
+	// The user-facing search area states and functions to set them
 	const [artistState, setArtistState] = useState('');
 	const [artistSearched, setArtistSearched] = useState(false);
 	const handleArtistChange = e => {
@@ -207,6 +206,8 @@ function NewPost() {
 		}));
 	};
 
+	// When a user selects from a list of searched artist/album/tracks,
+	// Several side-effects occur to set state and custom-hook fetch states for auto complete or checking
 	const onArtistSelect = artist => {
 		const artistImgUrl = artist.images[1] ? artist.images[1].url : '';
 		setArtistSearched(true);
@@ -228,6 +229,7 @@ function NewPost() {
 			artistUrl: artist.external_urls.spotify,
 		}));
 	};
+
 	const onAlbumSelect = album => {
 		const albumImgUrl = album.images[1] ? album.images[1].url : '';
 		setAlbumSearched(true);
@@ -261,6 +263,7 @@ function NewPost() {
 			albumUrl: album.external_urls.spotify,
 		}));
 	};
+
 	const onTrackSelect = track => {
 		const albumId = track.album ? track.album.id : selectedData.albumId;
 		const artistId = track.artists[0].id;
@@ -300,6 +303,8 @@ function NewPost() {
 		}
 	};
 
+	// useEffects here check if modules have been previously searched and selected
+	// If not, sets neighboring module's search parameters
 	useEffect(() => {
 		if (albumSearched) {
 			return;
@@ -375,7 +380,7 @@ function NewPost() {
 						<h3>
 							Please verify your account with Spotify before making a new post.
 						</h3>
-						<SpotifyButton href="http://localhost:8888/login">
+						<SpotifyButton href="http://localhost:8888/spotify/login">
 							<SpotifySVG />
 						</SpotifyButton>
 					</FormBlock>
@@ -387,7 +392,6 @@ function NewPost() {
 						Please recommend an artist, album, song, or any combination you wish
 						from Spotify!
 					</h3>
-
 					<ArtistSearchModule
 						selectedData={selectedData}
 						artistState={artistState}
@@ -400,7 +404,6 @@ function NewPost() {
 						singleArtistError={singleArtistError}
 						onSelect={onArtistSelect}
 					/>
-
 					<AlbumSearchModule
 						selectedData={selectedData}
 						albumState={albumState}
@@ -416,7 +419,6 @@ function NewPost() {
 						singleAlbumError={singleAlbumError}
 						onSelect={onAlbumSelect}
 					/>
-
 					<TrackSearchModule
 						selectedData={selectedData}
 						trackState={trackState}
@@ -478,7 +480,7 @@ function NewPost() {
 							<ConfirmMessageModule string="Post successfully created." />
 						) : null}
 						{submitError ? (
-							<WarningModule string="Something went wrong. Please refresh page and try again." />
+							<WarningMessageModule string="Something went wrong. Please refresh page and try again." />
 						) : null}
 						<MediumStyledButton bottom>Submit New Post</MediumStyledButton>
 					</Form>

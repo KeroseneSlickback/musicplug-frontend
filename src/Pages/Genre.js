@@ -5,6 +5,8 @@ import { PageContainer } from '../Components/Containers';
 import Pagination from '../Modules/Pagination';
 import { useParseUrl } from '../Utilities/Hooks/useParseUrl';
 
+// Genre is similar to Home page, but have an added Genre param that sorts accordingly
+
 function Genre() {
 	const { genre } = useParams();
 	const { page: fetchedPage, pathName, sortby } = useParseUrl();
@@ -24,37 +26,12 @@ function Genre() {
 		}));
 	}, [fetchedPage, genre, sortby]);
 
-	const sortByController = expr => {
-		switch (expr) {
-			case 'new':
-				setSearchParams({
-					limit: 5,
-					page: 0,
-					genre,
-					sortby: 'createdAt_desc',
-				});
-				break;
-			case 'top':
-				setSearchParams({
-					limit: 5,
-					page: 0,
-					genre,
-					sortby: 'votes_desc',
-				});
-				break;
-			default:
-				throw new Error();
-		}
-	};
-
 	return (
 		<PageContainer>
 			<Pagination
 				searchParams={searchParams}
 				pathName={pathName}
 				fetchedPage={fetchedPage}
-				// url={url}
-				sortByController={sortByController}
 			/>
 		</PageContainer>
 	);

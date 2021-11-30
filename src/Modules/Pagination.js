@@ -7,20 +7,27 @@ import PostListView from '../Modules/PostListView';
 import useFetchPostCount from '../Utilities/Hooks/useFetchPostCount';
 
 import useFetchPosts from '../Utilities/Hooks/useFetchPosts';
-import WarningModule from './WarningModule';
+import WarningMessageModule from './MessageComponents/WarningMessageModule';
 
-function Pagination({ searchParams, pathName, fetchedPage, sortByController }) {
+// A general purpose pagination function
+// It handles what url to use, how to sort, and pagination between back and front end
+
+function Pagination({ searchParams, pathName, fetchedPage }) {
+	const history = useHistory();
 	const [url, setUrl] = useState('');
 	const [countUrl, setCountUrl] = useState('');
 	const { data, load, error } = useFetchPosts(url, searchParams);
 	const [sortNew, setSortNew] = useState(true);
 	const [endOfPage, setEndOfPage] = useState(false);
-	const history = useHistory();
+	// useFetchPostCount is a direct call to back-end for number of posts based on sorting
+	// There is a limitation in mongoose where it cannot send a total, non-paginated collection count alongside content
 	const { count, countLoad, countError } = useFetchPostCount(
 		countUrl,
 		searchParams
 	);
 
+	// Dynamically change the urls between Home and Genre pages
+	// pathName is given by custom hook called in parent component that parses the given url
 	useEffect(() => {
 		if (pathName.includes('genre')) {
 			setUrl('http://localhost:8888/posts/genre/');
@@ -31,16 +38,20 @@ function Pagination({ searchParams, pathName, fetchedPage, sortByController }) {
 		}
 	}, [pathName]);
 
+	// The setting of whether or not to show back/next buttons on the page
+	// Based on whether or not there are more posts within the collection in the back
 	useEffect(() => {
-		const testPageCount = searchParams.limit * (searchParams.page + 1);
-		if (count > testPageCount) {
+		const pageCount = searchParams.limit * (searchParams.page + 1);
+		if (count > pageCount) {
 			setEndOfPage(false);
-		} else if (count <= testPageCount) {
+		} else if (count <= pageCount) {
 			setEndOfPage(true);
 		}
 	}, [data, searchParams, count]);
 
-	function sortController(e, boolean) {
+	// Basic sorting upon onClick
+	// history pushes the selected sorting, and that url is parsed on being called
+	const sortController = (e, boolean) => {
 		e.preventDefault();
 		setSortNew(boolean);
 		if (boolean === true) {
@@ -48,17 +59,15 @@ function Pagination({ searchParams, pathName, fetchedPage, sortByController }) {
 				pathname: pathName,
 				search: `?sortby=createdAt_desc`,
 			});
-
-			// sortBy('new');
 		} else {
 			history.push({
 				pathname: pathName,
 				search: `?sortby=votes_desc`,
 			});
-			// sortBy('top');
 		}
-	}
+	};
 
+	// Next/back button sorting with history.push()
 	const paginate = expr => {
 		switch (expr) {
 			case 'next':
@@ -99,7 +108,7 @@ function Pagination({ searchParams, pathName, fetchedPage, sortByController }) {
 				</SortButton>
 			</SortDiv>
 			{error || countError ? (
-				<WarningModule string="Something went wrong. Please refresh the page and try again." />
+				<WarningMessageModule string="Something went wrong. Please refresh the page and try again." />
 			) : (
 				<PostListView data={data} load={load} countLoad={countLoad} />
 			)}

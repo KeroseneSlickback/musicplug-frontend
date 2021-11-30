@@ -20,34 +20,13 @@ function Home() {
 		}));
 	}, [fetchedPage, sortby]);
 
-	const sortByController = expr => {
-		switch (expr) {
-			case 'new':
-				setSearchParams({
-					limit: 5,
-					page: 0,
-					sortby: 'createdAt_desc',
-				});
-				break;
-			case 'top':
-				setSearchParams({
-					limit: 5,
-					page: 0,
-					sortby: 'votes_desc',
-				});
-				break;
-			default:
-				throw new Error();
-		}
-	};
-
 	return (
 		<PageContainer>
 			<Pagination
 				searchParams={searchParams}
 				fetchedPage={fetchedPage}
 				pathName={pathName}
-				sortByController={sortByController}
+				// sortByController={sortByController}
 			/>
 		</PageContainer>
 	);

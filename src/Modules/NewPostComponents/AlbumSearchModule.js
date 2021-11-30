@@ -8,14 +8,11 @@ import {
 	DropDownAlbumSingle,
 	DropDownAlbumSelect,
 	CenteredModuleDiv,
-} from '../Components/Forms';
-import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
-import { StyledLoading } from '../Utilities/Images/StyledSVG/StyledLoading';
-import RegularMessageModule from './RegularMessageModule';
-import WarningModule from './WarningModule';
-
-// Later fixes:
-// Clear results after clearing searchbar
+} from '../../Components/Forms';
+import { BrokenImageSVG } from '../../Utilities/Images/StyledSVG/BrokenImageSVG';
+import { StyledLoading } from '../../Utilities/Images/StyledSVG/StyledLoading';
+import RegularMessageModule from '../MessageComponents/RegularMessageModule';
+import WarningMessageModule from '../MessageComponents/WarningMessageModule';
 
 function AlbumSearchModule({
 	selectedData,
@@ -44,14 +41,20 @@ function AlbumSearchModule({
 				}}
 				placeholder="Dark Side of the Moon..."
 			></PostInput>
-
+			{/* The rendering methology can be a little convoluted
+				- At first, if anything is loading, shows loading icon
+				- Then if error, shows error
+				- If album has completed a search (as in user selected an element), it displays that only
+				- Then the next two rendering sections show returned content if user just searched
+				- Lastly, if the search bar is clear, or user clears it, no results are shown
+			*/}
 			{albumSearchLoad || autoAlbumLoad || singleAlbumLoad ? (
 				<CenteredModuleDiv fade>
 					<StyledLoading firstColor={'#4ac09b'} secondColor={'#f7f7f7'} />
 				</CenteredModuleDiv>
 			) : autoAlbumError || singleAlbumError || albumSearchError ? (
 				<CenteredModuleDiv>
-					<WarningModule string="An error has occured, please refresh and try again." />
+					<WarningMessageModule string="An error has occured, please refresh and try again." />
 				</CenteredModuleDiv>
 			) : albumSearched ? (
 				<DropDownAlbumDiv>
