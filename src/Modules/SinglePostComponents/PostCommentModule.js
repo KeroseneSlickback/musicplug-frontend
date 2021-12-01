@@ -5,6 +5,7 @@ import {
 } from '../../Components/PostComponents';
 import PostCommentForm from './PostCommentForm';
 import SingleCommentModule from './SingleCommentModule';
+import RegularMessageModule from '../MessageComponents/RegularMessageModule';
 
 function PostCommentModule(props) {
 	const { comments, _id } = props.data;
@@ -22,11 +23,19 @@ function PostCommentModule(props) {
 	return (
 		<PostBodyCommentContainer>
 			<PostBodyCommentH1>Comments:</PostBodyCommentH1>
-			{comments.map(comment => {
-				return (
-					<SingleCommentModule postId={_id} data={comment} key={comment._id} />
-				);
-			})}
+			{comments.length === 0 ? (
+				<RegularMessageModule string="No comments yet!" />
+			) : (
+				comments.map(comment => {
+					return (
+						<SingleCommentModule
+							postId={_id}
+							data={comment}
+							key={comment._id}
+						/>
+					);
+				})
+			)}
 			{showCommentForm ? <PostCommentForm id={_id} /> : null}
 		</PostBodyCommentContainer>
 	);

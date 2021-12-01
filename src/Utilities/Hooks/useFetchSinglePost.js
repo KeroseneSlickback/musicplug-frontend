@@ -12,7 +12,7 @@ function useFetchSinglePost(id) {
 		const debounceFetch = setTimeout(() => {
 			const getData = async () => {
 				await axios
-					.get(`http://localhost:8888/posts/${id}`)
+					.get(`https://musicplug.herokuapp.com/posts/${id}`)
 					.then(response => {
 						setData(response);
 						setLoad(false);

@@ -55,7 +55,7 @@ function SingleCommentModule(props) {
 		const jwt = localStorage.getItem('jwt');
 		axios
 			.patch(
-				`http://localhost:8888/posts/${postId}/comments/${_id}`,
+				`https://musicplug.herokuapp.com/posts/${postId}/comments/${_id}`,
 				patchData,
 				{
 					headers: {
@@ -80,11 +80,14 @@ function SingleCommentModule(props) {
 	const deleteComment = () => {
 		const jwt = localStorage.getItem('jwt');
 		axios
-			.delete(`http://localhost:8888/posts/${postId}/comments/${_id}`, {
-				headers: {
-					Authorization: `Bearer ${jwt}`,
-				},
-			})
+			.delete(
+				`https://musicplug.herokuapp.com/posts/${postId}/comments/${_id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${jwt}`,
+					},
+				}
+			)
 			.then(res => {
 				console.log(res);
 				history.go(0);

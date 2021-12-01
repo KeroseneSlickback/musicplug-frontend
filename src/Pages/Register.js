@@ -46,7 +46,7 @@ function Register() {
 
 	const registerUser = () => {
 		axios
-			.post('http://localhost:8888/users/register', registerData)
+			.post('https://musicplug.herokuapp.com/users/register', registerData)
 			.then(response => {
 				setConfirm(true);
 				setRegisterError(false);
@@ -184,7 +184,7 @@ function Register() {
 				) : (
 					<FormBlock spotify>
 						<h3>Please verify your account with Spotify first.</h3>
-						<SpotifyButton href="http://localhost:8888/spotify/login">
+						<SpotifyButton href="https://musicplug.herokuapp.com/spotify/login">
 							<SpotifySVG />
 						</SpotifyButton>
 					</FormBlock>

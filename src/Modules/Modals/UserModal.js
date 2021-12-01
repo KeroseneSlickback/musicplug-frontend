@@ -41,7 +41,7 @@ function UserModal(props) {
 		const jwt = localStorage.getItem('jwt');
 		axios
 			.patch(
-				`http://localhost:8888/users/me`,
+				`https://musicplug.herokuapp.com/users/me`,
 				{ username: newUsername },
 				{
 					headers: {
@@ -66,7 +66,7 @@ function UserModal(props) {
 		const jwt = localStorage.getItem('jwt');
 		axios
 			.patch(
-				`http://localhost:8888/users/me`,
+				`https://musicplug.herokuapp.com/users/me`,
 				{ password: newPassword },
 				{
 					headers: {
@@ -89,7 +89,7 @@ function UserModal(props) {
 	const deleteUser = e => {
 		const jwt = localStorage.getItem('jwt');
 		axios
-			.delete('http://localhost:8888/users/me', {
+			.delete('https://musicplug.herokuapp.com/users/me', {
 				headers: {
 					Authorization: `Bearer ${jwt}`,
 				},

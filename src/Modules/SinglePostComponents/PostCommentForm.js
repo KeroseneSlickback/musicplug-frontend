@@ -22,7 +22,7 @@ function PostCommentForm(props) {
 		e.preventDefault();
 		const jwt = localStorage.getItem('jwt');
 		axios
-			.post(`http://localhost:8888/posts/${id}/comments`, comment, {
+			.post(`https://musicplug.herokuapp.com/posts/${id}/comments`, comment, {
 				headers: {
 					Authorization: `Bearer ${jwt}`,
 				},

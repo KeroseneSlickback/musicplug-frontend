@@ -45,7 +45,7 @@ function LoginModal(props) {
 	const loginHandler = e => {
 		e.preventDefault();
 		axios
-			.post('http://localhost:8888/users/login', loginData)
+			.post('https://musicplug.herokuapp.com/users/login', loginData)
 			.then(response => {
 				setConfirm(true);
 				setLoginError(false);

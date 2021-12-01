@@ -30,11 +30,11 @@ function Pagination({ searchParams, pathName, fetchedPage }) {
 	// pathName is given by custom hook called in parent component that parses the given url
 	useEffect(() => {
 		if (pathName.includes('genre')) {
-			setUrl('http://localhost:8888/posts/genre/');
-			setCountUrl('http://localhost:8888/posts/genre/count');
+			setUrl('https://musicplug.herokuapp.com/posts/genre/');
+			setCountUrl('https://musicplug.herokuapp.com/posts/genre/count');
 		} else {
-			setUrl('http://localhost:8888/posts');
-			setCountUrl('http://localhost:8888/posts/count');
+			setUrl('https://musicplug.herokuapp.com/posts');
+			setCountUrl('https://musicplug.herokuapp.com/posts/count');
 		}
 	}, [pathName]);
 
