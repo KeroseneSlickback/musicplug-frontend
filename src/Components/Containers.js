@@ -89,7 +89,7 @@ export const PostContainer = styled(StylePageContainer)`
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translate3d(0, -3%, 0);
+			transform: translate3d(0, -1%, 0);
 		}
 		to {
 			opacity: 1;
