@@ -102,6 +102,11 @@ export const PostContainer = styled(StylePageContainer)`
 	a {
 		text-decoration: none;
 	}
+
+	@media ${devices.tabletS} {
+		padding: 0px;
+		border-radius: 6px;
+	}
 `;
 
 export const PostListContainer = styled.div``;
