@@ -33,7 +33,7 @@ export const FormBlock = styled.div`
 	flex-direction: column;
 	h3 {
 		text-align: center;
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 
 	${props =>

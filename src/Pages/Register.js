@@ -183,7 +183,10 @@ function Register() {
 					</Form>
 				) : (
 					<FormBlock spotify>
-						<h3>Please verify your account with Spotify first.</h3>
+						<h3>
+							If you've been whitelisted by the admin, please verify your
+							account with Spotify first.
+						</h3>
 						<SpotifyButton href="https://musicplug.herokuapp.com/spotify/login">
 							<SpotifySVG />
 						</SpotifyButton>
