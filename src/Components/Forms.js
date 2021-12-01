@@ -403,7 +403,7 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 	&:hover {
 		background-color: ${props => props.theme.subduedAlt};
 	}
-	animation: fadeIn 100ms ease-in both;
+	/* animation: fadeIn 100ms ease-in both;
 
 	@keyframes fadeIn {
 		from {
@@ -414,7 +414,7 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 			opacity: 1;
 			transform: translate3d(0, 0, 0);
 		}
-	}
+	} */
 
 	&:nth-child(n + 1) {
 		animation-delay: 50ms;

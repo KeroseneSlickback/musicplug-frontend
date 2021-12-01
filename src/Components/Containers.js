@@ -84,7 +84,7 @@ export const PostContainer = styled(StylePageContainer)`
 	flex-direction: column;
 	justify-content: space-between;
 
-	animation: fadeIn 250ms ease-in both;
+	/* animation: fadeIn 250ms ease-in both;
 
 	@keyframes fadeIn {
 		from {
@@ -95,7 +95,7 @@ export const PostContainer = styled(StylePageContainer)`
 			opacity: 1;
 			transform: translate3d(0, 0, 0);
 		}
-	}
+	} */
 	&:hover {
 		box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightMuted};
 	}
