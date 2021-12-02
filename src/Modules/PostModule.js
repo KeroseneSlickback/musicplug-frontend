@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
-	InactiveUserButton,
 	SmallEmptyButton,
 	SmallStyledLinkButton,
 	SmallStyledReactDomLink,
@@ -22,7 +21,6 @@ import { EmptyHeart } from '../Utilities/Images/StyledSVG/EmptyHeart.js';
 import { HeadphoneSVG } from '../Utilities/Images/StyledSVG/HeadphoneSVG';
 import { ChatSVG } from '../Utilities/Images/StyledSVG/ChatSVG';
 import { BrokenImageSVG } from '../Utilities/Images/StyledSVG/BrokenImageSVG';
-import { UserAccountSVG } from '../Utilities/Images/StyledSVG/UserAccountSVG';
 
 function PostModule(props) {
 	const { title, body, genre, comments, votes, owner, _id, likedUsers } =
