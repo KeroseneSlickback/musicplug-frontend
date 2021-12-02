@@ -138,6 +138,7 @@ function PostModule(props) {
 				<Link to={`/post/${_id}`}>
 					<TextDiv>
 						<h3>{title}</h3>
+						<h5>- Posted by {owner.username}</h5>
 						{formattedBody.map((str, i) => {
 							return <p key={i}>{str}</p>;
 						})}
@@ -148,14 +149,6 @@ function PostModule(props) {
 						) : (
 							<BrokenImageSVG />
 						)}
-						<InactiveUserButton>
-							{owner.avatarLink ? (
-								<img src={owner.avatarLink} alt={owner.username} />
-							) : (
-								<UserAccountSVG />
-							)}
-							<p>- {owner.username}</p>
-						</InactiveUserButton>
 					</PostViewImgUserDiv>
 				</Link>
 			</PostTopDiv>

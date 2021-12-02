@@ -80,7 +80,7 @@ export const ModalContainer = styled.div`
 export const PostContainer = styled(StylePageContainer)`
 	display: flex;
 	margin-top: 8px;
-	padding: 0;
+	padding: 2px 0 0 0;
 	flex-direction: column;
 	justify-content: space-between;
 

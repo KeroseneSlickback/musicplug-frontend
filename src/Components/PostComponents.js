@@ -45,7 +45,7 @@ export const PostImg = styled.img`
 export const TextDiv = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 4px 0;
+	margin: 0 4px;
 	overflow: hidden;
 	mask-image: linear-gradient(180deg, #000 80%, transparent);
 	max-height: 250px;
@@ -53,7 +53,13 @@ export const TextDiv = styled.div`
 	h3 {
 		word-break: break-word;
 		font-size: 1rem;
-		padding-bottom: 8px;
+		padding-bottom: 2px;
+	}
+
+	h5 {
+		font-weight: 400;
+		font-size: 0.7rem;
+		margin: 4px 0 6px 16px;
 	}
 
 	p {
@@ -63,6 +69,7 @@ export const TextDiv = styled.div`
 		line-height: 1;
 		white-space: pre-wrap;
 		margin-top: 2px;
+		padding: 0 4px;
 	}
 
 	@media ${devices.tabletM} {
@@ -400,27 +407,32 @@ export const SinglePostDiv = styled.div`
 	box-shadow: 0px 0px 3px 0px ${props => props.theme.highlightDark};
 	margin-bottom: 8px;
 	display: flex;
-	align-items: center;
 
 	@media ${devices.tabletS} {
 		border-radius: 6px;
 	}
 
 	@media ${devices.tabletM} {
-		padding: 8px;
+		padding: 6px;
 	}
 `;
 
+export const UsernameP = styled.p`
+	margin-top: 2px;
+	font-size: 0.7rem;
+`;
+
 export const CommentFormDiv = styled(SinglePostDiv)`
+	margin: 6px 4px;
 	display: block;
 `;
 
 export const CommentP = styled.p`
-	word-break: break-all;
+	word-break: break-word;
 	white-space: normal;
 	line-height: 1.1;
-	margin-left: 8px;
 	font-size: 0.9rem;
+	margin: 12px 0px 4px 12px;
 `;
 
 export const EditDeleteButtonDiv = styled.div`

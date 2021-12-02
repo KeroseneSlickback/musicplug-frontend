@@ -463,7 +463,7 @@ export const InactiveUserButton = styled.button`
 	flex-direction: row;
 	white-space: nowrap;
 	align-items: center;
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 	color: ${props => props.theme.fontColor};
 	background-color: inherit;
 	text-decoration: none;
@@ -474,12 +474,13 @@ export const InactiveUserButton = styled.button`
 		height: 20px;
 		margin-right: 4px;
 		border-radius: 6px;
-		box-shadow: 0px 0px 1px 1px ${props => props.theme.highlightWhite};
+		box-shadow: 0px 0px 0px 1px ${props => props.theme.highlightMuted};
 	}
 
 	${props =>
 		props.post &&
 		css`
+			font-size: 0.7rem;
 			justify-self: start;
 			img {
 				height: 26px;
@@ -489,20 +490,19 @@ export const InactiveUserButton = styled.button`
 	${props =>
 		props.comment &&
 		css`
-			height: 36px;
-			justify-self: start;
-			flex-direction: column;
+			padding: 0 2px 0 0;
+			margin: 0;
+			align-items: start;
+			flex-direction: row;
 			img {
 				height: 26px;
-			}
-			p {
-				margin-top: 2px;
+				margin-right: 2px;
 			}
 		`}
 
 		@media ${devices.tabletS} {
 		img {
-			height: 24px;
+			height: 26px;
 		}
 	}
 	@media ${devices.tabletM} {
