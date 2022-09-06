@@ -1,8 +1,0 @@
-To do: 
-
-- Prepare for upload
-  - What site to use for front-end, Backend
-  - Prep backend with variables
-  - MongoDB cloud intergration
-  - Put site up
-- Write up overall thoughts and expressions on app 

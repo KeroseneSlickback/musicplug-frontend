@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 
 // Currently unused, but kept for demonstration and documentation purposes
 
@@ -36,43 +36,43 @@ setSearchParams(prevState => ({
 */
 
 function useDebounceFetch(searchParams) {
-	const { url, params, delay } = searchParams;
-	const [initialRender, setInitialRender] = useState(true);
-	const [data, setData] = useState('');
-	const [load, setLoad] = useState(false);
-	const [error, setError] = useState(null);
+  const { url, params, delay } = searchParams;
+  const [initialRender, setInitialRender] = useState(true);
+  const [data, setData] = useState("");
+  const [load, setLoad] = useState(false);
+  const [error, setError] = useState(null);
 
-	useEffect(() => {
-		if (initialRender) {
-			setInitialRender(false);
-			console.log('Initial render');
-		} else {
-			console.log('Attempting fetch');
-			const debounceFetch = setTimeout(
-				() => {
-					setLoad(true);
-					const getData = async () => {
-						await axios({ url, params })
-							.then(response => {
-								console.log('Fetched');
-								console.log(response);
-								setData(response);
-								setLoad(false);
-							})
-							.catch(e => {
-								setError(e);
-								console.log(e);
-							});
-					};
-					getData();
-				},
-				delay ? delay * 100 : 1000
-			);
-			return () => clearTimeout(debounceFetch);
-		}
-	}, [searchParams]);
+  useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false);
+      console.log("Initial render");
+    } else {
+      console.log("Attempting fetch");
+      const debounceFetch = setTimeout(
+        () => {
+          setLoad(true);
+          const getData = async () => {
+            await axios({ url, params })
+              .then((response) => {
+                console.log("Fetched");
+                console.log(response);
+                setData(response);
+                setLoad(false);
+              })
+              .catch((e) => {
+                setError(e);
+                console.log(e);
+              });
+          };
+          getData();
+        },
+        delay ? delay * 100 : 1000
+      );
+      return () => clearTimeout(debounceFetch);
+    }
+  }, [searchParams, delay, initialRender, params, url]);
 
-	return { data, load, error };
+  return { data, load, error };
 }
 
 /*
