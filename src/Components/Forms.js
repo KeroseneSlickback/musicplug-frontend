@@ -77,6 +77,12 @@ export const FormImgInput = styled.input`
   margin-top: 0.5rem;
   color: ${(props) => props.theme.fontColor};
   max-width: 200px;
+
+  ${(props) =>
+    props.update &&
+    css`
+      margin-bottom: 0.5rem;
+    `}
 `;
 
 export const FormLabel = styled.label`

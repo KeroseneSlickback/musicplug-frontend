@@ -14,8 +14,10 @@ import {
   FormBlock,
   FormContainer,
   FormH1,
+  FormImgInput,
   FormInput,
   FormLabel,
+  PostAccessoryP,
 } from "../../Components/Forms";
 import DeleteModal from "./DeleteModal";
 import AuthContext from "../../Utilities/AuthContext";
@@ -35,6 +37,43 @@ function UserModal(props) {
   const [confirmUsername, setConfirmUsername] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [deleteUserConfirm, setDeleteUserConfirm] = useState(false);
+  const [avatar, setAvatar] = useState("");
+  const [confirmAvatar, setConfirmAvatar] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+
+  const handleImageUpload = (e) => {
+    setAvatar(e.target.files[0]);
+  };
+
+  const checkAvatar = (img) => {
+    if (img === "") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const updateAvatar = (e) => {
+    e.preventDefault();
+    const jwt = localStorage.getItem("jwt");
+    if (checkAvatar(avatar)) {
+      const imageFormData = new FormData();
+      imageFormData.append("picture", avatar);
+      axios
+        .patch("http://localhost:8888/users/me/avatar", imageFormData, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        })
+        .then(() => {
+          setAvatarError(false);
+          setConfirmAvatar(true);
+        })
+        .catch((err) => {
+          setAvatarError(false);
+        });
+    }
+  };
 
   const updateUsername = (e) => {
     e.preventDefault();
@@ -153,6 +192,29 @@ function UserModal(props) {
               <ConfirmMessageModule string="Password updated." />
             ) : null}
             {passwordError ? (
+              <WarningMessageModule string="Error. Please refresh and try again." />
+            ) : null}
+          </FormBlock>
+          <MediumStyledButton>Submit</MediumStyledButton>
+        </Form>
+        <Form onSubmit={updateAvatar}>
+          <FormBlock>
+            <FormLabel>Update Avatar</FormLabel>
+            <PostAccessoryP>
+              Please upload a jpg, jpeg, or png image under 200kb only. Photos
+              with a 1/1 aspect ratio around 50px/50px work best.
+            </PostAccessoryP>
+            <FormImgInput
+              type="file"
+              name="avatar"
+              accept="image/png, image/jpeg, image/jpg"
+              onChange={handleImageUpload}
+              update
+            />
+            {confirmAvatar ? (
+              <ConfirmMessageModule string="Avatar updated." />
+            ) : null}
+            {avatarError ? (
               <WarningMessageModule string="Error. Please refresh and try again." />
             ) : null}
           </FormBlock>

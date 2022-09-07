@@ -67,7 +67,7 @@ function Register() {
       localStorage.setItem("user", JSON.stringify(registerResponse.data.user));
       localStorage.setItem("jwt", registerResponse.data.token.split(" ")[1]);
       authContext.login();
-      const imageInputted = await checkAvatar();
+      const imageInputted = await checkAvatar(avatar);
       if (imageInputted) {
         const imageFormData = new FormData();
         imageFormData.append("picture", avatar);
@@ -85,50 +85,13 @@ function Register() {
       }
       setConfirm(true);
       setRegisterError(false);
-      // setTimeout(() => {
-      //   history.push("/newpost");
-      // }, 1000);
+      setTimeout(() => {
+        history.push("/newpost");
+      }, 1000);
     } catch (error) {
       setRegisterError(true);
       console.log(error);
     }
-    // axios
-    //   .post("http://localhost:8888/users/register", registerData)
-    //   .then((response) => {
-    //     localStorage.setItem("user", JSON.stringify(response.data.user));
-    //     localStorage.setItem("jwt", response.data.token.split(" ")[1]);
-    //     authContext.login();
-    //     if (avatar !== "") {
-    //       const imageFormData = new FormData();
-    //       imageFormData.append("picture", avatar);
-    //       axios
-    //         .patch("http://localhost:8888/me/avatar", imageFormData, {
-    //           headers: {
-    //             Authorization: `Bearer ${response.data.token.split(" ")[1]}`,
-    //           },
-    //         })
-    //         .then((response) => {
-    //           setConfirm(true);
-    //           setRegisterError(false);
-    //           // setTimeout(() => {
-    //           //   history.push("/newpost");
-    //           // }, 1000);
-    //         })
-    //         .catch((error) => {
-    //           console.log(error);
-    //           setRegisterError(true);
-    //         });
-    //     } else {
-    //       setConfirm(true);
-    //       setRegisterError(false);
-    //       // setTimeout(() => {
-    //       //   history.push("/newpost");
-    //       // }, 1000);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setRegisterError(true);
-    //   });
   };
 
   const registerHandler = (e) => {
