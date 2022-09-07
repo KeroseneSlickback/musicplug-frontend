@@ -73,6 +73,12 @@ export const FormInput = styled.input`
   }
 `;
 
+export const FormImgInput = styled.input`
+  margin-top: 0.5rem;
+  color: ${(props) => props.theme.fontColor};
+  max-width: 200px;
+`;
+
 export const FormLabel = styled.label`
   font-size: 0.875rem;
   padding: 0.5rem 0;
@@ -442,4 +448,10 @@ export const CenteredModuleDiv = styled.div`
 
 export const PostPatchDiv = styled.div`
   margin: 0 0.5rem;
+`;
+
+export const PostAccessoryP = styled.p`
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: ${(props) => props.theme.fontColor};
 `;

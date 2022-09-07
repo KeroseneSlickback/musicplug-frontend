@@ -12,6 +12,8 @@ import {
   Form,
   FormLabel,
   FormH1,
+  FormImgInput,
+  PostAccessoryP,
 } from "./../Components/Forms";
 import { StylePageContainer } from "../Components/Containers";
 import { MediumStyledButton, SpotifyButton } from "./../Components/Buttons";
@@ -32,9 +34,21 @@ function Register() {
     username: "",
     password: "",
     passwordConfirmation: "",
-    avatarLink: "",
     spotifyLink: "",
   });
+  const [avatar, setAvatar] = useState("");
+
+  const handleImageUpload = (e) => {
+    setAvatar(e.target.files[0]);
+  };
+
+  const checkAvatar = (img) => {
+    if (img === "") {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,23 +58,77 @@ function Register() {
     }));
   };
 
-  const registerUser = () => {
-    axios
-      .post("http://localhost:8888/users/register", registerData)
-      .then((response) => {
-        setConfirm(true);
-        setRegisterError(false);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("jwt", response.data.token.split(" ")[1]);
-        console.log("Account Created");
-        authContext.login();
-        setTimeout(() => {
-          history.push("/newpost");
-        }, 1000);
-      })
-      .catch((error) => {
-        setRegisterError(true);
-      });
+  const registerUser = async () => {
+    try {
+      const registerResponse = await axios.post(
+        "http://localhost:8888/users/register",
+        registerData
+      );
+      localStorage.setItem("user", JSON.stringify(registerResponse.data.user));
+      localStorage.setItem("jwt", registerResponse.data.token.split(" ")[1]);
+      authContext.login();
+      const imageInputted = await checkAvatar();
+      if (imageInputted) {
+        const imageFormData = new FormData();
+        imageFormData.append("picture", avatar);
+        await axios.patch(
+          "http://localhost:8888/users/me/avatar",
+          imageFormData,
+          {
+            headers: {
+              Authorization: `Bearer ${
+                registerResponse.data.token.split(" ")[1]
+              }`,
+            },
+          }
+        );
+      }
+      setConfirm(true);
+      setRegisterError(false);
+      // setTimeout(() => {
+      //   history.push("/newpost");
+      // }, 1000);
+    } catch (error) {
+      setRegisterError(true);
+      console.log(error);
+    }
+    // axios
+    //   .post("http://localhost:8888/users/register", registerData)
+    //   .then((response) => {
+    //     localStorage.setItem("user", JSON.stringify(response.data.user));
+    //     localStorage.setItem("jwt", response.data.token.split(" ")[1]);
+    //     authContext.login();
+    //     if (avatar !== "") {
+    //       const imageFormData = new FormData();
+    //       imageFormData.append("picture", avatar);
+    //       axios
+    //         .patch("http://localhost:8888/me/avatar", imageFormData, {
+    //           headers: {
+    //             Authorization: `Bearer ${response.data.token.split(" ")[1]}`,
+    //           },
+    //         })
+    //         .then((response) => {
+    //           setConfirm(true);
+    //           setRegisterError(false);
+    //           // setTimeout(() => {
+    //           //   history.push("/newpost");
+    //           // }, 1000);
+    //         })
+    //         .catch((error) => {
+    //           console.log(error);
+    //           setRegisterError(true);
+    //         });
+    //     } else {
+    //       setConfirm(true);
+    //       setRegisterError(false);
+    //       // setTimeout(() => {
+    //       //   history.push("/newpost");
+    //       // }, 1000);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     setRegisterError(true);
+    //   });
   };
 
   const registerHandler = (e) => {
@@ -90,15 +158,10 @@ function Register() {
           const username = res.data.display_name;
           const email = res.data.email;
           const spotifyLink = res.data.href;
-          const avatarLink = res.data.images[0] ? res.data.images[0].url : "";
-          // if (res.data.images[0]) {
-          // 	setAvatarLink(res.data.images[0].url);
-          // }
           setRegisterData((prevState) => ({
             ...prevState,
             username,
             email,
-            avatarLink,
             spotifyLink,
           }));
         })
@@ -165,6 +228,19 @@ function Register() {
                 placeholder="Confirm Password"
                 value={registerData.passwordConfirmation}
                 onChange={handleChange}
+              />
+            </FormBlock>
+            <FormBlock>
+              <FormLabel>Avatar Image Upload</FormLabel>
+              <PostAccessoryP>
+                Please upload a jpg, jpeg, or png image under 200kb only. Photos
+                with a 1/1 aspect ratio around 50px/50px work best.
+              </PostAccessoryP>
+              <FormImgInput
+                type="file"
+                name="avatar"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleImageUpload}
               />
             </FormBlock>
             {passwordMatch ? (

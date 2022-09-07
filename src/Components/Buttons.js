@@ -498,8 +498,10 @@ export const InactiveUserButton = styled.button`
       margin: 0;
       align-items: center;
       flex-direction: row;
-      img {
+      img,
+      svg {
         height: 24px;
+        width: 24px;
         margin-right: 0.5rem;
       }
     `}
