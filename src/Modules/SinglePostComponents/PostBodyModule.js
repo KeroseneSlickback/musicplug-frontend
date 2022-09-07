@@ -186,7 +186,7 @@ function PostBodyModule(props) {
           ) : (
             <UserAccountSVG />
           )}
-          <p> - {owner.username}</p>
+          <p> {owner.username}</p>
         </InactiveUserButton>
         <PostBodyRightButtonDiv>
           {postUser ? (

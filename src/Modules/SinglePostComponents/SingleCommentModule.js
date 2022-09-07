@@ -8,7 +8,6 @@ import {
   EditDeleteButtonDiv,
   CommentBottomBarDiv,
   CommentBodyDiv,
-  UsernameP,
 } from "../../Components/PostComponents";
 import CommentPatchModule from "./CommentPatchModule";
 import DeleteModal from "../Modals/DeleteModal";
@@ -103,10 +102,9 @@ function SingleCommentModule(props) {
         ) : (
           <UserAccountSVG />
         )}
-        {/* <p>{owner.username}</p> */}
+        <p>{owner.username}</p>
       </InactiveUserButton>
       <CommentBodyDiv>
-        <UsernameP>{owner.username}</UsernameP>
         {showPatch ? (
           <CommentPatchModule
             patchData={patchData}
@@ -143,7 +141,6 @@ function SingleCommentModule(props) {
           message={message}
         />
       ) : null}
-
       {showDeleteModule ? <Backdrop onClick={toggleDelete} /> : null}
     </SinglePostDiv>
   );
