@@ -97,8 +97,11 @@ function SingleCommentModule(props) {
   return (
     <SinglePostDiv>
       <InactiveUserButton comment>
-        {owner.avatarLink ? (
-          <img src={owner.avatarLink} alt={owner.username} />
+        {owner.avatar ? (
+          <img
+            src={`data:image/png;base64,${owner.avatar.toString("base64")}`}
+            alt={owner.username}
+          />
         ) : (
           <UserAccountSVG />
         )}

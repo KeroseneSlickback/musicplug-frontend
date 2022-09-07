@@ -181,8 +181,11 @@ function PostBodyModule(props) {
       )}
       <PostBodyButtonDiv>
         <InactiveUserButton post>
-          {owner.avatarLink ? (
-            <img src={owner.avatarLink} alt={owner.username} />
+          {owner.avatar ? (
+            <img
+              src={`data:image/png;base64,${owner.avatar.toString("base64")}`}
+              alt={owner.username}
+            />
           ) : (
             <UserAccountSVG />
           )}
