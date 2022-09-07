@@ -154,83 +154,7 @@ function UserModal(props) {
   };
 
   return (
-    <ModalContainer sticky>
-      <FormContainer>
-        <FormH1>User Settings</FormH1>
-        <Form onSubmit={updateUsername}>
-          <FormBlock>
-            <FormInput
-              name="username"
-              type="text"
-              placeholder="Enter New Username"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
-              required
-            />
-            <FormLabel htmlFor="username">New Username</FormLabel>
-            {confirmUsername ? (
-              <ConfirmMessageModule string="Username changed." />
-            ) : null}
-            {usernameError ? (
-              <WarningMessageModule string="Error. Please refresh and try again." />
-            ) : null}
-          </FormBlock>
-          <MediumStyledButton>Submit</MediumStyledButton>
-        </Form>
-        <Form onSubmit={updatePassword}>
-          <FormBlock>
-            <FormInput
-              name="password"
-              type="password"
-              placeholder="Enter New Password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              required
-            />
-            <FormLabel htmlFor="password">New Password</FormLabel>
-            {confirmPassword ? (
-              <ConfirmMessageModule string="Password updated." />
-            ) : null}
-            {passwordError ? (
-              <WarningMessageModule string="Error. Please refresh and try again." />
-            ) : null}
-          </FormBlock>
-          <MediumStyledButton>Submit</MediumStyledButton>
-        </Form>
-        <Form onSubmit={updateAvatar}>
-          <FormBlock>
-            <FormLabel>Update Avatar</FormLabel>
-            <PostAccessoryP>
-              Please upload a jpg, jpeg, or png image under 200kb only. Photos
-              with a 1/1 aspect ratio around 50px/50px work best.
-            </PostAccessoryP>
-            <FormImgInput
-              type="file"
-              name="avatar"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={handleImageUpload}
-              update
-            />
-            {confirmAvatar ? (
-              <ConfirmMessageModule string="Avatar updated." />
-            ) : null}
-            {avatarError ? (
-              <WarningMessageModule string="Error. Please refresh and try again." />
-            ) : null}
-          </FormBlock>
-          <MediumStyledButton>Submit</MediumStyledButton>
-        </Form>
-        <DeleteUserDiv>
-          <p>Delete Account, all posts and comments</p>
-          <SmallButton delete onClick={toggleDelete}>
-            Delete
-          </SmallButton>
-        </DeleteUserDiv>
-        <div></div>
-      </FormContainer>
-      <CloseButtonDiv>
-        <CloseButton onClick={props.closeModal} />
-      </CloseButtonDiv>
+    <>
       {showDeleteConfirm ? (
         <DeleteModal
           toggleDelete={toggleDelete}
@@ -239,8 +163,89 @@ function UserModal(props) {
           deleteUserConfirm={deleteUserConfirm}
           deleteUserError={deleteUserError}
         />
-      ) : null}
-    </ModalContainer>
+      ) : (
+        <ModalContainer sticky>
+          <FormContainer>
+            <FormH1>User Settings</FormH1>
+            <Form onSubmit={updateUsername}>
+              <FormBlock>
+                <FormInput
+                  name="username"
+                  type="text"
+                  placeholder="Enter New Username"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                  required
+                />
+                <FormLabel htmlFor="username">New Username</FormLabel>
+                {confirmUsername ? (
+                  <ConfirmMessageModule string="Username changed." />
+                ) : null}
+                {usernameError ? (
+                  <WarningMessageModule string="Error. Please refresh and try again." />
+                ) : null}
+              </FormBlock>
+              <MediumStyledButton>Submit</MediumStyledButton>
+            </Form>
+            <Form onSubmit={updatePassword}>
+              <FormBlock>
+                <FormInput
+                  name="password"
+                  type="password"
+                  placeholder="Enter New Password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
+                <FormLabel htmlFor="password">New Password</FormLabel>
+                {confirmPassword ? (
+                  <ConfirmMessageModule string="Password updated." />
+                ) : null}
+                {passwordError ? (
+                  <WarningMessageModule string="Error. Please refresh and try again." />
+                ) : null}
+              </FormBlock>
+              <MediumStyledButton>Submit</MediumStyledButton>
+            </Form>
+            <Form onSubmit={updateAvatar}>
+              <FormBlock>
+                <FormLabel>Update Avatar</FormLabel>
+                <PostAccessoryP>
+                  Please upload a jpg, jpeg, or png image under 200kb only.
+                  Photos with a 1/1 aspect ratio around 50px/50px work best.
+                </PostAccessoryP>
+                <FormImgInput
+                  type="file"
+                  name="avatar"
+                  accept="image/png, image/jpeg, image/jpg"
+                  onChange={handleImageUpload}
+                  update
+                />
+                {confirmAvatar ? (
+                  <ConfirmMessageModule string="Avatar updated." />
+                ) : null}
+                {avatarError ? (
+                  <WarningMessageModule string="Error. Please refresh and try again." />
+                ) : null}
+              </FormBlock>
+              <MediumStyledButton>Submit</MediumStyledButton>
+            </Form>
+            <DeleteUserDiv>
+              <p>Delete Account, all posts and comments</p>
+              <SmallButton delete onClick={toggleDelete}>
+                Delete
+              </SmallButton>
+            </DeleteUserDiv>
+            <div></div>
+          </FormContainer>
+          <CloseButtonDiv>
+            <CloseButton onClick={props.closeModal} />
+          </CloseButtonDiv>
+          {/* {showDeleteConfirm ? (
+      ) : null} */}
+        </ModalContainer>
+      )}
+    </>
   );
 }
 

@@ -64,7 +64,6 @@ export const ModalContainer = styled.div`
   ${(props) =>
     props.delete &&
     css`
-      width: 30px;
       position: fixed;
       background-color: ${(props) => props.theme.background};
     `}
