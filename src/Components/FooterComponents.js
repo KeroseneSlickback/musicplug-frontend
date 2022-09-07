@@ -5,10 +5,8 @@ export const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* flex-wrap: wrap; */
   background-color: ${(props) => props.theme.subdued};
   width: 100%;
-  /* padding: 0 18px; */
   box-shadow: 0px 0px 3px 0px ${(props) => props.theme.highlightDark};
   margin-top: auto;
 `;

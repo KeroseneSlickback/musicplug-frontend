@@ -388,7 +388,7 @@ export const PostBodyInfoP = styled.p`
 `;
 
 export const SinglePostDiv = styled.div`
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: ${(props) => props.theme.subdued};
   box-shadow: 0px 0px 3px 0px ${(props) => props.theme.highlightDark};
   margin-bottom: 0.5rem;
@@ -400,7 +400,7 @@ export const SinglePostDiv = styled.div`
   }
 
   @media ${devices.tabletM} {
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
   }
 `;
 

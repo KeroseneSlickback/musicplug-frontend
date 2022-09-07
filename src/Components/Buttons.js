@@ -83,6 +83,11 @@ export const SmallStyledButton = styled(SmallButton)`
         }
       }
     `}
+    ${(props) =>
+    props.footer &&
+    css`
+      margin: 0;
+    `}
 `;
 
 export const SmallEmptyButton = styled(SmallButton)`
@@ -476,6 +481,7 @@ export const InactiveUserButton = styled.button`
     props.post &&
     css`
       font-size: 1rem;
+      padding: 0;
       justify-self: start;
       img {
         height: 30px;
