@@ -45,7 +45,7 @@ export const LoadingPageContainer = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  background-color: ${(props) => props.theme.subdued};
+  background-color: ${(props) => props.theme.subduedAlt};
   border-radius: 0.325rem;
   box-shadow: 0 0 3px ${(props) => props.theme.background};
   position: fixed;
@@ -65,7 +65,6 @@ export const ModalContainer = styled.div`
     props.delete &&
     css`
       position: fixed;
-      background-color: ${(props) => props.theme.background};
     `}
 
 		@media ${devices.tabletS} {

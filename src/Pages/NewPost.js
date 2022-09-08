@@ -462,7 +462,7 @@ function NewPost() {
                 type="text"
                 value={postData.title}
                 onChange={handlePostChange}
-                placeholder="I really really really like this..."
+                placeholder="One of the greatest songs..."
                 required
               />
             </FormBlock>
@@ -470,7 +470,7 @@ function NewPost() {
               <PostLabel htmlFor="text">Explain your recommendation:</PostLabel>
               <PostTextArea
                 name="body"
-                placeholder="This time when I was searching bandcamp, I came across this artist..."
+                placeholder="I remember when I first heard this song..."
                 value={postData.body}
                 onChange={handlePostChange}
                 required
