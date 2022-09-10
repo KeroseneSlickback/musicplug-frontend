@@ -424,6 +424,7 @@ export const DropDownTrackSelect = styled(DropDownTrackSingle)`
 export const CenteredModuleDiv = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100px;

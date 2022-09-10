@@ -13,6 +13,7 @@ import { BrokenImageSVG } from "../../Utilities/Images/StyledSVG/BrokenImageSVG"
 import { StyledLoading } from "../../Utilities/Images/StyledSVG/StyledLoading";
 import WarningMessageModule from "../MessageComponents/WarningMessageModule";
 import RegularMessageModule from "../MessageComponents/RegularMessageModule";
+import DelayMessageModule from "../MessageComponents/DelayMessageModule";
 
 function TrackSearchModule({
   selectedData,
@@ -49,6 +50,7 @@ function TrackSearchModule({
       {trackSearchLoad || autoTrackLoad ? (
         <CenteredModuleDiv fade>
           <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
+          <DelayMessageModule />
         </CenteredModuleDiv>
       ) : trackSearchError || autoTrackError ? (
         <CenteredModuleDiv>

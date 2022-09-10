@@ -13,6 +13,7 @@ import useFetchSinglePost from "../Utilities/Hooks/useFetchSinglePost";
 import PostBodyInfoModule from "../Modules/SinglePostComponents/PostBodyInfoModule";
 import PostCommentModule from "../Modules/SinglePostComponents/PostCommentModule";
 import WarningMessageModule from "../Modules/MessageComponents/WarningMessageModule";
+import DelayMessageModule from "../Modules/MessageComponents/DelayMessageModule";
 
 function Post() {
   const { id } = useParams();
@@ -28,6 +29,7 @@ function Post() {
         <StylePageContainer margin>
           <CenteredModuleDiv fade>
             <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
+            <DelayMessageModule />
           </CenteredModuleDiv>
         </StylePageContainer>
       ) : (

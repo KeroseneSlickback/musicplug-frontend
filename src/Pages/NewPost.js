@@ -36,6 +36,7 @@ import useSpotifyGetSingleArtist from "../Utilities/Hooks/useSpotifyGetSingleArt
 import ConfirmMessageModule from "../Modules/MessageComponents/ConfirmMessageModule";
 import WarningMessageModule from "../Modules/MessageComponents/WarningMessageModule";
 import { SpotifySVG } from "../Utilities/Images/StyledSVG/SpotifySVG";
+import DelayMessageModule from "../Modules/MessageComponents/DelayMessageModule";
 
 function NewPost() {
   const history = useHistory();
@@ -489,6 +490,7 @@ function NewPost() {
         <FormContainer>
           <CenteredModuleDiv fade>
             <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
+            <DelayMessageModule />
           </CenteredModuleDiv>
         </FormContainer>
       )}
