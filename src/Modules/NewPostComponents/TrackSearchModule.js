@@ -50,7 +50,7 @@ function TrackSearchModule({
       {trackSearchLoad || autoTrackLoad ? (
         <CenteredModuleDiv fade>
           <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
-          <DelayMessageModule />
+          <DelayMessageModule load={trackSearchLoad || autoTrackLoad} />
         </CenteredModuleDiv>
       ) : trackSearchError || autoTrackError ? (
         <CenteredModuleDiv>

@@ -490,7 +490,7 @@ function NewPost() {
         <FormContainer>
           <CenteredModuleDiv fade>
             <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
-            <DelayMessageModule />
+            <DelayMessageModule load={true} />
           </CenteredModuleDiv>
         </FormContainer>
       )}

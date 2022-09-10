@@ -52,7 +52,9 @@ function AlbumSearchModule({
       {albumSearchLoad || autoAlbumLoad || singleAlbumLoad ? (
         <CenteredModuleDiv fade>
           <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
-          <DelayMessageModule />
+          <DelayMessageModule
+            load={albumSearchLoad || autoAlbumLoad || singleAlbumLoad}
+          />
         </CenteredModuleDiv>
       ) : autoAlbumError || singleAlbumError || albumSearchError ? (
         <CenteredModuleDiv>
