@@ -373,18 +373,23 @@ export const PostBodyImg = styled.img`
 `;
 
 export const PostBodyInfoMiniDiv = styled.div`
+  display: flex;
+  flex-direction: column;
   color: ${(props) => props.theme.fontColor};
-  padding: 0.325rem 0;
+  padding: 0.5rem 0;
 `;
 
 export const PostBodyInfoLabelP = styled.p`
   font-size: 0.8rem;
   margin-bottom: 0.25rem;
+  width: fit-content;
+  padding: 0 0 2px 0;
+  border-bottom: 1px solid ${(props) => props.theme.hero};
 `;
 
 export const PostBodyInfoP = styled.p`
   font-size: 1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.75rem;
 `;
 
 export const SinglePostDiv = styled.div`
@@ -414,7 +419,7 @@ export const CommentFormDiv = styled(SinglePostDiv)`
 `;
 
 export const CommentP = styled.p`
-  margin-top: 0.5rem;
+  margin: 0.75rem 0 0.5rem 0;
   word-break: break-word;
   white-space: normal;
   line-height: 1.1;

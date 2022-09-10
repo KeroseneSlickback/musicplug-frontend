@@ -373,6 +373,7 @@ export const MediumStyledReactDomLinkPrimary = styled(Link)`
 `;
 
 export const WideStyledLinkButton = styled.a`
+  margin-top: 0.25rem;
   color: ${(props) => props.theme.fontColorAlt};
   border: none;
   cursor: pointer;

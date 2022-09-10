@@ -9,6 +9,7 @@ export const FooterContainer = styled.footer`
   width: 100%;
   box-shadow: 0px 0px 3px 0px ${(props) => props.theme.highlightDark};
   margin-top: auto;
+  padding: 0.25rem 1rem;
 `;
 
 export const FooterUserDiv = styled.div`
