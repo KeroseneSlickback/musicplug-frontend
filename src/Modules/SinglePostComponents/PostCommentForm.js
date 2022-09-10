@@ -22,11 +22,15 @@ function PostCommentForm(props) {
     e.preventDefault();
     const jwt = localStorage.getItem("jwt");
     axios
-      .post(`http://localhost:8888/posts/${id}/comments`, comment, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .post(
+        `https://musicplug-backend.onrender.com/posts/${id}/comments`,
+        comment,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
       .then((res) => {
         setConfirm(true);
         setSubmitError(false);

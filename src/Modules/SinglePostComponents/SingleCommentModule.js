@@ -55,7 +55,7 @@ function SingleCommentModule(props) {
     const jwt = localStorage.getItem("jwt");
     axios
       .patch(
-        `http://localhost:8888/posts/${postId}/comments/${_id}`,
+        `https://musicplug-backend.onrender.com/posts/${postId}/comments/${_id}`,
         patchData,
         {
           headers: {

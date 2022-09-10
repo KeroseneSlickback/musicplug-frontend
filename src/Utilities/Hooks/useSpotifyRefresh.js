@@ -7,7 +7,7 @@ const useSpotifyRefresh = () => {
   useEffect(() => {
     const refresh_token = localStorage.getItem("spotify_refresh");
     axios
-      .get("http://localhost:8888/spotify/refresh_token", {
+      .get("https://musicplug-backend.onrender.com/spotify/refresh_token", {
         params: { refresh_token },
       })
       .then((res) => {

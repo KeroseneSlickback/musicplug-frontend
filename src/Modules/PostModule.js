@@ -93,7 +93,7 @@ function PostModule(props) {
         setVoteNumber((prev) => prev - 1);
         axios
           .patch(
-            `http://localhost:8888/posts/unlike/${_id}`,
+            `https://musicplug-backend.onrender.com/posts/unlike/${_id}`,
             {},
             {
               headers: {
@@ -101,9 +101,6 @@ function PostModule(props) {
               },
             }
           )
-          // .then(res => {
-          // 	console.log(res);
-          // })
           .catch((err) => {
             console.log(err);
           });
@@ -112,7 +109,7 @@ function PostModule(props) {
         setVoteNumber((prev) => prev + 1);
         axios
           .patch(
-            `http://localhost:8888/posts/like/${_id}`,
+            `https://musicplug-backend.onrender.com/posts/like/${_id}`,
             {},
             {
               headers: {
@@ -120,9 +117,6 @@ function PostModule(props) {
               },
             }
           )
-          // .then(res => {
-          // 	console.log(res);
-          // })
           .catch((err) => {
             console.log(err);
           });

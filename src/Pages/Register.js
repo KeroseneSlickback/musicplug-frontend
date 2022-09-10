@@ -61,7 +61,7 @@ function Register() {
   const registerUser = async () => {
     try {
       const registerResponse = await axios.post(
-        "http://localhost:8888/users/register",
+        "https://musicplug-backend.onrender.com/users/register",
         registerData
       );
       localStorage.setItem("user", JSON.stringify(registerResponse.data.user));

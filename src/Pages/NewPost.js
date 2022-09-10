@@ -77,7 +77,7 @@ function NewPost() {
     const jwt = localStorage.getItem("jwt");
     const requestBody = { ...postData, recommendation: selectedData };
     axios
-      .post("http://localhost:8888/posts", requestBody, {
+      .post("https://musicplug-backend.onrender.com/posts", requestBody, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -381,7 +381,7 @@ function NewPost() {
             <h3>
               Please verify your account with Spotify before making a new post.
             </h3>
-            <SpotifyButton href="http://localhost:8888/spotify/login">
+            <SpotifyButton href="https://musicplug-backend.onrender.com/spotify/login">
               <SpotifySVG />
             </SpotifyButton>
           </FormBlock>

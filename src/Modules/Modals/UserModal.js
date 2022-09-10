@@ -60,11 +60,15 @@ function UserModal(props) {
       const imageFormData = new FormData();
       imageFormData.append("picture", avatar);
       axios
-        .patch("http://localhost:8888/users/me/avatar", imageFormData, {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        })
+        .patch(
+          "https://musicplug-backend.onrender.com/users/me/avatar",
+          imageFormData,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
         .then(() => {
           setAvatarError(false);
           setConfirmAvatar(true);
@@ -80,7 +84,7 @@ function UserModal(props) {
     const jwt = localStorage.getItem("jwt");
     axios
       .patch(
-        `http://localhost:8888/users/me`,
+        `https://musicplug-backend.onrender.com/users/me`,
         { username: newUsername },
         {
           headers: {
@@ -105,7 +109,7 @@ function UserModal(props) {
     const jwt = localStorage.getItem("jwt");
     axios
       .patch(
-        `http://localhost:8888/users/me`,
+        `https://musicplug-backend.onrender.com/users/me`,
         { password: newPassword },
         {
           headers: {
@@ -128,7 +132,7 @@ function UserModal(props) {
   const deleteUser = (e) => {
     const jwt = localStorage.getItem("jwt");
     axios
-      .delete("http://localhost:8888/users/me", {
+      .delete("https://musicplug-backend.onrender.com/users/me", {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

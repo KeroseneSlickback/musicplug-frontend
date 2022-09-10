@@ -79,7 +79,7 @@ function PostBodyModule(props) {
         setVoteNumber((prev) => prev - 1);
         axios
           .patch(
-            `http://localhost:8888/posts/unlike/${_id}`,
+            `https://musicplug-backend.onrender.com/posts/unlike/${_id}`,
             {},
             {
               headers: {
@@ -95,7 +95,7 @@ function PostBodyModule(props) {
         setVoteNumber((prev) => prev + 1);
         axios
           .patch(
-            `http://localhost:8888/posts/like/${_id}`,
+            `https://musicplug-backend.onrender.com/posts/like/${_id}`,
             {},
             {
               headers: {
@@ -126,7 +126,7 @@ function PostBodyModule(props) {
     e.preventDefault();
     const jwt = localStorage.getItem("jwt");
     axios
-      .patch(`http://localhost:8888/posts/${_id}`, patchData, {
+      .patch(`https://musicplug-backend.onrender.com/posts/${_id}`, patchData, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -148,7 +148,7 @@ function PostBodyModule(props) {
   const deletePost = () => {
     const jwt = localStorage.getItem("jwt");
     axios
-      .delete(`http://localhost:8888/posts/${_id}`, {
+      .delete(`https://musicplug-backend.onrender.com/posts/${_id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
