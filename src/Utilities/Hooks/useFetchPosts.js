@@ -9,6 +9,7 @@ function useFetchPosts(url, params) {
 
   useEffect(() => {
     setLoad(true);
+    setData("");
     const debounceFetch = setTimeout(() => {
       const getData = async () => {
         await axios

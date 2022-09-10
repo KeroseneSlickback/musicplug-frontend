@@ -18,7 +18,7 @@ function PostListView({ data, load, countLoad }) {
           <CenteredModuleDiv fade>
             <StyledLoading firstColor={"#4ac09b"} secondColor={"#f7f7f7"} />
           </CenteredModuleDiv>
-          <DelayMessageModule />
+          <DelayMessageModule load={load} />
         </LoadingPageContainer>
       ) : data.data?.length === 0 ? (
         <RegularMessageModule string="No posts found. Create a New Post!" />

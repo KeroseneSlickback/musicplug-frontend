@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 const FadingDiv = styled.div`
@@ -17,12 +17,17 @@ const FadingDiv = styled.div`
     `}
 `;
 
-const DelayMessageModule = () => {
+const DelayMessageModule = ({ load }) => {
   const [message, setMessage] = useState("");
-  setTimeout(() => {
-    setMessage("Loading make take longer due to slow backend response.");
-  }, 3000);
-  return <FadingDiv active={message !== ""}>{message}</FadingDiv>;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage("Loading make take longer due to slow backend response.");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+  if (load) {
+    return <FadingDiv active={message !== ""}>{message}</FadingDiv>;
+  }
 };
 
 export default DelayMessageModule;
