@@ -21,7 +21,7 @@ const DelayMessageModule = ({ load }) => {
   const [message, setMessage] = useState("");
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMessage("Loading make take longer due to slow backend response.");
+      setMessage("Loading might take longer due to slow backend response.");
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
