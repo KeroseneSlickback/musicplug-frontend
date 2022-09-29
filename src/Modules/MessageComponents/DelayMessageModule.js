@@ -9,6 +9,7 @@ const FadingDiv = styled.div`
   flex-direction: column;
   align-items: center;
   transition: 0.5s;
+  padding: 1rem;
 
   ${(props) =>
     props.active &&
